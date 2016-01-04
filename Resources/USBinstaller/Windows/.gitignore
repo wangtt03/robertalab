@@ -1,5 +1,7 @@
 *.wixobj
+*.wixpdb
 *.jar
 *.exe
+*.msi
 lib/**
 java/**
