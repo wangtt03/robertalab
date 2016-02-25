@@ -1,0 +1,26 @@
+<block_set xmlns="http://de.fhg.iais.roberta.blockly">
+  <instance x="213" y="113">
+    <block type="robControls_start" id="XV$G+F:d`.(I@?OQ-Vc8" intask="true" deletable="false">
+      <mutation declare="true"></mutation>
+      <statement name="ST">
+        <block type="robGlobalvariables_declare" id="F~%HD/TydiTuN=^#W8!K" intask="true" deletable="false" movable="false">
+          <field name="VAR">item</field>
+          <field name="TYPE">Number</field>
+          <value name="VALUE">
+            <shadow type="math_number" id="KR^ihOzssRyEg//r;l,/" intask="true">
+              <field name="NUM">0</field>
+            </shadow>
+          </value>
+        </block>
+      </statement>
+    </block>
+    <block type="robActions_motor_on" id="s~W$0phc3upB{hkk4LXV" intask="true">
+      <field name="MOTORPORT">B</field>
+      <value name="POWER">
+        <block type="math_number" id="ei;US^S/yGS#Lf~kNz!4" intask="true">
+          <field name="NUM">30</field>
+        </block>
+      </value>
+    </block>
+  </instance>
+</block_set>
