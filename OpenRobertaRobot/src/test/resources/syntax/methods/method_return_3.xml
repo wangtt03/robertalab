@@ -2,6 +2,7 @@
   <instance x="134" y="55">
     <block type="robControls_start" id="32" deletable="false">
       <mutation declare="false"></mutation>
+      <field name="DEBUG">FALSE</field>
     </block>
     <block type="robActions_display_text" id="286" inline="false">
       <value name="OUT">

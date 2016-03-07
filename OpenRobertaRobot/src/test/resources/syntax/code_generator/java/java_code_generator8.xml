@@ -2,6 +2,7 @@
   <instance x="114" y="54">
     <block type="robControls_start" id="29" deletable="false">
       <mutation declare="true"></mutation>
+      <field name="DEBUG">FALSE</field>
       <statement name="ST">
         <block type="robGlobalvariables_declare" id="84" inline="true" deletable="false" movable="false">
           <mutation next="true" datatype="Number"></mutation>

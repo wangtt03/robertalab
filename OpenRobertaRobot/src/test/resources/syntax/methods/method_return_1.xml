@@ -1,7 +1,8 @@
 <block_set xmlns="http://de.fhg.iais.roberta.blockly">
   <instance x="1" y="7">
     <block type="robControls_start" id="21" deletable="false">
-      <mutation declare="true"></mutation>
+      <mutation declare="true"></mutation>     
+      <field name="DEBUG">FALSE</field>
       <statement name="ST">
         <block type="robGlobalvariables_declare" id="327" inline="true" deletable="false" movable="false">
           <mutation next="false" declaration_type="Array_String"></mutation>

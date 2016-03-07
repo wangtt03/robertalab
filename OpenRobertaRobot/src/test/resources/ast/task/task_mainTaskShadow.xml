@@ -1,26 +1,33 @@
 <block_set xmlns="http://de.fhg.iais.roberta.blockly">
-  <instance x="213" y="113">
-    <block type="robControls_start" id="XV$G+F:d`.(I@?OQ-Vc8" intask="true" deletable="false">
+  <instance x="38" y="88">
+    <block type="robControls_start" id="3o+sJ1tg0DkbZWr}9;[u" intask="true" deletable="false">
       <mutation declare="true"></mutation>
+      <field name="DEBUG">FALSE</field>
       <statement name="ST">
-        <block type="robGlobalvariables_declare" id="F~%HD/TydiTuN=^#W8!K" intask="true" deletable="false" movable="false">
+        <block type="robGlobalvariables_declare" id="fF9f5ol8xEw[WXO6tA)O" intask="true" deletable="false" movable="false">
+          <mutation next="true" declaration_type="Number"></mutation>
           <field name="VAR">item</field>
           <field name="TYPE">Number</field>
           <value name="VALUE">
-            <shadow type="math_number" id="KR^ihOzssRyEg//r;l,/" intask="true">
+            <shadow type="math_number" id="~yVKyvfO8zk)TYMd7zI^" intask="true">
               <field name="NUM">0</field>
             </shadow>
           </value>
         </block>
-      </statement>
-    </block>
-    <block type="robActions_motor_on" id="s~W$0phc3upB{hkk4LXV" intask="true">
-      <field name="MOTORPORT">B</field>
-      <value name="POWER">
-        <block type="math_number" id="ei;US^S/yGS#Lf~kNz!4" intask="true">
-          <field name="NUM">30</field>
+        <block type="robGlobalvariables_declare" id="fl+3eU1kc;(:}/}/(5jQ" intask="true" deletable="false" movable="false">
+        <mutation next="false" declaration_type="Number"></mutation>
+          <field name="VAR">item2</field>
+          <field name="TYPE">Number</field>
+          <value name="VALUE">
+            <shadow type="math_number" id="HjW|)28$x6KPk#Ll5,AC" intask="true">
+              <field name="NUM">0</field>
+            </shadow>
+            <block type="math_number" id="HjW|)28$x6KPk#Ll5,AC" intask="true">
+              <field name="NUM">15</field>
+            </block>
+          </value>
         </block>
-      </value>
+      </statement>
     </block>
   </instance>
 </block_set>

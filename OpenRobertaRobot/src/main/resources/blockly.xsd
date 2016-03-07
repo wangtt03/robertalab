@@ -39,6 +39,7 @@
 		<xs:attribute name="intask" type="xs:boolean" use="optional" />
 		<xs:attribute name="deletable" type="xs:boolean" use="optional" />
 		<xs:attribute name="movable" type="xs:boolean" use="optional" />
+		<xs:attribute name="shadow" type="xs:boolean" use="optional" />		
 	</xs:complexType>
 	<xs:complexType name="field">
 		<xs:simpleContent>
@@ -76,8 +77,8 @@
 	</xs:complexType>
 	<xs:complexType name="value">
 		<xs:sequence>
-			<xs:element name="block" minOccurs="0" maxOccurs="1" type="block" />
 			<xs:element name="shadow" minOccurs="0" maxOccurs="1" type="shadow"/>
+			<xs:element name="block" minOccurs="0" maxOccurs="1" type="block" />
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" use="required" />
 	</xs:complexType>

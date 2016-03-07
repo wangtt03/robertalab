@@ -2,6 +2,7 @@
 	<instance x="100" y="50">
 		<block type="robControls_start" id="10" deletable="false">
       <mutation declare="false"></mutation>
+      <field name="DEBUG">FALSE</field>
     </block>
 		<block type="robControls_wait_for" id="159" inline="false">
 			<value name="WAIT0">
