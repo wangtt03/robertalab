@@ -1,30 +1,8 @@
 <block_set xmlns="http://de.fhg.iais.roberta.blockly">
   <instance x="101" y="24">
     <block type="robControls_start" id="29" deletable="false">
-      <mutation declare="true"></mutation>
+      <mutation declare="false"></mutation>
       <field name="DEBUG">FALSE</field>
-      <statement name="ST">
-        <block type="robGlobalvariables_declare" id="34" inline="true" deletable="false" movable="false">
-          <mutation next="true" declaration_type="Number"></mutation>
-          <field name="VAR">variablenName</field>
-          <field name="TYPE">Number</field>
-          <value name="VALUE">
-            <block type="math_number" id="35">
-              <field name="NUM">0</field>
-            </block>
-          </value>
-        </block>
-        <block type="robGlobalvariables_declare" id="36" inline="true" deletable="false" movable="false">
-          <mutation next="false" declaration_type="Number"></mutation>
-          <field name="VAR">variablenName2</field>
-          <field name="TYPE">Number</field>
-          <value name="VALUE">
-            <block type="math_number" id="37">
-              <field name="NUM">0</field>
-            </block>
-          </value>
-        </block>
-      </statement>
     </block>
     <block type="robActions_motor_on_for" id="33" inline="false">
       <field name="MOTORPORT">B</field>
