@@ -126,7 +126,7 @@
 	</xs:complexType>
 	<xs:complexType name="shadow">
 		<xs:sequence>
-			<xs:element name="field" minOccurs="1" maxOccurs="1" type="field" />
+			<xs:element name="field" minOccurs="0" maxOccurs="1" type="field" />
 		</xs:sequence>
 		<xs:attribute name="type" type="xs:string" use="required" />
 		<xs:attribute name="id" type="xs:string" use="required" />
