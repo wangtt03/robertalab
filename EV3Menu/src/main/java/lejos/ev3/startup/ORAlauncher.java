@@ -78,20 +78,15 @@ public class ORAlauncher {
             // that the program execution failed
             exitvalue = 1;
         } finally {
-            try {
-                Delay.msDelay(500);
-                Button.LEDPattern(0);
-                isRunning = false;
-                EV3IOPort.closeAll();
-                //GraphicStartup.resetMotors();
-                GraphicStartup.menu.resume();
-                // debug screen if menu is killed by keys enter + down
-                GraphicStartup.menu.suspend();
-                GraphicStartup.menu.resume();
-            } catch ( Exception e ) {
-                System.out.println(e);
-                e.printStackTrace();
-            }
+            Delay.msDelay(500);
+            Button.LEDPattern(0);
+            isRunning = false;
+            EV3IOPort.closeAll();
+            GraphicStartup.resetMotors();
+            GraphicStartup.menu.resume();
+            // debug screen if menu is killed by keys enter + down
+            GraphicStartup.menu.suspend();
+            GraphicStartup.menu.resume();
         }
         return exitvalue;
     }

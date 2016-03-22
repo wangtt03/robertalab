@@ -311,8 +311,12 @@ public class Hal {
     }
 
     private void disconnect() {
-        this.screenLoggerThread.interrupt();
-        this.serverLoggerThread.interrupt();
+        if ( this.screenLoggerThread != null ) {
+            this.screenLoggerThread.interrupt();
+        }
+        if ( this.serverLoggerThread != null ) {
+            this.serverLoggerThread.interrupt();
+        }
     }
 
     /**
@@ -492,13 +496,15 @@ public class Hal {
      * @throws InterruptedException
      * @throws IOException
      */
-    public void closeResources() throws InterruptedException, IOException {
+    @SuppressWarnings("deprecation")
+    public void closeResources() {
         disconnect();
+        this.dPilot.stop();
+        EV3IOPort.closeAll();
         try {
-            EV3IOPort.closeAll();
             this.lcdos.close();
         } catch ( Exception e ) {
-            System.out.println("Hal: " + e);
+            // ok
         }
         //System.exit(0); do not use this when executing in the same process as th menu :-)
     }
@@ -829,7 +835,7 @@ public class Hal {
      * Client must provide correct ports of the left and right motor.
      */
     @SuppressWarnings("deprecation")
-    public void stopRegulatedDrive(ActorPort left, ActorPort right) {
+    public void stopRegulatedDrive() {
         this.dPilot.quickStop();
     }
 
