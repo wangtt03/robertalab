@@ -226,7 +226,16 @@ public class Hal {
                         default:
                             return;
                     }
-                    Delay.msDelay(2000);
+                    try {
+                        Thread.sleep(2000);
+                    } catch ( InterruptedException e ) {
+                        try {
+                            ws.closeBlocking();
+                        } catch ( InterruptedException ee ) {
+                            // ok
+                        }
+                        return;
+                    }
                 }
             }
         });
@@ -257,7 +266,11 @@ public class Hal {
                         default:
                             return;
                     }
-                    Delay.msDelay(2000);
+                    try {
+                        Thread.sleep(2000);
+                    } catch ( InterruptedException e ) {
+                        return;
+                    }
                 }
             }
         });
@@ -279,13 +292,18 @@ public class Hal {
         this.screenLoggerThread.start();
     }
 
+    private void disconnect() {
+        this.screenLoggerThread.interrupt();
+        this.serverLoggerThread.interrupt();
+    }
+
     /**
      * Send sensor values to Open Roberta Lab via websocket.
      * Fall back to REST if the websocket is not able to connect to the server at least once.
      */
     private void logToServerWS(ClientWebSocket ws) {
         // READYSTATE.CONNECTING not working/ unused
-        System.out.println(ws.getReadyState());
+        //System.out.println(ws.getReadyState());
         if ( ws.getReadyState() == READYSTATE.OPEN ) {
             sendJSONviaWebsocket(ws);
         } else if ( ws.getReadyState() == READYSTATE.CLOSED || ws.getReadyState() == READYSTATE.CLOSING ) {
@@ -418,7 +436,11 @@ public class Hal {
                     // ok
                 }
             }
-            Delay.msDelay(2000);
+            try {
+                Thread.sleep(2000);
+            } catch ( InterruptedException e ) {
+                return;
+            }
         }
     }
 
@@ -453,9 +475,14 @@ public class Hal {
      * @throws IOException
      */
     public void closeResources() throws InterruptedException, IOException {
-        EV3IOPort.closeAll();
-        this.lcdos.close();
-        System.exit(0);
+        disconnect();
+        try {
+            EV3IOPort.closeAll();
+            this.lcdos.close();
+        } catch ( Exception e ) {
+            System.out.println("Hal: " + e);
+        }
+        //System.exit(0); do not use this when executing in the same process as th menu :-)
     }
 
     //    /**
@@ -497,6 +524,7 @@ public class Hal {
             } else {
                 lcd.drawString(messageToBePrinted.substring(0, NUMBER_OF_CHARACTERS_IN_ROW), 0, displayRow);
             }
+            lcd.refresh();
             displayRow++;
             messageToBePrinted = messageToBePrinted.substring(NUMBER_OF_CHARACTERS_IN_ROW);
         }
@@ -738,6 +766,7 @@ public class Hal {
      * @param direction of rotation of the motor (forward or backward)
      * @param speedPercent of motor power
      */
+    @SuppressWarnings("deprecation") // for version 0.9.1-beta we can stay with DifferentialPilot. In the future we may want to use new Pilots and Chassis classes.
     public void regulatedDrive(ActorPort left, ActorPort right, boolean isReverse, DriveDirection direction, float speedPercent) {
         // TODO Use new Pilots of leJOS 0.9.1-beta and instantiate pilot only once!
         DifferentialPilot dPilot =
@@ -747,7 +776,7 @@ public class Hal {
                 this.deviceHandler.getRegulatedMotor(left),
                 this.deviceHandler.getRegulatedMotor(right),
                 isReverse);
-        dPilot.setTravelSpeed(dPilot.getMaxTravelSpeed() * speedPercent / 100.0);
+        dPilot.setLinearSpeed(dPilot.getMaxLinearSpeed() * speedPercent / 100.0);
         switch ( direction ) {
             case FOREWARD:
                 dPilot.forward();
@@ -775,6 +804,7 @@ public class Hal {
      * @param speedPercent of motor power
      * @param distance that the robot should travel
      */
+    @SuppressWarnings("deprecation")
     public void driveDistance(ActorPort left, ActorPort right, boolean isReverse, DriveDirection direction, float speedPercent, float distance) {
         // TODO Use new Pilots of leJOS 0.9.1-beta and instantiate pilot only once!
         DifferentialPilot dPilot =
@@ -785,7 +815,7 @@ public class Hal {
                 this.deviceHandler.getRegulatedMotor(right),
                 isReverse);
 
-        dPilot.setTravelSpeed(dPilot.getMaxTravelSpeed() * speedPercent / 100.0);
+        dPilot.setLinearSpeed(dPilot.getMaxLinearSpeed() * speedPercent / 100.0);
         switch ( direction ) {
             case FOREWARD:
                 dPilot.travel(distance);
@@ -825,6 +855,7 @@ public class Hal {
      * @param direction in which the robot will turn (left or right)
      * @param speedPercent of motor power
      */
+    @SuppressWarnings("deprecation")
     public void rotateDirectionRegulated(ActorPort left, ActorPort right, boolean isReverse, TurnDirection direction, float speedPercent) {
         // TODO Use new Pilots of leJOS 0.9.1-beta and instantiate pilot only once!
         DifferentialPilot dPilot =
@@ -834,7 +865,7 @@ public class Hal {
                 this.deviceHandler.getRegulatedMotor(left),
                 this.deviceHandler.getRegulatedMotor(right),
                 isReverse);
-        dPilot.setRotateSpeed(toDegPerSec((int) speedPercent));
+        dPilot.setAngularSpeed(toDegPerSec((int) speedPercent));
         switch ( direction ) {
             case RIGHT:
                 dPilot.rotateRight();
@@ -862,6 +893,7 @@ public class Hal {
      * @param speedPercent of motor power
      * @param angle of the turn
      */
+    @SuppressWarnings("deprecation")
     public void rotateDirectionAngle(ActorPort left, ActorPort right, boolean isReverse, TurnDirection direction, float speedPercent, float angle) {
         // TODO Use new Pilots of leJOS 0.9.1-beta and instantiate pilot only once!
         DifferentialPilot dPilot =
@@ -871,7 +903,7 @@ public class Hal {
                 this.deviceHandler.getRegulatedMotor(left),
                 this.deviceHandler.getRegulatedMotor(right),
                 isReverse);
-        dPilot.setRotateSpeed(toDegPerSec(speedPercent));
+        dPilot.setAngularSpeed(toDegPerSec(speedPercent));
         switch ( direction ) {
             case RIGHT:
                 angle = angle * -1;
@@ -899,6 +931,7 @@ public class Hal {
      */
     public void drawText(String text, float x, float y) {
         this.brick.getTextLCD().drawString(text, (int) x, (int) y);
+        this.brick.getTextLCD().refresh();
     }
 
     /**
@@ -931,7 +964,7 @@ public class Hal {
             default:
                 throw new DbcException("incorrect show picture");
         }
-
+        this.brick.getGraphicsLCD().refresh();
     }
 
     /**
@@ -939,6 +972,7 @@ public class Hal {
      */
     public void clearDisplay() {
         this.brick.getGraphicsLCD().clear();
+        this.brick.getGraphicsLCD().refresh();
     }
 
     // --- END Aktion Anzeige ---

@@ -5,7 +5,7 @@ import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.lcd.TextLCD;
 
 // @formatter:off
-// formatter would change keyboard layout on the ev3 screen
+// formatter would change keyboard layout for the ev3 screen
 /**
  * Keyboard based on {@link Keyboard} , lejos class for wifi password input.<br>
  * IpAddressKeyboard for IP input, used in developer version, example: 10.0.1.10:1999<br>
@@ -17,20 +17,18 @@ public class ORAipKeyboard
 
     private final TextLCD lcd = LocalEV3.get().getTextLCD();
 
-    private int x;
-    private int y;
+    public ORAipKeyboard()
+    {
+        //
+    }
+
+    int x = 0, y = 5;
 
     String[] lines = { "0123456789        ",
                        ".:                ",
                        "                  ",
                        "                  ",
                        "x D c         " };
-
-    public ORAipKeyboard()
-    {
-        this.x = 0;
-        this.y = 5;
-    }
 
     private void display()
     {

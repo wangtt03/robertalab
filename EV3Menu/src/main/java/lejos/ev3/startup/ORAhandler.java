@@ -28,7 +28,7 @@ public class ORAhandler {
     public ORAhandler() {
         createRestartScript();
         createWifiStartupScript();
-        removeTelnetService();
+		removeTelnetService();
     }
 
     private void createRestartScript() {
@@ -41,7 +41,7 @@ public class ORAhandler {
                 fw.write("killall java\n");
                 fw.write("cd /home/root/lejos/bin/utils\n");
 
-                fw.write("jrun -jar EV3Menu.jar $(cat /etc/hostname) $(cat /home/root/lejos/version) &\n");
+                fw.write("jrun -cp EV3Menu.jar lejos.ev3.startup.GraphicStartup $(cat /etc/hostname) $(cat /home/root/lejos/version) &\n");
                 fw.write("\n");
                 fw.close();
             } catch ( IOException e ) {
@@ -65,29 +65,29 @@ public class ORAhandler {
             }
         }
     }
-
-    private void removeTelnetService() {
-        File file = new File("/etc/init.d/telnetd");
-        if ( file.exists() ) {
-            file.delete();
-            try {
-                Runtime.getRuntime().exec("killall telnetd");
-            } catch ( IOException e ) {
-                // ok
-            }
-        }
-    }
-
-    /**
-     * Read the Bluetooth macaddress from /var/volatile/BTser from the leJOS setup.
-     * This is an unique identifier for the USB connection if no wifi dongle is plugged in.
-     *
-     * @return
-     * @throws IOException
-     */
-    public String getBluetoothMacAddress() throws IOException {
-        return new String(Files.readAllBytes(new File("/var/volatile/BTser").toPath())).trim();
-    }
+	
+	private void removeTelnetService() {
+		File file = new File("/etc/init.d/telnetd");
+		if ( file.exists() ) {
+			file.delete();
+			try {
+				Runtime.getRuntime().exec("killall telnetd");
+			} catch ( IOException e ) {
+				// ok
+			}
+		}
+	}
+	
+	/**
+	* Read the Bluetooth macaddress from /var/volatile/BTser from the leJOS setup.
+	* This is an unique identifier for the USB connection if no wifi dongle is plugged in.
+	*
+	* @return
+	* @throws IOException
+	*/
+	public String getBluetoothMacAddress() throws IOException {
+		return new String(Files.readAllBytes(new File("/var/volatile/BTser").toPath())).trim();
+	}
 
     private void resetState() {
         setRegistered(false);
@@ -99,9 +99,9 @@ public class ORAhandler {
      * Start the brick server "push" communication.
      *
      * @param serverBaseIP
-     *        The base IP like 192.168.56.1:1999
+     *            The base IP like 192.168.56.1:1999
      * @param token
-     *        Token for client/ brick identification
+     *            Token for client/ brick identification
      */
     public void startServerCommunicator(String serverBaseIP, String token) {
         resetState();
