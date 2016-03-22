@@ -99,6 +99,7 @@
 			<xs:element name="arg" minOccurs="0" maxOccurs="unbounded" type="arg" />
 		</xs:sequence>
 		<xs:attribute name="elseif" type="xs:integer" use="optional" />
+		<xs:attribute name="op" type="xs:string" use="optional" />
 		<xs:attribute name="else" type="xs:integer" use="optional" />
 		<xs:attribute name="value" type="xs:integer" use="optional" />
 		<xs:attribute name="items" type="xs:integer" use="optional" />
