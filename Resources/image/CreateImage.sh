@@ -14,12 +14,16 @@ fi
 tmp='temp'
 # temporary directory on Linux file system (ext)
 work='/tmp/openroberta'
+# folder in which scripts are in
+scripts='lejos_scripts'
 
 # Directory contains files for updating the brick after successful maven install
 libdir='../../OpenRobertaServer/target/updateResources'
 
-#Open Roberta default version, can be modified by the first input parameter
+# Open Roberta default version, can be modified by the first input parameter
 # for example "sh CreateImage.sh 1.4.0"
+# the version only defines the file name
+# the "real" version comes from the maven install procedure
 version='1.3.2'
 
 menu=${libdir}/EV3Menu.jar
@@ -60,7 +64,7 @@ fi
 # Download lejos automatically with wget from sourceforge
 echo "Downloading lejos files from sourceforge!"
 echo ""
-wget -O ${lejosfile} https://sourceforge.net/projects/ev3.lejos.p/files/0.9.0-beta/leJOS_EV3_0.9.0-beta.tar.gz/download
+wget -O ${lejosfile} https://sourceforge.net/projects/ev3.lejos.p/files/0.9.1-beta/leJOS_EV3_0.9.1-beta.tar.gz/download
 
 if [ -f ${lejosfile} ]
 then
@@ -110,6 +114,13 @@ cp ${json} ${work}/lejosimage/lejosfs/home/roberta/lib
 cp ${runtime} ${work}/lejosimage/lejosfs/home/roberta/lib
 cp ${shared} ${work}/lejosimage/lejosfs/home/roberta/lib
 cp ${websocket} ${work}/lejosimage/lejosfs/home/roberta/lib
+
+cp ${scripts}/checkroot ${work}/lejosimage/lejosfs/etc/init.d/
+cp ${scripts}/ev3init.sh ${work}/lejosimage/lejosfs/etc/init.d/
+cp ${scripts}/jrun ${work}/lejosimage/lejosfs/home/root/lejos/bin
+cp ${scripts}/startbt ${work}/lejosimage/lejosfs/home/root/lejos/bin
+cp ${scripts}/startpan ${work}/lejosimage/lejosfs/home/root/lejos/bin
+cp ${scripts}/startup ${work}/lejosimage/lejosfs/home/root/lejos/bin
 # ---
 
 # Pack everything together again
@@ -132,7 +143,13 @@ rm -r ${tmp}
 rm -r ${work}
 # ---
 
-echo "If there are no error messages, the image was created successfully."
-echo "The image file is: OpenRobertaFirmware-${version}-release.zip"
+openrobertaimage="OpenRobertaFirmware-${version}-release.zip"
+if [ -f ${openrobertaimage} ]
+then
+	echo "Image file created successfully!"
+	echo "The image file is: ${openrobertaimage}"
+else
+	echo "Image file does not exist. Something went wrong."
+fi
 echo "---Finish---"
 echo ""
