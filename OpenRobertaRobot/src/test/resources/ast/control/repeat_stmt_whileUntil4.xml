@@ -38,7 +38,7 @@
         </block>
       </value>
       <statement name="DO">
-        <block type="text_append" id="68" inline="false" disabled="true">
+        <block type="robText_append" id="68" inline="false" disabled="true">
            <value name="VAR">
         <block type="variables_get" id="52">
           <mutation datatype="String"></mutation>

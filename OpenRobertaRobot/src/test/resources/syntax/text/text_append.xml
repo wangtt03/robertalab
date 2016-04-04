@@ -1,6 +1,6 @@
 <block_set xmlns="http://de.fhg.iais.roberta.blockly">
   <instance x="14" y="87">
-    <block type="text_append" id="146" inline="false" >
+    <block type="robText_append" id="146" inline="false" >
       <value name="VAR">
         <block type="variables_get" id="59">
           <mutation datatype="String"></mutation>
@@ -13,7 +13,7 @@
         </block>
       </value>
     </block>
-    <block type="text_append" id="164" inline="false" >
+    <block type="robText_append" id="164" inline="false" >
             <value name="VAR">
         <block type="variables_get" id="59">
           <mutation datatype="String"></mutation>
@@ -26,7 +26,7 @@
         </block>
       </value>
     </block>
-    <block type="text_append" id="186" inline="false" >
+    <block type="robText_append" id="186" inline="false" >
             <value name="VAR">
         <block type="variables_get" id="59">
           <mutation datatype="String"></mutation>
