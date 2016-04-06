@@ -34,7 +34,7 @@
         </block>
       </value>
     </block>
-    <block type="text_append" id="79" inline="true" intask="true">
+    <block type="robText_append" id="79" inline="true" intask="true">
       <value name="VAR">
         <block type="variables_get" id="83" intask="true">
           <mutation datatype="String"></mutation>
