@@ -3,7 +3,7 @@
     <block type="robControls_start" id="38" intask="true" deletable="false">
       <mutation declare="true"></mutation>
       <statement name="ST">
-        <block type="robGlobalvariables_declare" id="127" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="127" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="true" declaration_type="Array_String"></mutation>
           <field name="VAR">variablenName</field>
           <field name="TYPE">Array_String</field>
@@ -29,7 +29,7 @@
             </block>
           </value>
         </block>
-        <block type="robGlobalvariables_declare" id="147" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="147" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="true" declaration_type="Array_Boolean"></mutation>
           <field name="VAR">variablenName2</field>
           <field name="TYPE">Array_Boolean</field>
@@ -55,7 +55,7 @@
             </block>
           </value>
         </block>
-        <block type="robGlobalvariables_declare" id="222" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="222" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="true" declaration_type="Number"></mutation>
           <field name="VAR">variablenName3</field>
           <field name="TYPE">Number</field>
@@ -65,7 +65,7 @@
             </block>
           </value>
         </block>
-        <block type="robGlobalvariables_declare" id="243" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="243" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="false" declaration_type="Boolean"></mutation>
           <field name="VAR">variablenName4</field>
           <field name="TYPE">Boolean</field>

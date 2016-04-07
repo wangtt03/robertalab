@@ -3,7 +3,7 @@
     <block type="robControls_start" id="34" intask="true" deletable="false">
       <mutation declare="true"></mutation>
       <statement name="ST">
-        <block type="robGlobalvariables_declare" id="118" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="118" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="true" declaration_type="Number"></mutation>
           <field name="VAR">variablenName</field>
           <field name="TYPE">Number</field>
@@ -13,7 +13,7 @@
             </block>
           </value>
         </block>
-        <block type="robGlobalvariables_declare" id="176" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="176" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="true" declaration_type="Boolean"></mutation>
           <field name="VAR">variablenName2</field>
           <field name="TYPE">Boolean</field>
@@ -23,7 +23,7 @@
             </block>
           </value>
         </block>
-        <block type="robGlobalvariables_declare" id="219" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="219" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="true" declaration_type="Colour"></mutation>
           <field name="VAR">variablenName3</field>
           <field name="TYPE">Colour</field>
@@ -33,7 +33,7 @@
             </block>
           </value>
         </block>
-        <block type="robGlobalvariables_declare" id="222" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="222" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="false" declaration_type="Array_Number"></mutation>
           <field name="VAR">variablenName4</field>
           <field name="TYPE">Array_Number</field>

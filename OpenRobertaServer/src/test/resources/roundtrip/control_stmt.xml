@@ -3,7 +3,7 @@
     <block type="robControls_start" id="29" intask="true" deletable="false">
       <mutation declare="true"></mutation>
       <statement name="ST">
-        <block type="robGlobalvariables_declare" id="251" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="251" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="false" declaration_type="Array_Number"></mutation>
           <field name="VAR">variablenName2</field>
           <field name="TYPE">Array_Number</field>
