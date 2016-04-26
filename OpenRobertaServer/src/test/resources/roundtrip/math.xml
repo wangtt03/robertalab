@@ -3,7 +3,7 @@
     <block type="robControls_start" id="69" intask="true" deletable="false">
       <mutation declare="true"></mutation>
       <statement name="ST">
-        <block type="robGlobalvariables_declare" id="90" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="90" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="true" declaration_type="Number"></mutation>
           <field name="VAR">variablenName</field>
           <field name="TYPE">Number</field>
@@ -13,7 +13,7 @@
             </block>
           </value>
         </block>
-        <block type="robGlobalvariables_declare" id="252" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="252" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="true" declaration_type="Boolean"></mutation>
           <field name="VAR">variablenName2</field>
           <field name="TYPE">Boolean</field>
@@ -23,7 +23,7 @@
             </block>
           </value>
         </block>
-        <block type="robGlobalvariables_declare" id="397" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="397" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="false" declaration_type="Array_Number"></mutation>
           <field name="VAR">variablenName3</field>
           <field name="TYPE">Array_Number</field>
@@ -351,7 +351,7 @@
         </block>
       </value>
     </block>
-    <block type="math_change" id="317" inline="true" intask="true">
+    <block type="robMath_change" id="317" inline="true" intask="true">
       <value name="VAR">
         <block type="variables_get" id="331" intask="true">
           <mutation datatype="Number"></mutation>

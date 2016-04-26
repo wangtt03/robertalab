@@ -3,7 +3,7 @@
     <block type="robControls_start" id="38" intask="true" deletable="false">
       <mutation declare="true"></mutation>
       <statement name="ST">
-        <block type="robGlobalvariables_declare" id="40" inline="true" intask="true" deletable="false" movable="false">
+        <block type="robGlobalVariables_declare" id="40" inline="true" intask="true" deletable="false" movable="false">
           <mutation next="false" declaration_type="String"></mutation>
           <field name="VAR">variablenName</field>
           <field name="TYPE">String</field>
@@ -34,7 +34,7 @@
         </block>
       </value>
     </block>
-    <block type="text_append" id="79" inline="true" intask="true">
+    <block type="robText_append" id="79" inline="true" intask="true">
       <value name="VAR">
         <block type="variables_get" id="83" intask="true">
           <mutation datatype="String"></mutation>

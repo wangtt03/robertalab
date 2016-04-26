@@ -2,6 +2,7 @@
   <instance x="34" y="20">
     <block type="robControls_start" id="44" deletable="false">
       <mutation declare="false"></mutation>
+      <field name="DEBUG">FALSE</field>
     </block>
     <block type="robControls_if" id="184" inline="false">
       <mutation elseif="1"></mutation>
@@ -23,7 +24,7 @@
             <field name="OP">EQ</field>
             <value name="A">
               <block type="robColour_picker" id="227">
-                <field name="COLOUR">rot</field>
+                <field name="COLOUR">#B30006</field>
               </block>
             </value>
             <value name="B">

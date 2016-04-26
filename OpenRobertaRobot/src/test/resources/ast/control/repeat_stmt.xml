@@ -7,7 +7,7 @@
         </block>
       </value>
       <statement name="DO">
-        <block type="text_append" id="175" inline="false">
+        <block type="robText_append" id="175" inline="false">
           <value name="VAR">
                 <block type="variables_get" id="59">
                     <mutation datatype="String"></mutation>
@@ -20,7 +20,7 @@
             </block>
           </value>
         </block>
-        <block type="text_append" id="177" inline="false">
+        <block type="robText_append" id="177" inline="false">
            <value name="VAR">
                 <block type="variables_get" id="59">
                     <mutation datatype="String"></mutation>
