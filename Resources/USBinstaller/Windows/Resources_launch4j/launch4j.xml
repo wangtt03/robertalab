@@ -23,10 +23,10 @@
     <cp>lib/*</cp>
   </classPath>
   <jre>
-    <path>java</path>
+    <path></path>
     <bundledJre64Bit>false</bundledJre64Bit>
     <bundledJreAsFallback>false</bundledJreAsFallback>
-    <minVersion></minVersion>
+    <minVersion>1.7.0_0</minVersion>
     <maxVersion></maxVersion>
     <jdkPreference>preferJre</jdkPreference>
     <runtimeBits>64/32</runtimeBits>
