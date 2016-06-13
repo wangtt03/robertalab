@@ -115,7 +115,15 @@ commit;
 
 insert into ROBOT
 ( NAME, CREATED, TAGS, ICON_NUMBER )
-values('oraSim',
+values('nxt',
+now,
+ '', 0
+ );
+commit;
+
+insert into ROBOT
+( NAME, CREATED, TAGS, ICON_NUMBER )
+values('bayduino',
 now,
  '', 0
  );
@@ -124,6 +132,14 @@ commit;
 insert into USER
 (ACCOUNT, PASSWORD, EMAIL, ROLE, CREATED, LAST_LOGIN, TAGS, USER_NAME)
 values ('Roberta','d4ab787ab667fef4:a5bf6037bd904f05b76ee431ae285f443229e3a3','','TEACHER',now ,now ,'','Roberta Roboter'
+);
+commit;
+
+insert into CONFIGURATION
+( NAME, OWNER_ID, ROBOT_ID, CONFIGURATION_TEXT, CREATED, LAST_CHANGED, LAST_CHECKED, LAST_ERRORFREE, TAGS, ICON_NUMBER )
+values ('ev3Brick',NULL,'42','<block_set xmlns=''http://de.fhg.iais.roberta.blockly''><instance x=''0'' y=''0''><block id=''2'' type=''robBrick_EV3-Brick''><field name="WHEEL_DIAMETER">5.6</field><field name="TRACK_WIDTH">18</field><value name=''S1''><block type=''robBrick_touch''/></value><value name=''S2''><block type=''robBrick_gyro''></block></value><value name=''S3''><block type=''robBrick_colour''></block></value><value name=''S4''><block type=''robBrick_ultrasonic''/></value><value name=''MB''><block type=''robBrick_motor_big''><field name=''MOTOR_REGULATION''>TRUE</field><field name=''MOTOR_REVERSE''>OFF</field><field name=''MOTOR_DRIVE''>RIGHT</field></block></value><value name=''MC''><block type=''robBrick_motor_big''><field name=''MOTOR_REGULATION''>TRUE</field><field name=''MOTOR_REVERSE''>OFF</field><field name=''MOTOR_DRIVE''>LEFT</field></block></value></block></instance></block_set>',
+now, now, now, now,
+ '', 0
 );
 commit;
 
@@ -153,7 +169,7 @@ commit;
 
 insert into TOOLBOX
 ( NAME, OWNER_ID, ROBOT_ID, TOOLBOX_TEXT, CREATED, LAST_CHANGED, LAST_CHECKED, LAST_ERRORFREE, TAGS, ICON_NUMBER )
-values('ev3',NULL,'43','<toolbox_set id="toolbox" style="display: none"><category name="TOOLBOX_ACTION" svg="true"><block type="robBrick_motor_big"></block><block type="robBrick_motor_middle"></block><block type="robBrick_actor"></block></category><category name="TOOLBOX_SENSOR" svg="true"><block type="robBrick_ultrasonic"></block><block type="robBrick_colour"></block><block type="robBrick_infrared"></block><block type="robBrick_touch"></block><block type="robBrick_gyro"></block></category></toolbox_set>',
+values('ev3',NULL,'42','<toolbox_set id="toolbox" style="display: none"><category name="TOOLBOX_ACTION" svg="true"><block type="robBrick_motor_big"></block><block type="robBrick_motor_middle"></block><block type="robBrick_actor"></block></category><category name="TOOLBOX_SENSOR" svg="true"><block type="robBrick_ultrasonic"></block><block type="robBrick_colour"></block><block type="robBrick_infrared"></block><block type="robBrick_touch"></block><block type="robBrick_gyro"></block></category></toolbox_set>',
 now, now, now, now,
  '', 0
  );
