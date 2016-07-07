@@ -28,12 +28,11 @@ import de.fhg.iais.roberta.mode.action.MotorSide;
 import de.fhg.iais.roberta.syntax.BlockType;
 import de.fhg.iais.roberta.syntax.Phrase;
 import de.fhg.iais.roberta.syntax.blocksequence.Location;
-import de.fhg.iais.roberta.syntax.codegen.Ast2Ev3JavaScriptVisitor;
 import de.fhg.iais.roberta.syntax.codegen.Ast2Ev3JavaVisitor;
 import de.fhg.iais.roberta.syntax.codegen.Ast2Ev3PythonVisitor;
 import de.fhg.iais.roberta.syntax.codegen.AstToEv3TextlyVisitor;
 import de.fhg.iais.roberta.transformer.Jaxb2BlocklyProgramTransformer;
-import de.fhg.iais.roberta.transformer.ev3.Jaxb2Ev3ConfigurationTransformer;
+import de.fhg.iais.roberta.transformer.Jaxb2Ev3ConfigurationTransformer;
 
 /**
  * This class is used to store helper methods for operation with JAXB objects and generation code from them.
@@ -86,20 +85,6 @@ public class Helper {
     public static String generatePython(String pathToProgramXml, Configuration brickConfiguration) throws Exception {
         Jaxb2BlocklyProgramTransformer<Void> transformer = generateTransformer(pathToProgramXml);
         String code = Ast2Ev3PythonVisitor.generate("Test", brickConfiguration, transformer.getTree(), true);
-        // System.out.println(code); // only needed for EXTREME debugging
-        return code;
-    }
-
-    /**
-     * Generate java script code as string from a given program .
-     *
-     * @param pathToProgramXml path to a XML file, usable for {@link Class#getResourceAsStream(String)}
-     * @return the code as string
-     * @throws Exception
-     */
-    public static String generateJavaScript(String pathToProgramXml) throws Exception {
-        Jaxb2BlocklyProgramTransformer<Void> transformer = generateTransformer(pathToProgramXml);
-        String code = Ast2Ev3JavaScriptVisitor.generate(transformer.getTree());
         // System.out.println(code); // only needed for EXTREME debugging
         return code;
     }

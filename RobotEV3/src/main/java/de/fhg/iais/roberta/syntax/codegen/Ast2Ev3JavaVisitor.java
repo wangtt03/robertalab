@@ -1532,9 +1532,9 @@ public class Ast2Ev3JavaVisitor implements AstVisitor<Void> {
         this.sb.append("import de.fhg.iais.roberta.runtime.*;\n");
         this.sb.append("import de.fhg.iais.roberta.runtime.ev3.*;\n\n");
 
-        this.sb.append("import de.fhg.iais.roberta.factory.generic.*;\n");
-        this.sb.append("import de.fhg.iais.roberta.factory.action.generic.*;\n");
-        this.sb.append("import de.fhg.iais.roberta.factory.sensor.generic.*;\n\n");
+        this.sb.append("import de.fhg.iais.roberta.mode.general.*;\n");
+        this.sb.append("import de.fhg.iais.roberta.mode.action.*;\n");
+        this.sb.append("import de.fhg.iais.roberta.mode.sensor.*;\n\n");
 
         this.sb.append("import de.fhg.iais.roberta.components.*;\n");
 
