@@ -21,109 +21,169 @@
 #define INFINITY 0x7f800000
 #endif
 
+//sensor functions
+
+float NumberOfRotations(int port){
+  int fullCircle = 360;
+  return MotorTachoCount(port)/fullCircle;
+}
+
+float MotorDistance(int port, float diameter){
+  float rad = diameter/2;
+  int degreePi = 180;
+  return (PI*MotorTachoCount(port)/degreePi)*rad;
+}
+
+sub SetTimerValue(long& timer1){
+  timer1 = CurrentTick();
+}
+
+inline long GetTimerValue(long timer1){
+  return CurrentTick() - timer1;
+}
+
+sub ResetTimerValue(long& timer1){
+  timer1 = CurrentTick();
+}
+
 //Bluetooth functions and constants
 
-#ifndef BT_CONN
-#define BT_CONN 1
+#ifndef BT_SLAVE_CONN
+#define BT_SLAVE_CONN 0
 #endif
 
-#ifndef OUTBOX
-#define OUTBOX 5
-#endif
 
-#ifndef INBOX
-#define INBOX 1
-#endif
-
-#ifndef OUT_MBOX
-#define OUT_MBOX 1
-#endif
-
-#ifndef IN_MBOX
-#define IN_MBOX 5
-#endif
-
-sub BTCheck(int conn){
+inline bool BTCheck(int conn){
   if (!BluetoothStatus(conn)==NO_ERR){
     TextOut(5,LCD_LINE2,"Error");
     Wait(1000);
-    Stop(true);
+    StopAllTasks();
+    return false;
+  }
+  else{
+    return true;
   }
 }
 
-inline string bluetooth_get_msg(){
-  TextOut(5,LCD_LINE1,"Slave receiving");
-  string in = "NO MESSAGE";
-  if (BTCheck(0) == true){
-    SendResponseNumber(OUT_MBOX,0xFF); //unblock master
-    while(true){
-      if (ReceiveRemoteString(IN_MBOX,true,in) != STAT_MSG_EMPTY_MAILBOX) {
-        TextOut(0,LCD_LINE3," ");
-        TextOut(5,LCD_LINE3,in);
-        SendResponseNumber(OUT_MBOX,0xFF);
-      }
-      Wait(10);
-    }
-  }
+inline float BluetoothGetNumber(int inbox){
+  int in;
+  ReceiveRemoteNumber(inbox,true,in);
+  return in;
+  //TextOut(0,LCD_LINE3,"Receiving");
+  //TextOut(0,LCD_LINE4,"  ");
+  //NumOut(5,LCD_LINE4,in);
+  //return in;
 }
 
-inline void bluetooth_send_msg(string msg , int connection){
-  TextOut(10,LCD_LINE1,"Master sending");
-  int ack = 0;
-  TextOut(0,LCD_LINE3," ");
-  TextOut(5,LCD_LINE3,msg);
-  SendRemoteString(connection,OUTBOX,msg);
-  until(ack==0xFF) {
-    until(ReceiveRemoteNumber(INBOX,true,ack) == NO_ERR);
-  }
-  Wait(250);
+//sub bluetooth_send_number(int out, int connection, int inbox, int outbox){
+  //TextOut(0,LCD_LINE1,"Sending");
+  //TextOut(0,LCD_LINE2,"  ");
+  //NumOut(5,LCD_LINE2,out);
+  //SendRemoteNumber(connection,outbox,out);
+//}
+
+inline string BluetoothGetString(int inbox){
+    string in;
+    ReceiveRemoteString(inbox,true,in);
+    //TextOut(0,LCD_LINE3,"Receiving");
+    //TextOut(0,LCD_LINE4,"  ");
+    //TextOut(5,LCD_LINE4,in);
+    return in;
 }
 
+//sub bluetooth_send_string(string out, int connection, int outbox){
+  //TextOut(0,LCD_LINE1,"Sending");
+  //TextOut(0,LCD_LINE2,"  ");
+  //TextOut(5,LCD_LINE2,out);
+  //SendRemoteString(connection,outbox,out);
+//}
+
+inline bool BluetoothGetBoolean(int inbox){
+  bool in;
+  ReceiveRemoteBool(inbox,true,in);
+  return in;
+  //TextOut(0,LCD_LINE3,"Receiving");
+  //TextOut(0,LCD_LINE4,"  ");
+  //if (in == true){
+  //  TextOut(5,LCD_LINE2,"true");
+  //}
+  //else{
+  //  TextOut(5,LCD_LINE2,"false");
+  //}
+}
+
+//sub bluetooth_send_boolean(bool out, int connection, int inbox, int outbox){
+  //TextOut(0,LCD_LINE1,"Sending");
+  //TextOut(0,LCD_LINE2,"  ");
+  //if (out == true){
+  //  TextOut(5,LCD_LINE2,"true");
+  //}
+  //else{
+  //  TextOut(5,LCD_LINE2,"false");
+  //}
+  //SendRemoteBool(connection,outbox,out);
+//}
+
+//sensors' functions
+sub IsPressedAndReleased(int button){
+  SetButtonReleaseCount(button, 0);
+  NumOut (0,LCD_LINE6, ButtonReleaseCount(button));
+  while((ButtonReleaseCount(button) == 0)||(ButtonPressCount(button) == 0)){
+    TextOut(0,LCD_LINE1, "zero");
+  }
+  //SetButtonState(BTN1, BTNSTATE_PRESSED_EV);
+  //SetButtonState(BTNLEFT, 0x10);
+}
 
 //math Functions
 
-inline int math_floor(float val) {
+inline int MathFloor(float val) {
   int temp = val;
   return temp;
 }
-inline bool math_is_whole(float val){
+inline int MathRound(float val){
+  return MathFloor(0.5 + val);
+}
+inline int MathRoundUp(float val){
+  return (1 + MathFloor(val));
+}
+inline bool MathIsWhole(float val){
   int intPart = val;
   return ((val - intPart) == 0);
 }
-inline float math_pow(float first_value, float second_value) {
+inline float MathPow(float firstValue, float secondValue) {
   float result = 1;
-  for (int i = 0; i < second_value; i++) {
-    result = result * first_value;
+  for (int i = 0; i < secondValue; i++) {
+    result = result * firstValue;
   }
   return result;
 }
-inline float math_min(float first_value, float second_value) {
-  if (first_value < second_value){
-    return first_value;
+inline float MathMin(float firstValue, float secondValue) {
+  if (firstValue < secondValue){
+    return firstValue;
   }
   else{
-    return second_value;
+    return secondValue;
   }
 }
-inline float math_max(float first_value, float second_value) {
-  if (first_value > second_value){
-    return first_value;
+inline float MathMax(float firstValue, float secondValue) {
+  if (firstValue > secondValue){
+    return firstValue;
   }
   else{
-    return second_value;
+    return secondValue;
   }
 }
-inline bool math_prime(float number){
-  for ( int i = 2; i <= sqrt(number); i++ ) {
-    if ((number % i) == 0 ) {
-      return false;
+inline bool MathPrime(float number){
+    if ((number % 2 == 0) || (number == 1)) return false;
+    //if not, then just check the odds
+    for(int i = 3; i * i <= number; i += 2) {
+        if(number % i == 0)
+            return false;
     }
-    else{
-      return true;
-    }
-  }
+    return true;
 }
-inline float math_ln(float val) {
+inline float MathLn(float val) {
   if (val > 1){
     float values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 10000};
     float results[] = {0, 0.693147, 1.098612, 1.386294, 1.609438, 1.791759, 1.945910, 2.079442, 2.197225, 2.302585, 2.995732, 3.401197, 3.688879, 3.912023, 4.094345, 4.248495, 4.382027, 4.499810, 4.605170, 5.298317, 5.703782, 5.991465, 6.214608, 6.396930, 6.551080, 6.684612, 6.802395, 6.907755, 9.210340};
@@ -142,7 +202,7 @@ inline float math_ln(float val) {
   else if ((val > 0) && (val <= 1)){
     float summ = 0;
     for (int n = 1; n < 10; n++){
-      summ += math_pow(-1, (n + 1)) * math_pow((val - 1), n)/n;
+      summ += MathPow(-1, (n + 1)) * MathPow((val - 1), n)/n;
     }
     return summ;
   }
@@ -153,11 +213,11 @@ inline float math_ln(float val) {
     return NULL;
   }
 }
-inline float math_log(float val) {
-  return math_ln(val)/math_ln(2.71828);
+inline float MathLog(float val) {
+  return MathLn(val)/MathLn(2.71828);
 }
 
-inline float math_factorial(float val){
+inline float MathFactorial(float val){
   float result = val;
   if (val == 0){
     return 1;
@@ -170,29 +230,29 @@ inline float math_factorial(float val){
   }
 }
 
-inline float math_sin(float val) {
+inline float MathSin(float val) {
   float angle = PI*val/180;
   float summ = 0;
   for (int n = 0; n < 10; n++){
-    summ += math_pow(-1, n) * math_pow(angle, (2 * n + 1))/math_factorial(2 * n + 1);
+    summ += MathPow(-1, n) * MathPow(angle, (2 * n + 1))/MathFactorial(2 * n + 1);
   }
   return summ;
 }
 
-inline float math_cos(float val) {
+inline float MathCos(float val) {
   float angle = PI*val/180;
   float summ = 0;
   for (float n = 0; n < 10; n++){
-    summ += (math_pow(-1, n)/math_factorial(2 * n)) * math_pow(angle, (2 * n));
+    summ += (MathPow(-1, n)/MathFactorial(2 * n)) * MathPow(angle, (2 * n));
   }
   return summ;
 }
 
-inline float math_tan(float val) {
-  return math_sin(val)/math_cos(val);
+inline float MathTan(float val) {
+  return MathSin(val)/MathCos(val);
 }
 
-inline float math_asin(float val) {
+inline float MathAsin(float val) {
   if (abs(val) > 1){
     TextOut(0, LCD_LINE1, "invalid value");
     Wait(1000);
@@ -202,14 +262,14 @@ inline float math_asin(float val) {
   else{
     float summ = 0;
     for (float n = 0; n < 15; n++){
-      summ += math_factorial(2 * n) * math_pow(val, (2 * n + 1)) / math_pow(4, n) / math_pow(math_factorial(n), 2)/(2* n + 1);
+      summ += MathFactorial(2 * n) * MathPow(val, (2 * n + 1)) / MathPow(4, n) / MathPow(MathFactorial(n), 2)/(2* n + 1);
     }
     return summ * 180 / PI;
   }
 }
 
 
-inline float math_acos(float val) {
+inline float MathAcos(float val) {
   if (abs(val) > 1){
     TextOut(0, LCD_LINE1, "invalid value");
     Wait(1000);
@@ -217,11 +277,11 @@ inline float math_acos(float val) {
     return NULL;
   }
   else{
-    return 90 - math_asin(val);
+    return 90 - MathAsin(val);
   }
 }
 
-inline float math_atan(float val) {
+inline float MathAtan(float val) {
   if (abs(val) > 1){
     float values[] = {1, sqrt(3), 2, 3, 0x7f800000};
     float results[] = {45, 60, 63.435, 71.565, 90};
@@ -240,22 +300,34 @@ inline float math_atan(float val) {
   else{
     float summ = 0;
     for (float n = 1; n < 15; n++){
-      summ += math_pow(-1, (n - 1)) * math_pow(val, (2 * n - 1)) / (2 * n - 1);
+      summ += MathPow(-1, (n - 1)) * MathPow(val, (2 * n - 1)) / (2 * n - 1);
     }
     return summ * 180 / PI;
   }
 }
 
+inline int RandomIntegerInRange(int val1, int val2){
+  return abs(val1 - val2) * Random(100) / 100 + MathMin(val1, val2);
+}
+
+inline float RandomFloat(){
+  return Random(100) / 100;
+}
+
+inline float Constrain(float val, float min, float max){
+	return MathMin(MathMax(val, min), max);
+}
+
 //numerical array functions
 
-inline float array_sum(float arr[]) {
+inline float ArrSum(float arr[]) {
   float sum = 0;
   for(int i = 0; i < ArrayLen(arr); i++) {
     sum += arr[i];
   }
   return sum;
 }
-inline float array_min(float arr[]) {
+inline float ArrMin(float arr[]) {
   float min = arr[0];
   for(int i = 1; i < ArrayLen(arr); i++) {
     if (arr[i] < min){
@@ -264,7 +336,7 @@ inline float array_min(float arr[]) {
   }
   return min;
 }
-inline float array_max(float arr[]) {
+inline float ArrMax(float arr[]) {
   float max = arr[0];
   for(int i = 1; i < ArrayLen(arr); i++) {
     if (arr[i] > max){
@@ -273,14 +345,14 @@ inline float array_max(float arr[]) {
   }
   return max;
 }
-float array_mean(float arr[]) {
+float ArrMean(float arr[]) {
   float sum = 0;
   for(int i = 0; i < ArrayLen(arr); i++) {
     sum += arr[i];
   }
   return sum/ArrayLen(arr);
 }
-inline void array_insertion_sort(float &arr[]) {
+inline void ArrInsertionSort(float &arr[]) {
   for (int i=1; i < ArrayLen(arr); i++) {
       int index = arr[i];
       int j = i;
@@ -291,12 +363,12 @@ inline void array_insertion_sort(float &arr[]) {
       arr[j] = index;
   }
 }
-inline float array_median(float arr[]) {
+inline float ArrMedian(float arr[]) {
    int n = ArrayLen(arr);
    if ( n == 0 ) {
      return 0;
    }
-   array_insertion_sort(arr);
+   ArrInsertionSort(arr);
    float median;
    if ( n % 2 == 0 ) {
       median = (arr[n/2] + arr[n / 2 - 1]) / 2;
@@ -306,25 +378,25 @@ inline float array_median(float arr[]) {
    }
    return median;
 }
-inline float array_standard_deviatioin(float arr[]) {
+inline float ArrStandardDeviatioin(float arr[]) {
         int n = ArrayLen(arr);
         if ( n == 0 ) {
             return 0;
         }
         float variance = 0;
-        float mean = array_mean(arr);
+        float mean = ArrMean(arr);
         for ( int i = 0; i < ArrayLen(arr); i++) {
-            variance += math_pow(arr[i] - mean, 2);
+            variance += MathPow(arr[i] - mean, 2);
         }
         variance /= n;
         return sqrt(variance);
 }
-inline float array_rand(float arr[]) {
+inline float ArrRand(float arr[]) {
   int arrayInd = ArrayLen(arr) * Random(100) / 100;
   return arr[arrayInd - 1];
 }
-inline float array_mode(float arr[]){
-  array_insertion_sort(arr);
+inline float ArrMode(float arr[]){
+  ArrInsertionSort(arr);
   float element = arr[0];
   float max_seen = element;
   int count = 1;
@@ -348,7 +420,7 @@ inline float array_mode(float arr[]){
 
 // functions for unknown type arrays
 
-inline int array_find_first_num(float arr[], float item) {
+inline int ArrFindFirstNum(float arr[], float item) {
   int i = 0;
   if (arr[0] == item){
     return i;
@@ -360,7 +432,7 @@ inline int array_find_first_num(float arr[], float item) {
     return i;
   }
 }
-inline int array_find_last_num(float arr[], float item) {
+inline int ArrFindLastNum(float arr[], float item) {
   int i = 0;
   if (arr[ArrayLen(arr) - 1] == item){
     return ArrayLen(arr) - 1 - i;
@@ -373,7 +445,7 @@ inline int array_find_last_num(float arr[], float item) {
   }
 }
 
-inline int array_find_first_str(string arr[], string item) {
+inline int ArrFindFirstStr(string arr[], string item) {
   int i = 0;
   if (arr[0] == item){
     return i;
@@ -385,7 +457,7 @@ inline int array_find_first_str(string arr[], string item) {
     return i;
   }
 }
-inline int array_find_last_str(string arr[], string item) {
+inline int ArrFindLastStr(string arr[], string item) {
   int i = 0;
   if (arr[ArrayLen(arr) - 1] == item){
     return ArrayLen(arr) - 1 - i;
@@ -398,7 +470,7 @@ inline int array_find_last_str(string arr[], string item) {
   }
 }
 
-inline int array_find_first_bool(bool arr[], bool item) {
+inline int ArrFindFirstBool(bool arr[], bool item) {
   int i = 0;
   if (arr[0] == item){
     return i;
@@ -410,7 +482,7 @@ inline int array_find_first_bool(bool arr[], bool item) {
     return i;
   }
 }
-inline int array_find_last_bool(bool arr[], bool item) {
+inline int ArrFindLastBool(bool arr[], bool item) {
   int i = 0;
   if (arr[ArrayLen(arr) - 1] == item){
     return ArrayLen(arr) - 1 - i;
@@ -422,3 +494,22 @@ inline int array_find_last_bool(bool arr[], bool item) {
       return ArrayLen(arr) - 1 - i;
   }
 }
+
+//MotorOnAction
+inline float OnReg(int ports, float speed,int regmode) {
+  if (speed > 0){
+    OnRevReg(OUT_B, speed,regmode);
+  }
+  else{
+    OnFwdReg(OUT_B, speed,regmode) ;
+  }
+}
+inline float OnUnReg(int ports, float speed,int regmode) {
+  if (speed > 0){
+    OnRevReg(OUT_B, speed,regmode);
+  }
+  else{
+    OnFwdReg(OUT_B, speed,regmode) ;
+  }
+}
+
