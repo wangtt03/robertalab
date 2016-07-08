@@ -28,6 +28,7 @@
 			<xs:element name="warning" minOccurs="0" maxOccurs="1" type="warning" />
 			<xs:element name="value" minOccurs="0" maxOccurs="unbounded" type="value" />
 			<xs:element name="statement" minOccurs="0" maxOccurs="unbounded" type="statement" />
+			<xs:element name="data" minOccurs="0" maxOccurs="unbounded" />
 			
 		</xs:sequence>
 		<xs:attribute name="x" type="xs:string" use="optional" />
