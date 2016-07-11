@@ -495,6 +495,16 @@ inline int ArrFindLastBool(bool arr[], bool item) {
   }
 }
 
+
+inline bool ArrIsEmpty(float arr[]){
+  if (ArrayLen(arr) == 0){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
 //MotorOnAction
 inline float OnReg(int ports, float speed,int regmode) {
   if (speed > 0){
