@@ -44,13 +44,13 @@ int SensorColor(int port, string mode){
     SetSensorType(port, SENSOR_TYPE_COLORFULL);
   }
   else if (mode == "LIGHT"){
-    SetSensorType(port, SENSOR_TYPE_LIGHT_ACTIVE );
+    SetSensorType(port,  IN_TYPE_COLORRED );
   }
   else{
     SetSensorType(port, SENSOR_TYPE_COLORFULL );
   }
   return Sensor(port);
-  //here the other modes could be added
+
 }
 
 float NumberOfRotations(int port){
