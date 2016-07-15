@@ -23,6 +23,36 @@
 
 //sensor functions
 
+int SensorLight(int port, string mode){
+  if (mode == "AMBIENTLIGHT"){
+    SetSensorType(port, SENSOR_TYPE_LIGHT_INACTIVE);
+  }
+  else if (mode == "LIGHT"){
+    SetSensorType(port, SENSOR_TYPE_LIGHT_ACTIVE );
+  }
+  else{
+    SetSensorType(port, SENSOR_TYPE_LIGHT_ACTIVE );
+  }
+  return Sensor(port);
+}
+
+int SensorColor(int port, string mode){
+  if (mode == "AMBIENTLIGHT"){
+    SetSensorType(port, SENSOR_TYPE_COLORNONE);
+  }
+  else if (mode == "COLOR"){
+    SetSensorType(port, SENSOR_TYPE_COLORFULL);
+  }
+  else if (mode == "LIGHT"){
+    SetSensorType(port, SENSOR_TYPE_LIGHT_ACTIVE );
+  }
+  else{
+    SetSensorType(port, SENSOR_TYPE_COLORFULL );
+  }
+  return Sensor(port);
+  //here the other modes could be added
+}
+
 float NumberOfRotations(int port){
   int fullCircle = 360;
   return MotorTachoCount(port)/fullCircle;
