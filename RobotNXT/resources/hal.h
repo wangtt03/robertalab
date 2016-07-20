@@ -21,6 +21,15 @@
 #define INFINITY 0x7f800000
 #endif
 
+sub BoolOut(int column, int row, int boolean){
+  if (boolean = 0){
+    TextOut(column, row, "false");
+  }
+  else {
+     TextOut(column, row, "true");
+  }
+}
+
 //sensor functions
 
 int SensorLight(int port, string mode){
