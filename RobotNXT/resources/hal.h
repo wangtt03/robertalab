@@ -21,6 +21,10 @@
 #define INFINITY 0x7f800000
 #endif
 
+
+
+//sensor functions
+
 sub BoolOut(int column, int row, int boolean){
   if (boolean = 0){
     TextOut(column, row, "false");
@@ -30,7 +34,32 @@ sub BoolOut(int column, int row, int boolean){
   }
 }
 
-//sensor functions
+sub ColorOut(int column, int row, int color){
+  switch(color)
+  {
+    case 1:
+       TextOut(column, row, "Black");
+       break;
+    case 2:
+       TextOut(column, row, "Blue");
+       break;
+    case 3:
+       TextOut(column, row, "Green");
+       break;
+    case 4:
+       TextOut(column, row, "Yellow");
+       break;
+    case 5:
+       TextOut(column, row, "Red");
+       break;
+    case 6:
+       TextOut(column, row, "White");
+       break;
+    default:
+       NumOut(column, row, color);
+       break;
+  }
+}
 
 int SensorLight(int port, string mode){
   if (mode == "AMBIENTLIGHT"){
