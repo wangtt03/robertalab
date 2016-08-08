@@ -9,14 +9,14 @@
             <value name="S4">
                 <block type="robBrick_ultrasonic" id="11"></block>
             </value>
-            <value name="B">
+            <value name="MB">
                 <block type="robBrick_motor_big" id="12">
                     <field name="MOTOR_REGULATION">TRUE</field>
                     <field name="MOTOR_REVERSE">OFF</field>
                     <field name="MOTOR_DRIVE">RIGHT</field>
                 </block>
             </value>
-            <value name="C">
+            <value name="MC">
                 <block type="robBrick_motor_big" id="13">
                     <field name="MOTOR_REGULATION">TRUE</field>
                     <field name="MOTOR_REVERSE">OFF</field>
