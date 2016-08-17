@@ -133,8 +133,7 @@ class BnrOneA
         void move(int speedL,int speedR);
 		void moveStraight(int speed);
 		void moveDist(int speed, float distance, float diameter);
-		//void BnrOneA::moveLeft(int speedL);
-		//void BnrOneA::moveRight(int speedR);*/
+		void moveMotorRotation(int speedL, int speedR, int totalRotations);
         void movePID(int speedL,int speedR);
         void stop();
         void brake(byte torqueL,byte torqueR);
