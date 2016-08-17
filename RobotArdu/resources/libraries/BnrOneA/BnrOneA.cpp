@@ -1,6 +1,6 @@
 /*
   BnrOneA.cpp - Library for interfacing with Bot'n Roll ONE Arduino Compatible from www.botnroll.com
-  Created by José Cruz, November 28, 2013.
+  Created by JosÃ© Cruz, November 28, 2013.
   Updated December 19, 2014.
   Released into the public domain.
 */
@@ -77,6 +77,8 @@ void BnrOneA::spiSendData(byte command, byte buffer[], byte numBytes)
 ///////////////////////////////////////////////////////////////////////
 //Write routines
 ///////////////////////////////////////////////////////////////////////
+
+
 void BnrOneA::move(int speedL,int speedR)
 {
     byte speedL_H=highByte(speedL);
@@ -88,6 +90,45 @@ void BnrOneA::move(int speedL,int speedR)
     spiSendData(COMMAND_MOVE,buffer,sizeof(buffer));
     delay(5);//Wait while command is processed
 }
+
+//new fubction
+void BnrOneA::moveStraight(int speed){
+	byte speedL_H=highByte(speed);
+    byte speedL_L=lowByte(speed);
+    byte buffer[]={KEY1,KEY2,speedL_H,speedL_L,speedL_H,speedL_L};
+    spiSendData(COMMAND_MOVE,buffer,sizeof(buffer));
+    delay(5);//Wait while command is processed	
+}
+
+//new function
+void BnrOneA::moveDist(int speed, float distance, float diameter)
+{   BnrOneA one; 
+	byte speedL_H=highByte(speed);
+    byte speedL_L=lowByte(speed);
+    byte buffer[]={KEY1,KEY2,speedL_H,speedL_L,speedL_H,speedL_L};
+    spiSendData(COMMAND_MOVE,buffer,sizeof(buffer));
+    delay(5);//Wait while command is processed
+	
+	float rotations = spiRequestWord(COMMAND_ENCL_INC);
+	
+	while(PI*diameter*rotations < distance){
+      rotations = spiRequestWord(COMMAND_ENCL_INC);
+    }
+    byte bufferToStop[]={KEY1,KEY2};
+    spiSendData(COMMAND_STOP,bufferToStop,sizeof(bufferToStop));
+    delay(5);//Wait while command is processed
+}
+/*
+//new function (fix it)
+void BnrOneA::moveLeft(int speedL)
+{
+    return NULL;
+}
+//new function (fix it)
+void BnrOneA::moveRight(int speedR)
+{
+    return NULL;
+}*/
 void BnrOneA::movePID(int speedL,int speedR)
 {
     byte speedL_H=highByte(speedL);
@@ -700,6 +741,8 @@ void BnrOneA::lcd1(int num1, int num2, int num3, int num4)
     spiSendData(COMMAND_LCD_L1,buffer,sizeof(buffer));
     delay(19);//Wait while command is processed
 }
+
+
 /**************************************************************/
 /**** LCD LINE 2 Handlers *************************************/
 /**************************************************************/
@@ -1039,6 +1082,32 @@ void BnrOneA::lcd2(int num1, int num2, int num3, int num4)
     for(i=a;i<16;i++){
         buffer[i+2]=(' ');
     }
+    spiSendData(COMMAND_LCD_L2,buffer,sizeof(buffer));
+    delay(19);//Wait while command is processed
+}
+
+//new function
+void BnrOneA::lcdClear()
+{  
+    const char string[] = "                   ";
+	int i,a;
+    byte buffer[19];
+    char string1[19],string2[19];
+    for(i=0;i<16;i++){
+        string2[i]=string[i];
+    }
+    string2[16]=0;
+    a=sprintf(string1,"%s",string2);
+    buffer[0]=KEY1;
+    buffer[1]=KEY2;
+    for(i=0;i<a;i++){
+        buffer[i+2]=string1[i];
+    }
+    for(i=a;i<16;i++)
+    {
+        buffer[i+2]=' ';
+    }
+	spiSendData(COMMAND_LCD_L1,buffer,sizeof(buffer));
     spiSendData(COMMAND_LCD_L2,buffer,sizeof(buffer));
     delay(19);//Wait while command is processed
 }
