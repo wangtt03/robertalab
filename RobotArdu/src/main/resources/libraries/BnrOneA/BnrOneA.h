@@ -1,6 +1,6 @@
 /*
   BnrOneA.h - Library for interfacing with Bot'n Roll ONE Arduino Compatible from www.botnroll.com
-  Created by José Cruz, November 28, 2013.
+  Created by JosÃ© Cruz, November 28, 2013.
   Updated December 19, 2014.
   Released into the public domain.
 */
@@ -22,6 +22,7 @@
 #define AN5 5
 #define AN6 6
 #define AN7 7
+#define GOLDEN_RATIO 1.61803398875
 
 
 /*User Commands*/
@@ -130,6 +131,8 @@ class BnrOneA
         void servo2(byte position);
         void led(boolean state);// ON/OFF
         void move(int speedL,int speedR);
+		void moveStraight(int speed);
+		void moveTime(int speed, long time);
         void movePID(int speedL,int speedR);
         void stop();
         void brake(byte torqueL,byte torqueR);
@@ -171,6 +174,7 @@ class BnrOneA
         void lcd2(int num1, int num2, int num3, int num4);
         void lcd2(unsigned int num1, unsigned int num2, unsigned int num3);
         void lcd2(unsigned int num1, unsigned int num2, unsigned int num3, unsigned int num4);
+		void lcdClear();
 
   private:
         byte spiRequestByte(byte command);
