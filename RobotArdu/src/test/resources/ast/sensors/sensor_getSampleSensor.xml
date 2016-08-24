@@ -43,8 +43,8 @@
   </instance>
   <instance x="136" y="239">
     <block type="robSensors_getSample" id="46" >
-      <mutation input="INFRARED_DISTANCE"></mutation>
-      <field name="SENSORTYPE">INFRARED_DISTANCE</field>
+      <mutation input="INFRARED_OBSTACLE"></mutation>
+      <field name="SENSORTYPE">INFRARED_OBSTACLE</field>
       <field name="SENSORPORT">4</field>
     </block>
   </instance>
