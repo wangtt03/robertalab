@@ -131,8 +131,7 @@ class BnrOneA
         void servo2(byte position);
         void led(boolean state);// ON/OFF
         void move(int speedL,int speedR);
-		void moveStraight(int speed);
-		void moveTime(int speed, long time);
+		void moveTime(int speedL,int speedR, long time);
         void movePID(int speedL,int speedR);
         void stop();
         void brake(byte torqueL,byte torqueR);

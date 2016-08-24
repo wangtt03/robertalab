@@ -91,34 +91,25 @@ void BnrOneA::move(int speedL,int speedR)
     delay(5);//Wait while command is processed
 }
 
-//new fubction
-void BnrOneA::moveStraight(int speed){
-	byte speedL_H=highByte(speed);
-    byte speedL_L=lowByte(speed);
-    byte buffer[]={KEY1,KEY2,speedL_H,speedL_L,speedL_H,speedL_L};
-    spiSendData(COMMAND_MOVE,buffer,sizeof(buffer));
-    delay(5);//Wait while command is processed	
-}
 
 //new function
-void BnrOneA::moveTime(int speed, long time)
+void BnrOneA::moveTime(int speedL,int speedR, long time)
 {   long initTime = millis();
 	long currentTime = initTime;
 	float toSeconds = 1000;
 	BnrOneA one; 
-	byte speedL_H=highByte(speed);
-    byte speedL_L=lowByte(speed);
-    byte buffer[]={KEY1,KEY2,speedL_H,speedL_L,speedL_H,speedL_L};
-	
+	byte speedL_H=highByte(speedL);
+    byte speedL_L=lowByte(speedL);
+    byte speedR_H=highByte(speedR);
+    byte speedR_L=lowByte(speedR);
+	byte buffer[]={KEY1,KEY2,speedL_H,speedL_L,speedR_H,speedR_L};	
 	while(time * toSeconds > currentTime){
 		spiSendData(COMMAND_MOVE_PID,buffer,sizeof(buffer));
 		delay(5);//Wait while command is processed
 		currentTime = millis() - initTime;
 	}
 
-    byte bufferToStop[]={KEY1,KEY2};
-    spiSendData(COMMAND_STOP,bufferToStop,sizeof(bufferToStop));
-    delay(5);//Wait while command is processed
+    stop();//Wait while command is processed
 }
 
 void BnrOneA::movePID(int speedL,int speedR)
