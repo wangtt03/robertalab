@@ -29,7 +29,7 @@
           <field name="VAR">item</field>
           <value name="VALUE">
             <block type="robSensors_infrared_getSample" id="944">
-            <field name="MODE">OBSTACLE</field>
+            <field name="MODE">DISTANCE</field>
               <field name="SENSORPORT">4</field>
             </block>
           </value>
