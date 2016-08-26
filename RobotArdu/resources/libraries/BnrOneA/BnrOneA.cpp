@@ -91,52 +91,15 @@ void BnrOneA::move(int speedL,int speedR)
     delay(5);//Wait while command is processed
 }
 
-//new fubction
-void BnrOneA::moveStraight(int speed){
-	byte speedL_H=highByte(speed);
-    byte speedL_L=lowByte(speed);
-    byte buffer[]={KEY1,KEY2,speedL_H,speedL_L,speedL_H,speedL_L};
-    spiSendData(COMMAND_MOVE,buffer,sizeof(buffer));
-    delay(5);//Wait while command is processed	
-}
 
 //new function
-void BnrOneA::moveDist(int speed, float distance, float diameter)
-{   BnrOneA one; 
-	byte speedL_H=highByte(speed);
-    byte speedL_L=lowByte(speed);
-    byte buffer[]={KEY1,KEY2,speedL_H,speedL_L,speedL_H,speedL_L};
-    spiSendData(COMMAND_MOVE_PID,buffer,sizeof(buffer));
-    delay(5);//Wait while command is processed
-	
-	float rotations = spiRequestWord(COMMAND_ENCL_INC);
-	
-	while(PI*diameter*rotations < distance){
-      rotations = spiRequestWord(COMMAND_ENCL_INC);
-    }
-    byte bufferToStop[]={KEY1,KEY2};
-    spiSendData(COMMAND_STOP,bufferToStop,sizeof(bufferToStop));
-    delay(5);//Wait while command is processed
+void BnrOneA::moveTime(int speedL,int speedR, long time)
+{   
+	float toSeconds = 1000;
+	move(speedL, speedR);
+	delay(time*toSeconds);
+    stop();
 }
-
-void BnrOneA::moveMotorRotation(int speedL, int speedR, int totalRotations)
-{  byte speedL_H=highByte(speedL);
-    byte speedL_L=lowByte(speedL);
-    byte speedR_H=highByte(speedR);
-    byte speedR_L=lowByte(speedR);
-
-    byte buffer[]={KEY1,KEY2,speedL_H,speedL_L,speedR_H,speedR_L};
-    spiSendData(COMMAND_MOVE_PID,buffer,sizeof(buffer));
-    delay(5);//Wait while command is processed
-	float rotations = spiRequestWord(COMMAND_ENCL_INC);
-	while(rotations < totalRotations){
-      rotations = spiRequestWord(COMMAND_ENCL_INC);
-    }
-    byte bufferToStop[]={KEY1,KEY2};
-    spiSendData(COMMAND_STOP,bufferToStop,sizeof(bufferToStop));
-    delay(5);//Wait while command is processed
-}
-
 
 void BnrOneA::movePID(int speedL,int speedR)
 {
