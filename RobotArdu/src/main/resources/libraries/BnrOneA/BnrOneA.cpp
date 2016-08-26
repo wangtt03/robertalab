@@ -94,22 +94,11 @@ void BnrOneA::move(int speedL,int speedR)
 
 //new function
 void BnrOneA::moveTime(int speedL,int speedR, long time)
-{   long initTime = millis();
-	long currentTime = initTime;
+{   
 	float toSeconds = 1000;
-	BnrOneA one; 
-	byte speedL_H=highByte(speedL);
-    byte speedL_L=lowByte(speedL);
-    byte speedR_H=highByte(speedR);
-    byte speedR_L=lowByte(speedR);
-	byte buffer[]={KEY1,KEY2,speedL_H,speedL_L,speedR_H,speedR_L};	
-	while(time * toSeconds > currentTime){
-		spiSendData(COMMAND_MOVE_PID,buffer,sizeof(buffer));
-		delay(5);//Wait while command is processed
-		currentTime = millis() - initTime;
-	}
-
-    stop();//Wait while command is processed
+	move(speedL, speedR);
+	delay(time*toSeconds);
+    stop();
 }
 
 void BnrOneA::movePID(int speedL,int speedR)
