@@ -20,6 +20,8 @@ class RobertaFunctions
 		void moveTime(int speedL,int speedR, long time);
 		void lcdClear();
 		int ultrasonicDistance(int port);
+		byte *colorSensorRGB(byte colors[],int port);
+		int colorSensorLight(byte colors[], int port);
 };
 #endif
 
