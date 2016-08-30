@@ -19,6 +19,7 @@ class RobertaFunctions
   public:   
 		void moveTime(int speedL,int speedR, long time);
 		void lcdClear();
+		int ultrasonicDistance(int port);
 };
 #endif
 

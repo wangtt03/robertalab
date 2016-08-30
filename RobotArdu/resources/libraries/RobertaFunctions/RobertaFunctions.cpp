@@ -11,6 +11,7 @@
 #include "RobertaFunctions.h" 
 #include "Wire.h" 
 #define SSPIN  2 
+#define MODULE_ADDRESS 0x2C
  
 //BnrRescue brm; 
 
@@ -30,4 +31,17 @@ void RobertaFunctions::lcdClear()
     one.spiConnect(SSPIN);
 	one.lcd1("                   ");
 	one.lcd2("                   ");
+}
+
+int RobertaFunctions::ultrasonicDistance(int port)
+{   
+	BnrRescue brm; 
+	BnrOneA one;
+	byte distances[3]={0,0,0};
+	brm.i2cConnect(MODULE_ADDRESS);   
+    brm.setModuleAddress(0x2C);      
+	Serial.begin(9600);
+    one.spiConnect(SSPIN);
+	brm.readSonars(&distances[0],&distances[1],&distances[2]);
+	return(distances[port]);
 }
