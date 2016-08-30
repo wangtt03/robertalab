@@ -131,7 +131,6 @@ class BnrOneA
         void servo2(byte position);
         void led(boolean state);// ON/OFF
         void move(int speedL,int speedR);
-		void moveTime(int speedL,int speedR, long time);
         void movePID(int speedL,int speedR);
         void stop();
         void brake(byte torqueL,byte torqueR);
@@ -173,7 +172,6 @@ class BnrOneA
         void lcd2(int num1, int num2, int num3, int num4);
         void lcd2(unsigned int num1, unsigned int num2, unsigned int num3);
         void lcd2(unsigned int num1, unsigned int num2, unsigned int num3, unsigned int num4);
-		void lcdClear();
 
   private:
         byte spiRequestByte(byte command);

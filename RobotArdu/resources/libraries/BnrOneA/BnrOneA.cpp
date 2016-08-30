@@ -91,16 +91,6 @@ void BnrOneA::move(int speedL,int speedR)
     delay(5);//Wait while command is processed
 }
 
-
-//new function
-void BnrOneA::moveTime(int speedL,int speedR, long time)
-{   
-	float toSeconds = 1000;
-	move(speedL, speedR);
-	delay(time*toSeconds);
-    stop();
-}
-
 void BnrOneA::movePID(int speedL,int speedR)
 {
     byte speedL_H=highByte(speedL);
@@ -1054,32 +1044,6 @@ void BnrOneA::lcd2(int num1, int num2, int num3, int num4)
     for(i=a;i<16;i++){
         buffer[i+2]=(' ');
     }
-    spiSendData(COMMAND_LCD_L2,buffer,sizeof(buffer));
-    delay(19);//Wait while command is processed
-}
-
-//new function
-void BnrOneA::lcdClear()
-{  
-    const char string[] = "                   ";
-	int i,a;
-    byte buffer[19];
-    char string1[19],string2[19];
-    for(i=0;i<16;i++){
-        string2[i]=string[i];
-    }
-    string2[16]=0;
-    a=sprintf(string1,"%s",string2);
-    buffer[0]=KEY1;
-    buffer[1]=KEY2;
-    for(i=0;i<a;i++){
-        buffer[i+2]=string1[i];
-    }
-    for(i=a;i<16;i++)
-    {
-        buffer[i+2]=' ';
-    }
-	spiSendData(COMMAND_LCD_L1,buffer,sizeof(buffer));
     spiSendData(COMMAND_LCD_L2,buffer,sizeof(buffer));
     delay(19);//Wait while command is processed
 }
