@@ -12,6 +12,7 @@
 #include "Wire.h" 
 #include "math.h"
 #define SSPIN  2 
+#define ADDRESS 0x60
 #define MODULE_ADDRESS 0x2C
  
 
@@ -159,3 +160,48 @@ bool RobertaFunctions::infraredSensorObstacle(int port)
 		return false;
 	}
 }
+
+float RobertaFunctions::readBearing()
+{
+	Wire.begin();
+    byte highByte, lowByte;    
+    Wire.beginTransmission(ADDRESS);           //start communication with CMPS10
+    Wire.write(2);                             //Send the register we wish to start reading from
+    Wire.endTransmission();
+
+    Wire.requestFrom(ADDRESS, 2);              // Request 4 bytes from CMPS10
+    while(Wire.available() < 2);               // Wait for bytes to become available
+    highByte = Wire.read();
+    lowByte = Wire.read();
+   
+return (float)((highByte<<8)+lowByte)/10;
+}
+
+char RobertaFunctions::readRoll()
+{   Wire.begin();
+    char roll;                 // Store  roll values of CMPS10, chars are used because they support signed value
+    Wire.beginTransmission(ADDRESS);           //start communication with CMPS10
+    Wire.write(5);                             //Send the register we wish to start reading from
+    Wire.endTransmission();
+
+    Wire.requestFrom(ADDRESS, 1);              // Request 4 bytes from CMPS10
+    while(Wire.available() < 1);               // Wait for bytes to become available
+    roll = Wire.read();
+	return roll;
+}
+
+char RobertaFunctions::readPitch()
+{
+	Wire.begin();
+	char pitch;                // Store pitch values of CMPS10, chars are used because they support signed value
+    Wire.beginTransmission(ADDRESS);           //start communication with CMPS10
+    Wire.write(4);                             //Send the register we wish to start reading from
+    Wire.endTransmission();
+
+    Wire.requestFrom(ADDRESS, 1);              // Request 4 bytes from CMPS10
+    while(Wire.available() < 1);               // Wait for bytes to become available
+    pitch = Wire.read();
+
+	return pitch;
+}
+
