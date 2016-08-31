@@ -36,6 +36,7 @@ void RobertaFunctions::lcdClear()
 int RobertaFunctions::ultrasonicDistance(int port)
 {   
 	BnrRescue brm; 
+	port = port - 1;
 	byte distances[3]={0,0,0};
 	brm.i2cConnect(MODULE_ADDRESS);   
     brm.setModuleAddress(0x2C);      
