@@ -22,6 +22,8 @@ class RobertaFunctions
 		int ultrasonicDistance(int port);
 		byte *colorSensorRGB(byte colors[],int port);
 		int colorSensorLight(byte colors[], int port);
+		String colorSensorColor(byte colors[], int port);
+		bool infraredSensorObstacle(int port);
 };
 #endif
 
