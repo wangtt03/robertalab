@@ -1,8 +1,0 @@
-<block_set xmlns="http://de.fhg.iais.roberta.blockly">
-  <instance x="138" y="288">
-    <block type="robSensors_light_getSample" id="ckJ-/^zeKVKRqO+Z*cFd" intask="false">
-      <field name="MODE">RED</field>
-      <field name="SENSORPORT">1</field>
-    </block>
-  </instance>
-</block_set>
