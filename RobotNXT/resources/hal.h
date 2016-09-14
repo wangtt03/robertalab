@@ -591,3 +591,75 @@ inline float OnUnReg(int ports, float speed,int regmode) {
   }
 }
 
+void SteerDriveEx( unsigned char portLeft, unsigned char portRight, float powerLeft, float powerRight, bool forward, float distance ) {
+  if ( !forward ) {
+    powerLeft = -powerLeft;
+    powerRight = -powerRight;
+  }
+  byte ports[2];
+  ports[0] = portRight;
+  ports[1] = portLeft; 
+  float absPowerLeft = abs( powerLeft );
+  float absPowerRight = abs( powerRight );
+  if ( powerLeft == powerRight ) {
+    long angle =  distance * 360.0 / (PI * WHEELDIAMETER);
+    RotateMotorEx( ports, powerLeft, angle ,0 , true, true);
+    Wait( 1 );
+    return;
+  }
+  float outerCircumference;
+  if ( powerLeft + powerRight == 0 ) {
+    outerCircumference = distance;
+  } else if (absPowerLeft < absPowerRight) {
+    outerCircumference =  powerLeft / ( powerRight + powerLeft ) * 2.0 * distance;
+  } else {
+    outerCircumference =  powerRight / ( powerRight + powerLeft ) * 2.0 * distance;
+  }
+  long angle = abs( outerCircumference * 360.0 / (PI * WHEELDIAMETER));
+  if ( absPowerLeft < absPowerRight ) {
+    OnFwdReg( portLeft, powerLeft, OUT_REGMODE_SPEED );
+    OnFwdReg( portRight, powerRight, OUT_REGMODE_SPEED );
+    if ( powerRight > 0 ) {
+      while ( MotorRotationCount( portRight ) < angle ) {
+      }
+    } else {
+      while ( MotorRotationCount( portRight ) > -angle ) {
+      }
+    }
+    Off( ports );
+  } else {
+    OnFwdReg( portRight, powerRight, OUT_REGMODE_SPEED );
+    OnFwdReg( portLeft, powerLeft, OUT_REGMODE_SPEED );
+    if ( powerLeft > 0 ) {
+      while ( MotorRotationCount( portLeft ) < angle ) {
+      }
+    } else {
+      while ( MotorRotationCount( portLeft ) > -angle ) {
+      }
+    }
+    Off( ports );
+  }
+}
+  
+void SteerDrive( unsigned char portLeft, unsigned char portRight, float powerLeft, float powerRight, bool forward ) {
+  if ( !forward ) {
+    powerLeft = -powerLeft;
+    powerRight = -powerRight;
+  }
+  if ( powerLeft == powerRight ) {
+    byte ports[2];
+    ports[0] = portRight;
+    ports[1] = portLeft; 
+    OnFwdSync( ports, powerLeft, 0 );
+    return;
+  }
+  float absPowerLeft = abs( powerLeft );
+  float absPowerRight = abs( powerRight );
+  if ( absPowerLeft < absPowerRight ) {
+    OnFwdReg( portLeft, powerLeft, OUT_REGMODE_SPEED );
+    OnFwdReg( portRight, powerRight, OUT_REGMODE_SPEED );
+  } else {
+    OnFwdReg( portRight, powerRight, OUT_REGMODE_SPEED );
+    OnFwdReg( portLeft, powerLeft, OUT_REGMODE_SPEED );
+  }
+}
