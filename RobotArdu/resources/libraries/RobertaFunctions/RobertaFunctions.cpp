@@ -150,10 +150,10 @@ bool RobertaFunctions::infraredSensorObstacle(int port)
 	BnrOneA one;
 	Serial.begin(9600);
     one.spiConnect(SSPIN);  
-	if (port == 1 || one.obstacleSensors() == 1 || one.obstacleSensors() == 3){
+	if (port == 1 && (one.obstacleSensors() == 1 || one.obstacleSensors() == 3)){
 			return true;
 	}
-	else if (port == 2 || one.obstacleSensors() == 2 || one.obstacleSensors() == 3){
+	else if (port == 2 && (one.obstacleSensors() == 2 || one.obstacleSensors() == 3)){
 			return true;
 	}
 	else{
