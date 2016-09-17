@@ -25,75 +25,62 @@
 
 //sensor functions
 
-sub BoolOut(int column, int row, int boolean){
-  if (boolean = 0){
+void BoolOut(int column, int row, bool boolean) {
+  if (boolean){
+    TextOut(column, row, "true");
+  } else {
     TextOut(column, row, "false");
-  }
-  else {
-     TextOut(column, row, "true");
   }
 }
 
-sub ColorOut(int column, int row, int color){
-  switch(color)
-  {
+void ColorOut(int column, int row, int color){
+  switch(color) {
     case 1:
-       TextOut(column, row, "Black");
-       break;
+      TextOut(column, row, "Black");
+      break;
     case 2:
-       TextOut(column, row, "Blue");
-       break;
+      TextOut(column, row, "Blue");
+      break;
     case 3:
-       TextOut(column, row, "Green");
-       break;
+      TextOut(column, row, "Green");
+      break;
     case 4:
-       TextOut(column, row, "Yellow");
-       break;
+      TextOut(column, row, "Yellow");
+      break;
     case 5:
-       TextOut(column, row, "Red");
-       break;
+      TextOut(column, row, "Red");
+      break;
     case 6:
-       TextOut(column, row, "White");
-       break;
+      TextOut(column, row, "White");
+      break;
     default:
-       NumOut(column, row, color);
-       break;
+      NumOut(column, row, color);
+      break;
   }
 }
 
 int SensorLight(int port, string mode){
-  if (mode == "AMBIENTLIGHT"){
+  if (mode == "AMBIENTLIGHT") {
     SetSensorType(port, SENSOR_TYPE_LIGHT_INACTIVE);
-  }
-  else if (mode == "LIGHT"){
-    SetSensorType(port, SENSOR_TYPE_LIGHT_ACTIVE );
-  }
-  else{
-    SetSensorType(port, SENSOR_TYPE_LIGHT_ACTIVE );
+  } else if (mode == "LIGHT") {
+    SetSensorType(port, SENSOR_TYPE_LIGHT_ACTIVE);
+  } else {
+    SetSensorType(port, SENSOR_TYPE_LIGHT_ACTIVE);
   }
   return Sensor(port);
 }
 
 int SensorColor(int port, string mode){
   if (mode == "AMBIENTLIGHT"){
-    SetSensorType(port, SENSOR_TYPE_COLORNONE);
-  }
-  else if (mode == "COLOR"){
-    SetSensorType(port, SENSOR_TYPE_COLORFULL);
-  }
-  else if (mode == "LIGHT"){
-    SetSensorType(port,  IN_TYPE_COLORRED );
-  }
-  else{
-    SetSensorType(port, SENSOR_TYPE_COLORFULL );
+    SetSensor(port, SENSOR_COLORNONE);
+  } else if (mode == "COLOR"){
+    SetSensor(port, SENSOR_COLORFULL);
+  } else if (mode == "LIGHT") {
+    SetSensor(port, SENSOR_COLORRED);
+  } else {
+    SetSensor(port, SENSOR_COLORFULL);
   }
   return Sensor(port);
-
-}
-
-float NumberOfRotations(int port){
-  int fullCircle = 360;
-  return MotorTachoCount(port)/fullCircle;
 }
 
 float MotorDistance(int port, float diameter){
@@ -102,7 +89,7 @@ float MotorDistance(int port, float diameter){
   return (PI*MotorTachoCount(port)/degreePi)*rad;
 }
 
-sub SetTimerValue(long& timer1){
+void SetTimerValue(long& timer1){
   timer1 = CurrentTick();
 }
 
@@ -110,7 +97,7 @@ inline long GetTimerValue(long timer1){
   return CurrentTick() - timer1;
 }
 
-sub ResetTimerValue(long& timer1){
+void ResetTimerValue(long& timer1){
   timer1 = CurrentTick();
 }
 
@@ -143,7 +130,7 @@ inline float BluetoothGetNumber(int inbox){
   //return in;
 }
 
-//sub bluetooth_send_number(int out, int connection, int inbox, int outbox){
+//void bluetooth_send_number(int out, int connection, int inbox, int outbox){
   //TextOut(0,LCD_LINE1,"Sending");
   //TextOut(0,LCD_LINE2,"  ");
   //NumOut(5,LCD_LINE2,out);
@@ -159,7 +146,7 @@ inline string BluetoothGetString(int inbox){
     return in;
 }
 
-//sub bluetooth_send_string(string out, int connection, int outbox){
+//void bluetooth_send_string(string out, int connection, int outbox){
   //TextOut(0,LCD_LINE1,"Sending");
   //TextOut(0,LCD_LINE2,"  ");
   //TextOut(5,LCD_LINE2,out);
@@ -180,7 +167,7 @@ inline bool BluetoothGetBoolean(int inbox){
   //}
 }
 
-//sub bluetooth_send_boolean(bool out, int connection, int inbox, int outbox){
+//void bluetooth_send_boolean(bool out, int connection, int inbox, int outbox){
   //TextOut(0,LCD_LINE1,"Sending");
   //TextOut(0,LCD_LINE2,"  ");
   //if (out == true){
@@ -193,7 +180,7 @@ inline bool BluetoothGetBoolean(int inbox){
 //}
 
 //sensors' functions
-sub IsPressedAndReleased(int button){
+void IsPressedAndReleased(int button){
   SetButtonReleaseCount(button, 0);
   NumOut (0,LCD_LINE6, ButtonReleaseCount(button));
   while((ButtonReleaseCount(button) == 0)||(ButtonPressCount(button) == 0)){
@@ -209,16 +196,20 @@ inline int MathFloor(float val) {
   int temp = val;
   return temp;
 }
+
 inline int MathRound(float val){
   return MathFloor(0.5 + val);
 }
+
 inline int MathRoundUp(float val){
   return (1 + MathFloor(val));
 }
+
 inline bool MathIsWhole(float val){
   int intPart = val;
   return ((val - intPart) == 0);
 }
+
 inline float MathPow(float firstValue, float secondValue) {
   float result = 1;
   for (int i = 0; i < secondValue; i++) {
@@ -226,6 +217,7 @@ inline float MathPow(float firstValue, float secondValue) {
   }
   return result;
 }
+
 inline float MathMin(float firstValue, float secondValue) {
   if (firstValue < secondValue){
     return firstValue;
@@ -234,6 +226,7 @@ inline float MathMin(float firstValue, float secondValue) {
     return secondValue;
   }
 }
+
 inline float MathMax(float firstValue, float secondValue) {
   if (firstValue > secondValue){
     return firstValue;
@@ -242,7 +235,8 @@ inline float MathMax(float firstValue, float secondValue) {
     return secondValue;
   }
 }
-inline bool MathPrime(float number){
+
+inline bool MathPrime(float number) {
     if ((number % 2 == 0) || (number == 1)) return false;
     //if not, then just check the odds
     for(int i = 3; i * i <= number; i += 2) {
@@ -251,6 +245,7 @@ inline bool MathPrime(float number){
     }
     return true;
 }
+
 inline float MathLn(float val) {
   if (val > 1){
     float values[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 10000};
@@ -266,8 +261,7 @@ inline float MathLn(float val) {
     else{
       return 9.22;
     }
-  }
-  else if ((val > 0) && (val <= 1)){
+  } else if ((val > 0) && (val <= 1)) {
     float summ = 0;
     for (int n = 1; n < 10; n++){
       summ += MathPow(-1, (n + 1)) * MathPow((val - 1), n)/n;
@@ -281,17 +275,17 @@ inline float MathLn(float val) {
     return NULL;
   }
 }
+
 inline float MathLog(float val) {
   return MathLn(val)/MathLn(2.71828);
 }
 
-inline float MathFactorial(float val){
+inline float MathFactorial(float val) {
   float result = val;
-  if (val == 0){
+  if (val == 0) {
     return 1;
-  }
-  else{
-    for (int i = 1; i < val; i++){
+  } else {
+    for (int i = 1; i < val; i++) {
       result = result*(val - i);
     }
     return result;
@@ -301,8 +295,8 @@ inline float MathFactorial(float val){
 inline float MathSin(float val) {
   float angle = PI*val/180;
   float summ = 0;
-  for (int n = 0; n < 10; n++){
-    summ += MathPow(-1, n) * MathPow(angle, (2 * n + 1))/MathFactorial(2 * n + 1);
+  for (int n = 0; n < 10; n++) {
+    summ += MathPow(-1, n) * MathPow(angle, (2 * n + 1)) / MathFactorial(2 * n + 1);
   }
   return summ;
 }
@@ -317,7 +311,7 @@ inline float MathCos(float val) {
 }
 
 inline float MathTan(float val) {
-  return MathSin(val)/MathCos(val);
+  return MathSin(val) / MathCos(val);
 }
 
 inline float MathAsin(float val) {
@@ -326,8 +320,7 @@ inline float MathAsin(float val) {
     Wait(1000);
     ClearScreen();
     return NULL;
-  }
-  else{
+  } else {
     float summ = 0;
     for (float n = 0; n < 15; n++){
       summ += MathFactorial(2 * n) * MathPow(val, (2 * n + 1)) / MathPow(4, n) / MathPow(MathFactorial(n), 2)/(2* n + 1);
@@ -338,34 +331,31 @@ inline float MathAsin(float val) {
 
 
 inline float MathAcos(float val) {
-  if (abs(val) > 1){
+  if (abs(val) > 1) {
     TextOut(0, LCD_LINE1, "invalid value");
     Wait(1000);
     ClearScreen();
     return NULL;
-  }
-  else{
+  } else {
     return 90 - MathAsin(val);
   }
 }
 
 inline float MathAtan(float val) {
-  if (abs(val) > 1){
+  if (abs(val) > 1) {
     float values[] = {1, sqrt(3), 2, 3, 0x7f800000};
     float results[] = {45, 60, 63.435, 71.565, 90};
     int i = 1;
-    while(values[i] < abs(val)){
+    while(values[i] < abs(val)) {
       i++;
     }
     float result =  results[i - 1] + (abs(val) - values[i - 1]) * (results[i] - results[i - 1]) / (values[i] - values[i - 1]);
-    if (val > 0){
+    if (val > 0) {
       return result;
-    }
-    else{
+    } else {
       return -result;
     }
-  }
-  else{
+  } else {
     float summ = 0;
     for (float n = 1; n < 15; n++){
       summ += MathPow(-1, (n - 1)) * MathPow(val, (2 * n - 1)) / (2 * n - 1);
@@ -374,11 +364,11 @@ inline float MathAtan(float val) {
   }
 }
 
-inline int RandomIntegerInRange(int val1, int val2){
+inline int RandomIntegerInRange(int val1, int val2) {
   return abs(val1 - val2) * Random(100) / 100 + MathMin(val1, val2);
 }
 
-inline float RandomFloat(){
+inline float RandomFloat() {
   return Random(100) / 100;
 }
 
@@ -422,47 +412,49 @@ float ArrMean(float arr[]) {
 }
 inline void ArrInsertionSort(float &arr[]) {
   for (int i=1; i < ArrayLen(arr); i++) {
-      int index = arr[i];
-      int j = i;
-      while (j > 0 && arr[j-1] > index){
-           arr[j] = arr[j-1];
-           j--;
-      }
-      arr[j] = index;
+    int index = arr[i];
+    int j = i;
+    while (j > 0 && arr[j-1] > index) {
+      arr[j] = arr[j-1];
+      j--;
+    }
+    arr[j] = index;
   }
 }
 inline float ArrMedian(float arr[]) {
-   int n = ArrayLen(arr);
-   if ( n == 0 ) {
-     return 0;
-   }
-   ArrInsertionSort(arr);
-   float median;
-   if ( n % 2 == 0 ) {
-      median = (arr[n/2] + arr[n / 2 - 1]) / 2;
-   }
-   else {
-     median = arr[n / 2];
-   }
-   return median;
+  int n = ArrayLen(arr);
+  if (n == 0) {
+    return 0;
+  }
+  ArrInsertionSort(arr);
+  float median;
+  if (n % 2 == 0) {
+    median = (arr[n/2] + arr[n / 2 - 1]) / 2;
+  } else {
+    median = arr[n / 2];
+  }
+  return median;
 }
+
 inline float ArrStandardDeviatioin(float arr[]) {
-        int n = ArrayLen(arr);
-        if ( n == 0 ) {
-            return 0;
-        }
-        float variance = 0;
-        float mean = ArrMean(arr);
-        for ( int i = 0; i < ArrayLen(arr); i++) {
-            variance += MathPow(arr[i] - mean, 2);
-        }
-        variance /= n;
-        return sqrt(variance);
+  int n = ArrayLen(arr);
+  if (n == 0) {
+    return 0;
+  }
+  float variance = 0;
+  float mean = ArrMean(arr);
+  for (int i = 0; i < ArrayLen(arr); i++) {
+    variance += MathPow(arr[i] - mean, 2);
+  }
+  variance /= n;
+  return sqrt(variance);
 }
+
 inline float ArrRand(float arr[]) {
   int arrayInd = ArrayLen(arr) * Random(100) / 100;
   return arr[arrayInd - 1];
 }
+
 inline float ArrMode(float arr[]){
   ArrInsertionSort(arr);
   float element = arr[0];
@@ -470,17 +462,15 @@ inline float ArrMode(float arr[]){
   int count = 1;
   int mode_count = 1;
   for (int i = 1; i < ArrayLen(arr); i++){
-      if (arr[i] == element){
-         count++;
-         if (count > mode_count)
-            {
-            mode_count = count;
-            max_seen = element;
-        }
+    if (arr[i] == element){
+      count++;
+      if (count > mode_count) {
+        mode_count = count;
+        max_seen = element;
       }
-      else {
-        element = arr[i];
-        count = 1;
+    } else {
+      element = arr[i];
+      count = 1;
     }
   }
   return max_seen;
@@ -492,21 +482,20 @@ inline int ArrFindFirstNum(float arr[], float item) {
   int i = 0;
   if (arr[0] == item){
     return i;
-  }
-  else{
-    do{
+  } else {
+    do {
       i++;
     } while((arr[i] != item) && (i != ArrayLen(arr)));
     return i;
   }
 }
+
 inline int ArrFindLastNum(float arr[], float item) {
   int i = 0;
   if (arr[ArrayLen(arr) - 1] == item){
     return ArrayLen(arr) - 1 - i;
-  }
-  else{
-    do{
+  } else {
+    do {
       i++;
     } while((arr[ArrayLen(arr) - 1 - i] != item)&&(i != 0));
       return ArrayLen(arr) - 1 - i;
@@ -517,21 +506,20 @@ inline int ArrFindFirstStr(string arr[], string item) {
   int i = 0;
   if (arr[0] == item){
     return i;
-  }
-  else{
-    do{
+  } else {
+    do {
       i++;
     } while((arr[i] != item) && (i != ArrayLen(arr)));
     return i;
   }
 }
+
 inline int ArrFindLastStr(string arr[], string item) {
   int i = 0;
   if (arr[ArrayLen(arr) - 1] == item){
     return ArrayLen(arr) - 1 - i;
-  }
-  else{
-    do{
+  } else {
+    do {
       i++;
     } while((arr[ArrayLen(arr) - 1 - i] != item)&&(i != 0));
       return ArrayLen(arr) - 1 - i;
@@ -542,124 +530,104 @@ inline int ArrFindFirstBool(bool arr[], bool item) {
   int i = 0;
   if (arr[0] == item){
     return i;
-  }
-  else{
-    do{
+  } else {
+    do {
       i++;
     } while((arr[i] != item) && (i != ArrayLen(arr)));
     return i;
   }
 }
+
 inline int ArrFindLastBool(bool arr[], bool item) {
   int i = 0;
   if (arr[ArrayLen(arr) - 1] == item){
     return ArrayLen(arr) - 1 - i;
-  }
-  else{
-    do{
+  } else {
+    do {
       i++;
     } while((arr[ArrayLen(arr) - 1 - i] != item)&&(i != 0));
       return ArrayLen(arr) - 1 - i;
   }
 }
 
-
 inline bool ArrIsEmpty(float arr[]){
   if (ArrayLen(arr) == 0){
     return true;
-  }
-  else{
+  } else {
     return false;
   }
 }
 
 //MotorOnAction
-inline float OnReg(int ports, float speed,int regmode) {
-  if (speed > 0){
-    OnRevReg(OUT_B, speed,regmode);
-  }
-  else{
-    OnFwdReg(OUT_B, speed,regmode) ;
-  }
-}
-inline float OnUnReg(int ports, float speed,int regmode) {
-  if (speed > 0){
-    OnRevReg(OUT_B, speed,regmode);
-  }
-  else{
-    OnFwdReg(OUT_B, speed,regmode) ;
-  }
-}
 
-void SteerDriveEx( unsigned char portLeft, unsigned char portRight, float powerLeft, float powerRight, bool forward, float distance ) {
-  if ( !forward ) {
+void SteerDriveEx(unsigned char portLeft, unsigned char portRight, float powerLeft, float powerRight, bool forward, float distance) {
+  if (!forward) {
     powerLeft = -powerLeft;
     powerRight = -powerRight;
   }
   byte ports[2];
   ports[0] = portRight;
   ports[1] = portLeft; 
-  float absPowerLeft = abs( powerLeft );
-  float absPowerRight = abs( powerRight );
-  if ( powerLeft == powerRight ) {
+  float absPowerLeft = abs(powerLeft);
+  float absPowerRight = abs(powerRight);
+  if (powerLeft == powerRight) {
     long angle =  distance * 360.0 / (PI * WHEELDIAMETER);
-    RotateMotorEx( ports, powerLeft, angle ,0 , true, true);
-    Wait( 1 );
+    RotateMotorEx(ports, powerLeft, angle ,0 , true, true);
+    Wait(1);
     return;
   }
   float outerCircumference;
-  if ( powerLeft + powerRight == 0 ) {
+  if (powerLeft + powerRight == 0) {
     outerCircumference = distance;
   } else if (absPowerLeft < absPowerRight) {
-    outerCircumference =  powerLeft / ( powerRight + powerLeft ) * 2.0 * distance;
+    outerCircumference =  powerLeft / (powerRight + powerLeft) * 2.0 * distance;
   } else {
-    outerCircumference =  powerRight / ( powerRight + powerLeft ) * 2.0 * distance;
+    outerCircumference =  powerRight / (powerRight + powerLeft) * 2.0 * distance;
   }
-  long angle = abs( outerCircumference * 360.0 / (PI * WHEELDIAMETER));
-  if ( absPowerLeft < absPowerRight ) {
-    OnFwdReg( portLeft, powerLeft, OUT_REGMODE_SPEED );
-    OnFwdReg( portRight, powerRight, OUT_REGMODE_SPEED );
-    if ( powerRight > 0 ) {
-      while ( MotorRotationCount( portRight ) < angle ) {
+  long angle = abs(outerCircumference * 360.0 / (PI * WHEELDIAMETER));
+  if (absPowerLeft < absPowerRight) {
+    OnFwdReg(portLeft, powerLeft, OUT_REGMODE_SPEED);
+    OnFwdReg(portRight, powerRight, OUT_REGMODE_SPEED);
+    if (powerRight > 0) {
+      while (MotorRotationCount(portRight) < angle) {
       }
     } else {
-      while ( MotorRotationCount( portRight ) > -angle ) {
+      while (MotorRotationCount(portRight) > -angle) {
       }
     }
-    Off( ports );
   } else {
-    OnFwdReg( portRight, powerRight, OUT_REGMODE_SPEED );
-    OnFwdReg( portLeft, powerLeft, OUT_REGMODE_SPEED );
-    if ( powerLeft > 0 ) {
-      while ( MotorRotationCount( portLeft ) < angle ) {
+    OnFwdReg(portRight, powerRight, OUT_REGMODE_SPEED);
+    OnFwdReg(portLeft, powerLeft, OUT_REGMODE_SPEED);
+    if (powerLeft > 0) {
+      while (MotorRotationCount(portLeft) < angle) {
       }
     } else {
-      while ( MotorRotationCount( portLeft ) > -angle ) {
+      while (MotorRotationCount(portLeft) > -angle) {
       }
     }
-    Off( ports );
   }
+  Off(ports);
 }
   
-void SteerDrive( unsigned char portLeft, unsigned char portRight, float powerLeft, float powerRight, bool forward ) {
-  if ( !forward ) {
+void SteerDrive(unsigned char portLeft, unsigned char portRight, float powerLeft, float powerRight, bool forward) {
+  if (!forward) {
     powerLeft = -powerLeft;
     powerRight = -powerRight;
   }
-  if ( powerLeft == powerRight ) {
+  if (powerLeft == powerRight) {
     byte ports[2];
     ports[0] = portRight;
     ports[1] = portLeft; 
-    OnFwdSync( ports, powerLeft, 0 );
+    OnFwdSync(ports, powerLeft, 0);
     return;
   }
-  float absPowerLeft = abs( powerLeft );
-  float absPowerRight = abs( powerRight );
-  if ( absPowerLeft < absPowerRight ) {
-    OnFwdReg( portLeft, powerLeft, OUT_REGMODE_SPEED );
-    OnFwdReg( portRight, powerRight, OUT_REGMODE_SPEED );
+  float absPowerLeft = abs(powerLeft);
+  float absPowerRight = abs(powerRight);
+  if (absPowerLeft < absPowerRight) {
+    OnFwdReg(portLeft, powerLeft, OUT_REGMODE_SPEED);
+    OnFwdReg(portRight, powerRight, OUT_REGMODE_SPEED);
   } else {
-    OnFwdReg( portRight, powerRight, OUT_REGMODE_SPEED );
-    OnFwdReg( portLeft, powerLeft, OUT_REGMODE_SPEED );
+    OnFwdReg(portRight, powerRight, OUT_REGMODE_SPEED);
+    OnFwdReg(portLeft, powerLeft, OUT_REGMODE_SPEED);
   }
 }
