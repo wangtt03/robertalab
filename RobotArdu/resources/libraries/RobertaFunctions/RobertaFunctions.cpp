@@ -26,6 +26,16 @@ void RobertaFunctions::moveTime(int speedL,int speedR, long time)
     one.stop();
 }
 
+void RobertaFunctions::moveTimePID(int speedL,int speedR, long time)
+{   BnrOneA one;
+	Serial.begin(9600);
+    one.spiConnect(SSPIN);
+	float toSeconds = 1000;
+	one.movePID(speedL, speedR);
+	delay(time*toSeconds);
+    one.stop();
+}
+
 void RobertaFunctions::lcdClear()
 {   BnrOneA one;
 	Serial.begin(9600);

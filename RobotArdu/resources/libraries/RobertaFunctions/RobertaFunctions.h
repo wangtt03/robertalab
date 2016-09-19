@@ -18,6 +18,7 @@ class RobertaFunctions
 {
   public:   
 		void moveTime(int speedL,int speedR, long time);
+		void moveTimePID(int speedL,int speedR, long time);
 		void lcdClear();
 		int ultrasonicDistance(int port);
 		byte *colorSensorRGB(byte colors[],int port);
