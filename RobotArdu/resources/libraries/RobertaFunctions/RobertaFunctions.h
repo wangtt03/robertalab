@@ -8,6 +8,8 @@
 #ifndef RobertaFunctions_h
 #define RobertaFunctions_h
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "Arduino.h"
 #include "BnrOneA.h" 
 #include "BnrRescue.h" 
@@ -26,10 +28,12 @@ class RobertaFunctions
 		int colorSensorLight(byte colors[], int port);
 		String colorSensorColor(byte colors[], int port);
 		bool infraredSensorObstacle(int port);
+		bool infraredSensorPresence(int port);
 		float readBearing();
 		char readRoll();
 		char readPitch();
-		
+		int randomIntegerInRange(int val1, int val2);
+		float randomFloat();
 };
 #endif
 

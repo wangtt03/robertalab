@@ -4,7 +4,8 @@
   Created by Evgeniya Ovchinnikova, August 30, 2016.
   Released into the public domain.
 */
-
+#include <stdio.h>
+#include <stdlib.h>
 #include "SPI.h"
 #include "BnrOneA.h" 
 #include "BnrRescue.h" 
@@ -246,5 +247,15 @@ char RobertaFunctions::readPitch()
     pitch = Wire.read();
 
 	return pitch;
+}
+
+int RobertaFunctions::randomIntegerInRange(int val1, int val2){
+	int min = fmin(val1, val2);
+	int max = fmax(val1, val2);
+	return min + (rand()%(min - max));
+}
+
+float RobertaFunctions::randomFloat(){
+	return (float)rand()/(float)RAND_MAX;
 }
 
