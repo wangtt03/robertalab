@@ -16,7 +16,7 @@
 #define MODULE_ADDRESS 0x2C
  
 
-void RobertaFunctions::moveTime(int speedL,int speedR, long time)
+void RobertaFunctions::moveTime(int speedL,int speedR, double time)
 {   BnrOneA one;
 	Serial.begin(9600);
     one.spiConnect(SSPIN);
@@ -26,7 +26,7 @@ void RobertaFunctions::moveTime(int speedL,int speedR, long time)
     one.stop();
 }
 
-void RobertaFunctions::moveTimePID(int speedL,int speedR, long time)
+void RobertaFunctions::moveTimePID(int speedL,int speedR, double time)
 {   BnrOneA one;
 	Serial.begin(9600);
     one.spiConnect(SSPIN);
