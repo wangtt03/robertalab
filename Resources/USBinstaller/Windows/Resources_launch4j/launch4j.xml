@@ -2,7 +2,7 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>/home/kcvejoski/dev/OpenRoberta/gitWorkspace/robertalab/Resources/USBinstaller/Windows/Resources_launch4j/OpenRobertaUSB.jar</jar>
+  <jar>/home/kcvejoski/dev/OpenRoberta/gitWorkspace/robertalab/Resources/USBinstaller/Windows/OpenRobertaUSB.jar</jar>
   <outfile>/home/kcvejoski/dev/OpenRoberta/gitWorkspace/robertalab/Resources/USBinstaller/Windows/Resources_launch4j/OpenRobertaUSB.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
