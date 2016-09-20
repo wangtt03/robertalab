@@ -102,7 +102,9 @@ int RobertaFunctions::colorSensorLight(byte colors[], int port)
 
 
 String RobertaFunctions::colorSensorColor(byte colors[], int port)
-{   
+{   BnrOneA one;
+	Serial.begin(9600);
+    one.spiConnect(SSPIN);
 	BnrRescue brm; 
 	brm.i2cConnect(MODULE_ADDRESS);   
     brm.setModuleAddress(0x2C);    
@@ -113,18 +115,18 @@ String RobertaFunctions::colorSensorColor(byte colors[], int port)
 	else{
 		brm.readRgbR(&colors[0],&colors[1],&colors[2]);
 	}
-	int r = colors[0];
-	int g = colors[1];
-	int b = colors[2];
-	int min = fmin(r, fmin(g, b));
-	int max = fmax(r, fmax(g, b));
-	int delta = max - min;
-	int h, s, v = max;
+	double r = colors[0];
+	double g = colors[1];
+	double b = colors[2];
+	double min = fmin(r, fmin(g, b));
+	double max = fmax(r, fmax(g, b));
+	double delta = max - min;
+	double h, s, v = max;
 	
-	v = floor(max / 255 * 100);
+	v = max / 255.0 * 100.0;
 	
 	if (max != 0) {
-		s = floor(delta / max * 100);
+		s = delta / max * 100;
 	} else {
 		h, s, v = 0;
 	}
@@ -135,19 +137,19 @@ String RobertaFunctions::colorSensorColor(byte colors[], int port)
 	} else {
 		h = 4 + (r - g) / delta;
 	}
-	h = floor(h * 60); 
+	h = h * 60; 
 	if (h < 0) {
 		h += 360;
 	}
 	
-	int hsv[3] = {h, s, v};
+	double hsv[3] = {h, s, v};
 	if (hsv[2] <= 10) {
 		color = "BLACK";
 	}
-	else if ((hsv[0] < 10 || hsv[0] > 350) && hsv[1] > 90 && hsv[2] > 50) {
+	else if ((hsv[0] < 10 || hsv[0] > 350) && hsv[1] > 70 && hsv[2] > 50) {
 		color = "RED";
 	}
-	else if (hsv[0] > 40 && hsv[0] < 70 && hsv[1] > 90 && hsv[2] > 50) {
+	else if (hsv[0] > 30 && hsv[0] < 70 && hsv[1] > 60 && hsv[2] > 50) {
 		color = "YELLOW";
 	}
 	else if (hsv[0] < 50 && hsv[1] > 50 && hsv[1] < 100 && hsv[2] < 50) {
@@ -156,15 +158,17 @@ String RobertaFunctions::colorSensorColor(byte colors[], int port)
 	else if (hsv[1] < 10 && hsv[2] > 90) {
 		color = "WHITE";
 	}
-	else if (hsv[0] > 70 && hsv[0] < 160 && hsv[1] > 80) {
+	else if (hsv[0] > 70 && hsv[0] < 160 && hsv[1] > 40) {
 		color = "GREEN";
 	}
-	else if (hsv[0] > 200 && hsv[0] < 250 && hsv[1] > 90 && hsv[2] > 50) {
+	else if (hsv[0] > 200 && hsv[0] < 250 && hsv[1] > 60 && hsv[2] > 50) {
 		color = "BLUE";
 	}
 	else{
 		color = "NONE";
 	}
+		
+	Serial.print("hsv ");Serial.print(h);Serial.print("s");Serial.print(s);Serial.print("v");Serial.print(v);
 	return color;
 }
 
@@ -177,6 +181,22 @@ bool RobertaFunctions::infraredSensorObstacle(int port)
 			return true;
 	}
 	else if (port == 2 && (one.obstacleSensors() == 2 || one.obstacleSensors() == 3)){
+			return true;
+	}
+	else{
+		return false;
+	}
+}
+
+bool RobertaFunctions::infraredSensorPresence(int port)
+{   
+	BnrOneA one;
+	Serial.begin(9600);
+    one.spiConnect(SSPIN);  
+	if (port == 1 && (one.readIRSensors() == 1 || one.readIRSensors() == 3)){
+			return true;
+	}
+	else if (port == 2 && (one.readIRSensors() == 2 || one.readIRSensors() == 3)){
 			return true;
 	}
 	else{
