@@ -15,6 +15,7 @@
 #define ADDRESS 0x60
 #define MODULE_ADDRESS 0x2C
  
+  
 
 void RobertaFunctions::moveTime(int speedL,int speedR, double time)
 {   BnrOneA one;
@@ -53,6 +54,18 @@ int RobertaFunctions::ultrasonicDistance(int port)
     brm.setModuleAddress(0x2C);      
 	brm.readSonars(&distances[0],&distances[1],&distances[2]);
 	return distances[port];
+}
+
+bool RobertaFunctions::buttonIsPressed(int button)
+{   BnrOneA one;
+	Serial.begin(9600);
+    one.spiConnect(SSPIN);
+	if (one.readButton() == 0){
+		return false;
+	}
+	else{
+		return (one.readButton() == button || button == 123);
+	}
 }
 
 byte *RobertaFunctions::colorSensorRGB(byte colors[], int port)
