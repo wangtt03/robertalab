@@ -586,8 +586,9 @@ void SteerDriveEx(unsigned char portLeft, unsigned char portRight, float powerLe
   }
   long angle = abs(outerCircumference * 360.0 / (PI * WHEELDIAMETER));
   if (absPowerLeft < absPowerRight) {
-    OnFwdReg(portLeft, powerLeft, OUT_REGMODE_SPEED);
-    OnFwdReg(portRight, powerRight, OUT_REGMODE_SPEED);
+    OnFwdRegEx(portLeft, powerLeft, OUT_REGMODE_SPEED, RESET_ALL);
+    OnFwdRegEx(portRight, powerRight, OUT_REGMODE_SPEED, RESET_ALL);
+    Wait(1);
     if (powerRight > 0) {
       while (MotorRotationCount(portRight) < angle) {
       }
@@ -596,8 +597,9 @@ void SteerDriveEx(unsigned char portLeft, unsigned char portRight, float powerLe
       }
     }
   } else {
-    OnFwdReg(portRight, powerRight, OUT_REGMODE_SPEED);
-    OnFwdReg(portLeft, powerLeft, OUT_REGMODE_SPEED);
+    OnFwdRegEx(portRight, powerRight, OUT_REGMODE_SPEED, RESET_ALL);
+    OnFwdRegEx(portLeft, powerLeft, OUT_REGMODE_SPEED, RESET_ALL);   
+    Wait(1);
     if (powerLeft > 0) {
       while (MotorRotationCount(portLeft) < angle) {
       }
@@ -607,6 +609,7 @@ void SteerDriveEx(unsigned char portLeft, unsigned char portRight, float powerLe
     }
   }
   Off(ports);
+  Wait(1);
 }
   
 void SteerDrive(unsigned char portLeft, unsigned char portRight, float powerLeft, float powerRight, bool forward) {
