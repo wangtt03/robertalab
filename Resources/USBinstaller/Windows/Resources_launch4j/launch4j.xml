@@ -21,6 +21,7 @@
   <classPath>
     <mainClass>de.fhg.iais.roberta.usb.Main</mainClass>
     <cp>lib/*</cp>
+    <cp>resources/*</cp>
   </classPath>
   <jre>
     <path>java/</path>
