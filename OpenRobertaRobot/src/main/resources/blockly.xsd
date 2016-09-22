@@ -7,6 +7,8 @@
 			<xs:sequence>
 				<xs:element name="instance" maxOccurs="unbounded" type="instance"></xs:element>
 			</xs:sequence>
+			<xs:attribute name="robottype" type="xs:string" default="ev3" use="optional"  />
+			<xs:attribute name="xmlversion" type="xs:string" default="2.0" use="optional"  />
 		</xs:complexType>
 	</xs:element>
 
@@ -26,8 +28,10 @@
 			<xs:element name="comment" minOccurs="0" type="comment" />
 			<xs:element name="error" minOccurs="0" maxOccurs="1" type="error" />
 			<xs:element name="warning" minOccurs="0" maxOccurs="1" type="warning" />
+            <xs:element name="data" minOccurs="0" maxOccurs="unbounded" />
 			<xs:element name="value" minOccurs="0" maxOccurs="unbounded" type="value" />
 			<xs:element name="statement" minOccurs="0" maxOccurs="unbounded" type="statement" />
+			
 			
 		</xs:sequence>
 		<xs:attribute name="x" type="xs:string" use="optional" />

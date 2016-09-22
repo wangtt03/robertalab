@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>..\OpenRobertaUSB.jar</jar>
-  <outfile>..\OpenRobertaUSB-EV3.exe</outfile>
+  <jar>/home/kcvejoski/dev/OpenRoberta/gitWorkspace/robertalab/Resources/USBinstaller/Windows/OpenRobertaUSB.jar</jar>
+  <outfile>/home/kcvejoski/dev/OpenRoberta/gitWorkspace/robertalab/Resources/USBinstaller/Windows/Resources_launch4j/OpenRobertaUSB.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
@@ -23,12 +23,13 @@
     <cp>lib/*</cp>
   </classPath>
   <jre>
-    <path>java</path>
+    <path>java/</path>
     <bundledJre64Bit>false</bundledJre64Bit>
     <bundledJreAsFallback>false</bundledJreAsFallback>
-    <minVersion></minVersion>
+    <minVersion>1.7.0_0</minVersion>
     <maxVersion></maxVersion>
     <jdkPreference>preferJre</jdkPreference>
     <runtimeBits>64/32</runtimeBits>
+    <opt>-Dfile.encoding=UTF-8</opt>
   </jre>
 </launch4jConfig>

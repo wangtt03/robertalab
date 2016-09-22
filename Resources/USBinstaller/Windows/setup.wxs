@@ -53,6 +53,7 @@ Property="UPGRADEFOUND" />
 			<Directory Id="ProgramFilesFolder">			
 				<Directory Id="INSTALLDIR" Name="OpenRoberta">
 					<Directory Id="LIB" Name="lib"/>
+					<Directory Id="FIRMWARE" Name="firmware-1.2"/>
 					<Directory Id="JAVA" Name="java"/>
 					<Directory Id="Drivers" Name="Drivers">
 						<Component Id="DPInst_x32" Guid="9BC0F448-32B2-4A21-8C46-76742266D829">
@@ -109,6 +110,10 @@ Property="UPGRADEFOUND" />
 			
 			<Feature Id='lib' Title='Description' Description='Libraries for the jar' Level='1'>
 				<ComponentGroupRef Id='LibGroupID' />
+			</Feature>
+			
+			<Feature Id='firmware' Title='Description' Description='New firmware for the brick' Level='1'>
+				<ComponentGroupRef Id='MyComponentGroupId' />
 			</Feature>
 			
 			<Feature Id='Java' Title='Description' Description='java JDK' Level='1'>
