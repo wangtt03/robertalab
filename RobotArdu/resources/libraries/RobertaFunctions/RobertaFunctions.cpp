@@ -259,3 +259,6 @@ float RobertaFunctions::randomFloat(){
 	return (float)rand()/(float)RAND_MAX;
 }
 
+double RobertaFunctions::clamp(double val, double min, double max){
+	return fmin(fmax(val, min), max);
+}

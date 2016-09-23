@@ -34,6 +34,7 @@ class RobertaFunctions
 		char readPitch();
 		int randomIntegerInRange(int val1, int val2);
 		float randomFloat();
+		double clamp(double val, double min, double max);
 };
 #endif
 
