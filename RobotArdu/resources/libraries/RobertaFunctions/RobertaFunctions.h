@@ -35,6 +35,14 @@ class RobertaFunctions
 		int randomIntegerInRange(int val1, int val2);
 		float randomFloat();
 		double clamp(double val, double min, double max);
+		bool isPrime(double number);
+		bool isWhole(double val);
+		int arrayLength(int arr[]);
+		int arrayLength(String arr[]);
+		int arrayLength(bool arr[]);
+		bool arrayIsEmpty(int arr[]);
+		bool arrayIsEmpty(String arr[]);
+		bool arrayIsEmpty(bool arr[]);
 };
 #endif
 

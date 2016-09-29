@@ -262,3 +262,42 @@ float RobertaFunctions::randomFloat(){
 double RobertaFunctions::clamp(double val, double min, double max){
 	return fmin(fmax(val, min), max);
 }
+
+bool RobertaFunctions::isPrime(double number) {
+    if ((fmod(number, 2) == 0) || (number == 1)) return false;
+    //if not, then just check the odds
+    for(int i = 3; i * i <= number; i += 2) {
+        if(fmod(number, i) == 0)
+            return false;
+    }
+    return true;
+}
+
+bool RobertaFunctions::isWhole(double val){
+  int intPart = val;
+  return ((val - intPart) == 0);
+}
+
+int RobertaFunctions::arrayLength(int arr[]){
+	return sizeof(arr)/sizeof(arr[0]);
+}
+
+int RobertaFunctions::arrayLength(String arr[]){
+	return sizeof(arr)/sizeof(arr[0]);
+}
+
+int RobertaFunctions::arrayLength(bool arr[]){
+	return sizeof(arr)/sizeof(arr[0]);
+}
+
+bool RobertaFunctions::arrayIsEmpty(int arr[]){
+	return (sizeof(arr)/sizeof(arr[0]) == 0);
+}
+
+bool RobertaFunctions::arrayIsEmpty(String arr[]){
+	return (sizeof(arr)/sizeof(arr[0]) == 0);
+}
+
+bool RobertaFunctions::arrayIsEmpty(bool arr[]){
+	return (sizeof(arr)/sizeof(arr[0]) == 0);
+}
