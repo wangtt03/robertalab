@@ -37,12 +37,6 @@ class RobertaFunctions
 		double clamp(double val, double min, double max);
 		bool isPrime(double number);
 		bool isWhole(double val);
-		int arrayLength(double arr[]);
-		int arrayLength(String arr[]);
-		int arrayLength(bool arr[]);
-		bool arrayIsEmpty(double arr[]);
-		bool arrayIsEmpty(String arr[]);
-		bool arrayIsEmpty(bool arr[]);
 		int arrFindFirst(double arr[], double item);
 		int arrFindFirst(bool arr[], bool item);
 		int arrFindFirst(String arr[], String item);
