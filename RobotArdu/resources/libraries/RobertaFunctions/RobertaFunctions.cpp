@@ -278,7 +278,7 @@ bool RobertaFunctions::isWhole(double val){
   return ((val - intPart) == 0);
 }
 
-int RobertaFunctions::arrayLength(int arr[]){
+int RobertaFunctions::arrayLength(double arr[]){
 	return sizeof(arr)/sizeof(arr[0]);
 }
 
@@ -290,7 +290,7 @@ int RobertaFunctions::arrayLength(bool arr[]){
 	return sizeof(arr)/sizeof(arr[0]);
 }
 
-bool RobertaFunctions::arrayIsEmpty(int arr[]){
+bool RobertaFunctions::arrayIsEmpty(double arr[]){
 	return (sizeof(arr)/sizeof(arr[0]) == 0);
 }
 
@@ -300,4 +300,77 @@ bool RobertaFunctions::arrayIsEmpty(String arr[]){
 
 bool RobertaFunctions::arrayIsEmpty(bool arr[]){
 	return (sizeof(arr)/sizeof(arr[0]) == 0);
+}
+
+int RobertaFunctions::arrFindFirst(double arr[], double item) {
+  int i = 0;
+  if (arr[0] == item){
+    return i;
+  } else {
+    do {
+      i++;
+    } while((arr[i] != item) && (i != arrayLength(arr)));
+    return i;
+  }
+}
+
+
+int RobertaFunctions::arrFindFirst(bool arr[], bool item) {
+  int i = 0;
+  if (arr[0] == item){
+    return i;
+  } else {
+    do {
+      i++;
+    } while((arr[i] != item) && (i != arrayLength(arr)));
+    return i;
+  }
+}
+
+int RobertaFunctions::arrFindFirst(String arr[], String item) {
+  int i = 0;
+  if (arr[0] == item){
+    return i;
+  } else {
+    do {
+      i++;
+    } while((arr[i] != item) && (i != arrayLength(arr)));
+    return i;
+  }
+}
+
+
+int RobertaFunctions::arrFindLast(double arr[], double item) {
+  int i = 0;
+  if (arr[arrayLength(arr) - 1] == item){
+    return arrayLength(arr) - 1 - i;
+  } else {
+    do {
+      i++;
+    } while((arr[arrayLength(arr) - 1 - i] != item)&&(i != 0));
+      return arrayLength(arr) - 1 - i;
+  }
+}
+
+int RobertaFunctions::arrFindLast(bool arr[], bool item) {
+  int i = 0;
+  if (arr[arrayLength(arr) - 1] == item){
+    return arrayLength(arr) - 1 - i;
+  } else {
+    do {
+      i++;
+    } while((arr[arrayLength(arr) - 1 - i] != item)&&(i != 0));
+      return arrayLength(arr) - 1 - i;
+  }
+}
+int RobertaFunctions::arrFindLast(String arr[], String item) {
+  int i = 0;
+  if (arr[arrayLength(arr) - 1] == item){
+    return arrayLength(arr) - 1 - i;
+  } else {
+    do {
+      i++;
+    } while((arr[arrayLength(arr) - 1 - i] != item)&&(i != 0));
+      return arrayLength(arr) - 1 - i;
+  }
 }
