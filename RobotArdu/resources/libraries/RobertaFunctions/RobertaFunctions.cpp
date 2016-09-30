@@ -350,3 +350,102 @@ int RobertaFunctions::arrFindLast(String arr[], String item) {
       return sizeof(arr)/sizeof(arr[0]) - 1 - i;
   }
 }
+
+
+
+
+double RobertaFunctions::arrSum(int len, double arr[]) {
+  float sum = 0;
+  for(int i = 0; i < len; i++) {
+    sum += arr[i];
+  }
+  return sum;
+}
+double RobertaFunctions::arrMin(int len, double arr[]) {
+  double min = arr[0];
+  for(int i = 1; i < len; i++) {
+    if (arr[i] < min){
+      min = arr[i];
+    }
+  }
+  return min;
+}
+double RobertaFunctions::arrMax(int len, double arr[]) {
+  double max = arr[0];
+  for(int i = 1; i < len; i++) {
+    if (arr[i] > max){
+      max = arr[i];
+    }
+  }
+  return max;
+}
+double RobertaFunctions::arrMean(int len, double arr[]) {
+  double sum = 0;
+  for(int i = 0; i < len; i++) {
+    sum += arr[i];
+  }
+  return sum/len;
+}
+void RobertaFunctions::arrInsertionSort(int len,  double *arr) {
+  for (int i=1; i < len; i++) {
+    int index = arr[i];
+    int j = i;
+    while (j > 0 && arr[j-1] > index) {
+      arr[j] = arr[j-1];
+      j--;
+    }
+    arr[j] = index;
+  }
+}
+double RobertaFunctions::arrMedian(int len, double arr[]) {
+  if (len == 0) {
+    return 0;
+  }
+  arrInsertionSort(len, arr);
+  double median;
+  if (len % 2 == 0) {
+    median = (arr[len/2] + arr[len / 2 - 1]) / 2;
+  } else {
+    median = arr[len / 2];
+  }
+  return median;
+}
+
+double RobertaFunctions::arrStandardDeviatioin(int len, double arr[]) {
+  if (len == 0) {
+    return 0;
+  }
+  double variance = 0;
+  double mean = arrMean(len, arr);
+  for (int i = 0; i < len; i++) {
+    variance += pow(arr[i] - mean, 2);
+  }
+  variance /= len;
+  return sqrt(variance);
+}
+
+double RobertaFunctions::arrRand(int len, double arr[]) {
+  int arrayInd = len * (randomFloat()*100)/100;
+  return arr[arrayInd - 1];
+}
+
+double RobertaFunctions::arrMode(int len, double arr[]){
+  arrInsertionSort(len, arr);
+  double element = arr[0];
+  double max_seen = element;
+  int count = 1;
+  int mode_count = 1;
+  for (int i = 1; i < len; i++){
+    if (arr[i] == element){
+      count++;
+      if (count > mode_count) {
+        mode_count = count;
+        max_seen = element;
+      }
+    } else {
+      element = arr[i];
+      count = 1;
+    }
+  }
+  return max_seen;
+}

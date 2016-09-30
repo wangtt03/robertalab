@@ -43,7 +43,15 @@ class RobertaFunctions
 		int arrFindLast(double arr[], double item);
 		int arrFindLast(bool arr[], bool item);
 		int arrFindLast(String arr[], String item);
-
+		double arrSum(int len, double arr[]);
+		double arrMin(int len, double arr[]);
+		double arrMax(int len, double arr[]);
+		double arrMean(int len, double arr[]);
+		void arrInsertionSort(int len,  double *arr);
+		double arrMedian(int len, double arr[]);
+		double arrStandardDeviatioin(int len, double arr[]);
+		double arrRand(int len, double arr[]);
+		double arrMode(int len, double arr[]);
 };
 #endif
 
