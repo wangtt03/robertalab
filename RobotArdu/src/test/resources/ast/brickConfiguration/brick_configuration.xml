@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="ev3">
+    <instance x="138" y="88">
+        <block type="robBrick_ardu-Brick" intask="true" deletable="false">
+            <value name="S1">
+                <block type="robBrick_infrared" intask="true" />
+            </value>
+            <value name="S2">
+                <block type="robBrick_infrared" intask="true" />
+            </value>
+            <value name="MB">
+                <block type="robBrick_motor_ardu" intask="true" />
+            </value>
+            <value name="MA">
+                <block type="robBrick_motor_ardu" intask="true" />
+            </value>
+            <value name="S3">
+                <block type="robBrick_light" intask="true" />
+            </value>
+            <value name="S4">
+                <block type="robBrick_compass" intask="true" />
+            </value>
+            <value name="S5">
+                <block type="robBrick_ultrasonic" intask="true" />
+            </value>
+            <value name="S6">
+                <block type="robBrick_ultrasonic" intask="true" />
+            </value>
+            <value name="S7">
+                <block type="robBrick_ultrasonic" intask="true" />
+            </value>
+            <value name="S8">
+                <block type="robBrick_colour" intask="true" />
+            </value>
+            <value name="S9">
+                <block type="robBrick_colour" intask="true" />
+            </value>
+            <value name="S10">
+                <block type="robBrick_ultrasonic" intask="true" />
+            </value>
+            <value name="MC">
+                <block type="robBrick_motor_ardu" intask="true" />
+            </value>
+            <value name="MD">
+                <block type="robBrick_motor_ardu" intask="true" />
+            </value>
+        </block>
+    </instance>
+</block_set>

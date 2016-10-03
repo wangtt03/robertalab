@@ -49,10 +49,9 @@ void RobertaFunctions::lcdClear()
 int RobertaFunctions::ultrasonicDistance(int port)
 {   
 	BnrRescue brm; 
-	port = port - 1;
-	byte distances[3]={0,0,0};
+        byte distances[3]={0,0,0};
 	brm.i2cConnect(MODULE_ADDRESS);   
-    brm.setModuleAddress(0x2C);      
+        brm.setModuleAddress(0x2C);
 	brm.readSonars(&distances[0],&distances[1],&distances[2]);
 	return distances[port];
 }
@@ -200,6 +199,9 @@ bool RobertaFunctions::infraredSensorPresence(int port)
 	else if (port == 2 && (one.readIRSensors() == 2 || one.readIRSensors() == 3)){
 			return true;
 	}
+        else if (port == 3 && one.readIRSensors() == 3){
+                        return true;
+        }
 	else{
 		return false;
 	}
