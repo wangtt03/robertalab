@@ -37,12 +37,12 @@ class RobertaFunctions
 		double clamp(double val, double min, double max);
 		bool isPrime(double number);
 		bool isWhole(double val);
-		int arrFindFirst(double arr[], double item);
-		int arrFindFirst(bool arr[], bool item);
-		int arrFindFirst(String arr[], String item);
-		int arrFindLast(double arr[], double item);
-		int arrFindLast(bool arr[], bool item);
-		int arrFindLast(String arr[], String item);
+		int arrFindFirst(int len, double arr[], double item);
+		int arrFindFirst(int len, bool arr[], bool item);
+		int arrFindFirst(int len, String arr[], String item);
+		int arrFindLast(int len, double arr[], double item);
+		int arrFindLast(int len, bool arr[], bool item);
+		int arrFindLast(int len, String arr[], String item);
 		double arrSum(int len, double arr[]);
 		double arrMin(int len, double arr[]);
 		double arrMax(int len, double arr[]);
