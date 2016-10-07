@@ -57,6 +57,33 @@ int RobertaFunctions::ultrasonicDistance(int port)
 	return distances[port];
 }
 
+int RobertaFunctions::sonar()
+{	
+	BnrOneA one; 
+	Serial.begin(9600);    
+    one.spiConnect(SSPIN);  
+    int echoPin = 7;
+	int trigPin = 8; 
+	int maximumRange = 200;
+	int minimumRange = 0;  
+	pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);
+    unsigned long duration;
+    int distance;
+    unsigned long tempo=micros();
+    digitalWrite(trigPin, LOW); 
+    delayMicroseconds(2); 
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+    duration = pulseIn(echoPin, HIGH, 11640);
+    delayMicroseconds(16000 - (micros()-tempo));
+    distance = (int)(duration/58.2);
+    if (distance >= maximumRange || distance <= minimumRange)
+      distance=-1;
+    return distance;
+}
+
 bool RobertaFunctions::buttonIsPressed(int button)
 {   BnrOneA one;
 	Serial.begin(9600);
