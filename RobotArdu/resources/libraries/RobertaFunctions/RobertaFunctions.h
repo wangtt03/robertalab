@@ -23,6 +23,7 @@ class RobertaFunctions
 		void moveTimePID(int speedL,int speedR, double time);
 		void lcdClear();
 		int ultrasonicDistance(int port);
+		int sonar();
 		bool buttonIsPressed(int button);
 		byte *colorSensorRGB(byte colors[],int port);
 		int colorSensorLight(byte colors[], int port);
