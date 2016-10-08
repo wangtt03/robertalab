@@ -183,6 +183,9 @@ bool RobertaFunctions::infraredSensorObstacle(int port)
 	else if (port == 2 && (one.obstacleSensors() == 2 || one.obstacleSensors() == 3)){
 			return true;
 	}
+        else if (port == 3 && one.obstacleSensors() == 3){
+                        return true;
+        }
 	else{
 		return false;
 	}
