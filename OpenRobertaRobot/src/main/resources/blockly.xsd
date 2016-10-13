@@ -28,7 +28,7 @@
 			<xs:element name="comment" minOccurs="0" type="comment" />
 			<xs:element name="error" minOccurs="0" maxOccurs="1" type="error" />
 			<xs:element name="warning" minOccurs="0" maxOccurs="1" type="warning" />
-            <xs:element name="data" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="data" minOccurs="0" maxOccurs="1" type="data" />
 			<xs:element name="value" minOccurs="0" maxOccurs="unbounded" type="value" />
 			<xs:element name="statement" minOccurs="0" maxOccurs="unbounded" type="statement" />
 			
@@ -51,6 +51,12 @@
 		<xs:simpleContent>
 			<xs:extension base="xs:string">
 				<xs:attribute name="name" type="xs:string" use="required" />
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="data">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
 			</xs:extension>
 		</xs:simpleContent>
 	</xs:complexType>
