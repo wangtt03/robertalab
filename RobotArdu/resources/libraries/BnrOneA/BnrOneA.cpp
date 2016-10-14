@@ -1,7 +1,7 @@
 /*
   BnrOneA.cpp - Library for interfacing with Bot'n Roll ONE Arduino Compatible from www.botnroll.com
   Created by José Cruz, November 28, 2013.
-  Updated December 19, 2014.
+  Updated August 24, 2016.
   Released into the public domain.
 */
 
@@ -77,8 +77,6 @@ void BnrOneA::spiSendData(byte command, byte buffer[], byte numBytes)
 ///////////////////////////////////////////////////////////////////////
 //Write routines
 ///////////////////////////////////////////////////////////////////////
-
-
 void BnrOneA::move(int speedL,int speedR)
 {
     byte speedL_H=highByte(speedL);
@@ -90,7 +88,15 @@ void BnrOneA::move(int speedL,int speedR)
     spiSendData(COMMAND_MOVE,buffer,sizeof(buffer));
     delay(5);//Wait while command is processed
 }
+void BnrOneA::move1m(byte motor,int speed)
+{
+    byte speed_H=highByte(speed);
+    byte speed_L=lowByte(speed);
 
+    byte buffer[]={KEY1,KEY2,motor,speed_H,speed_L};
+    spiSendData(COMMAND_MOVE_1M,buffer,sizeof(buffer));
+    delay(5);//Wait while command is processed
+}
 void BnrOneA::movePID(int speedL,int speedR)
 {
     byte speedL_H=highByte(speedL);
@@ -121,10 +127,28 @@ void BnrOneA::stop()
     spiSendData(COMMAND_STOP,buffer,sizeof(buffer));
     delay(5);//Wait while command is processed
 }
+void BnrOneA::stop1m(byte motor)
+{
+    byte buffer[]={KEY1,KEY2,motor};
+    spiSendData(COMMAND_STOP_1M,buffer,sizeof(buffer));
+    delay(5);//Wait while command is processed
+}
 void BnrOneA::brake(byte torqueL,byte torqueR)
 {
     byte buffer[]={KEY1,KEY2,torqueL,torqueR};
     spiSendData(COMMAND_BRAKE,buffer,sizeof(buffer));
+    delay(5);//Wait while command is processed
+}
+void BnrOneA::brake1m(byte motor,byte torque)
+{
+    byte buffer[]={KEY1,KEY2,motor,torque};
+    spiSendData(COMMAND_BRAKE_1M,buffer,sizeof(buffer));
+    delay(5);//Wait while command is processed
+}
+void BnrOneA::brake1m(byte motor)
+{
+    byte buffer[]={KEY1,KEY2,motor,BRAKE_TORQUE};
+    spiSendData(COMMAND_BRAKE_1M,buffer,sizeof(buffer));
     delay(5);//Wait while command is processed
 }
 void BnrOneA::resetEncL()
@@ -703,8 +727,6 @@ void BnrOneA::lcd1(int num1, int num2, int num3, int num4)
     spiSendData(COMMAND_LCD_L1,buffer,sizeof(buffer));
     delay(19);//Wait while command is processed
 }
-
-
 /**************************************************************/
 /**** LCD LINE 2 Handlers *************************************/
 /**************************************************************/
