@@ -22,9 +22,8 @@ void RobertaFunctions::moveTime(int speedL,int speedR, double time)
 {   BnrOneA one;
 	Serial.begin(9600);
     one.spiConnect(SSPIN);
-	float toSeconds = 1000;
 	one.move(speedL, speedR);
-	delay(time*toSeconds);
+	delay(time);
     one.stop();
 }
 
@@ -32,9 +31,17 @@ void RobertaFunctions::moveTimePID(int speedL,int speedR, double time)
 {   BnrOneA one;
 	Serial.begin(9600);
     one.spiConnect(SSPIN);
-	float toSeconds = 1000;
 	one.movePID(speedL, speedR);
-	delay(time*toSeconds);
+	delay(time);
+    one.stop();
+}
+
+void RobertaFunctions::move1mTime(int port, int speed, double time)
+{   BnrOneA one;
+	Serial.begin(9600);
+    one.spiConnect(SSPIN);
+	one.move1m(port, speed);
+	delay(time);
     one.stop();
 }
 
@@ -211,9 +218,6 @@ bool RobertaFunctions::infraredSensorObstacle(int port)
 	else if (port == 2 && (one.obstacleSensors() == 2 || one.obstacleSensors() == 3)){
 			return true;
 	}
-        else if (port == 3 && one.obstacleSensors() == 3){
-                        return true;
-        }
 	else{
 		return false;
 	}

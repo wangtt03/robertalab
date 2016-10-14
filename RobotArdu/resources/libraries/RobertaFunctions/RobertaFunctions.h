@@ -21,6 +21,7 @@ class RobertaFunctions
   public:   
 		void moveTime(int speedL,int speedR, double time);
 		void moveTimePID(int speedL,int speedR, double time);
+		void move1mTime(int port, int speed, double time);
 		void lcdClear();
 		int ultrasonicDistance(int port);
 		int sonar();
