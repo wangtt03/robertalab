@@ -1,0 +1,22 @@
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="calliope" xmlversion="">
+  <instance x="187" y="38">
+    <block type="robControls_start" id="7mLKk*ry-96-/}x?SdY1" intask="true" deletable="false">
+      <mutation declare="false"></mutation>
+      <field name="DEBUG">FALSE</field>
+    </block>
+    <block type="mbedActions_display_text" id="wUYntpW]ME]UnXLcQkOB" intask="true">
+      <value name="OUT">
+        <block type="mbedSensors_gesture_isActive" id="Ci3toFp~LsL^fPW]G5A[" intask="true">
+          <field name="GESTURE">FACE_DOWN</field>
+        </block>
+      </value>
+    </block>
+    <block type="mbedActions_display_text" id="n^HI2t0UsQ1BfPvA8-1." intask="true">
+      <value name="OUT">
+        <block type="mbedSensors_gesture_isActive" id="We!RjD%w-R,xhqsXDl=U" intask="true">
+          <field name="GESTURE">LEFT</field>
+        </block>
+      </value>
+    </block>
+  </instance>
+</block_set>
