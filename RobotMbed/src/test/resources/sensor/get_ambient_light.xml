@@ -1,0 +1,12 @@
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="calliope" xmlversion="">
+  <instance x="163" y="62">
+    <block type="mbedControls_start" id="Q2XU]%wFv#A0o1dp+*K0" intask="true" deletable="false">
+      <mutation declare="false"></mutation>
+    </block>
+    <block type="mbedActions_display_text" id="MYwC;^kO,_t1HKz6?ifj" intask="true">
+      <value name="OUT">
+        <block type="mbedSensors_ambientLight_getSample" id="fY0DW{*)/Tu+-,}3/.#Y" intask="true"></block>
+      </value>
+    </block>
+  </instance>
+</block_set>
