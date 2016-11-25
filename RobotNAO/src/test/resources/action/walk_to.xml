@@ -1,0 +1,25 @@
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="nao" xmlversion="">
+  <instance x="38" y="88">
+    <block type="robControls_start" id="y#o+?y]FjL_GfGa]^1GJ" intask="true" deletable="false">
+      <mutation declare="false"></mutation>
+      <field name="DEBUG">FALSE</field>
+    </block>
+    <block type="naoActions_walkTo" id="jgDz~hkJ`2qZVo;Fu:Re" intask="true">
+      <value name="X">
+        <block type="math_number" id="lJXd?]/6iOrM~wwq4j8[" intask="true">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+      <value name="Y">
+        <block type="math_number" id="4zwdI)yrRuz=/%|7STKD" intask="true">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+      <value name="Theta">
+        <block type="math_number" id="E3cWXMj2=Z(F0YLKcpM?" intask="true">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+    </block>
+  </instance>
+</block_set>
