@@ -1,0 +1,11 @@
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="nao" xmlversion="">
+  <instance x="163" y="63">
+    <block type="robControls_start" id="4AW3v:pviDh1!Fy4`b1a" intask="true" deletable="false">
+      <mutation declare="false"></mutation>
+      <field name="DEBUG">FALSE</field>
+    </block>
+    <block type="naoActions_setLanguage" id="49s-%vbOzDTmEi##aNKo" intask="true">
+      <field name="LANGUAGE">ENGLISH</field>
+    </block>
+  </instance>
+</block_set>
