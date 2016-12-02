@@ -4,12 +4,8 @@
       <mutation declare="false"></mutation>
       <field name="DEBUG">FALSE</field>
     </block>
-    <block type="naoActions_setEarIntensity" id="r^vXWSrZ|U{_7OX9:G(b" intask="true">
-      <value name="INTENSITY">
-        <block type="math_number" id="^X^4bA;r/5kbQ,Y4|EUx" intask="true">
-          <field name="NUM">50</field>
-        </block>
-      </value>
+    <block type="naoActions_partialStiffnessOn" id="AOVX1Tn+Aun0F%u8,~X_" intask="true">
+      <field name="DIRECTION">ARM</field>
     </block>
   </instance>
 </block_set>

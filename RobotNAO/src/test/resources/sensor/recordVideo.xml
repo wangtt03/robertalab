@@ -4,8 +4,14 @@
       <mutation declare="false"></mutation>
       <field name="DEBUG">FALSE</field>
     </block>
-    <block type="naoSensors_selectCamera" id="AU96H/D5-JrEgPS%M=tT" intask="true">
+    <block type="naoSensors_recordVideo" id="5QO@!IdCNqZV9om|`^F?" intask="true">
+      <field name="RESOLUTION">0</field>
       <field name="CAMERA">0</field>
+      <value name="DURATION">
+        <block type="math_number" id="xa8h#QC_E+fj2y8*so*+" intask="true">
+          <field name="NUM">5</field>
+        </block>
+      </value>
     </block>
   </instance>
 </block_set>
