@@ -34,6 +34,7 @@ DEALINGS IN THE SOFTWARE.
 #include "MicroBitFont.h"
 #include "MicroBitMatrixMaps.h"
 #include "MicroBitLightSensor.h"
+#include <initializer_list>
 
 /**
   * Event codes raised by MicroBitDisplay
@@ -634,6 +635,8 @@ public:
       * first time.
       */
     int readLightLevel();
+
+    void animateImages(initializer_list<MicroBitImage> images, int delay);
 
     /**
       * Destructor for MicroBitDisplay, where we deregister this instance from the array of system components.
