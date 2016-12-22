@@ -1,17 +1,25 @@
 package de.fhg.iais.roberta.persistence.dao;
 
+<<<<<<< c2e3392efe35527ba7808b4545dbfce1ea0f733c
 import java.util.Collections;
+=======
+>>>>>>> started GroupDao creation
 import java.util.List;
 
 import org.hibernate.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+<<<<<<< c2e3392efe35527ba7808b4545dbfce1ea0f733c
 import de.fhg.iais.roberta.persistence.bo.Groups;
 import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.util.Key;
 import de.fhg.iais.roberta.util.Pair;
+=======
+import de.fhg.iais.roberta.persistence.bo.Group;
+import de.fhg.iais.roberta.persistence.util.DbSession;
+>>>>>>> started GroupDao creation
 import de.fhg.iais.roberta.util.dbc.Assert;
 
 /**
@@ -20,7 +28,11 @@ import de.fhg.iais.roberta.util.dbc.Assert;
  *
  * @author Evgeniya
  */
+<<<<<<< c2e3392efe35527ba7808b4545dbfce1ea0f733c
 public class GroupDao extends AbstractDao<Groups> {
+=======
+public class GroupDao extends AbstractDao<Group> {
+>>>>>>> started GroupDao creation
     private static final Logger LOG = LoggerFactory.getLogger(GroupDao.class);
 
     /**
@@ -29,12 +41,21 @@ public class GroupDao extends AbstractDao<Groups> {
      * @param session the session used to access the database.
      */
     public GroupDao(DbSession session) {
+<<<<<<< c2e3392efe35527ba7808b4545dbfce1ea0f733c
         super(Groups.class, session);
     }
 
     public Groups persistGroup(String name, int ownerId) throws Exception {
         Assert.notNull(name);
         final Groups group = loadGroup(name, ownerId);
+=======
+        super(Group.class, session);
+    }
+
+    public Group persistGroup(String name, String ID) throws Exception {
+        Assert.notNull(name);
+        Group group = loadGroup(name);
+>>>>>>> started GroupDao creation
         if ( group == null ) {
             //group = new Group(name);
             //this.session.save(user);
@@ -44,6 +65,7 @@ public class GroupDao extends AbstractDao<Groups> {
         }
     }
 
+<<<<<<< c2e3392efe35527ba7808b4545dbfce1ea0f733c
     /**
      * load all groups persisted in the database which are owned by a user given
      *
@@ -70,14 +92,25 @@ public class GroupDao extends AbstractDao<Groups> {
     public Groups loadGroup(String name, int ownerId) {
         Assert.notNull(name);
         final Query hql = this.session.createQuery("from User where account=:account");
+=======
+    public Group loadGroup(String name) {
+        Assert.notNull(name);
+        Query hql = this.session.createQuery("from User where account=:account");
+>>>>>>> started GroupDao creation
         hql.setString("name", name);
 
         return checkGroupExistance(hql);
     }
 
+<<<<<<< c2e3392efe35527ba7808b4545dbfce1ea0f733c
     private Groups checkGroupExistance(Query hql) {
         @SuppressWarnings("unchecked")
         final List<Groups> il = hql.list();
+=======
+    private Group checkGroupExistance(Query hql) {
+        @SuppressWarnings("unchecked")
+        List<Group> il = hql.list();
+>>>>>>> started GroupDao creation
         Assert.isTrue(il.size() <= 1);
         if ( il.size() == 0 ) {
             return null;
@@ -86,6 +119,7 @@ public class GroupDao extends AbstractDao<Groups> {
         }
     }
 
+<<<<<<< c2e3392efe35527ba7808b4545dbfce1ea0f733c
     public int deleteByName(String name, int ownerId) {
         final Groups toBeDeleted = loadGroup(name, ownerId);
         if ( toBeDeleted == null ) {
@@ -110,4 +144,6 @@ public class GroupDao extends AbstractDao<Groups> {
         }
     }
 
+=======
+>>>>>>> started GroupDao creation
 }
