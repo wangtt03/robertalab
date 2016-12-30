@@ -1,6 +1,11 @@
 package de.fhg.iais.roberta.persistence.bo;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
+
+//TODO: add messages about groups to html
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,10 +19,13 @@ public class Group implements WithSurrogateId {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
+    @Column(name = "OWNER_ID")
+    private int ownerId;
+
     @Column(name = "NAME")
     private String name;
-  
+
     protected Group() {
         // Hibernate
     }
@@ -28,7 +36,6 @@ public class Group implements WithSurrogateId {
      * @param name the name of the group, not null
      * @param owner the user who created and thus owns the program
      */
-  
 
     @Override
     public int getId() {
@@ -37,6 +44,15 @@ public class Group implements WithSurrogateId {
 
     public String getName() {
         return this.name;
+    }
+
+    public Timestamp getCreated() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public int getOwnerId() {
+        return this.ownerId;
     }
 
 }
