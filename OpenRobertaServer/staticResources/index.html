@@ -677,6 +677,50 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 						</div>
 					</form>
 					<!-- End | Register Form -->
+					
+					<!-- Begin | Group Register Form -->
+					<form id="register-form" style="display: none;">
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="registerGroupName"
+									lkey="Blockly.Msg.POPUP_GROUPNAME">Groupname</label>
+								<div class="input-group">
+									<span class="input-group-addon typcn input-typcn typcn-group-outline"></span>
+									<input type="text" class="form-control"
+										id="registerGroupName" name="registerGroupName" />
+								</div>
+							</div>
+							<div class="form-group" id="fgRegisterPass">
+								<label for="registerPass" lkey="Blockly.Msg.POPUP_PASSWORD">Password</label>
+								<div class="input-group">
+									<span
+										class="input-group-addon typcn input-typcn typcn-lock-closed"></span>
+									<input type="password" class="form-control" id="registerPass"
+										name="registerPass" />
+								</div>
+							</div>
+							<div class="form-group" id="fgRegisterPassConfirm">
+								<label for="registerPassConfirm"
+									lkey="Blockly.Msg.POPUP_REPEAT_PASSWORD">Repeat
+									password</label>
+								<div class="input-group">
+									<span
+										class="input-group-addon typcn input-typcn typcn-lock-closed"></span>
+									<input type="password" class="form-control"
+										id="registerPassConfirm" name="registerPassConfirm" />
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button id="showChangeUserPassword" type="button"
+								class="btn-link hidden" lkey="Blockly.Msg.POPUP_CHANGE_PASSWORD"></button>
+							<button type="submit" class="btn btn-primary btn-block"
+								id="registerUser" lkey="Blockly.Msg.POPUP_REGISTER_USER"
+								value="register"></button>
+						</div>
+					</form>
+					<!-- End | Group Register Form -->
+					
 					<!-- Begin | Lost Password Form -->
 					<form id="lost-form" style="display: none;">
 						<div class="modal-body">
