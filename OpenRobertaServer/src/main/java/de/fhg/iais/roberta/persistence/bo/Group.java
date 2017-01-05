@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import de.fhg.iais.roberta.util.dbc.Assert;
+
 @Entity
 @Table(name = "GROUP")
 public class Group implements WithSurrogateId {
@@ -20,6 +22,13 @@ public class Group implements WithSurrogateId {
   
     protected Group() {
         // Hibernate
+    }
+
+    public Group(String name, int ownerId) {
+        Assert.notNull(name);
+        Assert.notNull(ownerId);
+        this.name = name;
+        this.ownerId = ownerId;
     }
 
     /**
