@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import de.fhg.iais.roberta.persistence.bo.Group;
 import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.util.DbSession;
+import de.fhg.iais.roberta.util.Key;
+import de.fhg.iais.roberta.util.Pair;
 import de.fhg.iais.roberta.util.dbc.Assert;
 
 /**
@@ -30,9 +32,9 @@ public class GroupDao extends AbstractDao<Group> {
         super(Group.class, session);
     }
 
-    public Group persistGroup(String name, String ID) throws Exception {
+    public Group persistGroup(String name, int ownerId) throws Exception {
         Assert.notNull(name);
-        final Group group = loadGroup(name);
+        final Group group = loadGroup(name, ownerId);
         if ( group == null ) {
             //group = new Group(name);
             //this.session.save(user);
@@ -65,7 +67,7 @@ public class GroupDao extends AbstractDao<Group> {
         return Collections.unmodifiableList(il);
     }
 
-    public Group loadGroup(String name) {
+    public Group loadGroup(String name, int ownerId) {
         Assert.notNull(name);
         final Query hql = this.session.createQuery("from User where account=:account");
         hql.setString("name", name);
@@ -84,13 +86,27 @@ public class GroupDao extends AbstractDao<Group> {
         }
     }
 
-    public int deleteByName(String name) {
-        final Group toBeDeleted = loadGroup(name);
+    public int deleteByName(String name, int ownerId) {
+        final Group toBeDeleted = loadGroup(name, ownerId);
         if ( toBeDeleted == null ) {
             return 0;
         } else {
             this.session.delete(toBeDeleted);
             return 1;
+        }
+    }
+
+    public Pair<Key, Group> persistOwnGroup(String name, int userId) {
+        Assert.notNull(name);
+        Assert.notNull(userId);
+        Group group = load(userId);
+        if ( group == null ) {
+            // save as && the program doesn't exist.
+            group = new Group(name, userId);
+            this.session.save(group);
+            return Pair.of(Key.GROUP_SAVE_SUCCESS, group); // the only legal key if success
+        } else {
+            return Pair.of(Key.GROUP_SAVE_AS_ERROR_PROGRAM_EXISTS, null);
         }
     }
 
