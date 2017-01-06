@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.codehaus.jettison.json.JSONArray;
 
-import de.fhg.iais.roberta.persistence.bo.Group;
+import de.fhg.iais.roberta.persistence.bo.Groups;
 import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.dao.GroupDao;
 import de.fhg.iais.roberta.persistence.dao.UserDao;
@@ -26,13 +26,13 @@ public class GroupProcessor extends AbstractProcessor {
      * @param groupId - group id
      * @return the group; null, if no group was found
      */
-    public Group getGroup(String groupName, int ownerId) {
+    public Groups getGroup(String groupName, int ownerId) {
         if ( !Util1.isValidJavaIdentifier(groupName) ) {
             setError(Key.GROUP_ERROR_ID_INVALID, groupName);
             return null;
         } else {
             GroupDao groupDao = new GroupDao(this.dbSession);
-            Group group = groupDao.loadGroup(groupName, ownerId);
+            Groups group = groupDao.loadGroup(groupName, ownerId);
             if ( group != null ) {
                 setSuccess(Key.GROUP_GET_ONE_SUCCESS);
                 return group;
@@ -52,9 +52,9 @@ public class GroupProcessor extends AbstractProcessor {
         UserDao userDao = new UserDao(this.dbSession);
         GroupDao groupDao = new GroupDao(this.dbSession);
         User owner = userDao.get(ownerId);
-        List<Group> groups = groupDao.loadAll(owner);
+        List<Groups> groups = groupDao.loadAll(owner);
         JSONArray groupsInfos = new JSONArray();
-        for ( final Group group : groups ) {
+        for ( final Groups group : groups ) {
             JSONArray groupInfos = new JSONArray();
             groupInfos.put(group.getName());
             groupInfos.put(group.getOwnerId());
@@ -86,14 +86,14 @@ public class GroupProcessor extends AbstractProcessor {
      * @param groupName the name of the program
      * @param userId the owner of the program
      */
-    public Group persistGroup(String groupName, int userId, boolean isOwner) {
+    public Groups persistGroup(String groupName, int userId, boolean isOwner) {
         if ( !Util1.isValidJavaIdentifier(groupName) ) {
             setError(Key.GROUP_ERROR_ID_INVALID, groupName);
             return null;
         }
         if ( this.httpSessionState.isUserLoggedIn() ) {
             GroupDao groupDao = new GroupDao(this.dbSession);
-            Pair<Key, Group> result;
+            Pair<Key, Groups> result;
             if ( isOwner ) {
                 result = groupDao.persistOwnGroup(groupName, userId);
             } else {

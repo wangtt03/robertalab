@@ -6,7 +6,7 @@ import java.util.List;
 import org.hibernate.Query;
 
 import de.fhg.iais.roberta.persistence.bo.AccessRight;
-import de.fhg.iais.roberta.persistence.bo.Group;
+import de.fhg.iais.roberta.persistence.bo.Groups;
 import de.fhg.iais.roberta.persistence.bo.Program;
 import de.fhg.iais.roberta.persistence.bo.Relation;
 import de.fhg.iais.roberta.persistence.bo.User;
@@ -89,7 +89,7 @@ public class AccessRightDao extends AbstractDao<AccessRight> {
         return Collections.unmodifiableList(il);
     }
 
-    public List<AccessRight> loadAccessRightsByProgram(Group group) {
+    public List<AccessRight> loadAccessRightsByProgram(Groups group) {
         Assert.notNull(group);
 
         Query hql = this.session.createQuery("from AccessRight where group=:group");
