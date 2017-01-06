@@ -1,7 +1,5 @@
 package de.fhg.iais.roberta.persistence.bo;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Column;
 
 //TODO: add messages about groups to html
@@ -15,8 +13,8 @@ import javax.persistence.Table;
 import de.fhg.iais.roberta.util.dbc.Assert;
 
 @Entity
-@Table(name = "GROUP")
-public class Group implements WithSurrogateId {
+@Table(name = "GROUPS")
+public class Groups implements WithSurrogateId {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +26,11 @@ public class Group implements WithSurrogateId {
     @Column(name = "NAME")
     private String name;
 
-    protected Group() {
+    protected Groups() {
         // Hibernate
     }
 
-    public Group(String name, int ownerId) {
+    public Groups(String name, int ownerId) {
         Assert.notNull(name);
         Assert.notNull(ownerId);
         this.name = name;
@@ -53,11 +51,6 @@ public class Group implements WithSurrogateId {
 
     public String getName() {
         return this.name;
-    }
-
-    public Timestamp getCreated() {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     public int getOwnerId() {
