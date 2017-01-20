@@ -115,6 +115,19 @@ class ManagedString
       */
     ManagedString(const int value);
 
+    /**
+	  * Constructor.
+	  *
+	  * Create a managed string from a given floating point.
+	  *
+	  * @param value The decimal from which to create the ManagedString.
+	  *
+	  * @code
+	  * ManagedString s(20);
+	  * @endcode
+	  */
+	ManagedString(const double value);
+
 
     /**
       * Constructor.

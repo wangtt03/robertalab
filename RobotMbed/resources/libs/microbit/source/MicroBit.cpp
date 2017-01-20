@@ -27,6 +27,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
+#include <pinmap.h>
 #include "MicroBitConfig.h"
 /*
  * The underlying Nordic libraries that support BLE do not compile cleanly with the stringent GCC settings we employ
@@ -99,6 +100,9 @@ MicroBit::MicroBit() :
     // Bring up soft reset functionality as soon as possible.
     resetButton.mode(PullUp);
     resetButton.fall(this, &MicroBit::reset);
+
+    // TODO (only rev 0.3) fixes USBRX pullup -> pullnone to counteract wrong resistor
+    pin_mode(USBRX, PullNone);
 }
 
 /**

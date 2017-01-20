@@ -128,6 +128,30 @@ ManagedString::ManagedString(const int value)
 
 /**
   * Constructor.
+  *
+  * Create a managed string from a given integer.
+  *
+  * @param value The integer from which to create the ManagedString.
+  *
+  * @code
+  * ManagedString s(20);
+  * @endcode
+  */
+ManagedString::ManagedString(const double value){
+//	int intPart = (int) value;
+//	int fractPart = abs((int) ((value-intPart)*10));
+//
+//	char intStr[10];
+//	char fractStr[2];
+//	itoa(intPart, intStr);
+//	itoa(fractPart, fractStr);
+	char str[12];
+	dtoa(value, str);
+	initString(str);
+}
+
+/**
+  * Constructor.
   * Create a managed string from a given char.
   *
   * @param value The character from which to create the ManagedString.
