@@ -9,6 +9,7 @@
 			</xs:sequence>
 			<xs:attribute name="robottype" type="xs:string" default="ev3" use="optional"  />
 			<xs:attribute name="xmlversion" type="xs:string" default="2.0" use="optional"  />
+			<xs:attribute name="description" type="xs:string" default="" use="optional"  />
 		</xs:complexType>
 	</xs:element>
 
