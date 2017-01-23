@@ -5,8 +5,8 @@ compiler=''
 program_name=''
 program_location=''
 
-SCRIPTPATH=$(dirname "$(readlink -f "$0")")
-echo $SCRIPTPATH
+SCRIPTPATH=$( cd "$(dirname "$0")" ; pwd -P )
+
 
 compiler="$1"
 program_name="$2"
