@@ -14,9 +14,18 @@
 		<property name="connection.url">the connection.url is defined in the openRoberta-properties-file</property>
 		<property name="connection.autocommit">false</property>
         
+        <property name="c3p0.min_size">5</property>
+        <property name="c3p0.max_size">100</property>
+        <property name="c3p0.timeout">7200</property>
+        <property name="c3p0.max_statements">100</property>
+        <property name="c3p0.idle_test_period">3600</property>
+
         <mapping class="de.fhg.iais.roberta.persistence.bo.Program"/>
         <mapping class="de.fhg.iais.roberta.persistence.bo.Configuration"/>
-        <mapping class="de.fhg.iais.roberta.persistence.bo.Toolbox"/>
-        <mapping class="de.fhg.iais.roberta.persistence.bo.User" />
+		<mapping class="de.fhg.iais.roberta.persistence.bo.Toolbox"/>
+		<mapping class="de.fhg.iais.roberta.persistence.bo.Robot"/>
+        <mapping class="de.fhg.iais.roberta.persistence.bo.User"/>
+        <mapping class="de.fhg.iais.roberta.persistence.bo.AccessRight"/>
+        <mapping class="de.fhg.iais.roberta.persistence.bo.LostPassword"/>
     </session-factory>
 </hibernate-configuration>
