@@ -101,7 +101,7 @@ int itoa(int n, char *s)
 }
 
 /**
-  * Converts a given integer into a string representation.
+  * Converts a given decimal number into a string representation.
   *
   * @param n The number to convert.
   *
@@ -123,20 +123,24 @@ int dtoa(double n, char *s)
         n = -n;
 
     int intPart = (int) n;
-	int fractPart = abs((int) ((n-intPart)*10));
+    float t = (n-intPart)*100;
+	int fractPart = abs((int) (t / 10));
 
 
-    // Calculate each character, starting with the LSB.
-    do {
-         s[i++] = abs(fractPart % 10) + '0';
-    } while (abs(fractPart /= 10) > 0);
+	if (fractPart != 0) {
+		// Calculate each character, starting with the LSB.
+		do {
+			 s[i++] = abs(fractPart % 10) + '0';
+		} while (abs(fractPart /= 10) > 0);
 
-    s[i++] = '.';
+		//Add decimal point
+		s[i++] = '.';
+    }
 
-    // Calculate each character, starting with the LSB.
-    do {
-         s[i++] = abs(intPart % 10) + '0';
-    } while (abs(intPart /= 10) > 0);
+	// Calculate each character, starting with the LSB.
+	do {
+		 s[i++] = abs(intPart % 10) + '0';
+	} while (abs(intPart /= 10) > 0);
 
     // Add a negative sign as needed
     if (!positive)

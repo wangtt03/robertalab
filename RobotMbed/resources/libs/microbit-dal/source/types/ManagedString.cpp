@@ -138,13 +138,6 @@ ManagedString::ManagedString(const int value)
   * @endcode
   */
 ManagedString::ManagedString(const double value){
-//	int intPart = (int) value;
-//	int fractPart = abs((int) ((value-intPart)*10));
-//
-//	char intStr[10];
-//	char fractStr[2];
-//	itoa(intPart, intStr);
-//	itoa(fractPart, fractStr);
 	char str[12];
 	dtoa(value, str);
 	initString(str);
