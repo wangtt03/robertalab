@@ -5,6 +5,7 @@
       <field name="DEBUG">FALSE</field>
     </block>
     <block type="mbedActions_display_text" id="*LwIvqT%Dy^Y(Iv?EofB" intask="true">
+    <field name="TYPE">TEXT</field>
       <value name="OUT">
         <block type="mbedSensors_key_isPressed" id="v]oxb)rSg{s5!9ivnPs)" intask="true">
           <field name="KEY">button_a</field>

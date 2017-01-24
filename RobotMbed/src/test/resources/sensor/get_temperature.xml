@@ -5,6 +5,7 @@
       <field name="DEBUG">FALSE</field>
     </block>
     <block type="mbedActions_display_text" id="wUYntpW]ME]UnXLcQkOB" intask="true">
+    <field name="TYPE">TEXT</field>
       <value name="OUT">
         <block type="mbedSensors_temperature_getSample" id="xn^wVahMu8IhkjA30:|2" intask="true"></block>
       </value>

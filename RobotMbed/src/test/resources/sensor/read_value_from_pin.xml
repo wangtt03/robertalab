@@ -5,6 +5,7 @@
       <field name="DEBUG">FALSE</field>
     </block>
     <block type="mbedActions_display_text" id="d2+yOm[2[PFOi.E[biVg" intask="true">
+    <field name="TYPE">TEXT</field>
       <value name="OUT">
         <block type="mbedSensors_pin_getSample" id="Uq~on1Y-~)+xmo23=g*p" intask="true">
           <field name="VALUETYPE">ANALOG</field>
@@ -13,6 +14,7 @@
       </value>
     </block>
     <block type="mbedActions_display_text" id="ACFg;26yT6s1N=df_P~A" intask="true">
+    <field name="TYPE">TEXT</field>
       <value name="OUT">
         <block type="mbedSensors_pin_getSample" id="KLgm0}lW:-sg;KVbOXvQ" intask="true">
           <field name="VALUETYPE">DIGITAL</field>

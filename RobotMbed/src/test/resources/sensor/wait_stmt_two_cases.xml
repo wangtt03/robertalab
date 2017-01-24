@@ -27,6 +27,7 @@
         </value>
         <statement name="DO0">
           <block type="mbedActions_display_text" id=";|_Nui#j*jmtsk}XgY15" intask="true">
+          <field name="TYPE">TEXT</field>
             <value name="OUT">
               <block type="text" id="tw;xZ4d#nfgd/(A;hXly" intask="true">
                 <field name="TEXT">Hallo</field>
@@ -53,6 +54,7 @@
         </value>
         <statement name="DO1">
           <block type="mbedActions_display_text" id="|7G?T_HI*%T^VMHb{`P|" intask="true">
+          <field name="TYPE">TEXT</field>
             <value name="OUT">
               <block type="text" id="+JXHFo9cSC,;)y;FM:R/" intask="true">
                 <field name="TEXT">Hallo</field>

@@ -5,6 +5,7 @@
       <field name="DEBUG">FALSE</field>
     </block>
     <block type="mbedActions_display_text" id="*LwIvqT%Dy^Y(Iv?EofB" intask="true">
+    <field name="TYPE">TEXT</field>
       <value name="OUT">
         <block type="mbedSensors_compass_getSample" id="4Pvz:R=D6!5_fIZkVM.n" intask="true"></block>
       </value>

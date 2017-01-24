@@ -4,6 +4,7 @@
       <mutation declare="false"></mutation>
     </block>
     <block type="mbedActions_display_text" id="MYwC;^kO,_t1HKz6?ifj" intask="true">
+    <field name="TYPE">TEXT</field>
       <value name="OUT">
         <block type="mbedSensors_ambientLight_getSample" id="fY0DW{*)/Tu+-,}3/.#Y" intask="true"></block>
       </value>
