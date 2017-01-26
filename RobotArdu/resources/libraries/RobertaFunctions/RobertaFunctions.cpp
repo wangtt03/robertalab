@@ -1,5 +1,5 @@
 /*
-  RobertaFunctions.cpp - additional library for interfacing with Bot'n Roll ONE Arduino Compatible 
+  RobertaFunctions.cpp - additional library for interfacing with Bot'n Roll ONE Arduino Compatible
   from www.botnroll.com that allows using some extra functions from https://www.open-roberta.org/
   Created by Evgeniya Ovchinnikova, August 30, 2016.
   Released into the public domain.
@@ -7,16 +7,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "SPI.h"
-#include "BnrOneA.h" 
-#include "BnrRescue.h" 
-#include "RobertaFunctions.h" 
-#include "Wire.h" 
+#include "BnrOneA.h"
+#include "BnrRescue.h"
+#include "RobertaFunctions.h"
+#include "Wire.h"
 #include "math.h"
-#define SSPIN  2 
+#define SSPIN  2
 #define ADDRESS 0x60
 #define MODULE_ADDRESS 0x2C
- 
-  
+
+
 
 void RobertaFunctions::moveTime(int speedL,int speedR, double time)
 {   BnrOneA one;
@@ -54,32 +54,32 @@ void RobertaFunctions::lcdClear()
 }
 
 int RobertaFunctions::ultrasonicDistance(int port)
-{   
-	BnrRescue brm; 
-	port = port - 1;
+{
+	BnrRescue brm;
+	// port = port - 1;
 	byte distances[3]={0,0,0};
-	brm.i2cConnect(MODULE_ADDRESS);   
-    brm.setModuleAddress(0x2C);      
+	brm.i2cConnect(MODULE_ADDRESS);
+  brm.setModuleAddress(0x2C);
 	brm.readSonars(&distances[0],&distances[1],&distances[2]);
 	return distances[port];
 }
 
 int RobertaFunctions::sonar()
-{	
-	BnrOneA one; 
-	Serial.begin(9600);    
-    one.spiConnect(SSPIN);  
+{
+	BnrOneA one;
+	Serial.begin(9600);
+    one.spiConnect(SSPIN);
     int echoPin = 7;
-	int trigPin = 8; 
+	int trigPin = 8;
 	int maximumRange = 200;
-	int minimumRange = 0;  
+	int minimumRange = 0;
 	pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
     unsigned long duration;
     int distance;
     unsigned long tempo=micros();
-    digitalWrite(trigPin, LOW); 
-    delayMicroseconds(2); 
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
     digitalWrite(trigPin, HIGH);
     delayMicroseconds(10);
     digitalWrite(trigPin, LOW);
@@ -104,10 +104,10 @@ bool RobertaFunctions::buttonIsPressed(int button)
 }
 
 byte *RobertaFunctions::colorSensorRGB(byte colors[], int port)
-{   
-	BnrRescue brm; 
-	brm.i2cConnect(MODULE_ADDRESS);   
-    brm.setModuleAddress(0x2C);      
+{
+	BnrRescue brm;
+	brm.i2cConnect(MODULE_ADDRESS);
+    brm.setModuleAddress(0x2C);
 	if (port == 1){
 		brm.readRgbL(&colors[0],&colors[1],&colors[2]);
 	}
@@ -119,11 +119,11 @@ byte *RobertaFunctions::colorSensorRGB(byte colors[], int port)
 
 
 int RobertaFunctions::colorSensorLight(byte colors[], int port)
-{   
-	BnrRescue brm; 
-	brm.i2cConnect(MODULE_ADDRESS);   
-    brm.setModuleAddress(0x2C);    
-	int light;	
+{
+	BnrRescue brm;
+	brm.i2cConnect(MODULE_ADDRESS);
+    brm.setModuleAddress(0x2C);
+	int light;
 	if (port == 1){
 		brm.readRgbL(&colors[0],&colors[1],&colors[2]);
 	}
@@ -140,10 +140,10 @@ String RobertaFunctions::colorSensorColor(byte colors[], int port)
 {   BnrOneA one;
 	Serial.begin(9600);
     one.spiConnect(SSPIN);
-	BnrRescue brm; 
-	brm.i2cConnect(MODULE_ADDRESS);   
-    brm.setModuleAddress(0x2C);    
-	String color;	
+	BnrRescue brm;
+	brm.i2cConnect(MODULE_ADDRESS);
+    brm.setModuleAddress(0x2C);
+	String color;
 	if (port == 1){
 		brm.readRgbL(&colors[0],&colors[1],&colors[2]);
 	}
@@ -157,9 +157,9 @@ String RobertaFunctions::colorSensorColor(byte colors[], int port)
 	double max = fmax(r, fmax(g, b));
 	double delta = max - min;
 	double h, s, v = max;
-	
+
 	v = max / 255.0 * 100.0;
-	
+
 	if (max != 0) {
 		s = delta / max * 100;
 	} else {
@@ -172,11 +172,11 @@ String RobertaFunctions::colorSensorColor(byte colors[], int port)
 	} else {
 		h = 4 + (r - g) / delta;
 	}
-	h = h * 60; 
+	h = h * 60;
 	if (h < 0) {
 		h += 360;
 	}
-	
+
 	double hsv[3] = {h, s, v};
 	if (hsv[2] <= 10) {
 		color = "BLACK";
@@ -202,32 +202,33 @@ String RobertaFunctions::colorSensorColor(byte colors[], int port)
 	else{
 		color = "NONE";
 	}
-		
+
 	Serial.print("hsv ");Serial.print(h);Serial.print("s");Serial.print(s);Serial.print("v");Serial.print(v);
 	return color;
 }
 
 bool RobertaFunctions::infraredSensorObstacle(int port)
-{   
+{
 	BnrOneA one;
 	Serial.begin(9600);
-    one.spiConnect(SSPIN);  
-	if (port == 1 && (one.obstacleSensors() == 1 || one.obstacleSensors() == 3)){
-			return true;
-	}
-	else if (port == 2 && (one.obstacleSensors() == 2 || one.obstacleSensors() == 3)){
-			return true;
-	}
-	else{
-		return false;
-	}
+  one.spiConnect(SSPIN);
+	return port == one.obstacleSensors();
+	// if (port == 1 && (one.obstacleSensors() == 1 || one.obstacleSensors() == 3)){
+	// 		return true;
+	// }
+	// else if (port == 2 && (one.obstacleSensors() == 2 || one.obstacleSensors() == 3)){
+	// 		return true;
+	// }
+	// else{
+	// 	return false;
+	// }
 }
 
 bool RobertaFunctions::infraredSensorPresence(int port)
-{   
+{
 	BnrOneA one;
 	Serial.begin(9600);
-    one.spiConnect(SSPIN);  
+    one.spiConnect(SSPIN);
 	if (port == 1 && (one.readIRSensors() == 1 || one.readIRSensors() == 3)){
 			return true;
 	}
@@ -242,7 +243,7 @@ bool RobertaFunctions::infraredSensorPresence(int port)
 float RobertaFunctions::readBearing()
 {
 	Wire.begin();
-    byte highByte, lowByte;    
+    byte highByte, lowByte;
     Wire.beginTransmission(ADDRESS);           //start communication with CMPS10
     Wire.write(2);                             //Send the register we wish to start reading from
     Wire.endTransmission();
@@ -251,7 +252,7 @@ float RobertaFunctions::readBearing()
     while(Wire.available() < 2);               // Wait for bytes to become available
     highByte = Wire.read();
     lowByte = Wire.read();
-   
+
 return (float)((highByte<<8)+lowByte)/10;
 }
 
