@@ -54,6 +54,11 @@ class RobertaFunctions
 		double arrStandardDeviatioin(int len, double arr[]);
 		double arrRand(int len, double arr[]);
 		double arrMode(int len, double arr[]);
+		RobertaFunctions(BnrOneA one, BnrRescue brm);
+		BnrOneA one;
+		BnrRescue brm;
+		void setOne(BnrOneA oneInn);
+		void setBrm(BnrRescue brmInn);
 };
 #endif
 

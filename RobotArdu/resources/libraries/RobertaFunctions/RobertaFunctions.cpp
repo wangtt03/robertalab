@@ -16,64 +16,58 @@
 #define ADDRESS 0x60
 #define MODULE_ADDRESS 0x2C
 
+RobertaFunctions::RobertaFunctions(BnrOneA oneInn, BnrRescue brmInn)
+: one(oneInn), brm(brmInn)
+{
+}
 
+
+void RobertaFunctions::setOne(BnrOneA oneInn){
+	this->one = oneInn;
+}
+
+void RobertaFunctions::setBrm(BnrRescue brmInn){
+	this->brm = brmInn;
+}
 
 void RobertaFunctions::moveTime(int speedL,int speedR, double time)
-{   BnrOneA one;
-	Serial.begin(9600);
-    one.spiConnect(SSPIN);
-	one.move(speedL, speedR);
-	delay(time);
+{   one.move(speedL, speedR);
+    delay(time);
     one.stop();
 }
 
 void RobertaFunctions::moveTimePID(int speedL,int speedR, double time)
-{   BnrOneA one;
-	Serial.begin(9600);
-    one.spiConnect(SSPIN);
-	one.movePID(speedL, speedR);
-	delay(time);
+{   one.movePID(speedL, speedR);
+    delay(time);
     one.stop();
 }
 
 void RobertaFunctions::move1mTime(int port, int speed, double time)
-{   BnrOneA one;
-	Serial.begin(9600);
-    one.spiConnect(SSPIN);
-	one.move1m(port, speed);
-	delay(time);
-    one.stop();
+{  one.move1m(port, speed);
+   delay(time);
+   one.stop();
 }
 
 void RobertaFunctions::lcdClear()
-{   BnrOneA one;
-	Serial.begin(9600);
-    one.spiConnect(SSPIN);
-	one.lcd1("                   ");
+{    	one.lcd1("                   ");
 	one.lcd2("                   ");
 }
 
 int RobertaFunctions::ultrasonicDistance(int port)
 {
-	BnrRescue brm;
-	// port = port - 1;
 	byte distances[3]={0,0,0};
-	brm.i2cConnect(MODULE_ADDRESS);
-  brm.setModuleAddress(0x2C);
 	brm.readSonars(&distances[0],&distances[1],&distances[2]);
 	return distances[port];
 }
 
 int RobertaFunctions::sonar()
 {
-	BnrOneA one;
-	Serial.begin(9600);
-    one.spiConnect(SSPIN);
+
     int echoPin = 7;
-	int trigPin = 8;
-	int maximumRange = 200;
-	int minimumRange = 0;
-	pinMode(trigPin, OUTPUT);
+    int trigPin = 8;
+    int maximumRange = 200;
+    int minimumRange = 0; 
+    pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
     unsigned long duration;
     int distance;
@@ -92,9 +86,7 @@ int RobertaFunctions::sonar()
 }
 
 bool RobertaFunctions::buttonIsPressed(int button)
-{   BnrOneA one;
-	Serial.begin(9600);
-    one.spiConnect(SSPIN);
+{   
 	if (one.readButton() == 0){
 		return false;
 	}
@@ -105,9 +97,7 @@ bool RobertaFunctions::buttonIsPressed(int button)
 
 byte *RobertaFunctions::colorSensorRGB(byte colors[], int port)
 {
-	BnrRescue brm;
-	brm.i2cConnect(MODULE_ADDRESS);
-    brm.setModuleAddress(0x2C);
+	
 	if (port == 1){
 		brm.readRgbL(&colors[0],&colors[1],&colors[2]);
 	}
@@ -120,9 +110,7 @@ byte *RobertaFunctions::colorSensorRGB(byte colors[], int port)
 
 int RobertaFunctions::colorSensorLight(byte colors[], int port)
 {
-	BnrRescue brm;
-	brm.i2cConnect(MODULE_ADDRESS);
-    brm.setModuleAddress(0x2C);
+	
 	int light;
 	if (port == 1){
 		brm.readRgbL(&colors[0],&colors[1],&colors[2]);
@@ -137,12 +125,7 @@ int RobertaFunctions::colorSensorLight(byte colors[], int port)
 
 
 String RobertaFunctions::colorSensorColor(byte colors[], int port)
-{   BnrOneA one;
-	Serial.begin(9600);
-    one.spiConnect(SSPIN);
-	BnrRescue brm;
-	brm.i2cConnect(MODULE_ADDRESS);
-    brm.setModuleAddress(0x2C);
+{   
 	String color;
 	if (port == 1){
 		brm.readRgbL(&colors[0],&colors[1],&colors[2]);
@@ -208,10 +191,7 @@ String RobertaFunctions::colorSensorColor(byte colors[], int port)
 }
 
 bool RobertaFunctions::infraredSensorObstacle(int port)
-{
-	BnrOneA one;
-	Serial.begin(9600);
-  one.spiConnect(SSPIN);
+{	
 	return port == one.obstacleSensors();
 	// if (port == 1 && (one.obstacleSensors() == 1 || one.obstacleSensors() == 3)){
 	// 		return true;
@@ -226,18 +206,7 @@ bool RobertaFunctions::infraredSensorObstacle(int port)
 
 bool RobertaFunctions::infraredSensorPresence(int port)
 {
-	BnrOneA one;
-	Serial.begin(9600);
-    one.spiConnect(SSPIN);
-	if (port == 1 && (one.readIRSensors() == 1 || one.readIRSensors() == 3)){
-			return true;
-	}
-	else if (port == 2 && (one.readIRSensors() == 2 || one.readIRSensors() == 3)){
-			return true;
-	}
-	else{
-		return false;
-	}
+	return port == one.readIRSensors();
 }
 
 float RobertaFunctions::readBearing()
