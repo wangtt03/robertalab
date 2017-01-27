@@ -37,6 +37,7 @@ DEALINGS IN THE SOFTWARE.
 #include <initializer_list>
 
 
+
 const int greyScaleTimings[MICROBIT_DISPLAY_GREYSCALE_BIT_DEPTH] = {1, 23, 70, 163, 351, 726, 1476, 2976};
 
 /**

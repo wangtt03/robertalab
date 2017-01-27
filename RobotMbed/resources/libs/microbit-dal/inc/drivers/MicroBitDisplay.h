@@ -35,6 +35,7 @@ DEALINGS IN THE SOFTWARE.
 #include "MicroBitMatrixMaps.h"
 #include "MicroBitLightSensor.h"
 #include <initializer_list>
+#include <array>
 
 /**
   * Event codes raised by MicroBitDisplay
@@ -637,6 +638,14 @@ public:
     int readLightLevel();
 
     void animateImages(initializer_list<MicroBitImage> images, int delay);
+
+    template<std::size_t SIZE>
+    void animateImages(std::array<MicroBitImage, SIZE>& images, int delay) {
+    	for (MicroBitImage& image : images) {
+    		print(image, 0, 0, 255, delay);
+    		clear();
+    	}
+    }
 
     /**
       * Destructor for MicroBitDisplay, where we deregister this instance from the array of system components.
