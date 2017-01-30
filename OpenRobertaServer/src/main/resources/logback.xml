@@ -1,7 +1,7 @@
 <configuration>
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%d [%thread] %-1level %logger{36} - %msg%n
+			<pattern>%d [%thread] session-id=[%X{sessionId}] user-id=[%X{userId}] robot-name=[%X{robotName}] %-1level %logger{36} - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
