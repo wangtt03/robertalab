@@ -191,7 +191,9 @@ String RobertaFunctions::colorSensorColor(byte colors[], int port)
 }
 
 bool RobertaFunctions::infraredSensorObstacle(int port)
-{	
+{	if (one.obstacleSensors() == 3){
+		return true;
+	}
 	return port == one.obstacleSensors();
 	// if (port == 1 && (one.obstacleSensors() == 1 || one.obstacleSensors() == 3)){
 	// 		return true;
@@ -205,7 +207,10 @@ bool RobertaFunctions::infraredSensorObstacle(int port)
 }
 
 bool RobertaFunctions::infraredSensorPresence(int port)
-{
+{	
+	if (one.readIRSensors() == 3){
+		return true;
+	}
 	return port == one.readIRSensors();
 }
 
