@@ -10,6 +10,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include<stdio.h>
+#include<string.h>
 #include "Arduino.h"
 #include "BnrOneA.h" 
 #include "BnrRescue.h" 
@@ -59,6 +61,11 @@ class RobertaFunctions
 		BnrRescue brm;
 		void setOne(BnrOneA oneInn);
 		void setBrm(BnrRescue brmInn);
+		void dtoa(double n, char *res, int afterpoint);
+		int intToStr(int x, char str[], int d);
+		void reverse(char *str, int len);
+		char *numToString(double num);
+		char *boolToString(bool boolean);
 };
 #endif
 

@@ -452,3 +452,75 @@ double RobertaFunctions::arrMode(int len, double arr[]){
   }
   return max_seen;
 }
+
+
+//following 3 functions are taken from http://www.geeksforgeeks.org/convert-floating-point-number-string/
+
+void RobertaFunctions::reverse(char *str, int len)
+{
+    int i=0, j=len-1, temp;
+    while (i<j)
+    {
+        temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+        i++; j--;
+    }
+}
+ 
+
+int RobertaFunctions::intToStr(int x, char str[], int d)
+{
+    int i = 0;
+    while (x)
+    {
+        str[i++] = (x%10) + '0';
+        x = x/10;
+    }
+ 
+    while (i < d)
+        str[i++] = '0';
+ 
+    reverse(str, i);
+    str[i] = '\0';
+    return i;
+}
+
+void RobertaFunctions::dtoa(double n, char *res, int afterpoint)
+{
+    int ipart = (int)n;
+ 
+    float fpart = n - (double)ipart;
+ 
+    int i = intToStr(ipart, res, 0);
+ 
+    if (afterpoint != 0)
+    {
+        res[i] = '.';
+ 
+        fpart = fpart * pow(10, afterpoint);
+ 
+        intToStr((int)fpart, res + i + 1, afterpoint);
+    }
+}
+
+char *RobertaFunctions::numToString(double num)
+{
+	char *res;
+	res = (char*)malloc(20);
+	dtoa(num, res, 1);
+	return res; 
+}
+
+char *RobertaFunctions::boolToString(bool boolean)
+{
+	char *res;
+	res = (char*)malloc(20);
+	if (boolean){
+		res = "true";
+	}
+	else{
+		res = "false";
+	}
+	return res; 
+}
