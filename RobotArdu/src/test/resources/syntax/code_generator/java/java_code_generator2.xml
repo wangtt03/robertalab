@@ -1,119 +1,82 @@
-<block_set xmlns="http://de.fhg.iais.roberta.blockly">
-  <instance x="34" y="20">
-    <block type="robControls_start" id="44" deletable="false">
-      <mutation declare="false"></mutation>
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="ardu" xmlversion="" description="">
+  <instance x="38" y="63">
+    <block type="robControls_start" id="~rN{@@hvI=Aquz`5X;lC" intask="true" deletable="false">
+      <mutation declare="true"></mutation>
       <field name="DEBUG">FALSE</field>
-    </block>
-    <block type="robControls_if" id="184" inline="false">
-      <mutation elseif="1"></mutation>
-      <repetitions>
-        <value name="IF0">
-          <block type="robSensors_touch_isPressed" id="194">
-            <field name="SENSORPORT">1</field>
-          </block>
-        </value>
-        <statement name="DO0">
-          <block type="robActions_brickLight_on" id="203">
-            <field name="SWITCH_COLOR">GREEN</field>
-            <field name="SWITCH_BLINK">ON</field>
-          </block>
-        </statement>
-        <value name="IF1">
-          <block type="logic_compare" id="217" inline="true">
-            <mutation operator_range="NUM"></mutation>
-            <field name="OP">EQ</field>
-            <value name="A">
-              <block type="robColour_picker" id="227">
-                <field name="COLOUR">#B30006</field>
-              </block>
-            </value>
-            <value name="B">
-              <block type="robSensors_colour_getSample" id="225">
-                <mutation mode="COLOUR"></mutation>
-                <field name="MODE">COLOUR</field>
-                <field name="SENSORPORT">3</field>
-              </block>
-            </value>
-          </block>
-        </value>
-        <statement name="DO1">
-          <block type="controls_whileUntil" id="328" inline="false">
-            <field name="MODE">WHILE</field>
-            <value name="BOOL">
-              <block type="logic_boolean" id="379">
-                <field name="BOOL">TRUE</field>
-              </block>
-            </value>
-            <statement name="DO">
-              <block type="robActions_display_picture" id="236" inline="false">
-                <field name="PICTURE">EYESOPEN</field>
-                <value name="X">
-                  <block type="math_number" id="237">
-                    <field name="NUM">0</field>
-                  </block>
-                </value>
-                <value name="Y">
-                  <block type="math_number" id="238">
-                    <field name="NUM">0</field>
-                  </block>
-                </value>
-              </block>
-              <block type="robActions_motor_on" id="307" inline="false">
-                <field name="MOTORPORT">B</field>
-                <value name="POWER">
-                  <block type="math_number" id="308">
-                    <field name="NUM">30</field>
-                  </block>
-                </value>
-              </block>
-            </statement>
-          </block>
-        </statement>
-      </repetitions>
-    </block>
-    <block type="robActions_play_file" id="387">
-      <field name="FILE">1</field>
-    </block>
-    <block type="robActions_play_setVolume" id="418" inline="false">
-      <value name="VOLUME">
-        <block type="math_number" id="419">
-          <field name="NUM">50</field>
-        </block>
-      </value>
-    </block>
-    <block type="controls_for" id="462" inline="true">
-      <field name="VAR">i</field>
-      <value name="FROM">
-        <block type="math_number" id="463">
-          <field name="NUM">1</field>
-        </block>
-      </value>
-      <value name="TO">
-        <block type="math_number" id="464">
-          <field name="NUM">10</field>
-        </block>
-      </value>
-      <value name="BY">
-        <block type="math_number" id="465">
-          <field name="NUM">1</field>
-        </block>
-      </value>
-      <statement name="DO">
-        <block type="robActions_motor_on_for" id="495" inline="false">
-          <field name="MOTORPORT">B</field>
-          <field name="MOTORROTATION">ROTATIONS</field>
-          <value name="POWER">
-            <block type="math_number" id="496">
-              <field name="NUM">30</field>
-            </block>
-          </value>
+      <statement name="ST">
+        <block type="robGlobalVariables_declare" id="Tg?*_Ovgwoq9#x_]=;i[" intask="true" deletable="false" movable="false">
+          <mutation next="true" declaration_type="String"></mutation>
+          <field name="VAR">item</field>
+          <field name="TYPE">String</field>
           <value name="VALUE">
-            <block type="math_number" id="497">
-              <field name="NUM">1</field>
+            <block type="text" id="0m]%h+6_tE*7d{X^zWj." intask="true">
+              <field name="TEXT">yyy</field>
             </block>
           </value>
+        </block>
+        <block type="robGlobalVariables_declare" id="Bl![{kZkxe2s%lNrMBY?" intask="true" deletable="false" movable="false">
+          <mutation next="false" declaration_type="Array_Number"></mutation>
+          <field name="VAR">item2</field>
+          <field name="TYPE">Array_Number</field>
         </block>
       </statement>
+    </block>
+    <block type="robText_append" id="aUjsTQEdMy[flpC|rD1L" intask="true">
+      <value name="VAR">
+        <block type="variables_get" id="C|:k:-,ynL%WRkgEV|5+" intask="true">
+          <mutation datatype="String"></mutation>
+          <field name="VAR">item</field>
+        </block>
+      </value>
+      <value name="TEXT">
+        <shadow type="text" id="1`|LTn*3wM`b{:?E+Ry9" intask="true">
+          <field name="TEXT">zzz</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="robControls_wait_for" id="}Xxp_pZE:ocVi3_n;F|j" intask="true">
+      <value name="WAIT0">
+        <block type="logic_compare" id="%g^^g1AY;pSPD8~lY:Cv" intask="true">
+          <field name="OP">EQ</field>
+          <value name="A">
+            <block type="robSensors_getSample_ardu" id="x;wy%`g0yc6tVFb=9(HX" intask="true" deletable="false" movable="false">
+              <mutation input="INFRARED_OBSTACLE"></mutation>
+              <field name="SENSORTYPE">INFRARED_OBSTACLE</field>
+              <field name="SENSORPORT">1</field>
+              <data>ardu</data>
+            </block>
+          </value>
+          <value name="B">
+            <block type="logic_boolean" id="LJ;qW4J7geop}2utHX.n" intask="true">
+              <field name="BOOL">TRUE</field>
+            </block>
+          </value>
+        </block>
+      </value>
+    </block>
+    <block type="robControls_wait" id="Y|oaFjc9_fD5{],*|L=#" intask="true">
+      <value name="WAIT0">
+        <block type="logic_ternary" id="[kWD-31Ma0J.`P/cxt*:" intask="true">
+          <value name="IF">
+            <block type="robSensors_key_isPressed" id=":7uzN9|sz~xOmc~W4m;(" intask="true">
+              <field name="KEY">ENTER</field>
+              <data>ardu</data>
+            </block>
+          </value>
+          <value name="THEN">
+            <block type="robSensors_key_isPressed" id="YrMG{x-|B2^.m{%Y@;BN" intask="true">
+              <field name="KEY">ANY</field>
+              <data>ardu</data>
+            </block>
+          </value>
+          <value name="ELSE">
+            <block type="robSensors_key_isPressed" id="[O8zqi[(,7gtG[H7A{dz" intask="true">
+              <field name="KEY">RIGHT</field>
+              <data>ardu</data>
+            </block>
+          </value>
+        </block>
+      </value>
     </block>
   </instance>
 </block_set>
