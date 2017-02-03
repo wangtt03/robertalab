@@ -164,7 +164,7 @@ String RobertaFunctions::colorSensorColor(byte colors[], int port)
 	if (hsv[2] <= 10) {
 		color = "BLACK";
 	}
-	else if ((hsv[0] < 10 || hsv[0] > 350) && hsv[1] > 70 && hsv[2] > 50) {
+	else if ((hsv[0] < 40 || hsv[0] > 300) && hsv[1] > 50 && hsv[2] > 30) {
 		color = "RED";
 	}
 	else if (hsv[0] > 30 && hsv[0] < 70 && hsv[1] > 60 && hsv[2] > 50) {
