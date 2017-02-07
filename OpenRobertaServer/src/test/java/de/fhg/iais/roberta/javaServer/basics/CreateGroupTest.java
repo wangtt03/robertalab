@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.Test;
 
 import de.fhg.iais.roberta.persistence.bo.Groups;
 import de.fhg.iais.roberta.persistence.bo.Role;
@@ -40,7 +40,7 @@ public class CreateGroupTest {
         this.groupDao = new GroupDao(this.hSession);
     }
 
-    @Ignore
+    @Test
     public void createGroup() throws Exception {
         //Create a list of users
         for ( int userNumber = 0; userNumber < CreateGroupTest.TOTAL_USERS; userNumber++ ) {
