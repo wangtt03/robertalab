@@ -67,7 +67,7 @@ public class GroupDao extends AbstractDao<Groups> {
 
     public Groups loadGroup(String name, int ownerId) {
         Assert.notNull(name);
-        final Query hql = this.session.createQuery("from GROUPS where NAME=:groupName and ownerId=:ownerId");
+        final Query hql = this.session.createQuery("from Group where name=:name and ownerId=:ownerId");
         hql.setString("name", name);
         return checkGroupExistance(hql);
     }
