@@ -17,8 +17,6 @@ import de.fhg.iais.roberta.util.dbc.Assert;
 /**
  * DAO class to load and store programs objects. A DAO object is always bound to a session. This session defines the transactional context, in which the
  * database access takes place.
- *
- * @author Evgeniya
  */
 public class GroupDao extends AbstractDao<Groups> {
     private static final Logger LOG = LoggerFactory.getLogger(GroupDao.class);
@@ -69,9 +67,8 @@ public class GroupDao extends AbstractDao<Groups> {
 
     public Groups loadGroup(String name, int ownerId) {
         Assert.notNull(name);
-        final Query hql = this.session.createQuery("from User where account=:account");
+        final Query hql = this.session.createQuery("from GROUPS where NAME=:groupName and ownerId=:ownerId");
         hql.setString("name", name);
-
         return checkGroupExistance(hql);
     }
 

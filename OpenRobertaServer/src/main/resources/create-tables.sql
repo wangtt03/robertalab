@@ -8,7 +8,6 @@ create table USER (
   LAST_LOGIN timestamp not null,
   TAGS varchar(16M), -- e.g. HERDER-GYMNASIUM KÖLN Q1 ED_SHEERAN
   USER_NAME varchar(255),
-  
   primary key (ID)
 );
 
@@ -149,4 +148,9 @@ values('TestProg',2,42,'<block_set xmlns="http://de.fhg.iais.roberta.blockly"><i
 now, now, now, now,
 0,'', 0
  );
+commit;
+
+insert into USER_GROUP
+( USER_ID, GROUPS_ID )
+values(1,1);
 commit;
