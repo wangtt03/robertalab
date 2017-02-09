@@ -12,29 +12,31 @@ import javax.persistence.Table;
 
 import de.fhg.iais.roberta.util.dbc.Assert;
 
+//TODO: add password
+
 @Entity
 @Table(name = "GROUPS")
-public class Groups implements WithSurrogateId {
+public class Group implements WithSurrogateId {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "OWNER_ID")
-    private int ownerId;
+    private int owner;
 
     @Column(name = "NAME")
     private String name;
 
-    protected Groups() {
+    protected Group() {
         // Hibernate
     }
 
-    public Groups(String name, int ownerId) {
+    public Group(String name, int owner) {
         Assert.notNull(name);
-        Assert.notNull(ownerId);
+        Assert.notNull(owner);
         this.name = name;
-        this.ownerId = ownerId;
+        this.owner = owner;
     }
 
     /**
@@ -53,13 +55,13 @@ public class Groups implements WithSurrogateId {
         return this.name;
     }
 
-    public int getOwnerId() {
-        return this.ownerId;
+    public int getOwner() {
+        return this.owner;
     }
 
     @Override
     public String toString() {
-        return "Group [id=" + this.id + ", ownerId=" + this.ownerId;
+        return "Group [id=" + this.id + ", owner=" + this.owner;
     }
 
 }
