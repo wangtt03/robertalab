@@ -27,8 +27,8 @@ create table USER_GROUP (
   GROUPS_ID INTEGER not null,
   USER_ID INTEGER not null,
   primary key (ID),
-  foreign key (USER_ID) references USER(ID),
-  foreign key (GROUPS_ID) references GROUPS(ID)
+  foreign key (USER_ID) references USER(ID) ON DELETE CASCADE, 
+  foreign key (GROUPS_ID) references GROUPS(ID) ON DELETE CASCADE
 );
 
 create table LOST_PASSWORD (
@@ -150,7 +150,15 @@ now, now, now, now,
  );
 commit;
 
+
+insert into GROUPS
+( NAME, OWNER_ID )
+values('TestGroup', 1
+);
+commit;
+
 insert into USER_GROUP
 ( USER_ID, GROUPS_ID )
-values(1,1);
+values(1,1
+);
 commit;
