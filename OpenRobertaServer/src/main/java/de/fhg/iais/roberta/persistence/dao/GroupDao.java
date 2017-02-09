@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import de.fhg.iais.roberta.persistence.bo.Group;
 import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.util.DbSession;
-import de.fhg.iais.roberta.util.Key;
-import de.fhg.iais.roberta.util.Pair;
 import de.fhg.iais.roberta.util.dbc.Assert;
 
 /**
@@ -30,11 +28,11 @@ public class GroupDao extends AbstractDao<Group> {
         super(Group.class, session);
     }
 
-    public Group persistGroup(String name, int ownerId) throws Exception {
+    public Group persistGroup(String name, User owner) throws Exception {
         Assert.notNull(name);
         Group group = loadGroup(name);
         if ( group == null ) {
-            group = new Group(name, ownerId);
+            group = new Group(name, owner);
             //group.setPassword(password);
             this.session.save(group);
             return group;
@@ -48,6 +46,14 @@ public class GroupDao extends AbstractDao<Group> {
      *
      * @return the list of all groups, may be an empty list, but never null
      */
+
+    public Group loadGroup(String name) {
+        Assert.notNull(name);
+        Query hql = this.session.createQuery("from Group where name=:name");
+        hql.setString("name", name);
+        return checkGroupExistance(hql);
+    }
+
     public List<Group> loadAll(User owner) {
         Query hql = this.session.createQuery("from Group where owner=:owner");
         hql.setEntity("owner", owner);
@@ -56,20 +62,24 @@ public class GroupDao extends AbstractDao<Group> {
         return Collections.unmodifiableList(il);
     }
 
-    //TODO: replace pairs with users
-    public List<User> loadMembers(String groupName) {
-        Query hql = this.session.createQuery("from USER_GROUP where NAME=:groupName");
-        hql.setEntity("groupName", groupName);
+    //load all members of the group
+    public List<User> loadMembersByGroup(String name) {
+        Group group = this.loadGroup(name);
+        Query hql = this.session.createQuery("from UserGroup where group=:group");
+        hql.setEntity("group", group);
         @SuppressWarnings("unchecked")
         List<User> il = hql.list();
         return Collections.unmodifiableList(il);
     }
 
-    public Group loadGroup(String name) {
-        Assert.notNull(name);
-        Query hql = this.session.createQuery("from Group where name=:name");
-        hql.setString("name", name);
-        return checkGroupExistance(hql);
+    public List<User> loadGroupsByMember(String name) {
+        UserDao userDao = new UserDao(this.session);
+        User user = userDao.loadUser(name);
+        Query hql = this.session.createQuery("from UserGroup where user=:user");
+        hql.setEntity("user", user);
+        @SuppressWarnings("unchecked")
+        List<User> il = hql.list();
+        return Collections.unmodifiableList(il);
     }
 
     private Group checkGroupExistance(Query hql) {
@@ -92,19 +102,4 @@ public class GroupDao extends AbstractDao<Group> {
             return 1;
         }
     }
-
-    public Pair<Key, Group> persistOwnGroup(String name, int userId) {
-        Assert.notNull(name);
-        Assert.notNull(userId);
-        Group group = load(userId);
-        if ( group == null ) {
-            // save as && the program doesn't exist.
-            group = new Group(name, userId);
-            this.session.save(group);
-            return Pair.of(Key.GROUP_SAVE_SUCCESS, group); // the only legal key if success
-        } else {
-            return Pair.of(Key.GROUP_SAVE_AS_ERROR_PROGRAM_EXISTS, null);
-        }
-    }
-
 }

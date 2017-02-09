@@ -23,7 +23,7 @@ public class Group implements WithSurrogateId {
     private int id;
 
     @Column(name = "OWNER_ID")
-    private int owner;
+    private User owner;
 
     @Column(name = "NAME")
     private String name;
@@ -32,7 +32,7 @@ public class Group implements WithSurrogateId {
         // Hibernate
     }
 
-    public Group(String name, int owner) {
+    public Group(String name, User owner) {
         Assert.notNull(name);
         Assert.notNull(owner);
         this.name = name;
@@ -55,7 +55,7 @@ public class Group implements WithSurrogateId {
         return this.name;
     }
 
-    public int getOwner() {
+    public User getOwner() {
         return this.owner;
     }
 
