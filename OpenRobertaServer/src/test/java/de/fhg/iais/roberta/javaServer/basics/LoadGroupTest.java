@@ -17,7 +17,7 @@ import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.DbSetup;
 import de.fhg.iais.roberta.persistence.util.SessionFactoryWrapper;
 
-public class CreateGroupTest {
+public class LoadGroupTest {
     private SessionFactoryWrapper sessionFactoryWrapper;
     private DbSetup memoryDbSetup;
     private String connectionUrl;
@@ -41,9 +41,9 @@ public class CreateGroupTest {
     }
 
     @Test
-    public void createGroup() throws Exception {
-        //Create a list of users
-        for ( int userNumber = 0; userNumber < CreateGroupTest.TOTAL_USERS; userNumber++ ) {
+    public void loadGroup() throws Exception {
+        //Create a list of users and groups
+        for ( int userNumber = 0; userNumber < LoadGroupTest.TOTAL_USERS; userNumber++ ) {
             User user = this.userDao.loadUser("account-" + userNumber);
             if ( user == null ) {
                 User user2 = new User("account-" + userNumber);
@@ -58,11 +58,11 @@ public class CreateGroupTest {
         List<User> userList = this.userDao.loadUserList("created", 0, "rwth");
         Assert.assertTrue(userList.size() == 5);
 
-        //Create a group
-        User owner = this.userDao.loadUser("account-" + 0);
+        //Load a group from existing database
         Group group = this.groupDao.loadGroup("TestGroup");
         Assert.assertNotNull(group);
-        owner = this.userDao.loadUser("Roberta" + "");
+        //Create a user
+        User owner = this.userDao.loadUser("Roberta");
         //Show list of groups
         List<Group> userGroupList = this.groupDao.loadAll(owner);
         Assert.assertTrue(userGroupList.size() == 1);

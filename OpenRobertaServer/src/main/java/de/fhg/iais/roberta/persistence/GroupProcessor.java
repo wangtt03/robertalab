@@ -7,11 +7,9 @@ import org.codehaus.jettison.json.JSONArray;
 import de.fhg.iais.roberta.persistence.bo.Group;
 import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.dao.GroupDao;
-import de.fhg.iais.roberta.persistence.dao.UserDao;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.HttpSessionState;
 import de.fhg.iais.roberta.util.Key;
-import de.fhg.iais.roberta.util.Pair;
 import de.fhg.iais.roberta.util.Util1;
 
 public class GroupProcessor extends AbstractProcessor {
@@ -26,7 +24,7 @@ public class GroupProcessor extends AbstractProcessor {
      * @param groupId - group id
      * @return the group; null, if no group was found
      */
-    public Group getGroup(String groupName, User owner) {
+    public Group getGroup(String groupName) {
         if ( !Util1.isValidJavaIdentifier(groupName) ) {
             setError(Key.GROUP_ERROR_ID_INVALID, groupName);
             return null;
@@ -49,7 +47,6 @@ public class GroupProcessor extends AbstractProcessor {
      * @param ownerId the owner of the program
      */
     public JSONArray getGroupInfo(User owner) {
-        UserDao userDao = new UserDao(this.dbSession);
         GroupDao groupDao = new GroupDao(this.dbSession);
         List<Group> groups = groupDao.loadAll(owner);
         JSONArray groupsInfos = new JSONArray();
@@ -69,12 +66,8 @@ public class GroupProcessor extends AbstractProcessor {
      * @param ownerId the owner of the group
      */
     public List<User> getGroupRelations(String groupName, int ownerId) {
-        UserDao userDao = new UserDao(this.dbSession);
         GroupDao groupDao = new GroupDao(this.dbSession);
-        User owner = userDao.get(ownerId);
-        JSONArray relations = new JSONArray();
-        List<User> user = groupDao.loadMembers(groupName);
-
+        List<User> user = groupDao.loadMembersByGroup(groupName);
         setSuccess(Key.GROUP_GET_ALL_SUCCESS, "" + user);
         return user;
     }
@@ -84,26 +77,22 @@ public class GroupProcessor extends AbstractProcessor {
      *
      * @param groupName the name of the program
      * @param userId the owner of the program
+     * @throws Exception
      */
-    public Group persistGroup(String groupName, int userId, boolean isOwner) {
+    public Group persistGroup(String groupName, int userId, boolean isOwner) throws Exception {
         if ( !Util1.isValidJavaIdentifier(groupName) ) {
             setError(Key.GROUP_ERROR_ID_INVALID, groupName);
             return null;
         }
         if ( this.httpSessionState.isUserLoggedIn() ) {
             GroupDao groupDao = new GroupDao(this.dbSession);
-            Pair<Key, Group> result;
+            Group result;
             if ( isOwner ) {
-                result = groupDao.persistOwnGroup(groupName, userId);
+                result = groupDao.persistGroup(groupName, userId);
             } else {
                 result = null;
             }
-            if ( result.getFirst() == Key.PROGRAM_SAVE_SUCCESS ) {
-                setSuccess(Key.PROGRAM_SAVE_SUCCESS);
-            } else {
-                setError(result.getFirst());
-            }
-            return result.getSecond();
+            return result;
         } else {
             setError(Key.USER_ERROR_NOT_LOGGED_IN);
             return null;
@@ -119,9 +108,9 @@ public class GroupProcessor extends AbstractProcessor {
         GroupDao groupDao = new GroupDao(this.dbSession);
         int rowCount = groupDao.deleteByName(groupName);
         if ( rowCount > 0 ) {
-            setSuccess(Key.PROGRAM_DELETE_SUCCESS);
+            setSuccess(Key.GROUP_DELETE_SUCCESS);
         } else {
-            setError(Key.PROGRAM_DELETE_ERROR);
+            setError(Key.GROUP_DELETE_ERROR);
         }
     }
 }

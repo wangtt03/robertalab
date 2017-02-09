@@ -16,18 +16,18 @@ public class UserGroup implements WithSurrogateId {
     private int id;
 
     @Column(name = "USER_ID")
-    private User user;
+    private int userId;
 
     @Column(name = "GROUP_ID")
-    private Group group;
+    private int groupId;
 
     protected UserGroup() {
         // Hibernate
     }
 
-    protected UserGroup(User user, Group group) {
-        this.user = user;
-        this.group = group;
+    protected UserGroup(int userId, int groupId) {
+        this.userId = userId;
+        this.groupId = groupId;
     }
 
     /**
@@ -42,17 +42,17 @@ public class UserGroup implements WithSurrogateId {
         return this.id;
     }
 
-    public User getUser() {
-        return this.user;
+    public int getUser() {
+        return this.userId;
     }
 
-    public Group getGroup() {
-        return this.group;
+    public int getGroup() {
+        return this.groupId;
     }
 
     @Override
     public String toString() {
-        return "UserGroup [id=" + this.id + ", user=" + this.user + ", group=" + this.group;
+        return "UserGroup [id=" + this.id + ", userId=" + this.userId + ", group=" + this.groupId;
     }
 
 }

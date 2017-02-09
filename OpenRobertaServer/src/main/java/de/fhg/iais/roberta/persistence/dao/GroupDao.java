@@ -28,7 +28,7 @@ public class GroupDao extends AbstractDao<Group> {
         super(Group.class, session);
     }
 
-    public Group persistGroup(String name, User owner) throws Exception {
+    public Group persistGroup(String name, int owner) throws Exception {
         Assert.notNull(name);
         Group group = loadGroup(name);
         if ( group == null ) {
@@ -76,7 +76,7 @@ public class GroupDao extends AbstractDao<Group> {
         UserDao userDao = new UserDao(this.session);
         User user = userDao.loadUser(name);
         Query hql = this.session.createQuery("from UserGroup where user=:user");
-        hql.setEntity("user", user);
+        hql.setEntity("user", user.getId());
         @SuppressWarnings("unchecked")
         List<User> il = hql.list();
         return Collections.unmodifiableList(il);
