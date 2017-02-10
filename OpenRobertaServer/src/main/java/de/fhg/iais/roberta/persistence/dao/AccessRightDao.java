@@ -10,6 +10,7 @@ import de.fhg.iais.roberta.persistence.bo.Group;
 import de.fhg.iais.roberta.persistence.bo.Program;
 import de.fhg.iais.roberta.persistence.bo.Relation;
 import de.fhg.iais.roberta.persistence.bo.User;
+import de.fhg.iais.roberta.persistence.bo.UserGroup;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.util.dbc.Assert;
 
@@ -111,6 +112,18 @@ public class AccessRightDao extends AbstractDao<AccessRight> {
         Query hql = this.session.createQuery("from AccessRight where user=:user");
 
         hql.setEntity("user", user);
+        @SuppressWarnings("unchecked")
+        List<AccessRight> il = hql.list();
+        return Collections.unmodifiableList(il);
+
+    }
+
+    public List<AccessRight> loadAccessRightsForUser(UserGroup userGroup) {
+        Assert.notNull(userGroup);
+
+        Query hql = this.session.createQuery("from AccessRight where userGroup=:userGroup");
+
+        hql.setEntity("userGroup", userGroup);
         @SuppressWarnings("unchecked")
         List<AccessRight> il = hql.list();
         return Collections.unmodifiableList(il);

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import de.fhg.iais.roberta.persistence.bo.Group;
 import de.fhg.iais.roberta.persistence.bo.User;
+import de.fhg.iais.roberta.persistence.bo.UserGroup;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.util.dbc.Assert;
 
@@ -31,10 +32,16 @@ public class GroupDao extends AbstractDao<Group> {
     public Group persistGroup(String name, int owner) throws Exception {
         Assert.notNull(name);
         Group group = loadGroup(name);
+        UserGroupDao userGroupDao = new UserGroupDao(this.session);
         if ( group == null ) {
             group = new Group(name, owner);
             //group.setPassword(password);
             this.session.save(group);
+            this.session.commit();
+            UserGroup userGroup = userGroupDao.persistUserGroup(owner, group.getId());
+            System.out.println("***");
+            System.out.println(userGroup);
+            System.out.println("***");
             return group;
         } else {
             return null;
