@@ -18,14 +18,14 @@ public class UserGroup implements WithSurrogateId {
     @Column(name = "USER_ID")
     private int userId;
 
-    @Column(name = "GROUP_ID")
+    @Column(name = "GROUPS_ID")
     private int groupId;
 
     protected UserGroup() {
         // Hibernate
     }
 
-    protected UserGroup(int userId, int groupId) {
+    public UserGroup(int userId, int groupId) {
         this.userId = userId;
         this.groupId = groupId;
     }
@@ -34,7 +34,7 @@ public class UserGroup implements WithSurrogateId {
      * assign a new user group
      *
      * @param user id - id of the user whom we assign the group
-     * @param group id - id of the group that is being assignedsk
+     * @param group id - id of the group that is being assigned
      */
 
     @Override

@@ -3,6 +3,8 @@ package de.fhg.iais.roberta.persistence.dao;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.fhg.iais.roberta.persistence.bo.UserGroup;
 import de.fhg.iais.roberta.persistence.util.DbSession;
@@ -13,34 +15,26 @@ import de.fhg.iais.roberta.util.dbc.Assert;
  * database access takes place.
  */
 public class UserGroupDao extends AbstractDao<UserGroup> {
+    private static final Logger LOG = LoggerFactory.getLogger(UserGroupDao.class);
 
     /**
      * create a new DAO for user groups. This creation is cheap.
      *
      * @param session the session used to access the database.
      */
-
-    UserDao ud;
-    GroupDao gd;
-
     public UserGroupDao(DbSession session) {
         super(UserGroup.class, session);
-        this.ud = new UserDao(session);
-        this.gd = new GroupDao(session);
     }
 
-    public UserGroup persistUserGroup(String accountName, String groupName) throws Exception {
-        Assert.notNull(accountName);
-        Assert.notNull(groupName);
-        UserGroup userGroup = loadUserGroup(accountName, groupName);
-        if ( this.ud.loadUser(accountName) == null ) {
-            return null;
-        }
-        int userId = this.ud.loadUser(accountName).getId();
-        int groupId = this.gd.loadGroup(groupName).getId();
+    public UserGroup persistUserGroup(int userId, int groupId) throws Exception {
+        Assert.notNull(groupId);
+        Assert.notNull(userId);
+        UserGroup userGroup = loadUserGroup(userId, groupId);
         if ( userGroup == null ) {
             userGroup = new UserGroup(userId, groupId);
+            //group.setPassword(password);
             this.session.save(userGroup);
+            this.session.commit();
             return userGroup;
         } else {
             return null;
@@ -53,17 +47,12 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
      * @return the list of all groups, may be an empty list, but never null
      */
 
-    public UserGroup loadUserGroup(String accountName, String groupName) {
-        Assert.notNull(accountName);
-        Assert.notNull(groupName);
-        if ( this.ud.loadUser(accountName) == null ) {
-            return null;
-        }
-        int userId = this.ud.loadUser(accountName).getId();
-        int groupId = this.gd.loadGroup(groupName).getId();
-        Query hql = this.session.createQuery("from UserGroup where userId=:userId and groupId=:groupId");
-        hql.setDouble("userId", userId);
-        hql.setDouble("groupId", groupId);
+    public UserGroup loadUserGroup(int userId, int groupId) {
+        Assert.notNull(groupId);
+        Assert.notNull(userId);
+        Query hql = this.session.createQuery("from Group where groupId=:groupId and userId=:userId");
+        hql.setInteger("groupId", groupId);
+        hql.setInteger("userId", userId);
         return checkUserGroupExistance(hql);
     }
 
@@ -75,18 +64,6 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
             return null;
         } else {
             return il.get(0);
-        }
-    }
-
-    public int deleteByIds(String userName, String groupName) {
-        Assert.notNull(userName);
-        Assert.notNull(groupName);
-        UserGroup toBeDeleted = loadUserGroup(userName, groupName);
-        if ( toBeDeleted == null ) {
-            return 0;
-        } else {
-            this.session.delete(toBeDeleted);
-            return 1;
         }
     }
 

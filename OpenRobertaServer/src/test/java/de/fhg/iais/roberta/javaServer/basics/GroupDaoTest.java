@@ -45,11 +45,7 @@ public class GroupDaoTest {
         //Create a list of users and groups
         for ( int number = 0; number < GroupDaoTest.TOTAL_USERS; number++ ) {
             User user = this.userDao.persistUser("account-" + number, "pass-" + number, Role.STUDENT.toString());
-            this.hSession.save(user);
-            this.hSession.commit();
             Group group = this.groupDao.persistGroup("group-" + number, user.getId());
-            this.hSession.save(group);
-            this.hSession.commit();
             //System.out.println(user.getId());
             Assert.assertNotNull(group);
         }
@@ -78,7 +74,6 @@ public class GroupDaoTest {
     public void loadAllListOfGroupsLengthIsFive() throws Exception {
         User owner = this.userDao.loadUser("Roberta");
         List<Group> userGroupList = this.groupDao.loadAll(owner);
-        System.out.println(userGroupList.size());
         Assert.assertTrue(userGroupList.size() == 5);
     }
 

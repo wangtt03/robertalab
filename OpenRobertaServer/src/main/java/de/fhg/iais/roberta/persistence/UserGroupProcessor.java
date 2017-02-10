@@ -1,9 +1,7 @@
 package de.fhg.iais.roberta.persistence;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import de.fhg.iais.roberta.persistence.bo.UserGroup;
+import de.fhg.iais.roberta.persistence.dao.GroupDao;
 import de.fhg.iais.roberta.persistence.dao.UserGroupDao;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.HttpSessionState;
@@ -21,9 +19,9 @@ public class UserGroupProcessor extends AbstractProcessor {
      * @param groupId - group id
      * @return the userGroup; null, if no group was found
      */
-    public UserGroup getUserGroup(String userName, String groupName) {
+    public UserGroup getUserGroup(int userId, int groupId) {
         UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
-        UserGroup userGroup = userGroupDao.loadUserGroup(userName, groupName);
+        UserGroup userGroup = userGroupDao.loadUserGroup(userId, groupId);
         if ( userGroup != null ) {
             setSuccess(Key.USER_GROUP_GET_ONE_SUCCESS);
             return userGroup;
@@ -34,24 +32,22 @@ public class UserGroupProcessor extends AbstractProcessor {
     }
 
     /**
-     * create a given user-group connection. Overwrites an existing group if mayExist == true.
+     * create a given group owned by a given user. Overwrites an existing group if mayExist == true.
      *
-     * @param userId the id of the user
-     * @param groupId the id of the group
+     * @param groupName the name of the program
+     * @param userId the owner of the program
      * @throws Exception
      */
-    public UserGroup persistUserGroup(String userName, String groupName) throws Exception {
-        Pattern p = Pattern.compile("[^a-zA-Z0-9=+!?.,%#+&^@_ ]", Pattern.CASE_INSENSITIVE);
-        Matcher name_symbols = p.matcher(userName);
-        boolean userGroup_check = name_symbols.find();
-        if ( userGroup_check ) {
-            setError(Key.USER_CREATE_ERROR_CONTAINS_SPECIAL_CHARACTERS, userName);
+    public UserGroup persistGroup(int userId, int groupId) throws Exception {
+        if ( this.httpSessionState.isUserLoggedIn() ) {
+            UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
+            UserGroup result;
+            result = userGroupDao.persistUserGroup(userId, groupId);
+            return result;
+        } else {
+            setError(Key.USER_ERROR_NOT_LOGGED_IN);
             return null;
         }
-        UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
-        UserGroup result;
-        result = userGroupDao.persistUserGroup(userName, groupName);
-        return result;
     }
 
     /**
@@ -59,9 +55,9 @@ public class UserGroupProcessor extends AbstractProcessor {
      *
      * @param groupName the name of the program
      */
-    public void delete(String userName, String groupName) {
-        UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
-        int rowCount = userGroupDao.deleteByIds(userName, groupName);
+    public void deleteByName(String groupName, int ownerId) {
+        GroupDao groupDao = new GroupDao(this.dbSession);
+        int rowCount = groupDao.deleteByName(groupName);
         if ( rowCount > 0 ) {
             setSuccess(Key.GROUP_DELETE_SUCCESS);
         } else {
