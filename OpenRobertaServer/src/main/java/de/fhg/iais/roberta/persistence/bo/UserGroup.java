@@ -52,7 +52,7 @@ public class UserGroup implements WithSurrogateId {
 
     @Override
     public String toString() {
-        return "UserGroup [id=" + this.id + ", userId=" + this.userId + ", group=" + this.groupId;
+        return "UserGroup [id=" + this.id + ", userId=" + this.userId + ", group=" + this.groupId + "]";
     }
 
 }
