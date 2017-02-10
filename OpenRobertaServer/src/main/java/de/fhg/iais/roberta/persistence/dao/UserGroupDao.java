@@ -30,6 +30,7 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
         Assert.notNull(groupId);
         Assert.notNull(userId);
         UserGroup userGroup = loadUserGroup(userId, groupId);
+        System.out.println(groupId + " " + userId);
         if ( userGroup == null ) {
             userGroup = new UserGroup(userId, groupId);
             //group.setPassword(password);
@@ -50,7 +51,7 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
     public UserGroup loadUserGroup(int userId, int groupId) {
         Assert.notNull(groupId);
         Assert.notNull(userId);
-        Query hql = this.session.createQuery("from Group where groupId=:groupId and userId=:userId");
+        Query hql = this.session.createQuery("from UserGroup where userId=:userId and groupId=:groupId");
         hql.setInteger("groupId", groupId);
         hql.setInteger("userId", userId);
         return checkUserGroupExistance(hql);

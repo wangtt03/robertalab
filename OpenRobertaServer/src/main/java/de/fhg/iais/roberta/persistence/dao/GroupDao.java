@@ -39,9 +39,6 @@ public class GroupDao extends AbstractDao<Group> {
             this.session.save(group);
             this.session.commit();
             UserGroup userGroup = userGroupDao.persistUserGroup(owner, group.getId());
-            System.out.println("***");
-            System.out.println(userGroup);
-            System.out.println("***");
             return group;
         } else {
             return null;
