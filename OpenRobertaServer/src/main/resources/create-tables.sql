@@ -182,8 +182,21 @@ values('TestGroup4', 1
 commit;
 
 
+
 insert into USER_GROUP
 ( USER_ID, GROUPS_ID )
 values(1,1
+);
+commit;
+
+insert into USER_GROUP
+( USER_ID, GROUPS_ID )
+values(1,2
+);
+commit;
+
+insert into USER_GROUP
+( USER_ID, GROUPS_ID )
+values(2,1
 );
 commit;

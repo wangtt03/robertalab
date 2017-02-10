@@ -42,11 +42,9 @@ public class GroupDaoTest {
 
     @Test
     public void persistGroupReturnsNotNull() throws Exception {
-        //Create a list of users and groups
         for ( int number = 0; number < GroupDaoTest.TOTAL_USERS; number++ ) {
             User user = this.userDao.persistUser("account-" + number, "pass-" + number, Role.STUDENT.toString());
             Group group = this.groupDao.persistGroup("group-" + number, user.getId());
-            //System.out.println(user.getId());
             Assert.assertNotNull(group);
         }
     }
@@ -74,8 +72,40 @@ public class GroupDaoTest {
     public void loadAllListOfGroupsLengthIsFive() throws Exception {
         User owner = this.userDao.loadUser("Roberta");
         List<Group> userGroupList = this.groupDao.loadAll(owner);
+        System.out.println(userGroupList.size());
         Assert.assertTrue(userGroupList.size() == 5);
     }
+
+    /*@Test
+    public void loadMembersByGroup() throws Exception {
+        String groupName = "TestGroup";
+        List<User> userList = this.groupDao.loadMembersByGroup(groupName);
+        System.out.println(userList.size());
+        Assert.assertTrue(userList.size() == 2);
+    }
+    
+    @Test
+    public void loadGroupsByMember() throws Exception {
+        String memberName = "Roberta";
+        List<Group> groupList = this.groupDao.loadGroupsByMember(memberName);
+        System.out.println(groupList.size());
+        Assert.assertTrue(groupList.size() == 2);
+    }
+    
+    @Test
+    public void deleteByNameDeleted() throws Exception {
+        String memberName = "TestGroup2";
+        int deleted = this.groupDao.deleteByName(memberName);
+        System.out.println(deleted);
+        Assert.assertTrue(deleted == 1);
+    }
+    
+    @Test
+    public void deleteByNameNotDeleted() throws Exception {
+        String groupName = "qrqrqr";
+        int deleted = this.groupDao.deleteByName(groupName);
+        Assert.assertTrue(deleted == 0);
+    }*/
 
     @After
     public void tearDown() {

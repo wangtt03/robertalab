@@ -1,5 +1,6 @@
 package de.fhg.iais.roberta.persistence.dao;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -69,21 +70,40 @@ public class GroupDao extends AbstractDao<Group> {
     //load all members of the group
     public List<User> loadMembersByGroup(String name) {
         Group group = this.loadGroup(name);
-        Query hql = this.session.createQuery("from UserGroup where group=:group");
-        hql.setEntity("group", group);
+        UserDao userDao = new UserDao(this.session);
+        int groupId = group.getId();
+        Query hql = this.session.createQuery("from UserGroup where groupId=:groupId");
+
+        /*UserGroupDao ugd = new UserGroupDao(this.session);
+        UserGroup ug = ugd.loadUserGroup(1, 1);
+        System.out.println("ug");
+        System.out.println(ug);*/
+
+        hql.setInteger("groupId", groupId);
         @SuppressWarnings("unchecked")
-        List<User> il = hql.list();
-        return Collections.unmodifiableList(il);
+        List<UserGroup> il = hql.list();
+        System.out.println("List");
+        System.out.println(il);
+        List<User> users = new ArrayList<User>();
+        for ( UserGroup usr : il ) {
+            users.add(userDao.load(usr.getUser()));
+        }
+        return users;
     }
 
-    public List<User> loadGroupsByMember(String name) {
+    public List<Group> loadGroupsByMember(String name) {
         UserDao userDao = new UserDao(this.session);
+        GroupDao groupDao = new GroupDao(this.session);
         User user = userDao.loadUser(name);
         Query hql = this.session.createQuery("from UserGroup where user=:user");
         hql.setEntity("user", user.getId());
         @SuppressWarnings("unchecked")
-        List<User> il = hql.list();
-        return Collections.unmodifiableList(il);
+        List<UserGroup> il = hql.list();
+        List<Group> groups = new ArrayList<Group>();
+        for ( UserGroup grp : il ) {
+            groups.add(groupDao.load(grp.getGroup()));
+        }
+        return groups;
     }
 
     private Group checkGroupExistance(Query hql) {
