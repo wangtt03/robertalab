@@ -3,7 +3,6 @@ package de.fhg.iais.roberta.javaServer.basics;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +12,7 @@ import de.fhg.iais.roberta.persistence.bo.Role;
 import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.dao.GroupDao;
 import de.fhg.iais.roberta.persistence.dao.UserDao;
+import de.fhg.iais.roberta.persistence.dao.UserGroupDao;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.DbSetup;
 import de.fhg.iais.roberta.persistence.util.SessionFactoryWrapper;
@@ -25,6 +25,7 @@ public class GroupDaoTest {
     private DbSession hSession;
     private UserDao userDao;
     private GroupDao groupDao;
+    UserGroupDao userGroupDao;
 
     private static final int TOTAL_USERS = 5;
 
@@ -38,19 +39,15 @@ public class GroupDaoTest {
         this.hSession = this.sessionFactoryWrapper.getSession();
         this.userDao = new UserDao(this.hSession);
         this.groupDao = new GroupDao(this.hSession);
+        this.userGroupDao = new UserGroupDao(this.hSession);
     }
 
     @Test
     public void persistGroupReturnsNotNull() throws Exception {
-        //Create a list of users and groups
         for ( int number = 0; number < GroupDaoTest.TOTAL_USERS; number++ ) {
             User user = this.userDao.persistUser("account-" + number, "pass-" + number, Role.STUDENT.toString());
-            this.hSession.save(user);
-            this.hSession.commit();
             Group group = this.groupDao.persistGroup("group-" + number, user.getId());
-            this.hSession.save(group);
             this.hSession.commit();
-            //System.out.println(user.getId());
             Assert.assertNotNull(group);
         }
     }
@@ -75,16 +72,40 @@ public class GroupDaoTest {
     }
 
     @Test
-    public void loadAllListOfGroupsLengthIsFive() throws Exception {
-        User owner = this.userDao.loadUser("Roberta");
-        List<Group> userGroupList = this.groupDao.loadAll(owner);
-        System.out.println(userGroupList.size());
+    public void loadOwnerGroupsLengthIsFive() throws Exception {
+        int owner = 1;
+        List<Group> userGroupList = this.groupDao.loadOwnerGroups(owner);
         Assert.assertTrue(userGroupList.size() == 5);
     }
 
-    @After
-    public void tearDown() {
-        this.memoryDbSetup.deleteAllFromUserAndProgramTmpPasswords();
+    @Test
+    public void loadMembersByGroup() throws Exception {
+        String groupName = "TestGroup";
+        Group group = this.groupDao.loadGroup(groupName);
+        List<User> userList = this.groupDao.loadMembersByGroup(groupName);
+        Assert.assertTrue(userList.size() == 2);
+    }
+
+    @Test
+    public void loadGroupsByMember() throws Exception {
+        int memberId = 1;
+        List<Group> groupList = this.groupDao.loadGroupsByMember(memberId);
+        Assert.assertTrue(groupList.size() == 2);
+    }
+
+    @Test
+    public void deleteByNameDeleted() throws Exception {
+        String memberName = "TestGroup137";
+        int deleted = this.groupDao.deleteByName(memberName);
+        this.hSession.commit();
+        Assert.assertTrue(deleted == 1);
+    }
+
+    @Test
+    public void deleteByNameNotDeleted() throws Exception {
+        String groupName = "qrqrqr";
+        int deleted = this.groupDao.deleteByName(groupName);
+        Assert.assertTrue(deleted == 0);
     }
 
 }

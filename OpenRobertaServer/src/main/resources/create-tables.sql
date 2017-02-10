@@ -157,6 +157,29 @@ values('TestGroup', 1
 );
 commit;
 
+insert into GROUPS
+( NAME, OWNER_ID )
+values('TestGroup1', 1
+);
+commit;
+
+insert into GROUPS
+( NAME, OWNER_ID )
+values('TestGroup2', 1
+);
+commit;
+
+insert into GROUPS
+( NAME, OWNER_ID )
+values('TestGroup3', 1
+);
+commit;
+
+insert into GROUPS
+( NAME, OWNER_ID )
+values('TestGroup4', 1
+);
+commit;
 
 
 insert into USER_GROUP
