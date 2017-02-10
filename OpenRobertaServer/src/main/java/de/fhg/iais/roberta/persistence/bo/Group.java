@@ -61,7 +61,7 @@ public class Group implements WithSurrogateId {
 
     @Override
     public String toString() {
-        return "Group [id=" + this.id + ", owner=" + this.owner;
+        return "Group [id=" + this.id + ", owner=" + this.owner + "]";
     }
 
 }

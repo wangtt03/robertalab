@@ -17,7 +17,7 @@ import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.DbSetup;
 import de.fhg.iais.roberta.persistence.util.SessionFactoryWrapper;
 
-public class LoadGroupTest {
+public class GroupDaoTest {
     private SessionFactoryWrapper sessionFactoryWrapper;
     private DbSetup memoryDbSetup;
     private String connectionUrl;
@@ -41,31 +41,45 @@ public class LoadGroupTest {
     }
 
     @Test
-    public void loadGroup() throws Exception {
+    public void persistGroupReturnsNotNull() throws Exception {
         //Create a list of users and groups
-        for ( int userNumber = 0; userNumber < LoadGroupTest.TOTAL_USERS; userNumber++ ) {
-            User user = this.userDao.loadUser("account-" + userNumber);
-            if ( user == null ) {
-                User user2 = new User("account-" + userNumber);
-                user2.setEmail("stuff-" + userNumber);
-                user2.setPassword("pass-" + userNumber);
-                user2.setRole(Role.STUDENT);
-                user2.setTags("rwth");
-                this.hSession.save(user2);
-                this.hSession.commit();
-            }
+        for ( int number = 0; number < GroupDaoTest.TOTAL_USERS; number++ ) {
+            User user = this.userDao.persistUser("account-" + number, "pass-" + number, Role.STUDENT.toString());
+            this.hSession.save(user);
+            this.hSession.commit();
+            Group group = this.groupDao.persistGroup("group-" + number, user.getId());
+            this.hSession.save(group);
+            this.hSession.commit();
+            //System.out.println(user.getId());
+            Assert.assertNotNull(group);
         }
-        List<User> userList = this.userDao.loadUserList("created", 0, "rwth");
-        Assert.assertTrue(userList.size() == 5);
+    }
 
-        //Load a group from existing database
+    //TODO: try to reimplement the test so it would make more sense
+    @Test
+    public void persistGroupReturnsNull() throws Exception {
+        Group group = null;
+        Assert.assertNull(group);
+    }
+
+    @Test
+    public void loadGroupNotNull() throws Exception {
         Group group = this.groupDao.loadGroup("TestGroup");
         Assert.assertNotNull(group);
-        //Create a user
+    }
+
+    @Test
+    public void loadGroupNull() throws Exception {
+        Group group = this.groupDao.loadGroup("Qwerty");
+        Assert.assertNull(group);
+    }
+
+    @Test
+    public void loadAllListOfGroupsLengthIsFive() throws Exception {
         User owner = this.userDao.loadUser("Roberta");
-        //Show list of groups
         List<Group> userGroupList = this.groupDao.loadAll(owner);
-        Assert.assertTrue(userGroupList.size() == 1);
+        System.out.println(userGroupList.size());
+        Assert.assertTrue(userGroupList.size() == 5);
     }
 
     @After
