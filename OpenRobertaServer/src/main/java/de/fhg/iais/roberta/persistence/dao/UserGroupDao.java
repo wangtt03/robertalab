@@ -33,7 +33,6 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
         if ( userGroup == null ) {
             userGroup = new UserGroup(userId, groupId);
             this.session.save(userGroup);
-            this.session.commit();
             return userGroup;
         } else {
             return null;
@@ -59,12 +58,20 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
         @SuppressWarnings("unchecked")
         final List<UserGroup> il = hql.list();
         Assert.isTrue(il.size() <= 1);
-        System.out.println(hql);
-        System.out.println(il);
         if ( il.size() == 0 ) {
             return null;
         } else {
             return il.get(0);
+        }
+    }
+
+    public int deleteByIds(int userId, int groupId) {
+        final UserGroup toBeDeleted = loadUserGroup(userId, groupId);
+        if ( toBeDeleted == null ) {
+            return 0;
+        } else {
+            this.session.delete(toBeDeleted);
+            return 1;
         }
     }
 

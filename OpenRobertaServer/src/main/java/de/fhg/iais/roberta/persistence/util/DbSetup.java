@@ -51,6 +51,7 @@ public class DbSetup {
         this.dbExecutor.ddl("commit");
         DbSetup.LOG.info("committed the deletion of " + counter + " rows in tables " + toDelete + ".");
         Assert.isTrue(getOneBigIntegerAsLong("select count(*) from USER_PROGRAM") == 0, "the table USER_PROGRAM should be empty");
+
     }
 
     public long getOneBigIntegerAsLong(String sqlStmt) {

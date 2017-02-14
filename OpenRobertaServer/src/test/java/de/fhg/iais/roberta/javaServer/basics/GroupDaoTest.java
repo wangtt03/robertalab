@@ -13,6 +13,7 @@ import de.fhg.iais.roberta.persistence.bo.Role;
 import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.dao.GroupDao;
 import de.fhg.iais.roberta.persistence.dao.UserDao;
+import de.fhg.iais.roberta.persistence.dao.UserGroupDao;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.DbSetup;
 import de.fhg.iais.roberta.persistence.util.SessionFactoryWrapper;
@@ -25,6 +26,7 @@ public class GroupDaoTest {
     private DbSession hSession;
     private UserDao userDao;
     private GroupDao groupDao;
+    UserGroupDao userGroupDao;
 
     private static final int TOTAL_USERS = 5;
 
@@ -38,6 +40,7 @@ public class GroupDaoTest {
         this.hSession = this.sessionFactoryWrapper.getSession();
         this.userDao = new UserDao(this.hSession);
         this.groupDao = new GroupDao(this.hSession);
+        this.userGroupDao = new UserGroupDao(this.hSession);
     }
 
     @Test
@@ -45,6 +48,7 @@ public class GroupDaoTest {
         for ( int number = 0; number < GroupDaoTest.TOTAL_USERS; number++ ) {
             User user = this.userDao.persistUser("account-" + number, "pass-" + number, Role.STUDENT.toString());
             Group group = this.groupDao.persistGroup("group-" + number, user.getId());
+            this.hSession.commit();
             Assert.assertNotNull(group);
         }
     }
@@ -76,14 +80,18 @@ public class GroupDaoTest {
         Assert.assertTrue(userGroupList.size() == 5);
     }
 
-    /*@Test
+    @Test
     public void loadMembersByGroup() throws Exception {
         String groupName = "TestGroup";
+        Group group = this.groupDao.loadGroup(groupName);
+        System.out.println("groupId");
+        System.out.println(group.getId());
         List<User> userList = this.groupDao.loadMembersByGroup(groupName);
+        System.out.println("list size");
         System.out.println(userList.size());
         Assert.assertTrue(userList.size() == 2);
     }
-    
+
     @Test
     public void loadGroupsByMember() throws Exception {
         String memberName = "Roberta";
@@ -91,25 +99,33 @@ public class GroupDaoTest {
         System.out.println(groupList.size());
         Assert.assertTrue(groupList.size() == 2);
     }
-    
+
     @Test
     public void deleteByNameDeleted() throws Exception {
-        String memberName = "TestGroup2";
+        String memberName = "TestGroup137";
         int deleted = this.groupDao.deleteByName(memberName);
         System.out.println(deleted);
+        this.hSession.commit();
         Assert.assertTrue(deleted == 1);
     }
-    
+
     @Test
     public void deleteByNameNotDeleted() throws Exception {
         String groupName = "qrqrqr";
         int deleted = this.groupDao.deleteByName(groupName);
         Assert.assertTrue(deleted == 0);
-    }*/
+    }
 
     @After
-    public void tearDown() {
-        this.memoryDbSetup.deleteAllFromUserAndProgramTmpPasswords();
+    public void tearDown() throws Exception {
+        this.connectionUrl = null;
+        this.sessionFactoryWrapper = null;
+        this.nativeSession = null;
+        this.memoryDbSetup = null;
+        this.hSession = null;
+        this.userDao = null;
+        this.groupDao = null;
+        this.userGroupDao = null;
     }
 
 }
