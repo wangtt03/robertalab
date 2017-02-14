@@ -1550,6 +1550,12 @@
         "extra_labels_add": ["NRF51_DONGLE"],
         "macros_add": ["TARGET_NRF51_DONGLE"]
     },
+    "NRF51_CALLIOPE": {
+        "inherits": ["MCU_NRF51_16K_S110"],
+        "macros_add": ["TARGET_NRF_LFCLK_RC"],
+        "device_has": ["ANALOGIN", "ERROR_PATTERN", "I2C", "INTERRUPTIN", "PORTIN", "PORTINOUT", "PORTOUT", "PWMOUT", "SERIAL", "SLEEP", "SPI", "SPISLAVE"],
+        "release": true
+    },
     "NRF51_MICROBIT": {
         "inherits": ["MCU_NRF51_16K_S110"],
         "macros_add": ["TARGET_NRF_LFCLK_RC"],

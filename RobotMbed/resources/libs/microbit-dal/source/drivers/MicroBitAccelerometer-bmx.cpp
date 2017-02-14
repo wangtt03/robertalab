@@ -353,8 +353,8 @@ int MicroBitAccelerometer::updateSample()
 	// Now we'll calculate the accleration value into actual g's
 
         // read MSB values...
-        sample.x = ndata[0];
-        sample.y = ndata[1];
+        sample.x = ndata[1];
+        sample.y = ndata[0];
         sample.z = ndata[2];
 
 //	BMX_DEBUG("x=%d y=%d x=%d y=%d\r\n",data[0], data[1], data[2], data[3]);
@@ -488,16 +488,16 @@ uint16_t MicroBitAccelerometer::instantaneousPosture()
 
     // Determine our posture.
     if (getX() < (-1000 + MICROBIT_ACCELEROMETER_TILT_TOLERANCE))
-        return MICROBIT_ACCELEROMETER_EVT_TILT_DOWN;
-
-    if (getX() > (1000 - MICROBIT_ACCELEROMETER_TILT_TOLERANCE))
-        return MICROBIT_ACCELEROMETER_EVT_TILT_UP;
-
-    if (getY() < (-1000 + MICROBIT_ACCELEROMETER_TILT_TOLERANCE))
         return MICROBIT_ACCELEROMETER_EVT_TILT_LEFT;
 
-    if (getY() > (1000 - MICROBIT_ACCELEROMETER_TILT_TOLERANCE))
+    if (getX() > (1000 - MICROBIT_ACCELEROMETER_TILT_TOLERANCE))
         return MICROBIT_ACCELEROMETER_EVT_TILT_RIGHT;
+
+    if (getY() < (-1000 + MICROBIT_ACCELEROMETER_TILT_TOLERANCE))
+        return MICROBIT_ACCELEROMETER_EVT_TILT_DOWN;
+
+    if (getY() > (1000 - MICROBIT_ACCELEROMETER_TILT_TOLERANCE))
+        return MICROBIT_ACCELEROMETER_EVT_TILT_UP;
 
     if (getZ() < (-1000 + MICROBIT_ACCELEROMETER_TILT_TOLERANCE))
         return MICROBIT_ACCELEROMETER_EVT_FACE_DOWN;

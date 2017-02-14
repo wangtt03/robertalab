@@ -99,10 +99,9 @@ typedef enum {
     P0_30 = p30,
 
     //PADS
-    PAD1 = p0,
-    PAD2 = p1,
-    PAD3 = p2,
-    PAD4 = p22,
+    PAD3 = p1,
+    PAD2 = p2,
+    PAD1 = p3,
     
 
     //LED MATRIX COLS
@@ -125,7 +124,7 @@ typedef enum {
     //PIN_16
 
     // BUTTON A
-    BUTTON_A = p26,
+    BUTTON_A = p17,
     
 
     //NORMAL PIN (NO SPECIFIED FUNCTIONALITY)
@@ -151,7 +150,7 @@ typedef enum {
     TGT_RX = p25,
 
     //BUTTON B
-    BUTTON_B = p17,
+    BUTTON_B = p26,
     
     //ACCEL INTERRUPT PINS (MMA8653FC)
     ACCEL_INT2 = p27,
@@ -178,10 +177,10 @@ typedef enum {
     LED4    = P0_16,
 
     //SDA (SERIAL DATA LINE)
-    I2C_SDA0 = p20,
+    I2C_SDA0 = p30,
 
     //SCL (SERIAL CLOCK LINE)
-    I2C_SCL0 = p19
+    I2C_SCL0 = p0
 
 } PinName;
 

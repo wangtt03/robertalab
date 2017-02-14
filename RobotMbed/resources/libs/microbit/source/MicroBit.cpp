@@ -4,10 +4,6 @@ The MIT License (MIT)
 Copyright (c) 2016 British Broadcasting Corporation.
 This software is provided by Lancaster University by arrangement with the BBC.
 
-Modifications Copyright (c) 2016 Calliope GbR
-Modifications are provided by DELTA Systems (Georg Sommer) - Thomas Kern
-und Björn Eberhardt GbR by arrangement with Calliope GbR. 
-
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
 to deal in the Software without restriction, including without limitation
@@ -25,6 +21,11 @@ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+
+====================
+Modifications Copyright (c) 2016 Calliope GbR
+Modifications are provided by DELTA Systems (Georg Sommer) - Thomas Kern
+und Björn Eberhardt GbR by arrangement with Calliope GbR.
 */
 
 #include <pinmap.h>
@@ -64,12 +65,10 @@ RawSerial* SERIAL_DEBUG = NULL;
   * that represent various device drivers used to control aspects of the micro:bit.
   */
 MicroBit::MicroBit() :
-    
     serial(USBTX, USBRX),
 	resetButton(MICROBIT_PIN_BUTTON_RESET),
     storage(),
     i2c(I2C_SDA0, I2C_SCL0),
-    //i2c(I2C_SDA0, I2C_SCL0),
     messageBus(),
     display(),
     buttonA(MICROBIT_PIN_BUTTON_A, MICROBIT_ID_BUTTON_A),
@@ -81,13 +80,16 @@ MicroBit::MicroBit() :
     thermometer(storage),
     io(MICROBIT_ID_IO_P0,MICROBIT_ID_IO_P1,MICROBIT_ID_IO_P2,
        MICROBIT_ID_IO_P3,MICROBIT_ID_IO_P4,MICROBIT_ID_IO_P5,
-       MICROBIT_ID_IO_P6,MICROBIT_ID_IO_P7,MICROBIT_ID_IO_P9,
-       MICROBIT_ID_IO_P10,MICROBIT_ID_IO_P11,MICROBIT_ID_IO_P19,
-       MICROBIT_ID_IO_P20,
-       CALLIOPE_ID_IO_P3, CALLIOPE_ID_IO_P7, CALLIOPE_ID_IO_P8,
-       CALLIOPE_ID_IO_P9, CALLIOPE_ID_IO_P13, CALLIOPE_ID_IO_P14,
-       CALLIOPE_ID_IO_P15, CALLIOPE_ID_IO_P22, CALLIOPE_ID_IO_P28,
-       CALLIOPE_ID_IO_P29, CALLIOPE_ID_IO_P30),
+       MICROBIT_ID_IO_P6,MICROBIT_ID_IO_P7,MICROBIT_ID_IO_P8,
+       MICROBIT_ID_IO_P9,MICROBIT_ID_IO_P10,MICROBIT_ID_IO_P11,
+       MICROBIT_ID_IO_P12,MICROBIT_ID_IO_P13,MICROBIT_ID_IO_P14,
+       MICROBIT_ID_IO_P15,MICROBIT_ID_IO_P16,MICROBIT_ID_IO_P19,
+       MICROBIT_ID_IO_P20
+#ifdef TARGET_NRF51_CALLIOPE
+       ,
+       MICROBIT_ID_IO_P21
+#endif
+    ),
     bleManager(storage),
     radio(),
     ble(NULL),
