@@ -13,6 +13,7 @@ import de.fhg.iais.roberta.util.Key;
 import de.fhg.iais.roberta.util.Util1;
 
 public class GroupProcessor extends AbstractProcessor {
+
     public GroupProcessor(DbSession dbSession, HttpSessionState httpSessionState) {
         super(dbSession, httpSessionState);
     }
@@ -26,7 +27,7 @@ public class GroupProcessor extends AbstractProcessor {
      */
     public Group getGroup(String groupName) {
         if ( !Util1.isValidJavaIdentifier(groupName) ) {
-            setError(Key.GROUP_ERROR_ID_INVALID, groupName);
+            setError(Key.GROUP_ERROR_NAME_INVALID, groupName);
             return null;
         } else {
             GroupDao groupDao = new GroupDao(this.dbSession);
@@ -44,7 +45,7 @@ public class GroupProcessor extends AbstractProcessor {
     /**
      * Get information about all the groups which a user owns
      *
-     * @param ownerId the owner of the program
+     * @param ownerId the owner of the group
      */
     public JSONArray getGroupInfo(User owner) {
         GroupDao groupDao = new GroupDao(this.dbSession);
@@ -63,13 +64,24 @@ public class GroupProcessor extends AbstractProcessor {
      * Find out who are in a group
      *
      * @param groupName the name of the group
-     * @param ownerId the owner of the group
      */
-    public List<User> getGroupRelations(String groupName, int ownerId) {
+    public List<User> getGroupMembers(String groupName) {
         GroupDao groupDao = new GroupDao(this.dbSession);
         List<User> user = groupDao.loadMembersByGroup(groupName);
         setSuccess(Key.GROUP_GET_ALL_SUCCESS, "" + user);
         return user;
+    }
+
+    /**
+     * Find to which groups the user belongs
+     *
+     * @param userName the user
+     */
+    public List<Group> getMemberGroups(String userName) {
+        GroupDao groupDao = new GroupDao(this.dbSession);
+        List<Group> groups = groupDao.loadGroupsByMember(userName);
+        setSuccess(Key.GROUP_GET_ALL_SUCCESS, "" + groups);
+        return groups;
     }
 
     /**
@@ -79,19 +91,15 @@ public class GroupProcessor extends AbstractProcessor {
      * @param userId the owner of the program
      * @throws Exception
      */
-    public Group persistGroup(String groupName, int userId, boolean isOwner) throws Exception {
+    public Group persistGroup(String groupName, int userId) throws Exception {
         if ( !Util1.isValidJavaIdentifier(groupName) ) {
-            setError(Key.GROUP_ERROR_ID_INVALID, groupName);
+            setError(Key.GROUP_ERROR_NAME_INVALID, groupName);
             return null;
         }
         if ( this.httpSessionState.isUserLoggedIn() ) {
             GroupDao groupDao = new GroupDao(this.dbSession);
             Group result;
-            if ( isOwner ) {
-                result = groupDao.persistGroup(groupName, userId);
-            } else {
-                result = null;
-            }
+            result = groupDao.persistGroup(groupName, userId);
             return result;
         } else {
             setError(Key.USER_ERROR_NOT_LOGGED_IN);
