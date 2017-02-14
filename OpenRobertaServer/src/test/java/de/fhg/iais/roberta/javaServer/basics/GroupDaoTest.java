@@ -3,7 +3,6 @@ package de.fhg.iais.roberta.javaServer.basics;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -76,7 +75,6 @@ public class GroupDaoTest {
     public void loadAllListOfGroupsLengthIsFive() throws Exception {
         User owner = this.userDao.loadUser("Roberta");
         List<Group> userGroupList = this.groupDao.loadAll(owner);
-        System.out.println(userGroupList.size());
         Assert.assertTrue(userGroupList.size() == 5);
     }
 
@@ -84,11 +82,7 @@ public class GroupDaoTest {
     public void loadMembersByGroup() throws Exception {
         String groupName = "TestGroup";
         Group group = this.groupDao.loadGroup(groupName);
-        System.out.println("groupId");
-        System.out.println(group.getId());
         List<User> userList = this.groupDao.loadMembersByGroup(groupName);
-        System.out.println("list size");
-        System.out.println(userList.size());
         Assert.assertTrue(userList.size() == 2);
     }
 
@@ -96,7 +90,6 @@ public class GroupDaoTest {
     public void loadGroupsByMember() throws Exception {
         String memberName = "Roberta";
         List<Group> groupList = this.groupDao.loadGroupsByMember(memberName);
-        System.out.println(groupList.size());
         Assert.assertTrue(groupList.size() == 2);
     }
 
@@ -104,7 +97,6 @@ public class GroupDaoTest {
     public void deleteByNameDeleted() throws Exception {
         String memberName = "TestGroup137";
         int deleted = this.groupDao.deleteByName(memberName);
-        System.out.println(deleted);
         this.hSession.commit();
         Assert.assertTrue(deleted == 1);
     }
@@ -114,18 +106,6 @@ public class GroupDaoTest {
         String groupName = "qrqrqr";
         int deleted = this.groupDao.deleteByName(groupName);
         Assert.assertTrue(deleted == 0);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        this.connectionUrl = null;
-        this.sessionFactoryWrapper = null;
-        this.nativeSession = null;
-        this.memoryDbSetup = null;
-        this.hSession = null;
-        this.userDao = null;
-        this.groupDao = null;
-        this.userGroupDao = null;
     }
 
 }

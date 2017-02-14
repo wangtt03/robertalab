@@ -71,12 +71,6 @@ public class GroupDao extends AbstractDao<Group> {
         UserDao userDao = new UserDao(this.session);
         int groupId = group.getId();
         Query hql = this.session.createQuery("from UserGroup where groupId=:groupId");
-
-        /*UserGroupDao ugd = new UserGroupDao(this.session);
-        UserGroup ug = ugd.loadUserGroup(1, 1);
-        System.out.println("ug");
-        System.out.println(ug);*/
-
         hql.setInteger("groupId", groupId);
         @SuppressWarnings("unchecked")
         List<UserGroup> il = hql.list();
