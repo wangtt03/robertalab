@@ -1,7 +1,6 @@
 package de.fhg.iais.roberta.persistence;
 
 import de.fhg.iais.roberta.persistence.bo.UserGroup;
-import de.fhg.iais.roberta.persistence.dao.GroupDao;
 import de.fhg.iais.roberta.persistence.dao.UserGroupDao;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.HttpSessionState;
@@ -32,10 +31,10 @@ public class UserGroupProcessor extends AbstractProcessor {
     }
 
     /**
-     * create a given group owned by a given user. Overwrites an existing group if mayExist == true.
+     * create a given user-group connection. Overwrites an existing group if mayExist == true.
      *
-     * @param groupName the name of the program
-     * @param userId the owner of the program
+     * @param userId the id of the user
+     * @param groupId the id of the group
      * @throws Exception
      */
     public UserGroup persistGroup(int userId, int groupId) throws Exception {
@@ -55,9 +54,9 @@ public class UserGroupProcessor extends AbstractProcessor {
      *
      * @param groupName the name of the program
      */
-    public void deleteByName(String groupName, int ownerId) {
-        GroupDao groupDao = new GroupDao(this.dbSession);
-        int rowCount = groupDao.deleteByName(groupName);
+    public void deleteByName(int userId, int groupId) {
+        UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
+        int rowCount = userGroupDao.deleteByIds(userId, groupId);
         if ( rowCount > 0 ) {
             setSuccess(Key.GROUP_DELETE_SUCCESS);
         } else {
