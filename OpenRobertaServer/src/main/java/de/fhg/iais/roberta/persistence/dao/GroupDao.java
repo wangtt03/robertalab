@@ -36,10 +36,9 @@ public class GroupDao extends AbstractDao<Group> {
         UserGroupDao userGroupDao = new UserGroupDao(this.session);
         if ( group == null ) {
             group = new Group(name, owner);
-            //group.setPassword(password);
             this.session.save(group);
-            this.session.commit();
-            UserGroup userGroup = userGroupDao.persistUserGroup(owner, group.getId());
+            //group.setPassword(password);
+            userGroupDao.persistUserGroup(owner, group.getId());
             return group;
         } else {
             return null;
@@ -67,7 +66,6 @@ public class GroupDao extends AbstractDao<Group> {
         return Collections.unmodifiableList(il);
     }
 
-    //load all members of the group
     public List<User> loadMembersByGroup(String name) {
         Group group = this.loadGroup(name);
         UserDao userDao = new UserDao(this.session);
@@ -95,8 +93,8 @@ public class GroupDao extends AbstractDao<Group> {
         UserDao userDao = new UserDao(this.session);
         GroupDao groupDao = new GroupDao(this.session);
         User user = userDao.loadUser(name);
-        Query hql = this.session.createQuery("from UserGroup where user=:user");
-        hql.setEntity("user", user.getId());
+        Query hql = this.session.createQuery("from UserGroup where userId=:userId");
+        hql.setInteger("userId", user.getId());
         @SuppressWarnings("unchecked")
         List<UserGroup> il = hql.list();
         List<Group> groups = new ArrayList<Group>();
