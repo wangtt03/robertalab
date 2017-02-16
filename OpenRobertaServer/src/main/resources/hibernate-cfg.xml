@@ -29,7 +29,7 @@
         <mapping class="de.fhg.iais.roberta.persistence.bo.User"/>
         <mapping class="de.fhg.iais.roberta.persistence.bo.AccessRight"/>
         <mapping class="de.fhg.iais.roberta.persistence.bo.LostPassword"/>
-        <mapping class="de.fhg.iais.roberta.persistence.bo.Groups"/> 
-<!--         <mapping class="de.fhg.iais.roberta.persistence.bo.UserGroup"/> -->
+        <mapping class="de.fhg.iais.roberta.persistence.bo.Group"/> 
+		<mapping class="de.fhg.iais.roberta.persistence.bo.UserGroup"/>
     </session-factory>
 </hibernate-configuration>
