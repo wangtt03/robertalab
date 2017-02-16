@@ -57,7 +57,6 @@ import de.fhg.iais.roberta.util.dbc.DbcException;
  *
  * @author rbudde
  */
-
 public class RestInterfaceTest {
 
     private SessionFactoryWrapper sessionFactoryWrapper; // used by REST services to retrieve data base sessions
