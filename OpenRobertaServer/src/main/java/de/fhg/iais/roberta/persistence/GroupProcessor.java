@@ -112,7 +112,7 @@ public class GroupProcessor extends AbstractProcessor {
      *
      * @param groupName the name of the program
      */
-    public void deleteByName(String groupName, int ownerId) {
+    public void deleteByName(String groupName) {
         GroupDao groupDao = new GroupDao(this.dbSession);
         int rowCount = groupDao.deleteByName(groupName);
         if ( rowCount > 0 ) {

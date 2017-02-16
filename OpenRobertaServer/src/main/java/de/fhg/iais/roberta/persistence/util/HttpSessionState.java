@@ -9,8 +9,10 @@ import de.fhg.iais.roberta.util.dbc.Assert;
 
 public class HttpSessionState {
     public final static int NO_USER = -1;
+    public final static int NO_GROUP = -1;
 
     private int userId = HttpSessionState.NO_USER;
+    private int groupId = HttpSessionState.NO_GROUP;
     private String robotName;
     private String token = "1Q2W3E4R";
     private String programName;
@@ -36,6 +38,10 @@ public class HttpSessionState {
         return this.userId;
     }
 
+    public int getGroupId() {
+        return this.groupId;
+    }
+
     public boolean isUserLoggedIn() {
         return this.userId >= 1;
     }
@@ -49,6 +55,11 @@ public class HttpSessionState {
         this.program = null;
         this.configurationName = null;
         this.configuration = null;
+    }
+
+    public void setGroup(int groupId) {
+        Assert.isTrue(this.groupId >= 1 || this.groupId == HttpSessionState.NO_GROUP);
+        this.groupId = groupId;
     }
 
     public String getRobotName() {

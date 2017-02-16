@@ -37,7 +37,7 @@ public class UserGroupProcessor extends AbstractProcessor {
      * @param groupId the id of the group
      * @throws Exception
      */
-    public UserGroup persistGroup(int userId, int groupId) throws Exception {
+    public UserGroup persistUserGroup(int userId, int groupId) throws Exception {
         if ( this.httpSessionState.isUserLoggedIn() ) {
             UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
             UserGroup result;
@@ -54,7 +54,7 @@ public class UserGroupProcessor extends AbstractProcessor {
      *
      * @param groupName the name of the program
      */
-    public void deleteByName(int userId, int groupId) {
+    public void deleteByIds(int userId, int groupId) {
         UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
         int rowCount = userGroupDao.deleteByIds(userId, groupId);
         if ( rowCount > 0 ) {
