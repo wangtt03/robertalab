@@ -27,7 +27,7 @@ import de.fhg.iais.roberta.util.Key;
 import de.fhg.iais.roberta.util.Util;
 import de.fhg.iais.roberta.util.Util1;
 
-@Path("/group")
+@Path("/usergroups")
 public class ClientGroup {
     private static final Logger LOG = LoggerFactory.getLogger(ClientGroup.class);
 
@@ -65,23 +65,26 @@ public class ClientGroup {
             switch ( cmd ) {
                 case "addUser":
                     // add a user to an already existing group
-                    group = gp.getGroup(groupName);
                     ugp.persistUserGroup(userToManageId, groupId);
+                    break;
                 case "deleteUser":
-                    group = gp.getGroup(groupName);
                     ugp.deleteByIds(userToManageId, groupId);
-                case "addGroup":
+                    break;
+                case "createGroup":
                     group = gp.persistGroup(groupName, userId);
+                    break;
                 case "deleteGroup":
                     gp.deleteByName(groupName);
+                    break;
                 case "getGroup":
                     group = gp.getGroup(groupName);
+                    break;
                 default:
-                    group = gp.getGroup(groupName);
                     break;
             }
 
-            if ( gp.isOk() && (cmd.equals("addUser") || cmd.equals("deleteUser") || cmd.equals("getGroup") || cmd.equals("addGroup")) ) {
+            if ( gp.isOk() && (cmd.equals("addUser") || cmd.equals("deleteUser")) ) {
+                group = gp.getGroup(groupName);
                 if ( group == null ) {
                     ClientGroup.LOG.error("TODO: check potential error: the saved group should never be null");
                 }
