@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 
-import org.junit.Test;
+import org.junit.Ignore;
 
 /**
  * Checks whether phantomjs is available on your local system PATH.
@@ -14,7 +14,7 @@ import org.junit.Test;
  */
 public class PhantomJSAvailableTest {
 
-    @Test
+    @Ignore
     public void shouldHavePhantomJsBinary() {
 
         String binary = System.getProperty("phantomjs.binary");

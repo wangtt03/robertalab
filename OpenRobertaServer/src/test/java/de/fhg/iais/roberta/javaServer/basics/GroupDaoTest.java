@@ -72,9 +72,9 @@ public class GroupDaoTest {
     }
 
     @Test
-    public void loadAllListOfGroupsLengthIsFive() throws Exception {
-        User owner = this.userDao.loadUser("Roberta");
-        List<Group> userGroupList = this.groupDao.loadAll(owner);
+    public void loadOwnerGroupsLengthIsFive() throws Exception {
+        int owner = 1;
+        List<Group> userGroupList = this.groupDao.loadOwnerGroups(owner);
         Assert.assertTrue(userGroupList.size() == 5);
     }
 

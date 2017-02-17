@@ -1,5 +1,7 @@
 package de.fhg.iais.roberta.javaServer.restServices.all;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -18,6 +20,8 @@ import de.fhg.iais.roberta.javaServer.provider.OraData;
 import de.fhg.iais.roberta.persistence.GroupProcessor;
 import de.fhg.iais.roberta.persistence.UserGroupProcessor;
 import de.fhg.iais.roberta.persistence.bo.Group;
+import de.fhg.iais.roberta.persistence.bo.User;
+import de.fhg.iais.roberta.persistence.bo.UserGroup;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.HttpSessionState;
 import de.fhg.iais.roberta.robotCommunication.RobotCommunicator;
@@ -58,40 +62,73 @@ public class ClientGroup {
             final GroupProcessor gp = new GroupProcessor(dbSession, httpSessionState);
             final UserGroupProcessor ugp = new UserGroupProcessor(dbSession, httpSessionState);
 
-            final String groupName = request.getString("name");
-            final int userToManageId = request.getInt("userToManage");
-
+            String groupName = request.optString("groupName");
+            String userName = request.optString("userName");
+            int userToManageId = request.optInt("userId");
+            int groupToManageId = request.optInt("groupId");
             Group group;
+            UserGroup userGroup;
+            List<Group> groupList;
             switch ( cmd ) {
                 case "addUser":
                     // add a user to an already existing group
-                    ugp.persistUserGroup(userToManageId, groupId);
+                    ugp.persistUserGroup(userToManageId, groupToManageId);
+                    Util.addSuccessInfo(response, Key.USER_GROUP_SAVE_SUCCESS);
                     break;
                 case "deleteUser":
-                    ugp.deleteByIds(userToManageId, groupId);
+                    ugp.deleteByIds(userToManageId, groupToManageId);
+                    Util.addSuccessInfo(response, Key.USER_GROUP_DELETE_SUCCESS);
                     break;
                 case "createGroup":
-                    group = gp.persistGroup(groupName, userId);
+                    group = gp.persistGroup(groupName, userToManageId);
+                    Util.addSuccessInfo(response, Key.GROUP_CREATE_SUCCESS);
+                    break;
+                case "getOwnerGroups":
+                    groupList = gp.loadOwnerGroups(userId);
+                    Util.addSuccessInfo(response, Key.GROUP_GET_ALL_SUCCESS);
+                    response.put("groupList", groupList);
+                    Util.addResultInfo(response, gp);
+                    break;
+                case "getGroupMembers":
+                    List<User> memberList = gp.getGroupMembers(groupName);
+                    Util.addSuccessInfo(response, Key.GROUP_GET_ALL_SUCCESS);
+                    response.put("memberList", memberList);
+                    Util.addResultInfo(response, gp);
+                    break;
+                case "getMemberGroups":
+                    groupList = gp.getMemberGroups(userName);
+                    Util.addSuccessInfo(response, Key.GROUP_GET_ALL_SUCCESS);
+                    response.put("groupList", groupList);
+                    Util.addResultInfo(response, gp);
                     break;
                 case "deleteGroup":
                     gp.deleteByName(groupName);
+                    Util.addSuccessInfo(response, Key.GROUP_DELETE_SUCCESS);
                     break;
                 case "getGroup":
                     group = gp.getGroup(groupName);
+                    Util.addSuccessInfo(response, Key.USER_GROUP_GET_ONE_SUCCESS);
+                    response.put("group", group);
+                    Util.addResultInfo(response, gp);
+                    break;
+                case "getUserGroup":
+                    userGroup = ugp.getUserGroup(userToManageId, groupToManageId);
+                    Util.addSuccessInfo(response, Key.GROUP_GET_ONE_SUCCESS);
+                    response.put("userGroup", userGroup);
+                    Util.addResultInfo(response, ugp);
                     break;
                 default:
                     break;
             }
 
-            if ( gp.isOk() && (cmd.equals("addUser") || cmd.equals("deleteUser")) ) {
+            if ( gp.isOk() && (cmd.equals("addUser") || cmd.equals("deleteUser") || cmd.equals("getUserGroup")) ) {
                 group = gp.getGroup(groupName);
                 if ( group == null ) {
                     ClientGroup.LOG.error("TODO: check potential error: the saved group should never be null");
                 }
             }
+            dbSession.commit();
 
-            Util.addResultInfo(response, gp);
-            Util.addResultInfo(response, ugp);
         } catch ( final Exception e ) {
             dbSession.rollback();
             final String errorTicketId = Util1.getErrorTicketId();

@@ -58,9 +58,9 @@ public class GroupDao extends AbstractDao<Group> {
         return checkGroupExistance(hql);
     }
 
-    public List<Group> loadAll(User owner) {
+    public List<Group> loadOwnerGroups(int owner) {
         Query hql = this.session.createQuery("from Group where owner=:owner");
-        hql.setEntity("owner", owner);
+        hql.setInteger("owner", owner);
         @SuppressWarnings("unchecked")
         List<Group> il = hql.list();
         return Collections.unmodifiableList(il);
