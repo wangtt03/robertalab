@@ -35,10 +35,8 @@ public class ClientGroupTest {
 
     private SessionFactoryWrapper sessionFactoryWrapper; // used by REST services to retrieve data base sessions
     private DbSetup memoryDbSetup; // use to query the test data base, change the data base at will, etc.
-
     private Response response; // store all REST responses here
     private HttpSessionState sPid; // reference user 1 is "pid"
-
     // objects for specialized user stories
     private String connectionUrl;
     private RobotCommunicator brickCommunicator;
@@ -61,12 +59,11 @@ public class ClientGroupTest {
         loadPlugin(robotPlugins);
         this.sPid = HttpSessionState.init(this.brickCommunicator, robotPlugins, 1);
         restUser(this.sPid, "{'cmd':'login';'accountName':'Roberta';'password':'Roberta'}", "ok", Key.USER_GET_ONE_SUCCESS);
-
     }
 
     @Test
-    public void createGroup() throws Exception {
-        Assert.assertEquals(5, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS"));
+    public void createGroupNotNull() throws Exception {
+        Assert.assertEquals(6, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS"));
         Assert.assertTrue(this.sPid.isUserLoggedIn());
         long initNumberOfGroups = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS");
         restGroup(this.sPid, "{'cmd':'createGroup';'groupName':'restTestGroup1716';'userId':'1'}", "ok", Key.GROUP_CREATE_SUCCESS);
@@ -76,8 +73,19 @@ public class ClientGroupTest {
     }
 
     @Test
-    public void deleteGroup() throws Exception {
+    public void createGroupNull() throws Exception {
         Assert.assertEquals(6, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS"));
+        Assert.assertTrue(this.sPid.isUserLoggedIn());
+        long initNumberOfGroups = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS");
+        restGroup(this.sPid, "{'cmd':'createGroup';'groupName':'TestGroup';'userId':'1'}", "error", Key.GROUP_CREATE_ERROR_NOT_SAVED_TO_DB);
+        long finalNumberOfGroups = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS");
+        long diff = finalNumberOfGroups - initNumberOfGroups;
+        Assert.assertEquals(0, diff);
+    }
+
+    @Test
+    public void deleteGroupNotNull() throws Exception {
+        Assert.assertEquals(7, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS"));
         Assert.assertTrue(this.sPid.isUserLoggedIn());
         long initNumberOfGroups = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS");
         restGroup(this.sPid, "{'cmd':'deleteGroup';'groupName':'TestGroup4'}", "ok", Key.GROUP_DELETE_SUCCESS);
@@ -87,11 +95,30 @@ public class ClientGroupTest {
     }
 
     @Test
-    public void getGroupMembers() throws Exception {
+    public void deleteGroupNull() throws Exception {
+        long initNumberOfGroups = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS");
+        restGroup(this.sPid, "{'cmd':'deleteGroup';'groupName':'ghjghj'}", "error", Key.GROUP_DELETE_ERROR);
+        long finalNumberOfGroups = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS");
+        long diff = finalNumberOfGroups - initNumberOfGroups;
+        Assert.assertEquals(0, diff);
+    }
+
+    @Test
+    public void getGroupMembersNotNull() throws Exception {
         restGroup(this.sPid, "{'cmd':'getGroupMembers';'groupName':'TestGroup'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
         Assert.assertTrue(
             this.response.getEntity().toString().contains("id=1, account=Roberta, role=TEACHER")
                 && this.response.getEntity().toString().contains("id=2, account=TEST, role=TEACHER"));
+    }
+
+    @Test
+    public void getGroupMembersNull() throws Exception {
+        restGroup(this.sPid, "{'cmd':'getGroupMembers';'groupName':'Qererett'}", "error", Key.SERVER_ERROR);
+    }
+
+    @Test
+    public void getGroupMembersZero() throws Exception {
+        restGroup(this.sPid, "{'cmd':'getGroupMembers';'groupName':'TestGroup2'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
     }
 
     @Test
@@ -102,6 +129,11 @@ public class ClientGroupTest {
                 && this.response.getEntity().toString().contains("Group [id=2, owner=1]")
                 && this.response.getEntity().toString().contains("Group [id=3, owner=1]")
                 && this.response.getEntity().toString().contains("Group [id=7, owner=1]"));
+    }
+
+    @Test
+    public void getMemberGroupsNull() throws Exception {
+        restGroup(this.sPid, "{'cmd':'getMemberGroups';'userName':'qwwewe'}", "error", Key.SERVER_ERROR);
     }
 
     @Test
@@ -117,19 +149,29 @@ public class ClientGroupTest {
     }
 
     @Test
-    public void getGroup() throws Exception {
+    public void getGroupNotNull() throws Exception {
         restGroup(this.sPid, "{'cmd':'getGroup';'groupName':'TestGroup1'}", "ok", Key.GROUP_GET_ONE_SUCCESS);
         Assert.assertTrue(this.response.getEntity().toString().contains("[id=2, owner=1]"));
     }
 
     @Test
-    public void getUserGroup() throws Exception {
+    public void getGroupNull() throws Exception {
+        restGroup(this.sPid, "{'cmd':'getGroup';'groupName':'qwqwqw'}", "error", Key.GROUP_GET_ONE_ERROR_NOT_FOUND);
+    }
+
+    @Test
+    public void getUserGroupNotNull() throws Exception {
         restGroup(this.sPid, "{'cmd':'getUserGroup';'userId':'1';'groupId':'1'}", "ok", Key.USER_GROUP_GET_ONE_SUCCESS);
         Assert.assertTrue(this.response.getEntity().toString().contains("[id=1, userId=1, group=1]"));
     }
 
     @Test
-    public void addUser() throws Exception {
+    public void getUserGroupNull() throws Exception {
+        restGroup(this.sPid, "{'cmd':'getUserGroup';'userId':'98';'groupId':'576'}", "error", Key.USER_GROUP_GET_ONE_ERROR_NOT_FOUND);
+    }
+
+    @Test
+    public void addUserNotNull() throws Exception {
         Assert.assertEquals(3, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP"));
         long initNumberOfUsersInGroup = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP");
         restGroup(this.sPid, "{'cmd':'addUser';'userId':'1';'groupId':'3'}", "ok", Key.USER_GROUP_SAVE_SUCCESS);
@@ -139,13 +181,53 @@ public class ClientGroupTest {
     }
 
     @Test
-    public void deleteUser() throws Exception {
+    public void addUserNullGroup() throws Exception {
+        Assert.assertEquals(4, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP"));
+        long initNumberOfUsersInGroup = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP");
+        restGroup(this.sPid, "{'cmd':'addUser';'userId':'1';'groupId':'98989'}", "error", Key.SERVER_ERROR);
+        long finalNumberOfUsersInGroup = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP");
+        long diff = finalNumberOfUsersInGroup - initNumberOfUsersInGroup;
+        Assert.assertEquals(0, diff);
+    }
+
+    @Test
+    public void addUserNullUser() throws Exception {
+        Assert.assertEquals(4, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP"));
+        long initNumberOfUsersInGroup = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP");
+        restGroup(this.sPid, "{'cmd':'addUser';'userId':'158';'groupId':'1'}", "error", Key.SERVER_ERROR);
+        long finalNumberOfUsersInGroup = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP");
+        long diff = finalNumberOfUsersInGroup - initNumberOfUsersInGroup;
+        Assert.assertEquals(0, diff);
+    }
+
+    @Test
+    public void deleteUserNotNull() throws Exception {
         Assert.assertEquals(5, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP"));
         long initNumberOfUsersInGroup = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP");
-        restGroup(this.sPid, "{'cmd':'deleteUser';'userId':'1';'groupId':'1'}", "ok", Key.USER_GROUP_DELETE_SUCCESS);
+        restGroup(this.sPid, "{'cmd':'deleteUser';'userId':'1';'groupId':'2'}", "ok", Key.USER_GROUP_DELETE_SUCCESS);
         long finalNumberOfUsersInGroup = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP");
         long diff = finalNumberOfUsersInGroup - initNumberOfUsersInGroup;
         Assert.assertEquals(-1, diff);
+    }
+
+    @Test
+    public void deleteUserNullGroup() throws Exception {
+        Assert.assertEquals(4, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP"));
+        long initNumberOfUsersInGroup = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP");
+        restGroup(this.sPid, "{'cmd':'deleteUser';'userId':'1';'groupId':'551545'}", "error", Key.USER_GROUP_DELETE_ERROR);
+        long finalNumberOfUsersInGroup = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP");
+        long diff = finalNumberOfUsersInGroup - initNumberOfUsersInGroup;
+        Assert.assertEquals(0, diff);
+    }
+
+    @Test
+    public void deleteUserNullUser() throws Exception {
+        Assert.assertEquals(5, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP"));
+        long initNumberOfUsersInGroup = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP");
+        restGroup(this.sPid, "{'cmd':'deleteUser';'userId':'14654564';'groupId':'2'}", "error", Key.USER_GROUP_DELETE_ERROR);
+        long finalNumberOfUsersInGroup = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from USER_GROUP");
+        long diff = finalNumberOfUsersInGroup - initNumberOfUsersInGroup;
+        Assert.assertEquals(0, diff);
     }
 
     private void restGroup(HttpSessionState httpSession, String jsonAsString, String result, Key msgOpt) throws Exception {
