@@ -70,63 +70,67 @@ public class ClientGroup {
             UserGroup userGroup;
             List<Group> groupList;
             switch ( cmd ) {
+                case "createGroup":
+                    group = gp.persistGroup(groupName, userToManageId);
+                    if ( group == null ) {
+                        Util.addErrorInfo(response, Key.GROUP_CREATE_ERROR_NOT_SAVED_TO_DB);
+                    } else {
+                        Util.addSuccessInfo(response, Key.GROUP_CREATE_SUCCESS);
+                    }
+                    break;
+                case "getOwnerGroups":
+                    groupList = gp.loadOwnerGroups(userId);
+                    response.put("groupList", groupList);
+                    Util.addResultInfo(response, gp);
+                    break;
+                case "getGroupMembers":
+                    List<User> memberList = gp.getGroupMembers(groupName);
+                    response.put("memberList", memberList);
+                    Util.addResultInfo(response, gp);
+                    break;
+                case "getMemberGroups":
+                    groupList = gp.getMemberGroups(userName);
+                    response.put("groupList", groupList);
+                    Util.addResultInfo(response, gp);
+                    break;
+                case "deleteGroup":
+                    group = gp.getGroup(groupName);
+                    gp.deleteByName(groupName);
+                    if ( group == null ) {
+                        Util.addErrorInfo(response, Key.GROUP_DELETE_ERROR);
+                    } else {
+                        Util.addSuccessInfo(response, Key.GROUP_DELETE_SUCCESS);
+                    }
+                    break;
+                case "getGroup":
+                    group = gp.getGroup(groupName);
+                    response.put("group", group);
+                    Util.addResultInfo(response, gp);
+                    break;
+                case "getUserGroup":
+                    userGroup = ugp.getUserGroup(userToManageId, groupToManageId);
+                    response.put("userGroup", userGroup);
+                    Util.addResultInfo(response, ugp);
+                    break;
                 case "addUser":
                     // add a user to an already existing group
                     ugp.persistUserGroup(userToManageId, groupToManageId);
                     Util.addSuccessInfo(response, Key.USER_GROUP_SAVE_SUCCESS);
                     break;
                 case "deleteUser":
-                    ugp.deleteByIds(userToManageId, groupToManageId);
-                    Util.addSuccessInfo(response, Key.USER_GROUP_DELETE_SUCCESS);
-                    break;
-                case "createGroup":
-                    group = gp.persistGroup(groupName, userToManageId);
-                    Util.addSuccessInfo(response, Key.GROUP_CREATE_SUCCESS);
-                    break;
-                case "getOwnerGroups":
-                    groupList = gp.loadOwnerGroups(userId);
-                    Util.addSuccessInfo(response, Key.GROUP_GET_ALL_SUCCESS);
-                    response.put("groupList", groupList);
-                    Util.addResultInfo(response, gp);
-                    break;
-                case "getGroupMembers":
-                    List<User> memberList = gp.getGroupMembers(groupName);
-                    Util.addSuccessInfo(response, Key.GROUP_GET_ALL_SUCCESS);
-                    response.put("memberList", memberList);
-                    Util.addResultInfo(response, gp);
-                    break;
-                case "getMemberGroups":
-                    groupList = gp.getMemberGroups(userName);
-                    Util.addSuccessInfo(response, Key.GROUP_GET_ALL_SUCCESS);
-                    response.put("groupList", groupList);
-                    Util.addResultInfo(response, gp);
-                    break;
-                case "deleteGroup":
-                    gp.deleteByName(groupName);
-                    Util.addSuccessInfo(response, Key.GROUP_DELETE_SUCCESS);
-                    break;
-                case "getGroup":
-                    group = gp.getGroup(groupName);
-                    Util.addSuccessInfo(response, Key.USER_GROUP_GET_ONE_SUCCESS);
-                    response.put("group", group);
-                    Util.addResultInfo(response, gp);
-                    break;
-                case "getUserGroup":
                     userGroup = ugp.getUserGroup(userToManageId, groupToManageId);
-                    Util.addSuccessInfo(response, Key.GROUP_GET_ONE_SUCCESS);
-                    response.put("userGroup", userGroup);
-                    Util.addResultInfo(response, ugp);
+                    ugp.deleteByIds(userToManageId, groupToManageId);
+                    if ( userGroup == null ) {
+                        Util.addErrorInfo(response, Key.USER_GROUP_DELETE_ERROR);
+                    } else {
+                        Util.addSuccessInfo(response, Key.USER_GROUP_DELETE_SUCCESS);
+                    }
+
                     break;
                 default:
                     break;
             }
 
-            if ( gp.isOk() && (cmd.equals("addUser") || cmd.equals("deleteUser") || cmd.equals("getUserGroup")) ) {
-                group = gp.getGroup(groupName);
-                if ( group == null ) {
-                    ClientGroup.LOG.error("TODO: check potential error: the saved group should never be null");
-                }
-            }
             dbSession.commit();
 
         } catch ( final Exception e ) {

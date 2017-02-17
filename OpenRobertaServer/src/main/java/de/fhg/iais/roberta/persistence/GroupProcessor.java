@@ -92,6 +92,9 @@ public class GroupProcessor extends AbstractProcessor {
             GroupDao groupDao = new GroupDao(this.dbSession);
             Group result;
             result = groupDao.persistGroup(groupName, userId);
+            if ( result == null ) {
+                setError(Key.GROUP_CREATE_ERROR_NOT_SAVED_TO_DB);
+            }
             return result;
         } else {
             setError(Key.USER_ERROR_NOT_LOGGED_IN);
