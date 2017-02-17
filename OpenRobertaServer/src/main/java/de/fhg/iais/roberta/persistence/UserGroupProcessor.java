@@ -38,15 +38,10 @@ public class UserGroupProcessor extends AbstractProcessor {
      * @throws Exception
      */
     public UserGroup persistUserGroup(int userId, int groupId) throws Exception {
-        if ( this.httpSessionState.isUserLoggedIn() ) {
-            UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
-            UserGroup result;
-            result = userGroupDao.persistUserGroup(userId, groupId);
-            return result;
-        } else {
-            setError(Key.USER_ERROR_NOT_LOGGED_IN);
-            return null;
-        }
+        UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
+        UserGroup result;
+        result = userGroupDao.persistUserGroup(userId, groupId);
+        return result;
     }
 
     /**

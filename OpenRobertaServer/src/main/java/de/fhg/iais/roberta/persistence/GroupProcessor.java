@@ -2,8 +2,6 @@ package de.fhg.iais.roberta.persistence;
 
 import java.util.List;
 
-import org.codehaus.jettison.json.JSONArray;
-
 import de.fhg.iais.roberta.persistence.bo.Group;
 import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.dao.GroupDao;
@@ -42,22 +40,16 @@ public class GroupProcessor extends AbstractProcessor {
         }
     }
 
-    /**
-     * Get information about all the groups which a user owns
-     *
-     * @param ownerId the owner of the group
-     */
-    public JSONArray getGroupInfo(User owner) {
+    public List<Group> loadOwnerGroups(int owner) {
         GroupDao groupDao = new GroupDao(this.dbSession);
-        List<Group> groups = groupDao.loadAll(owner);
-        JSONArray groupsInfos = new JSONArray();
-        for ( final Group group : groups ) {
-            JSONArray groupInfos = new JSONArray();
-            groupInfos.put(group.getName());
-            groupInfos.put(group.getOwner());
+        List<Group> groups = groupDao.loadOwnerGroups(owner);
+        if ( groups != null ) {
+            setSuccess(Key.GROUP_GET_ALL_SUCCESS);
+            return groups;
+        } else {
+            setError(Key.GROUP_GET_ONE_ERROR_NOT_FOUND);
+            return null;
         }
-        setSuccess(Key.GROUP_GET_ALL_SUCCESS, "" + groupsInfos.length());
-        return groupsInfos;
     }
 
     /**

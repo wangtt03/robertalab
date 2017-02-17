@@ -188,7 +188,6 @@ values('TestGroup137', 2
 commit;
 
 
-
 insert into USER_GROUP
 ( USER_ID, GROUPS_ID )
 values(1,1
