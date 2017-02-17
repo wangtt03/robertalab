@@ -27,6 +27,16 @@
 		</dependency>
 		<dependency>
 			<groupId>de.fhg.iais.openroberta</groupId>
+<<<<<<< 102cf3a8108f097582bee65c2318e74910c52f7b
+			<artifactId>OpenRobertaRobot</artifactId>
+			<version>${project.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.fhg.iais.openroberta</groupId>
+=======
+>>>>>>> fixed maven ev3 factory dependency that was breaking REST test
 			<artifactId>RobotEV3</artifactId>
 			<scope>test</scope>
 		</dependency>
