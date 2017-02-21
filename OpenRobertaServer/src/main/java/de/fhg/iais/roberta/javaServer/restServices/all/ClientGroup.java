@@ -78,6 +78,7 @@ public class ClientGroup {
                         Util.addSuccessInfo(response, Key.GROUP_CREATE_SUCCESS);
                     }
                     break;
+                //TODO: change all ids to names
                 case "getOwnerGroups":
                     groupList = gp.loadOwnerGroups(userId);
                     response.put("groupList", groupList);
