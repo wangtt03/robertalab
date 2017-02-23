@@ -32,9 +32,13 @@ DEALINGS IN THE SOFTWARE.
 #include "MicroBitComponent.h"
 #include "MicroBitPin.h"
 
+//max light intensity
+#define RGB_LED_MAX_INTENSITY               40
+
 class CalliopeRGB : public MicroBitComponent
 {   
-    uint8_t PIN = CALLIOPE_PIN_RGB_LED;
+    uint32_t outputPin;
+    uint8_t maxIntensity;
 
     //values for the displayed color
     uint8_t GRBW[4];
@@ -44,11 +48,13 @@ class CalliopeRGB : public MicroBitComponent
         
     public:
         //constructor
-        CalliopeRGB();
+        CalliopeRGB(uint32_t pin = CALLIOPE_PIN_RGB_LED, uint8_t maxBrightness = RGB_LED_MAX_INTENSITY);
         
         //destructor
         ~CalliopeRGB(); 
-        
+
+        void setMaxBrightness(uint8_t max);
+
         //functions to control the the LED
         //sets all 4 color settings to the given values  
         void setColour(uint8_t red, uint8_t green, uint8_t blue, uint8_t white);

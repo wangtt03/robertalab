@@ -1,10 +1,10 @@
 {
   "name": "microbit",
-  "version": "2.0.0-rc7-calliope-p9",
+  "version": "2.0.0-rc7-calliope-p9-2016-2",
   "description": "A simple to use collection of the most commonly used components in the micro:bit runtime",
   "license": "MIT",
   "dependencies": {
-    "microbit-dal": "calliope-mini/microbit-dal#v2.0.0-rc7-calliope-p9"
+    "microbit-dal": "calliope-mini/microbit-dal#v2.0.0-rc7-calliope-p9-2016-2"
   },
   "extraIncludes": [
     "inc"
