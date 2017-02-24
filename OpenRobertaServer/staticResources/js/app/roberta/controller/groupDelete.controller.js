@@ -2,10 +2,15 @@ define([ 'require', 'exports', 'log', 'util', 'message', 'comm', 'group.model', 
         UTIL, MSG, COMM, GROUP, Blockly, $) {
 
     function init() {
+//        initView();
         initEvents();
         LOG.info('init group delete');
     }
     exports.init = init;
+
+    function initView() {
+
+    }
 
     function initEvents() {
         /**
@@ -16,12 +21,12 @@ define([ 'require', 'exports', 'log', 'util', 'message', 'comm', 'group.model', 
             for (var i = 0; i < group.length; i++) {
                 var gr = group[i];
                 var groupName = gr[0];
-                var resulting;
-                GROUP.deleteGroupFromListing(groupName, function(result, resulting) {
+                var groupOwner = gr[1];
+                GROUP.deleteGroupFromListing(groupName, function(result, groupName) {
                 UTIL.response(result);
                 if (result.rc === 'ok') {
                     MSG.displayInformation(result, "MESSAGE_GROUP_DELETED", result.message, groupName);
-                    $('#groupList').find('button[name="refresh"]').trigger('click');
+                    $('.bootstrap-table').find('button[name="refresh"]').trigger('click');
                     LOG.info('delete group "' + groupName + "'");
                 }
             });
