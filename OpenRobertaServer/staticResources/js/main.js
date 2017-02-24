@@ -43,6 +43,8 @@ require.config({
         'tour.controller' : '../app/roberta/controller/tour.controller',
         'user.controller' : '../app/roberta/controller/user.controller',
         'user.model' : '../app/roberta/models/user.model',
+        //'group.model' : '../app/roberta/models/group.model',
+        //'group.controller' : '../app/roberta/controller/group.controller',
         'rest.robot' : '../app/roberta/rest/robot',
 
         'simulation.constants' : '../app/simulation/simulationLogic/constants',
@@ -129,6 +131,7 @@ require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', '
     progShareController = require('progShare.controller');
     robotController = require('robot.controller');
     userController = require('user.controller');
+    //groupController = require('group.controller');
 
     $(document).ready(WRAP.fn3(init, 'page init'));
 });

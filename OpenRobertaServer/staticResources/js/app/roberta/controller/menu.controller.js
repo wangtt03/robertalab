@@ -241,7 +241,11 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'user.
                 USER_C.logout();
             } else if (domId === 'menuNewUser') { // Submenu 'Login'
                 $("#register-user").modal('show');
-            } else if (domId === 'menuChangeUser') { // Submenu 'Login'
+            }
+            else if (domId === 'menuGroups') { // Submenu 'Login'
+            	$('#tabGroupList').data('type', 'group');
+                $('#tabGroupList').click();
+            }else if (domId === 'menuChangeUser') { // Submenu 'Login'
                 USER_C.showUserDataForm();
             } else if (domId === 'menuDeleteUser') { // Submenu 'Login'
                 USER_C.showDeleteUserModal();
@@ -287,6 +291,7 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'user.
             }
         }, 'sim clicked');
 
+        
         $('#menuTabProgram').onWrap('click', '', function(event) {
             if ($('#tabSimulation').hasClass('tabClicked')) {
                 $('.scroller-left').click();
