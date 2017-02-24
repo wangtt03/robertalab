@@ -115,13 +115,13 @@ commit;
 
 insert into USER
 (ACCOUNT, PASSWORD, EMAIL, ROLE, CREATED, LAST_LOGIN, TAGS, USER_NAME)
-values ('Roberta','d4ab787ab667fef4:a5bf6037bd904f05b76ee431ae285f443229e3a3','','TEACHER',now ,now ,'','Roberta Roboter'
+values ('Roberta','f17a0084220e822e:313c4eda282166163f78cd0b13da3b66f5ed6a0e','','TEACHER',now ,now ,'','Roberta Roboter'
 );
 commit;
 
 insert into USER
 (ACCOUNT, PASSWORD, EMAIL, ROLE, CREATED, LAST_LOGIN, TAGS, USER_NAME)
-values ('TEST','d4ab787ab667fef4:a5bf6037bd904f05b76ee431ae285f443229e3a3','','TEACHER',now ,now ,'','Test User'
+values ('Gallery','f17a0084220e822e:313c4eda282166163f78cd0b13da3b66f5ed6a0e','','TEACHER',now ,now ,'','The Gallery'
 );
 commit;
 
