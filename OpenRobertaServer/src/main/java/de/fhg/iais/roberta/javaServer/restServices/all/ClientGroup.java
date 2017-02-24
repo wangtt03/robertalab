@@ -52,7 +52,6 @@ public class ClientGroup {
         MDC.put("groupId", String.valueOf(httpSessionState.getGroupId()));
         new ClientLogger().log(ClientGroup.LOG, fullRequest);
         final int userId = httpSessionState.getUserId();
-        final int groupId = httpSessionState.getGroupId();
         JSONObject response = new JSONObject();
         try {
             final JSONObject request = fullRequest.getJSONObject("data");

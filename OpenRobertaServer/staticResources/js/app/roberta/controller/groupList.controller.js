@@ -1,10 +1,11 @@
-define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.model', 'group.controller', 'guiState.controller', 'blocks-msg', 'jquery', 'bootstrap-table' ], function(
-        require, exports, LOG, UTIL, COMM, GROUPLIST, GROUP, GROUP_C, GUISTATE_C, Blockly, $) {
+define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.model', 'group.controller', 'blocks-msg', 'jquery', 'bootstrap-table' ], function(
+        require, exports, LOG, UTIL, COMM, GROUPLIST, GROUP, GROUP_C, Blockly, $) {
 
     /**
      * Initialize table of groups
      */
     function init() {
+
         initGroupList();
         initGroupListEvents();
         LOG.info('init group list view');
@@ -36,19 +37,29 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
                 title : "<span lkey='Blockly.Msg.DATATABLE_CREATED_BY'>Created by</span>",
                 sortable : true,
                 field : '1',
+            }, /*{
+                title : "<span lkey='Blockly.Msg.DATATABLE_CREATED_ON'>Created on</span>",
+                sortable : true,
+                field : '3',
+                formatter : UTIL.formatDate
             }, {
-                field : '2',
+                title : "<span lkey='Blockly.Msg.DATATABLE_ACTUALIZATION'>Letzte Aktualisierung</span>",
+                sortable : true,
+                field : '4',
+                formatter : UTIL.formatDate
+            }, */{
+                field : '5',
                 checkbox : true,
                 valign : 'middle',
             },
             {
-                field : '3',
-                events : eventsDeleteLoad,
-                title : '<a href="#" class="deleteSomeGroups disabled" title="Delete selected programs">' + '<span class="typcn typcn-delete"></span></a>',
+                field : '7',
+                events : eventsDeleteShareLoad,
+                title : '<a href="#" class="deleteSomeGroup disabled" title="Delete selected groups">' + '<span class="typcn typcn-delete"></span></a>',
                 align : 'left',
                 valign : 'top',
-                formatter : formatDeleteLoad,
-                width : '60px',
+                formatter : formatDeleteShareLoad,
+                width : '89px',
             }, ]
         });
         $('#groupNameTable').bootstrapTable('togglePagination');
@@ -61,27 +72,24 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
                 height : UTIL.calcDataTableHeight()
             });
         });
-        
         $('#tabGroupList').on('show.bs.tab', function(e) {
             guiStateController.setView('tabGroupList');
             GROUPLIST.loadGroupList(update);
         });
-                
-               
-        $('#groupList').find('button[name="refresh"]').onWrap('click', function() {
-        	GROUPLIST.loadGroupList(update);  	
+
+        $('.bootstrap-table').find('button[name="refresh"]').onWrap('click', function() {
+        	GROUPLIST.loadGroupList(update);
             return false;
         }, "refresh group list clicked");
-        
-        $('#createGroup').onWrap('click', function() {
-            GROUP_C.showSaveAsModal();
-            return false;
-        }, "create a group")
+
+        $('#groupNameTable').onWrap('dbl-click-row.bs.table', function($element, row) {
+            GROUP_C.loadFromListing(row);
+        }, "Load group from listing double clicked");
 
         $('#groupNameTable').onWrap('check-all.bs.table', function($element, rows) {
-	        $('.deleteSomeGroup').removeClass('disabled');
-	        $('.delete').addClass('disabled');
-	        $('.load').addClass('disabled');
+            $('.deleteSomeGroup').removeClass('disabled');
+            $('.delete').addClass('disabled');
+            $('.load').addClass('disabled');
         }, 'check all groups');
 
         $('#groupNameTable').onWrap('check.bs.table', function($element, row) {
@@ -89,7 +97,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
             $('.delete').addClass('disabled');
             $('.load').addClass('disabled');
         }, 'check one group');
-        
+
         $('#groupNameTable').onWrap('uncheck-all.bs.table', function($element, rows) {
             $('.deleteSomeGroup').addClass('disabled');
             $('.delete').removeClass('disabled');
@@ -106,10 +114,10 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
         }, 'uncheck one group');
 
         $('#backGroupList').onWrap('click', function() {
-            $('#tabProgram').trigger('click');
+            $('#tabGroup').trigger('click');
             return false;
-        }, "back to program view")
-        
+        }, "back to group view")
+
         $(document).onWrap('click', '.deleteSomeGroup', function() {
             var group = $('#groupNameTable').bootstrapTable('getSelections', {});
             var names = '';
@@ -125,15 +133,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
             $("#confirmDeleteGroup").modal("show");
             return false;
         }, "delete groups");
-        
-        
-        $('#groupNameTable').onWrap('dbl-click-row.bs.table', function($element, row) {
-        	GUISTATE_C.setGroupName(row[0]);
-        	$('#tabUserGroupList').data('type', 'userGroup');
-            $('#tabUserGroupList').click();
-        }, "Load group from listing double clicked");
-        
-        
+
         $('#groupNameTable').on('shown.bs.collapse hidden.bs.collapse', function(e) {
             $('#groupNameTable').bootstrapTable('resetWidth');
         });
@@ -169,9 +169,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
             return false;
         },
         'click .load' : function(e, value, row, index) {
-        	GUISTATE_C.setGroupName(row[0]);
-        	$('#tabUserGroupList').data('type', 'userGroup');
-            $('#tabUserGroupList').click();
+            GROUP_C.loadFromListing(row);
         }
     };
 
