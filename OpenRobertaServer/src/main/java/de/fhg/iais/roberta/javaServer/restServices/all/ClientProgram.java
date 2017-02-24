@@ -100,6 +100,7 @@ public class ClientProgram {
 
             final IRobotFactory robotFactory = httpSessionState.getRobotFactory();
             final ICompilerWorkflow robotCompilerWorkflow = robotFactory.getRobotCompilerWorkflow();
+            System.out.println(cmd);
 
             if ( cmd.equals("saveP") || cmd.equals("saveAsP") ) {
                 final String programName = request.getString("name");
@@ -145,6 +146,7 @@ public class ClientProgram {
                 final String ownerName = request.getString("owner");
                 final User owner = up.getUser(ownerName);
                 final int ownerID = owner.getId();
+                System.out.println(ownerID);
                 final Program program = pp.getProgram(programName, ownerID, robot);
                 if ( program != null ) {
                     response.put("data", program.getProgramText());
@@ -190,6 +192,11 @@ public class ClientProgram {
                 upp.shareToUser(userId, robot, programName, userToShareName, right);
                 Util.addResultInfo(response, upp);
 
+            } else if ( cmd.equals("shareWithGallery") && httpSessionState.isUserLoggedIn() ) {
+                final String programName = request.getString("programName");
+                upp.shareToUser(userId, robot, programName, "Gallery", "READ");
+                Util.addResultInfo(response, upp);
+
             } else if ( cmd.equals("shareDelete") && httpSessionState.isUserLoggedIn() ) {
                 final String programName = request.getString("programName");
                 final String owner = request.getString("owner");
@@ -206,10 +213,27 @@ public class ClientProgram {
                 response.put("programNames", programInfo);
                 Util.addResultInfo(response, pp);
 
+            } else if ( cmd.equals("loadGallery") ) {
+                final JSONArray programInfo = pp.getProgramGallery(2);
+                response.put("programNames", programInfo);
+                Util.addResultInfo(response, pp);
+
+            } else if ( cmd.equals("loadProgramEntity") && httpSessionState.isUserLoggedIn() ) {
+                final String programName = request.getString("name");
+                final String ownerName = request.getString("owner");
+                final User owner = up.getUser(ownerName);
+                final int ownerID = owner.getId();
+                final JSONArray program = pp.getProgramEntity(programName, ownerID, robot);
+                if ( program != null ) {
+                    response.put("program", program);
+                }
+                Util.addResultInfo(response, pp);
+
             } else if ( cmd.equals("loadEN") ) {
                 final JSONArray programInfo = pp.getProgramInfo(1, robot);
                 response.put("programNames", programInfo);
                 Util.addResultInfo(response, pp);
+
             } else if ( cmd.equals("loadPR") && httpSessionState.isUserLoggedIn() ) {
                 final String programName = request.getString("name");
                 final JSONArray relations = pp.getProgramRelations(programName, userId, robot);
