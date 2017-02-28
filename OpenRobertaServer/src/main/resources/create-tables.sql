@@ -187,6 +187,12 @@ values('TestGroup137', 2
 );
 commit;
 
+insert into GROUPS
+( NAME, OWNER_ID )
+values('TestGroup138', 2
+);
+commit;
+
 
 insert into USER_GROUP
 ( USER_ID, GROUPS_ID )
@@ -203,5 +209,10 @@ commit;
 insert into USER_GROUP
 ( USER_ID, GROUPS_ID )
 values(2,1
+);
+
+insert into USER_GROUP
+( USER_ID, GROUPS_ID )
+values(2,6
 );
 commit;

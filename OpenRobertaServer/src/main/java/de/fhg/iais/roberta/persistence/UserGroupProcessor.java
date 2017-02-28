@@ -18,9 +18,9 @@ public class UserGroupProcessor extends AbstractProcessor {
      * @param groupId - group id
      * @return the userGroup; null, if no group was found
      */
-    public UserGroup getUserGroup(int userId, int groupId) {
+    public UserGroup getUserGroup(String userName, String groupName) {
         UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
-        UserGroup userGroup = userGroupDao.loadUserGroup(userId, groupId);
+        UserGroup userGroup = userGroupDao.loadUserGroup(userName, groupName);
         if ( userGroup != null ) {
             setSuccess(Key.USER_GROUP_GET_ONE_SUCCESS);
             return userGroup;
@@ -37,10 +37,10 @@ public class UserGroupProcessor extends AbstractProcessor {
      * @param groupId the id of the group
      * @throws Exception
      */
-    public UserGroup persistUserGroup(int userId, int groupId) throws Exception {
+    public UserGroup persistUserGroup(String userName, String groupName) throws Exception {
         UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
         UserGroup result;
-        result = userGroupDao.persistUserGroup(userId, groupId);
+        result = userGroupDao.persistUserGroup(userName, groupName);
         return result;
     }
 
@@ -49,9 +49,9 @@ public class UserGroupProcessor extends AbstractProcessor {
      *
      * @param groupName the name of the program
      */
-    public void deleteByIds(int userId, int groupId) {
+    public void deleteByIds(String userName, String groupName) {
         UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
-        int rowCount = userGroupDao.deleteByIds(userId, groupId);
+        int rowCount = userGroupDao.deleteByIds(userName, groupName);
         if ( rowCount > 0 ) {
             setSuccess(Key.GROUP_DELETE_SUCCESS);
         } else {

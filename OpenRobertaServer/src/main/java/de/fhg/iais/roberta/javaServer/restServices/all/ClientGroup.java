@@ -62,9 +62,8 @@ public class ClientGroup {
             final UserGroupProcessor ugp = new UserGroupProcessor(dbSession, httpSessionState);
 
             String groupName = request.optString("groupName");
-            String userName = request.optString("userName");
+            String account = request.optString("account");
             int userToManageId = request.optInt("userId");
-            int groupToManageId = request.optInt("groupId");
             Group group;
             UserGroup userGroup;
             List<Group> groupList;
@@ -89,7 +88,7 @@ public class ClientGroup {
                     Util.addResultInfo(response, gp);
                     break;
                 case "getMemberGroups":
-                    groupList = gp.getMemberGroups(userName);
+                    groupList = gp.getMemberGroups(account);
                     response.put("groupList", groupList);
                     Util.addResultInfo(response, gp);
                     break;
@@ -108,18 +107,18 @@ public class ClientGroup {
                     Util.addResultInfo(response, gp);
                     break;
                 case "getUserGroup":
-                    userGroup = ugp.getUserGroup(userToManageId, groupToManageId);
+                    userGroup = ugp.getUserGroup(account, groupName);
                     response.put("userGroup", userGroup);
                     Util.addResultInfo(response, ugp);
                     break;
                 case "addUser":
                     // add a user to an already existing group
-                    ugp.persistUserGroup(userToManageId, groupToManageId);
+                    ugp.persistUserGroup(account, groupName);
                     Util.addSuccessInfo(response, Key.USER_GROUP_SAVE_SUCCESS);
                     break;
                 case "deleteUser":
-                    userGroup = ugp.getUserGroup(userToManageId, groupToManageId);
-                    ugp.deleteByIds(userToManageId, groupToManageId);
+                    userGroup = ugp.getUserGroup(account, groupName);
+                    ugp.deleteByIds(account, groupName);
                     if ( userGroup == null ) {
                         Util.addErrorInfo(response, Key.USER_GROUP_DELETE_ERROR);
                     } else {

@@ -22,14 +22,22 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
      *
      * @param session the session used to access the database.
      */
+
+    UserDao ud;
+    GroupDao gd;
+
     public UserGroupDao(DbSession session) {
         super(UserGroup.class, session);
+        this.ud = new UserDao(session);
+        this.gd = new GroupDao(session);
     }
 
-    public UserGroup persistUserGroup(int userId, int groupId) throws Exception {
-        Assert.notNull(groupId);
-        Assert.notNull(userId);
-        UserGroup userGroup = loadUserGroup(userId, groupId);
+    public UserGroup persistUserGroup(String userName, String groupName) throws Exception {
+        Assert.notNull(userName);
+        Assert.notNull(groupName);
+        UserGroup userGroup = loadUserGroup(userName, groupName);
+        int userId = this.ud.loadUser(userName).getId();
+        int groupId = this.gd.loadGroup(groupName).getId();
         if ( userGroup == null ) {
             userGroup = new UserGroup(userId, groupId);
             this.session.save(userGroup);
@@ -45,9 +53,11 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
      * @return the list of all groups, may be an empty list, but never null
      */
 
-    public UserGroup loadUserGroup(int userId, int groupId) {
-        Assert.notNull(groupId);
-        Assert.notNull(userId);
+    public UserGroup loadUserGroup(String account, String groupName) {
+        Assert.notNull(account);
+        Assert.notNull(groupName);
+        int userId = this.ud.loadUser(account).getId();
+        int groupId = this.gd.loadGroup(groupName).getId();
         Query hql = this.session.createQuery("from UserGroup where userId=:userId and groupId=:groupId");
         hql.setDouble("userId", userId);
         hql.setDouble("groupId", groupId);
@@ -65,8 +75,10 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
         }
     }
 
-    public int deleteByIds(int userId, int groupId) {
-        final UserGroup toBeDeleted = loadUserGroup(userId, groupId);
+    public int deleteByIds(String userName, String groupName) {
+        Assert.notNull(userName);
+        Assert.notNull(groupName);
+        UserGroup toBeDeleted = loadUserGroup(userName, groupName);
         if ( toBeDeleted == null ) {
             return 0;
         } else {
