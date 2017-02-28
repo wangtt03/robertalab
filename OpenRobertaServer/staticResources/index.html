@@ -227,7 +227,7 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 							<li class="login"><a href="#" id="menuLogout"
 								class="typcn typcn-user-outline" lkey="Blockly.Msg.MENU_LOG_OUT">abmelden</a></li>
 								
-							<li class="login"><a href="#" id="goToGroups"
+							<li class="login"><a href="#" id="menuGroups"
 								class="typcn typcn-group-outline" lkey="Blockly.Msg.GO_TO_GROUPS">go to groups</a></li>
 								
 							<!-- <li><a href="#" id="menuNewUser" class="typcn typcn-user-add" lkey="Blockly.Msg.MENU_NEW">neu ...</a></li> -->
@@ -533,6 +533,24 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 			<table id="programNameTable">
 			</table>
 		</div>
+		<div id="groupList" class="tab-pane fade">
+			<div id="groupListToolbar">
+				<button id="backProgList" class="btn">
+					<i class="typcn typcn-arrow-left"></i>
+				</button>
+			</div>
+			<table id="groupNameTable">
+			</table>
+		</div>
+		<div id="userGroupList" class="tab-pane fade">
+			<div id="userGroupListToolbar">
+				<button id="backProgList" class="btn">
+					<i class="typcn typcn-arrow-left"></i>
+				</button>
+			</div>
+			<table id="userGroupNameTable">
+			</table>
+		</div>
 		<div id="confList" class="tab-pane fade">
 			<!-- <h2 lkey="Blockly.Msg.DATATABLE_CONFIGURATIONS">Konfigurationen</h2> -->
 			<div id="confListToolbar">
@@ -683,14 +701,14 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 						<div class="modal-body">
 							<div class="form-group">
 								<label for="registerGroupName"
-									lkey="Blockly.Msg.POPUP_GROUPNAME">Groupname</label>
+									lkey="Blockly.Msg.POPUP_GROUPNAME">Group name</label>
 								<div class="input-group">
 									<span class="input-group-addon typcn input-typcn typcn-group-outline"></span>
 									<input type="text" class="form-control"
 										id="registerGroupName" name="registerGroupName" />
 								</div>
 							</div>
-							<div class="form-group" id="fgRegisterPass">
+							<!-- <div class="form-group" id="fgRegisterPass">
 								<label for="registerPass" lkey="Blockly.Msg.POPUP_PASSWORD">Password</label>
 								<div class="input-group">
 									<span
@@ -709,14 +727,32 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 									<input type="password" class="form-control"
 										id="registerPassConfirm" name="registerPassConfirm" />
 								</div>
-							</div>
+							</div> --> 
 						</div>
-						<div class="modal-footer">
-							<button id="showChangeUserPassword" type="button"
-								class="btn-link hidden" lkey="Blockly.Msg.POPUP_CHANGE_PASSWORD"></button>
-							<button type="submit" class="btn btn-primary btn-block"
-								id="registerUser" lkey="Blockly.Msg.POPUP_REGISTER_USER"
-								value="register"></button>
+					</form>
+					<!-- End | Group Register Form -->
+					
+					<!-- Begin | User-Group Register Form -->
+					<form id="register-form" style="display: none;">
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="addUser"
+									lkey="Blockly.Msg.POPUP_USERNAME">User name</label>
+								<div class="input-group">
+									<span class="input-group-addon typcn input-typcn typcn-group-outline"></span>
+									<input type="text" class="form-control"
+										id="raddUser" name="addUser" />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="addGroup"
+									lkey="Blockly.Msg.POPUP_GROUPNAME">Group name</label>
+								<div class="input-group">
+									<span class="input-group-addon typcn input-typcn typcn-group-outline"></span>
+									<input type="text" class="form-control"
+										id="addUser" name="addUser" />
+								</div>
+							</div>
 						</div>
 					</form>
 					<!-- End | Group Register Form -->
@@ -725,11 +761,12 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 					<form id="lost-form" style="display: none;">
 						<div class="modal-body">
 							<div class="form-group">
-								<label for="lost_email" lkey="Blockly.Msg.POPUP_EMAIL">E-mail</label>
+								<label for="addAccountName"
+									lkey="Blockly.Msg.POPUP_USERNAME">Username</label>
 								<div class="input-group">
-									<span class="input-group-addon typcn input-typcn typcn-mail"></span>
-									<input type="email" id="lost_email" class="form-control"
-										name="lost_email" />
+									<span class="input-group-addon typcn input-typcn typcn-user"></span>
+									<input type="text" class="form-control"
+										id="registerAccountName" name="registerAccountName" />
 								</div>
 							</div>
 						</div>
