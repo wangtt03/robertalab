@@ -23,8 +23,6 @@ public class UserGroupDaoTest {
     private GroupDao groupDao;
     UserGroupDao userGroupDao;
 
-    private static final int TOTAL_USERS = 5;
-
     @Before
     public void setup() throws Exception {
         this.connectionUrl = "jdbc:hsqldb:mem:createNewGroupDb";
@@ -40,32 +38,28 @@ public class UserGroupDaoTest {
 
     @Test
     public void persistUserGroupNotNull() throws Exception {
-        UserGroup userGroup = this.userGroupDao.persistUserGroup(1, 3);
+        UserGroup userGroup = this.userGroupDao.persistUserGroup("Roberta", "TestGroup138");
         this.hSession.commit();
         Assert.assertNotNull(userGroup);
     }
 
     @Test
     public void persistUserGroupNull() throws Exception {
-        UserGroup userGroup = this.userGroupDao.persistUserGroup(1, 2);
+        UserGroup userGroup = this.userGroupDao.persistUserGroup("Roberta", "TestGroup");
         this.hSession.commit();
         Assert.assertNull(userGroup);
     }
 
     @Test
     public void deleteByIds() throws Exception {
-        int userId = 1;
-        int groupId = 1;
-        int deleted = this.userGroupDao.deleteByIds(userId, groupId);
+        int deleted = this.userGroupDao.deleteByIds("Roberta", "TestGroup1");
         this.hSession.commit();
         Assert.assertTrue(deleted == 1);
     }
 
     @Test
     public void deleteByIdsNotDeleted() throws Exception {
-        int userId = 1;
-        int groupId = 88;
-        int deleted = this.userGroupDao.deleteByIds(userId, groupId);
+        int deleted = this.userGroupDao.deleteByIds("Roberta", "TestGroup138");
         this.hSession.commit();
         Assert.assertTrue(deleted == 0);
     }

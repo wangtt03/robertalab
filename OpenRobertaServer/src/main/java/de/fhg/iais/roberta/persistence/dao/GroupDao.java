@@ -30,15 +30,17 @@ public class GroupDao extends AbstractDao<Group> {
         super(Group.class, session);
     }
 
-    public Group persistGroup(String name, int owner) throws Exception {
-        Assert.notNull(name);
-        Group group = loadGroup(name);
+    public Group persistGroup(String groupName, int owner) throws Exception {
+        Assert.notNull(groupName);
+        Group group = loadGroup(groupName);
+        UserDao ud = new UserDao(this.session);
+        String ownerName = ud.loadUser(owner).getAccount();
         UserGroupDao userGroupDao = new UserGroupDao(this.session);
         if ( group == null ) {
-            group = new Group(name, owner);
+            group = new Group(groupName, owner);
             this.session.save(group);
             //group.setPassword(password);
-            userGroupDao.persistUserGroup(owner, group.getId());
+            userGroupDao.persistUserGroup(ownerName, groupName);
             return group;
         } else {
             return null;
