@@ -1,43 +1,186 @@
-define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.controller', 'jquery', 'blocks', 'blocks-msg' ], function(exports, LOG, MSG, UTIL, USERGROUP,
+define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.controller', 'jquery', 'blocks', 'blocks-msg' ], function(exports, LOG, MSG, UTIL, USER_GROUP,
         GUISTATE_C, $, Blockly) {
 
+    var $divForms;
+    var $formLogin;
+    var $formLost;
+    var $formRegister;
+    var $formUserPasswordChange;
+    var $formSingleModal;
+    var $modalAnimateTime = 300;
+    var $msgAnimateTime = 150;
+    var $msgShowTime = 2000;
+
     /**
-     * Add a user to group
+     * Create new user group
      */
-    function addUserToGroup() {
-    	$('.modal').modal('hide'); // close all opened popups
-        var userName = $('#singleModalInput').val().trim();
-        if (!/^[a-zA-Z0-9=+!?.,%#+&^@_ ]+$/gi.test(userName)){
-        	return null;
+    function createUserGroupToServer() {
+        $formRegister.validate();
+        if ($formRegister.valid()) {
+            USER_GROUP.createUserToServer($("#addUser").val(), $('#addGroup').val(), function(
+                    result) {
+                if (result.rc === "ok") {
+                	$('#addUser').val($('#addUser').val());
+                    $('#addGroup').val($('#addGroup').val());
+                }
+                MSG.displayInformation(result, "", result.message);
+            });
         }
-        var groupName = GUISTATE_C.getGroupName();
-        LOG.info('add user ' + userName + ' to a group ' + groupName);
-        USERGROUP.addUser(userName, groupName, function(result) {
-        UTIL.response(result);
-        if (result.rc === 'ok') {
-            $('#userGroupList').find('button[name="refresh"]').trigger('click');
-        }
-        MSG.displayInformation(result, "MESSAGE_ADDED_USER", result.message, userName);
+    }
+
+    
+    /**
+     * Get user group from server
+     */
+    function getUserFromServer() {
+        USER_GROUP.getUserGroupFromServer(GUISTATE_C.getUserGroup(), function(result) {
+            if (result.rc === "ok") {
+                $("#registerUserGroup").val(result.userGroup);
+            }
         });
     }
-    exports.addUserToGroup = addUserToGroup;
+
+    
+    /**
+     * Delete user group on server
+     */
+    function deleteUserGroupOnServer() {
+        $formSingleModal.validate();
+        if ($formSingleModal.valid()) {
+            USER_GROUP.deleteUserGroupOnServer(GUISTATE_C.getUserGroup(), $('#singleModalInput').val(), function(result) {
+                if (result.rc === "ok") {
+                    //logout();
+                }
+                MSG.displayInformation(result, "MESSAGE_USER_GROUP_DELETED", result.message, GUISTATE_C.getUserGroup());
+            });
+        }
+    }
+
+  
+
+    //Animate between forms in login modal
+    function modalAnimate($oldForm, $newForm) {
+        var $oldH = $oldForm.height();
+        var $newH = $newForm.height();
+        $divForms.css("height", $oldH);
+        $oldForm.fadeToggle($modalAnimateTime, function() {
+            $divForms.animate({
+                height : $newH
+            }, $modalAnimateTime, function() {
+                $newForm.fadeToggle($modalAnimateTime);
+            });
+        });
+    }
+
+    function msgFade($msgId, $msgText) {
+        $msgId.fadeOut($msgAnimateTime, function() {
+            $(this).text($msgText).fadeIn($msgAnimateTime);
+        });
+    }
+
+    //header change of the modal login
+    function hederChange($oldHeder, $newHeder) {
+        $oldHeder.addClass('hidden');
+        $newHeder.removeClass('hidden');
+    }
+
+    /**
+     * Resets the validation of every form in login modal
+     * 
+     */
+    function resetForm() {
+        $formLogin.validate().resetForm();
+        $formLost.validate().resetForm();
+        $formRegister.validate().resetForm();
+    }
+
+    /**
+     * Clear input fields in login modal
+     */
+    function clearInputs() {
+        $divForms.find('input').val('');
+    }
+
+    function initRegisterForm() {
+        $formRegister.unbind('submit');
+        $formRegister.onWrap('submit', function(e) {
+            e.preventDefault();
+            createUserToServer();
+        });
+        $("#registerUserGroup").text(Blockly.Msg["POPUP_REGISTER_USER"]);
+        $("#register_user_group_btn").show()
+        $formRegister.show();
+        $('#div-login-forms').css('height', 'auto');
+    }
+
+    function initLoginModal() {
        
-    function showSaveAsModal() {
-        $.validator.addMethod("loginRegex", function(value, element) {
-            return this.optional(element) || /^[a-zA-Z0-9=+!?.,%#+&^@_ ]+$/gi.test(value);
-        }, "This field contains nonvalid symbols.");
+        $formLost.onWrap('submit', function(e) {
+            e.preventDefault();
+            userPasswordRecovery();
+        });
+        $formLogin.onWrap('submit', function(e) {
+            e.preventDefault();
+            login();
+        });
+        $formRegister.onWrap('submit', function(e) {
+            e.preventDefault();
+            createUserToServer();
+        });
 
+        $('#add_usergroup_btn').onWrap('click', function() {
+            hederChange($h3Register, $h3Login)
+            modalAnimate($formRegister, $formLogin);
+            UTIL.setFocusOnElement($('#add_usergroup'));
+        });
+        
+        validateRegisterUser();
+    }
+
+   
+    /**
+     * Initialize the login modal
+     */
+    function init() {
+        var ready = $.Deferred();
+        $.when(USER.clear(function(result) {
+            UTIL.response(result);
+        })).then(function() {
+            $divForms = $('#div-login-forms');
+            $formLogin = $('#login-form');
+            $formLost = $('#lost-form');
+            $formRegister = $('#register-form');
+            $formUserPasswordChange = $('#change-user-password-form');
+            $formSingleModal = $('#single-modal-form');
+
+            $h3Login = $('#loginLabel');
+
+            $('#iconDisplayLogin').onWrap('click', function() {
+                showUserInfo();
+            }, 'icon user click');
+
+            initLoginModal();
+            initUserPasswordChangeModal();
+            LOG.info('init user forms');
+            ready.resolve();
+        });
+        return ready.promise();
+    }
+    exports.init = init;
+
+   
+    function showDeleteUserGroupModal() {
         UTIL.showSingleModal(function() {
-            $('#singleModalInput').attr('type', 'text');
-            $('#single-modal h3').text("Add a user");
-            $('#single-modal label').text("Name");
-        }, addUserToGroup, function() {
-
+            $('#single-modal h3').text(Blockly.Msg["MENU_DELETE_USER_GROUP"]);
+            $('#single-modal span').removeClass('typcn-pencil');
+            $('#single-modal span').addClass('typcn-lock-closed');
+        }, deleteUserOnServer, function() {
+            $('#single-modal span').addClass('typcn-pencil');
+            $('#single-modal span').removeClass('typcn-lock-closed');
         }, {
             rules : {
                 singleModalInput : {
-                    required : true,
-                    loginRegex : true
+                    required : true
                 }
             },
             errorClass : "form-invalid",
@@ -46,13 +189,16 @@ define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.contr
             },
             messages : {
                 singleModalInput : {
-                    required : Blockly.Msg["VALIDATION_FIELD_REQUIRED"],
-                    loginRegex : Blockly.Msg["MESSAGE_INVALID_NAME"]
+                    required : jQuery.validator.format(Blockly.Msg["VALIDATION_FIELD_REQUIRED"])
                 }
             }
         });
     }
-    exports.showSaveAsModal = showSaveAsModal;
+    exports.showDeleteUserGroupModal = showDeleteUserGroupModal;
 
-  
+   
+    function initValidationMessages() {
+        validateRegisterUserGroup();
+    }
+    exports.initValidationMessages = initValidationMessages;
 });
