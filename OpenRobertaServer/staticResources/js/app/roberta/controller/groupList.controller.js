@@ -76,12 +76,13 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
             guiStateController.setView('tabGroupList');
             GROUPLIST.loadGroupList(update);
         });
-
+               
         $('.bootstrap-table').find('button[name="refresh"]').onWrap('click', function() {
         	GROUPLIST.loadGroupList(update);
             return false;
         }, "refresh group list clicked");
-
+        
+        
         $('#groupNameTable').onWrap('dbl-click-row.bs.table', function($element, row) {
             GROUP_C.loadFromListing(row);
         }, "Load group from listing double clicked");

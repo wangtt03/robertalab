@@ -1,5 +1,5 @@
-define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller', 'configuration.controller', 'user.controller', 'progHelp.controller' ], function(
-        exports, LOG, $, GUISTATE_C, PROGRAM_C, CONFIGURATION_C, USER_C, HELP_C) {
+define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller', 'configuration.controller', 'user.controller', 'group.controller' ], function(exports, LOG, $,
+        GUISTATE_C, PROGRAM_C, CONFIGURATION_C, USER_C, GROUP_C) {
 
     /**
      * Initialize language switching
@@ -75,6 +75,7 @@ define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller'
         var url = 'blockly/msg/js/' + language.toLowerCase() + '.js';
         getCachedScript(url).done(function(data) {
             translate();
+            PROGRAM_C.reloadView();
             PROGRAM_C.reloadView();
             CONFIGURATION_C.reloadView();
             USER_C.initValidationMessages();
