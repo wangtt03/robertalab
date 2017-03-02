@@ -14,7 +14,7 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
     /**
      * Create new group
      */
-    function createUserToServer() {
+    function createGroupToServer() {
         $formRegister.validate();
         if ($formRegister.valid()) {
             GROUPS.createUserToServer($("#registerGroupName").val(), function(result) {
@@ -131,7 +131,6 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
                 },
                 /*registerPass : {
                     required : true,
-                    minlength : 6
                 },
                 registerPassConfirm : {
                     required : true,
