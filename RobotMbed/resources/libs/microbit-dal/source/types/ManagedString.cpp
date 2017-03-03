@@ -137,6 +137,25 @@ ManagedString::ManagedString(const int value)
   * ManagedString s(20);
   * @endcode
   */
+ManagedString::ManagedString(const unsigned long value)
+{
+    char str[12];
+
+    ultoa(value, str);
+    initString(str);
+}
+
+/**
+  * Constructor.
+  *
+  * Create a managed string from a given integer.
+  *
+  * @param value The integer from which to create the ManagedString.
+  *
+  * @code
+  * ManagedString s(20);
+  * @endcode
+  */
 ManagedString::ManagedString(const double value){
 	char str[12];
 	dtoa(value, str);

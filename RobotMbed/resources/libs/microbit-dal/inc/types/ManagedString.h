@@ -116,6 +116,19 @@ class ManagedString
     ManagedString(const int value);
 
     /**
+      * Constructor.
+      *
+      * Create a managed string from a given unsigned long
+      *
+      * @param value The unsigned long from which to create the ManagedString.
+      *
+      * @code
+      * ManagedString s(20);
+      * @endcode
+      */
+    ManagedString(const unsigned long value);
+
+    /**
 	  * Constructor.
 	  *
 	  * Create a managed string from a given floating point.

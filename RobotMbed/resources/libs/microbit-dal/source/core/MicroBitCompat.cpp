@@ -101,6 +101,36 @@ int itoa(int n, char *s)
 }
 
 /**
+  * Converts a given unsigned long integer into a string representation.
+  *
+  * @param n The number to convert.
+  *
+  * @param s A pointer to the buffer where the resulting string will be stored.
+  *
+  * @return MICROBIT_OK, or MICROBIT_INVALID_PARAMETER.
+  */
+int ultoa(unsigned long int n, char *s)
+{
+    int i = 0;
+
+    if (s == NULL)
+        return MICROBIT_INVALID_PARAMETER;
+
+    // Calculate each character, starting with the LSB.
+    do {
+         s[i++] = abs(n % 10) + '0';
+    } while (abs(n /= 10) > 0);
+
+    // Terminate the string.
+    s[i] = '\0';
+
+    // Flip the order.
+    string_reverse(s);
+
+    return MICROBIT_OK;
+}
+
+/**
   * Converts a given decimal number into a string representation.
   *
   * @param n The number to convert.
