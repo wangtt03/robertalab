@@ -5,7 +5,6 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
      * Initialize table of groups
      */
     function init() {
-
         initGroupList();
         initGroupListEvents();
         LOG.info('init group list view');
@@ -51,16 +50,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
                 field : '5',
                 checkbox : true,
                 valign : 'middle',
-            },
-            {
-                field : '7',
-                events : eventsDeleteShareLoad,
-                title : '<a href="#" class="deleteSomeGroup disabled" title="Delete selected groups">' + '<span class="typcn typcn-delete"></span></a>',
-                align : 'left',
-                valign : 'top',
-                formatter : formatDeleteShareLoad,
-                width : '89px',
-            }, ]
+            } ]
         });
         $('#groupNameTable').bootstrapTable('togglePagination');
     }
@@ -76,6 +66,8 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
             guiStateController.setView('tabGroupList');
             GROUPLIST.loadGroupList(update);
         });
+        
+        
                
         $('.bootstrap-table').find('button[name="refresh"]').onWrap('click', function() {
         	GROUPLIST.loadGroupList(update);

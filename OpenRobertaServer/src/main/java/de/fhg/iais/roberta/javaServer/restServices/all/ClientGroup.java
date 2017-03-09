@@ -88,9 +88,13 @@ public class ClientGroup {
                     Util.addResultInfo(response, gp);
                     break;
                 case "getMemberGroups":
-                    groupList = gp.getMemberGroups(account);
-                    response.put("groupList", groupList);
-                    Util.addResultInfo(response, gp);
+                    groupList = gp.getMemberGroups(userId);
+                    if ( groupList == null ) {
+                        Util.addErrorInfo(response, Key.GROUP_GET_ONE_ERROR_NOT_FOUND);
+                    } else {
+                        response.put("groupList", groupList);
+                        Util.addSuccessInfo(response, Key.GROUP_GET_ALL_SUCCESS);
+                    }
                     break;
                 case "deleteGroup":
                     group = gp.getGroup(groupName);

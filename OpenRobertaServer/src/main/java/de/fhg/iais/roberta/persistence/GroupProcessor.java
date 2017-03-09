@@ -69,9 +69,9 @@ public class GroupProcessor extends AbstractProcessor {
      *
      * @param userName the user
      */
-    public List<Group> getMemberGroups(String userName) {
+    public List<Group> getMemberGroups(int userId) {
         GroupDao groupDao = new GroupDao(this.dbSession);
-        List<Group> groups = groupDao.loadGroupsByMember(userName);
+        List<Group> groups = groupDao.loadGroupsByMember(userId);
         setSuccess(Key.GROUP_GET_ALL_SUCCESS, "" + groups);
         return groups;
     }

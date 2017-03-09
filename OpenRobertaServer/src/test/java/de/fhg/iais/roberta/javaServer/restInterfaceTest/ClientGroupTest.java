@@ -123,22 +123,16 @@ public class ClientGroupTest {
 
     @Test
     public void getMemberGroups() throws Exception {
-        restGroup(this.sPid, "{'cmd':'getMemberGroups';'account':'TEST'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
-        System.out.println(this.response.getEntity().toString());
+        restGroup(this.sPid, "{'cmd':'getMemberGroups'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
         Assert.assertTrue(
             this.response.getEntity().toString().contains("Group [id=1, owner=1]")
-                && this.response.getEntity().toString().contains("Group [id=1, owner=1]")
-                && this.response.getEntity().toString().contains("Group [id=6, owner=2]"));
-    }
-
-    @Test
-    public void getMemberGroupsNull() throws Exception {
-        restGroup(this.sPid, "{'cmd':'getMemberGroups';'account':'qwwewe'}", "error", Key.SERVER_ERROR);
+                && this.response.getEntity().toString().contains("Group [id=2, owner=1]")
+                && this.response.getEntity().toString().contains("Group [id=3, owner=1]"));
     }
 
     @Test
     public void getOwnerGroups() throws Exception {
-        restGroup(this.sPid, "{'cmd':'getOwnerGroups';'account':'Roberta'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
+        restGroup(this.sPid, "{'cmd':'getOwnerGroups'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
         Assert.assertTrue(
             this.response.getEntity().toString().contains("Group [id=1, owner=1]")
                 && this.response.getEntity().toString().contains("Group [id=1, owner=1]")
