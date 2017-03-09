@@ -88,8 +88,8 @@ public class GroupDaoTest {
 
     @Test
     public void loadGroupsByMember() throws Exception {
-        String memberName = "Roberta";
-        List<Group> groupList = this.groupDao.loadGroupsByMember(memberName);
+        int memberId = 1;
+        List<Group> groupList = this.groupDao.loadGroupsByMember(memberId);
         Assert.assertTrue(groupList.size() == 2);
     }
 

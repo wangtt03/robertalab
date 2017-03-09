@@ -8,7 +8,7 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
     /**
      * Refresh group list
      */
-    function loadProgList(successFn) {
+    function loadGroupList(successFn) {
         COMM.json("/usergroups", {
             "cmd" : "getMemberGroups"
         }, successFn, "load group list");

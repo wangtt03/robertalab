@@ -172,6 +172,7 @@ Blockly.Msg.EXTERNAL_INPUTS = "externe Eingänge";
 Blockly.Msg.FOR = "für";
 Blockly.Msg.GET = "gib";
 Blockly.Msg.GETSAMPLE_TOOLTIP = "Gibt den aktuellen Wert des ausgewählten Sensors zurück.";
+Blockly.Msg.GO_TO_GROUPS = "Go to groups.";  // untranslated
 Blockly.Msg.GYRO_GETSAMPLE_TOOLTIP = "Gibt den aktuellen Wert des Kreiselensors zurück.";
 Blockly.Msg.GYRO_RESET_TOOLTIP = "Setzt den Kreiselensor zurück.";
 Blockly.Msg.GYRO_TOOLTIP = "Block für den Kreiselsensor.";
@@ -597,6 +598,7 @@ Blockly.Msg.NAO_BLINK = "blinken";
 Blockly.Msg.NAO_CAMERA = "Kamera";
 Blockly.Msg.NAO_CAMERA_BOTTOM = "untere";
 Blockly.Msg.NAO_CAMERA_TOP = "obere";
+<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.NAO_CHAT_TOOLTIP = "Add a reaction if a word is recognized.";  // untranslated
 Blockly.Msg.NAO_CURRENT = "elektrischer Strom";
 Blockly.Msg.NAO_DETECTFACE = "Erkenne Gesicht";
@@ -837,6 +839,10 @@ Blockly.Msg.PLAY_TONE = "Ton";
 Blockly.Msg.PLAY_TONE_TOOLTIP = "Spielt einen Ton.";
 Blockly.Msg.PLAY_VOLUME = "Lautstärke";
 Blockly.Msg.PLAY_WHOLE = "ganze Note";
+<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+Blockly.Msg.POPUP_2_2_0 = "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>";
+>>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.POPUP_ABOUT_JOIN = "Ich möchte mithelfen";
 Blockly.Msg.POPUP_ABOUT_TEXT = "Open Roberta Lab ist eine cloudbasierte grafische Programmierumgebung, die es Kindern und Jugendlichen ermöglicht ohne technische Hürden einen Roboter zu programmieren. <br /> Die Programmierplattform ist komplett »open source«, Mitmachen und Anregungen erwünscht! Alle benötigte Software und Open-Source-Entwicklertools stehen über Fraunhofer-Server bereit.";
 Blockly.Msg.POPUP_ABOUT_TEXT_DEV = "Das Open Roberta Lab ist eine Open-Source-Entwicklung des Fraunhofer-Instituts IAIS im Kontext der Initiative  <a href='http://www.roberta-home.de/'>»Roberta – Lernen mit Robotern«</a>";
@@ -861,9 +867,14 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "jetzt klicke auf »Speichern« in der recht
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Aktualisieren";
 Blockly.Msg.POPUP_EMAIL = "E-Mail";
 Blockly.Msg.POPUP_EMAIL_SEND = "Jetzt abschicken";
+Blockly.Msg.POPUP_GROUPNAME = "Group name.";  // untranslated
 Blockly.Msg.POPUP_NAME = "Name";
 Blockly.Msg.POPUP_NEW_PASSWORD = "Neues Passwort";
 Blockly.Msg.POPUP_OLD_PASSWORD = "Altes Passwort";
+<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+Blockly.Msg.POPUP_OLD_RELEASE = "Version 2.1.3 <ul class='NonIcon'><li>Calliope - simuliere einen Calliope!</li><li>micro:bit - simuliere einen micro:bit©</li><li>Hilfe jetzt direkt im Arbeitsbereich neben den Programmierblöcken! (nur EV3)</li></ul>";
+>>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.POPUP_PASSWORD = "Passwort";
 Blockly.Msg.POPUP_PASSWORD_RECOVERY = "Passwort zurücksetzen ...";
 Blockly.Msg.POPUP_PROGRAM_TERMINATED_UNEXPECTED = "Dein Programm konnte auf dem Roboter nicht ausgeführt werden!";
@@ -1096,6 +1107,10 @@ Blockly.Msg.TOUR1_DESCRIPTION10 = "Klicke auf Aktion";
 Blockly.Msg.TOUR1_DESCRIPTION12 = "Halte die Maus gedrückt und ziehe den Block unter den Startblock!";
 Blockly.Msg.TOUR1_DESCRIPTION13 = "Öffne nun die Simulation ...";
 Blockly.Msg.TOUR1_DESCRIPTION13a = "und probiere dein Programm in der Simulation aus!";
+<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+Blockly.Msg.TOUR1_DESCRIPTION14 = "Gleich geht es los!";
+>>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.TOUR1_DESCRIPTION15 = "Super,<br>dein Roboter ist jetzt 20 cm vorwärts gefahren,<br>genau wie du es programmiert hast!";
 Blockly.Msg.TOUR1_DESCRIPTION16 = "Tschüss und viel Spaß beim Ausprobieren!";
 Blockly.Msg.ULTRASONIC_GETSAMPLE_TOOLTIP = "Gibt den aktuellen Wert des Ultraschallsensors zurück.";

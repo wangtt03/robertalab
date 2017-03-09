@@ -85,12 +85,10 @@ public class GroupDao extends AbstractDao<Group> {
         return users;
     }
 
-    public List<Group> loadGroupsByMember(String name) {
-        UserDao userDao = new UserDao(this.session);
+    public List<Group> loadGroupsByMember(int userId) {
         GroupDao groupDao = new GroupDao(this.session);
-        User user = userDao.loadUser(name);
         Query hql = this.session.createQuery("from UserGroup where userId=:userId");
-        hql.setInteger("userId", user.getId());
+        hql.setInteger("userId", userId);
         @SuppressWarnings("unchecked")
         List<UserGroup> il = hql.list();
         List<Group> groups = new ArrayList<Group>();

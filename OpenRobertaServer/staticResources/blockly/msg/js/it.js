@@ -172,6 +172,7 @@ Blockly.Msg.EXTERNAL_INPUTS = "Ingressi esterni";
 Blockly.Msg.FOR = "per";
 Blockly.Msg.GET = "ottieni";
 Blockly.Msg.GETSAMPLE_TOOLTIP = "Ottiene lettura corrente del sensore scelto.";
+Blockly.Msg.GO_TO_GROUPS = "Go to groups.";  // untranslated
 Blockly.Msg.GYRO_GETSAMPLE_TOOLTIP = "Ottiene lettura corrente del sensore giroscopico.";
 Blockly.Msg.GYRO_RESET_TOOLTIP = "Risetta sensore giroscopico.";
 Blockly.Msg.GYRO_TOOLTIP = "Rappresenta sensore giroscopico.";
@@ -436,6 +437,10 @@ Blockly.Msg.ME = "Me";
 Blockly.Msg.MENU_ABOUT = "su";
 Blockly.Msg.MENU_ATTACH = "allega...";
 Blockly.Msg.MENU_BEGINNER = "principante";
+<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+Blockly.Msg.MENU_BUILDING_INSTRUCTIONS = "istruzioni di costruzione";
+>>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.MENU_CHANGE = "cambia...";
 Blockly.Msg.MENU_CHECK = "controlla";
 Blockly.Msg.MENU_CODE_DOWNLOAD_TOOLTIP = "Download the source code of your program on the computer";  // untranslated
@@ -597,7 +602,14 @@ Blockly.Msg.NAO_BLINK = "blink";  // untranslated
 Blockly.Msg.NAO_CAMERA = "camera";  // untranslated
 Blockly.Msg.NAO_CAMERA_BOTTOM = "bottom";  // untranslated
 Blockly.Msg.NAO_CAMERA_TOP = "top";  // untranslated
+<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.NAO_CHAT_TOOLTIP = "Add a reaction if a word is recognized.";  // untranslated
+=======
+Blockly.Msg.NAO_COLOR_CYAN = "cyan";  // untranslated
+Blockly.Msg.NAO_COLOR_MAGENTA = "magenta";  // untranslated
+Blockly.Msg.NAO_COLOR_WHITE = "white";  // untranslated
+Blockly.Msg.NAO_COLOR_YELLOW = "yellow";  // untranslated
+>>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.NAO_CURRENT = "electric current of";  // untranslated
 Blockly.Msg.NAO_DETECTFACE = "detect face";  // untranslated
 Blockly.Msg.NAO_DETECTFACE_TOOLTIP = "Detect a face previously saved under a given name";  // untranslated
@@ -690,6 +702,10 @@ Blockly.Msg.NAO_PLAYFILE_TOOLTIP = "Plays a sound file from the robot.";  // unt
 Blockly.Msg.NAO_PLAY_FILE = "play file";  // untranslated
 Blockly.Msg.NAO_POINTAT = "point at";  // untranslated
 Blockly.Msg.NAO_POINTLOOKAT_TOOLTIP = "Rbbot points or looks at a given position";  // untranslated
+<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+Blockly.Msg.NAO_POSITION = "position";  // untranslated
+>>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.NAO_POSTURE_CROUCH = "Crouch";  // untranslated
 Blockly.Msg.NAO_POSTURE_LYINGBACK = "LyingBack";  // untranslated
 Blockly.Msg.NAO_POSTURE_LYINGBELLY = "LyingBelly";  // untranslated
@@ -837,6 +853,10 @@ Blockly.Msg.PLAY_TONE = "suono/tuono";
 Blockly.Msg.PLAY_TONE_TOOLTIP = "Riproduce un suono.";
 Blockly.Msg.PLAY_VOLUME = "volume";
 Blockly.Msg.PLAY_WHOLE = "whole note";  // untranslated
+<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+Blockly.Msg.POPUP_2_2_0 = "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>";  // untranslated
+>>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.POPUP_ABOUT_JOIN = "Voglio aiutare";
 Blockly.Msg.POPUP_ABOUT_TEXT = "Il Open Roberta Lab è un ambiente di programmazione integrato, basato su cloud, che permette a bambini e adolescenti di imparare a programmare facilmente con robot di Lego Mindstorms EV3. Questa piattaforma é completamente open source (fonte aperta), quindi la partecipazione è vantaggiosa! La software e gli strumenti di sviluppo open source (a fonte aperta) sono disponibili tramite i server di Fraunhofer.";
 Blockly.Msg.POPUP_ABOUT_TEXT_DEV = "Il Open Roberta Lab è una piattaforma a fonte aperta (open source) di programmazione, sviluppata dal Fraunhofer IAIS nell'ambito della initiativa <a href='http://www.roberta-home.de/'>»Roberta – Learning with Robots«</a>";
@@ -861,9 +881,14 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "now click on the »Save« button on the bot
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Attualiza subito";
 Blockly.Msg.POPUP_EMAIL = "E-mail";
 Blockly.Msg.POPUP_EMAIL_SEND = "Invia adesso";
+Blockly.Msg.POPUP_GROUPNAME = "Group name.";  // untranslated
 Blockly.Msg.POPUP_NAME = "Nome";
 Blockly.Msg.POPUP_NEW_PASSWORD = "Nuova password";
 Blockly.Msg.POPUP_OLD_PASSWORD = "Vecchia passoword";
+<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+Blockly.Msg.POPUP_OLD_RELEASE = "Version 2.1.3 <ul class='NonIcon'><li>Calliope - simulate programs for Calliope</li><li>micro:bit - simulate programs for micro:bit©</li><li>new feature - help for programming blocks in the editor (EV3 only)</li></ul>";  // untranslated
+>>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.POPUP_PASSWORD = "Password";
 Blockly.Msg.POPUP_PASSWORD_RECOVERY = "risetta password...";
 Blockly.Msg.POPUP_PROGRAM_TERMINATED_UNEXPECTED = "La esecuzione del programma sul robot ha terminato in modo imprevisto.";
@@ -1096,6 +1121,10 @@ Blockly.Msg.TOUR1_DESCRIPTION10 = "Click on »Action«";  // untranslated
 Blockly.Msg.TOUR1_DESCRIPTION12 = "Now drag'n drop the new block just below the start-program-block so that they are connected";  // untranslated
 Blockly.Msg.TOUR1_DESCRIPTION13 = "Now open the simulation ...";  // untranslated
 Blockly.Msg.TOUR1_DESCRIPTION13a = "and test your program in the simulation!";  // untranslated
+<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+Blockly.Msg.TOUR1_DESCRIPTION14 = "Just a moment!";  // untranslated
+>>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.TOUR1_DESCRIPTION15 = "Perfect,<br>your robot is driving 20 cm forward,<br>this is what you have programmed!";  // untranslated
 Blockly.Msg.TOUR1_DESCRIPTION16 = "Bye and have fun trying out more!";  // untranslated
 Blockly.Msg.ULTRASONIC_GETSAMPLE_TOOLTIP = "Ottiene lettura corrente del sensore ad ultrasuoni.";
