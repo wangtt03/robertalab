@@ -36,21 +36,20 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
                 title : "<span lkey='Blockly.Msg.DATATABLE_CREATED_BY'>Created by</span>",
                 sortable : true,
                 field : '1',
-            }, /*{
-                title : "<span lkey='Blockly.Msg.DATATABLE_CREATED_ON'>Created on</span>",
-                sortable : true,
-                field : '3',
-                formatter : UTIL.formatDate
             }, {
-                title : "<span lkey='Blockly.Msg.DATATABLE_ACTUALIZATION'>Letzte Aktualisierung</span>",
-                sortable : true,
-                field : '4',
-                formatter : UTIL.formatDate
-            }, */{
-                field : '5',
+                field : '2',
                 checkbox : true,
                 valign : 'middle',
-            } ]
+            },
+            {
+                field : '3',
+                events : eventsDeleteLoad,
+                title : '<a href="#" class="deleteSomeProg disabled" title="Delete selected programs">' + '<span class="typcn typcn-delete"></span></a>',
+                align : 'left',
+                valign : 'top',
+                formatter : formatDeleteLoad,
+                width : '100px',
+            }, ]
         });
         $('#groupNameTable').bootstrapTable('togglePagination');
     }
@@ -62,18 +61,28 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
                 height : UTIL.calcDataTableHeight()
             });
         });
+        
         $('#tabGroupList').on('show.bs.tab', function(e) {
             guiStateController.setView('tabGroupList');
             GROUPLIST.loadGroupList(update);
         });
-        
-        
+                
                
         $('.bootstrap-table').find('button[name="refresh"]').onWrap('click', function() {
         	GROUPLIST.loadGroupList(update);
             return false;
         }, "refresh group list clicked");
         
+        $('#createGroup').onWrap('click', function() {
+            GROUP_C.createGroupToServer();
+            return false;
+        }, "register a group")
+
+        
+        $('.bootstrap-table').find('button[name="refresh"]').onWrap('click', function() {
+        	GROUPLIST.loadGroupList(update);
+            return false;
+        }, "refresh group list clicked");
         
         $('#groupNameTable').onWrap('dbl-click-row.bs.table', function($element, row) {
             GROUP_C.loadFromListing(row);
@@ -107,9 +116,9 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
         }, 'uncheck one group');
 
         $('#backGroupList').onWrap('click', function() {
-            $('#tabGroup').trigger('click');
+            $('#tabProgram').trigger('click');
             return false;
-        }, "back to group view")
+        }, "back to program view")
 
         $(document).onWrap('click', '.deleteSomeGroup', function() {
             var group = $('#groupNameTable').bootstrapTable('getSelections', {});

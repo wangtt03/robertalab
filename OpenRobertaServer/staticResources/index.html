@@ -356,10 +356,6 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 					href="#blockly"> <span lkey="Blockly.Msg.TAB_PROGRAM"
 						class="menuTab">Program</span>&nbsp;<span id="tabProgramName"></span>
 				</a></li>
-				<li class="active"><a data-toggle="tab" id="tabGroup"
-					href="#blockly"> <span lkey="Blockly.Msg.TAB_GROUP"
-						class="menuTab">Group</span>&nbsp;<span id="tabGroupName"></span>
-				</a></li>
 				<li><a data-toggle="tab" id="tabConfiguration"
 					href="#bricklyDiv"> <span lkey="Blockly.Msg.TAB_CONFIGURATION"
 						class="menuTab">Configuration</span>&nbsp;<span
@@ -541,12 +537,16 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 		</div>
 		<div id="groupList" class="tab-pane fade">
 			<div id="groupListToolbar">
-				<button id="backProgList" class="btn">
+				<button id="backGroupList" class="btn">
 					<i class="typcn typcn-arrow-left"></i>
+				</button>
+				<button id="createGroup" class="btn">
+					<i class="typcn typcn-plus"></i>
 				</button>
 			</div>
 			<table id="groupNameTable">
 			</table>
+			
 		</div>
 		<div id="userGroupList" class="tab-pane fade">
 			<div id="userGroupListToolbar">

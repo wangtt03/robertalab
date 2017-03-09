@@ -1605,4 +1605,14 @@ img.img-responsive {
 	height: 140px;
 	margin: 0 auto;
 }
+
+
+#groupListToolbar {
+    width: 88.25vw;
+}
+
+#createGroup {
+    float: right;
+}
+
 }

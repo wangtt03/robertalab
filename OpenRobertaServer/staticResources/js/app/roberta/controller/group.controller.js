@@ -17,7 +17,7 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
     function createGroupToServer() {
         $formRegister.validate();
         if ($formRegister.valid()) {
-            GROUPS.createUserToServer($("#registerGroupName").val(), function(result) {
+            GROUP.createUserToServer($("#registerGroupName").val(), function(result) {
                 if (result.rc === "ok") {
                     $("#registerGroupName").val();
                     //$('#loginPassword').val($('#registerPass').val());
@@ -33,9 +33,9 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
     function updateGroupToServer() {
         $formRegister.validate();
         if ($formRegister.valid()) {
-        	GROUPS.updateGroupToServer(GUISTATE_C.getGroupName(), $('#registerGroupName').val(), function(result) {
+        	GROUP.updateGroupToServer(GUISTATE_C.getGroupName(), $('#registerGroupName').val(), function(result) {
                 if (result.rc === "ok") {
-                	GROUPS.getUserFromServer(GUISTATE_C.getUserAccountName(), function(result) {
+                	GROUP.getUserFromServer(GUISTATE_C.getUserAccountName(), function(result) {
                         if (result.rc === "ok") {
                             GUISTATE_C.setLogin(result);
                         }
@@ -80,7 +80,7 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
      * Get group from server
      */
     function getUserFromServer() {
-    	GROUPS.getUserFromServer(GUISTATE_C.getGroupName(), function(result) {
+    	GROUP.getUserFromServer(GUISTATE_C.getGroupName(), function(result) {
             if (result.rc === "ok") {
                 $("#registerGroupName").val(result.groupName);
             }
