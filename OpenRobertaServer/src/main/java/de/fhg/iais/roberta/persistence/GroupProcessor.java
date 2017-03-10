@@ -2,9 +2,12 @@ package de.fhg.iais.roberta.persistence;
 
 import java.util.List;
 
+import org.codehaus.jettison.json.JSONArray;
+
 import de.fhg.iais.roberta.persistence.bo.Group;
 import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.dao.GroupDao;
+import de.fhg.iais.roberta.persistence.dao.UserDao;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.HttpSessionState;
 import de.fhg.iais.roberta.util.Key;
@@ -69,11 +72,21 @@ public class GroupProcessor extends AbstractProcessor {
      *
      * @param userName the user
      */
-    public List<Group> getMemberGroups(int userId) {
+    public JSONArray getMemberGroups(int userId) {
         GroupDao groupDao = new GroupDao(this.dbSession);
+        User usr;
+        UserDao usrDao = new UserDao(this.dbSession);
         List<Group> groups = groupDao.loadGroupsByMember(userId);
-        setSuccess(Key.GROUP_GET_ALL_SUCCESS, "" + groups);
-        return groups;
+        JSONArray groupNamesInfs = new JSONArray();
+        for ( Group group : groups ) {
+            JSONArray groupNamesInf = new JSONArray();
+            usr = usrDao.get(group.getOwner());
+            groupNamesInf.put(group.getName());
+            groupNamesInf.put(usr.getUserName());
+            groupNamesInfs.put(groupNamesInf);
+        }
+        setSuccess(Key.GROUP_GET_ALL_SUCCESS, "" + groupNamesInfs);
+        return groupNamesInfs;
     }
 
     /**
