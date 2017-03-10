@@ -48,10 +48,13 @@ void            app_error_handler(uint32_t error_code, uint32_t line_num, const 
 
 static void btle_handler(ble_evt_t *p_ble_evt);
 static uint32_t gatt_table_size = BLE_GATTS_ATTR_TAB_SIZE_DEFAULT;
+static void (*user_cb)(uint32_t) = NULL;
 
 static void sys_evt_dispatch(uint32_t sys_evt)
 {
     pstorage_sys_event_handler(sys_evt);
+    if (user_cb)
+        user_cb(sys_evt);
 }
 
 /**
@@ -88,6 +91,11 @@ btle_set_gatt_table_size(uint32_t size)
     }
 
     return ERROR_INVALID_PARAM;
+}
+
+void btle_set_user_evt_handler(void (*func)(uint32_t))
+{
+    user_cb = func;
 }
 
 error_t btle_init(void)

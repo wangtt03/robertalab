@@ -28,6 +28,8 @@ extern "C" {
 
 error_t     btle_init(void);
 error_t     btle_set_gatt_table_size(uint32_t size);
+void     btle_set_user_evt_handler(void (*func)(uint32_t));
+
 
 #ifdef __cplusplus
 }
