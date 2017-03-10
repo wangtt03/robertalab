@@ -33,6 +33,7 @@ DEALINGS IN THE SOFTWARE.
 
 #include "mbed.h"
 #include "MicroBitConfig.h"
+#include <array>
 
 #define PI 3.14159265359
 
@@ -130,5 +131,49 @@ int ultoa(unsigned long n, char *s);
   * @return MICROBIT_OK, or MICROBIT_INVALID_PARAMETER.
   */
 int dtoa(double n, char *s);
+
+
+/**
+  * Find the first occurrence of a given element in array.
+  *
+  * @param e The searched element.
+  *
+  * @param a The array in which we look for the element.
+  *
+  * @return index of the element in location, it the element is not found it returns -1.
+  */
+template<class T, std::size_t SIZE>
+int findFirstOccurrenceOfElementInArray(T e, std::array<T, SIZE>& a) {
+  int i = 0;
+  for (T& aa : a) {
+    if (aa == e) {
+      return i;
+    }
+    i++;
+  }
+  return -1;
+}
+
+/**
+  * Find the last occurrence of a given element in array.
+  *
+  * @param e The searched element.
+  *
+  * @param a The array in which we look for the element.
+  *
+  * @return index of the element in location, it the element is not found it returns -1.
+  */
+template<class T, std::size_t SIZE>
+int findLastOccurrenceOfElementInArray(T e, std::array<T, SIZE>& a) {
+  int ix = -1;
+  int i = 0;
+  for (T& aa : a) {
+    if (aa == e) {
+      ix = i;
+    }
+    i++;
+  }
+  return ix;
+}
 
 #endif

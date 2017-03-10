@@ -120,12 +120,12 @@ typedef enum {
     ROW2 = p14,
     ROW3 = p15,
 
-    A_RX = p16,         // TODO p26 in revision 0.4
-    A_TX = p21,         // TODO p27 in revision 0.4
+    A_RX = p16,
+    A_TX = p21,
 
     //BUTTON A and B
-    BUTTON_A = p26,     // TODO p17 in revision 0.4
-    BUTTON_B = p17,     // TODO p16 in revision 0.4
+    BUTTON_A = p17,
+    BUTTON_B = p26,
 
     //RGB LED (WS2812b)
     RGBLED = p18,
@@ -151,7 +151,7 @@ typedef enum {
     TGT_RX = p25,
 
     //ACCEL INTERRUPT PIN (BMX055)
-    ACCEL_INT = p27,    // TODO p21 in revision 0.4
+    ACCEL_INT = p27,
 
 
     // Not connected
