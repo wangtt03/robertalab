@@ -48,7 +48,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
                 align : 'left',
                 valign : 'top',
                 formatter : formatDeleteLoad,
-                width : '100px',
+                width : '60px',
             }, ]
         });
         $('#groupNameTable').bootstrapTable('togglePagination');
@@ -75,23 +75,14 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
         
         $('#createGroup').onWrap('click', function() {
             GROUP_C.showSaveAsModal();
+            //TODO: refresh
             return false;
         }, "register a group")
 
-        
-        $('.bootstrap-table').find('button[name="refresh"]').onWrap('click', function() {
-        	GROUPLIST.loadGroupList(update);
-            return false;
-        }, "refresh group list clicked");
-        
-        $('#groupNameTable').onWrap('dbl-click-row.bs.table', function($element, row) {
-            GROUP_C.loadFromListing(row);
-        }, "Load group from listing double clicked");
-
         $('#groupNameTable').onWrap('check-all.bs.table', function($element, rows) {
-            $('.deleteSomeGroup').removeClass('disabled');
-            $('.delete').addClass('disabled');
-            $('.load').addClass('disabled');
+	        $('.deleteSomeGroup').removeClass('disabled');
+	        $('.delete').addClass('disabled');
+	        $('.load').addClass('disabled');
         }, 'check all groups');
 
         $('#groupNameTable').onWrap('check.bs.table', function($element, row) {
@@ -99,7 +90,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
             $('.delete').addClass('disabled');
             $('.load').addClass('disabled');
         }, 'check one group');
-
+        
         $('#groupNameTable').onWrap('uncheck-all.bs.table', function($element, rows) {
             $('.deleteSomeGroup').addClass('disabled');
             $('.delete').removeClass('disabled');
@@ -119,7 +110,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
             $('#tabProgram').trigger('click');
             return false;
         }, "back to program view")
-
+        
         $(document).onWrap('click', '.deleteSomeGroup', function() {
             var group = $('#groupNameTable').bootstrapTable('getSelections', {});
             var names = '';
@@ -135,7 +126,12 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
             $("#confirmDeleteGroup").modal("show");
             return false;
         }, "delete groups");
-
+        
+        $('#groupNameTable').onWrap('dbl-click-row.bs.table', function($element, row) {
+            GROUP_C.loadFromListing(row);
+        }, "Load group from listing double clicked");
+        
+        
         $('#groupNameTable').on('shown.bs.collapse hidden.bs.collapse', function(e) {
             $('#groupNameTable').bootstrapTable('resetWidth');
         });

@@ -2,15 +2,10 @@ define([ 'require', 'exports', 'log', 'util', 'message', 'comm', 'group.model', 
         UTIL, MSG, COMM, GROUP, Blockly, $) {
 
     function init() {
-//        initView();
         initEvents();
         LOG.info('init group delete');
     }
     exports.init = init;
-
-    function initView() {
-
-    }
 
     function initEvents() {
         /**

@@ -42,22 +42,6 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
     exports.createGroupToServer = createGroupToServer;
     
     /**
-     * Get all groups those belong to a user.
-     * 
-     * @param userName
-     *            {String} - name of the user
-     * 
-     */
-    function getOwnerGroups(userName, successFn) {
-        COMM.json("/usergroups", {
-            "cmd" : "getOwnerGroups",
-            "userName" : userName,
-        }, successFn, "get owner '" + userName + "' groups to server");
-    }
-
-    exports.getOwnerGroups = getOwnerGroups;
-    
-    /**
      * Get all users those belong to a group.
      * 
      * @param groupName
@@ -98,15 +82,14 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
      *            {String} - group name
      * 
      */
-    function deleteGroupOnServer(groupName, successFn) {
+    function deleteGroupFromListing(groupName, successFn) {
         COMM.json("/usergroups", {
             "cmd" : "deleteGroup",
             "groupName" : groupName,
-            //"password" : passwd
         }, successFn, "delete group '" + groupName + "' on server");
     }
 
-    exports.deleteGroupOnServer = deleteGroupOnServer;
+    exports.deleteGroupFromListing = deleteGroupFromListing;
     
     
     /**
