@@ -63,13 +63,12 @@ public class ClientGroup {
 
             String groupName = request.optString("groupName");
             String account = request.optString("account");
-            int userToManageId = request.optInt("userId");
             Group group;
             UserGroup userGroup;
             List<Group> groupList;
             switch ( cmd ) {
                 case "createGroup":
-                    group = gp.persistGroup(groupName, userToManageId);
+                    group = gp.persistGroup(groupName, userId);
                     if ( group == null ) {
                         Util.addErrorInfo(response, Key.GROUP_CREATE_ERROR_NOT_SAVED_TO_DB);
                     } else {

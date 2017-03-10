@@ -74,7 +74,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
         }, "refresh group list clicked");
         
         $('#createGroup').onWrap('click', function() {
-            GROUP_C.createGroupToServer();
+            GROUP_C.showSaveAsModal();
             return false;
         }, "register a group")
 
