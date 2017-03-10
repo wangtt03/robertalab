@@ -48,6 +48,11 @@ require.config({
         'groupList.controller' : '../app/roberta/controller/groupList.controller',
         'groupDelete.controller' : '../app/roberta/controller/groupDelete.controller',
         'group.controller' : '../app/roberta/controller/group.controller',
+        'userGroup.model' : '../app/roberta/models/userGroup.model',
+        'userGroupList.model' : '../app/roberta/models/userGroupList.model',
+        'userGroupList.controller' : '../app/roberta/controller/userGroupList.controller',
+        'userGroupDelete.controller' : '../app/roberta/controller/userGroupDelete.controller',
+        'userGroup.controller' : '../app/roberta/controller/userGroup.controller',        
         'rest.robot' : '../app/roberta/rest/robot',
 
         'simulation.constants' : '../app/simulation/simulationLogic/constants',
@@ -116,7 +121,8 @@ require.config({
 
 require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', 'progList.controller', 'logList.controller', 'confList.controller',
         'progDelete.controller', 'confDelete.controller','progShare.controller', 'menu.controller', 'user.controller', 'robot.controller', 'program.controller',
-        'configuration.controller', 'language.controller', 'volume-meter' , 'group.controller', 'groupList.controller', 'groupDelete.controller'], function(require) {
+        'configuration.controller', 'language.controller', 'volume-meter' , 'group.controller', 'groupList.controller', 'groupDelete.controller',
+        , 'userGroup.controller', 'userGroupList.controller', 'userGroupDelete.controller'], function(require) {
 
     $ = require('jquery', 'jquery-cookie');
     WRAP = require('wrap');
@@ -137,6 +143,10 @@ require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', '
     groupListController = require('groupList.controller');
     groupDeleteController = require('groupDelete.controller');
     groupController = require('group.controller');
+    userGroupListController = require('userGroupList.controller');
+    userGroupDeleteController = require('userGroupDelete.controller');
+    userGroupController = require('userGroup.controller');
+
 
     $(document).ready(WRAP.fn3(init, 'page init'));
 });
