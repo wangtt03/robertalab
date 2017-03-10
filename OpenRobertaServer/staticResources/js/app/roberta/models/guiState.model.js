@@ -32,6 +32,10 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
         exports.user.id = -1;
         exports.user.accountName = '';
         exports.user.name = '';
+        
+        exports.group = {};
+        exports.group.id = -1;
+        exports.group.name = '';
 
         exports.program = {};
         exports.program.name = '';

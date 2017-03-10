@@ -30,15 +30,12 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
      * 
      * @param groupName
      *            {String} - name of the group
-     * @param passwd
-     *            {String} - user password
      * 
      */
-    function createGroupToServer(accountName, successFn) {
+    function createGroupToServer(groupName, successFn) {
         COMM.json("/usergroups", {
             "cmd" : "createGroup",
             "groupName" : groupName,
-            //"password" : passwd,
         }, successFn, "save group '" + groupName + "' to server");
     }
 

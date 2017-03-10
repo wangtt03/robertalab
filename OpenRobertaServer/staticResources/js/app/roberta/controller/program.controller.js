@@ -3,7 +3,6 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
         LOG, UTIL, GUISTATE_C, PROGRAM, Prettify, ROBOT_C, HELP_C, INFO_C, CODE_C, SIM_C, Blockly, $) {
 
     var $formSingleModal;
-
     var blocklyWorkspace;
     var listenToBlocklyEvents = true;
     /**

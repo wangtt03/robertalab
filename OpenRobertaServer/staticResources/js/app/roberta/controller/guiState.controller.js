@@ -505,6 +505,17 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'jquery' ], func
         GUISTATE.program.name = name;
     }
     exports.setProgramName = setProgramName;
+    
+    function getGroupName() {
+        return GUISTATE.group.name;
+    }
+    exports.getGroupName = getGroupName;
+    
+    function setGroupName(name) {
+        $('#tabGroupName').html(name);
+        GUISTATE.group.name = name;
+    }
+    exports.setGroupName = setGroupName;
 
     function getConfigurationName() {
         return GUISTATE.configuration.name;
