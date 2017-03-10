@@ -113,22 +113,14 @@ public class ClientGroupTest {
     @Test
     public void getMemberGroups() throws Exception {
         restGroup(this.sPid, "{'cmd':'getMemberGroups'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
+        //System.out.println("***");
+        //System.out.println(this.response.getEntity().toString());
+        //System.out.println("***");
         Assert.assertTrue(
-            this.response.getEntity().toString().contains("Group [id=1, owner=1]")
-                && this.response.getEntity().toString().contains("Group [id=2, owner=1]")
-                && this.response.getEntity().toString().contains("Group [id=3, owner=1]"));
-    }
-
-    @Test
-    public void getOwnerGroups() throws Exception {
-        restGroup(this.sPid, "{'cmd':'getOwnerGroups'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
-        Assert.assertTrue(
-            this.response.getEntity().toString().contains("Group [id=1, owner=1]")
-                && this.response.getEntity().toString().contains("Group [id=1, owner=1]")
-                && this.response.getEntity().toString().contains("Group [id=2, owner=1]")
-                && this.response.getEntity().toString().contains("Group [id=3, owner=1]")
-                && this.response.getEntity().toString().contains("Group [id=4, owner=1]")
-                && this.response.getEntity().toString().contains("Group [id=5, owner=1]"));
+            this.response.getEntity().toString().contains("\"TestGroup\",\"Roberta Roboter\"")
+                && this.response.getEntity().toString().contains("\"TestGroup1\",\"Roberta Roboter\"")
+                && this.response.getEntity().toString().contains("\"TestGroup2\",\"Roberta Roboter\"")
+                && this.response.getEntity().toString().contains("\"restTestGroup1716\",\"Roberta Roboter\""));
     }
 
     @Test

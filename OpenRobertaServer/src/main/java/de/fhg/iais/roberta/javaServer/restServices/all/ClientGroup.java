@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,7 +66,7 @@ public class ClientGroup {
             String account = request.optString("account");
             Group group;
             UserGroup userGroup;
-            List<Group> groupList;
+            JSONArray groupList;
             switch ( cmd ) {
                 case "createGroup":
                     group = gp.persistGroup(groupName, userId);
@@ -74,12 +75,6 @@ public class ClientGroup {
                     } else {
                         Util.addSuccessInfo(response, Key.GROUP_CREATE_SUCCESS);
                     }
-                    break;
-                //TODO: change all ids to names
-                case "getOwnerGroups":
-                    groupList = gp.loadOwnerGroups(userId);
-                    response.put("groupList", groupList);
-                    Util.addResultInfo(response, gp);
                     break;
                 case "getGroupMembers":
                     List<User> memberList = gp.getGroupMembers(groupName);
@@ -91,8 +86,8 @@ public class ClientGroup {
                     if ( groupList == null ) {
                         Util.addErrorInfo(response, Key.GROUP_GET_ONE_ERROR_NOT_FOUND);
                     } else {
-                        response.put("groupList", groupList);
-                        Util.addSuccessInfo(response, Key.GROUP_GET_ALL_SUCCESS);
+                        response.put("groupNames", groupList);
+                        Util.addResultInfo(response, gp);
                     }
                     break;
                 case "deleteGroup":
