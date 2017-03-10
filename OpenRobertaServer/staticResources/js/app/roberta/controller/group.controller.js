@@ -31,14 +31,7 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
     
     exports.createGroupToServer = createGroupToServer;
     
-    function initGroupForms() {
-        $formSingleModal = $('#single-modal-form');
-        $('#buttonCancelFirmwareUpdateAndRun').onWrap('click', function() {
-            start();
-        });
-    }
-    exports.initGroupForms = initGroupForms;
-
+   
     function showSaveAsModal() {
         $.validator.addMethod("regex", function(value, element, regexp) {
             value = value.trim();
@@ -71,5 +64,14 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
         });
     }
     exports.showSaveAsModal = showSaveAsModal;
+    
+    /**
+     * Load a selected group
+     */
+    function loadFromListing(userGroup) {
+    	$('#tabUserGroupList').data('type', 'userGroup');
+        $('#tabUserGroupList').click();
+    }
+    exports.loadFromListing = loadFromListing;
     
 });
