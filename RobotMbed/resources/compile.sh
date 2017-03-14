@@ -19,7 +19,7 @@ objecs="${program_location}target/${program_name}.cpp.o  ${compiler_resources}/m
 cppc_flags='-fno-exceptions -fno-unwind-tables -ffunction-sections -fdata-sections -Wno-unused-variable -Wall -Wextra -fno-rtti -fno-threadsafe-statics -mcpu=cortex-m0 -mthumb -D__thumb2__ -std=c++11 -fwrapv -Os -g -gdwarf-3 -DNDEBUG   -DTOOLCHAIN_GCC -DTOOLCHAIN_GCC_ARM -DMBED_OPERATORS -DNRF51 -DTARGET_NORDIC -DTARGET_M0 -D__MBED__=1 -DMCU_NORDIC_16K -DTARGET_NRF51_CALLIOPE -DTARGET_MCU_NORDIC_16K -DTARGET_MCU_NRF51_16K_S110  -DTARGET_NRF_LFCLK_RC -DTARGET_MCU_NORDIC_16K -D__CORTEX_M0 -DARM_MATH_CM0 -MMD'
 ld_flags='-fno-exceptions -fno-unwind-tables -Wl,--no-wchar-size-warning -Wl,--gc-sections -Wl,--sort-common -Wl,--sort-section=alignment -Wl,-wrap,main -mcpu=cortex-m0 -mthumb --specs=nano.specs'
 ld_sys_libs='-lnosys  -lstdc++ -lsupc++ -lm -lc -lgcc -lstdc++ -lsupc++ -lm -lc -lgcc -Wl,'
-${compiler_resources}
+
 echo "[1/3] Building the ${program_name}."
 run="${compiler}arm-none-eabi-g++ ${include_paths} ${cppc_flags} -MT ${program_location}source/${program_name}.cpp.o -MF ${program_location}target/${program_name}.cpp.o.d -o ${program_location}target/${program_name}.cpp.o -c ${program_location}source/${program_name}.cpp"
 if ! $run; then
