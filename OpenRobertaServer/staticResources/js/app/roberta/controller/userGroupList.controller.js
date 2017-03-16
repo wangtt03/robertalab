@@ -5,7 +5,6 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'userGroupList.model', 'us
      * Initialize table of user groups
      */
     function init() {
-
         initUserGroupList();
         initUserGroupListEvents();
         LOG.info('init user group list view');
@@ -116,7 +115,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'userGroupList.model', 'us
             $('#confirmDeleteUserGroup').one('hide.bs.modal', function(event) {
                 USERGROUPLIST.loadGroupList(update);
             });
-            $("#confirmDeleteUserGroup").data('group', group);
+            $("#confirmDeleteUserGroup").data('usergroup', usergroup);
             $("#confirmDeleteUserGroup").modal("show");
             return false;
         }, "delete users from the group");

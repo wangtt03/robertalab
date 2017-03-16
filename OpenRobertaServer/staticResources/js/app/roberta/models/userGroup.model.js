@@ -36,7 +36,7 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
      *            {String} - name of the user
      * 
      */
-    function deleteUser(account, groupName, successFn) {
+    function deleteUserFromTheGroup(account, groupName, successFn) {
         COMM.json("/usergroups", {
             "cmd" : "deleteUser",
             "account" : account,
