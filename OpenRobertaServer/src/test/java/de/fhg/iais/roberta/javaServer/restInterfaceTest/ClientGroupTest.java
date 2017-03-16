@@ -95,9 +95,7 @@ public class ClientGroupTest {
     @Test
     public void getGroupMembersNotNull() throws Exception {
         restGroup(this.sPid, "{'cmd':'getGroupMembers';'groupName':'TestGroup'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
-        Assert.assertTrue(
-            this.response.getEntity().toString().contains("id=1, account=Roberta, role=TEACHER")
-                && this.response.getEntity().toString().contains("id=2, account=TEST, role=TEACHER"));
+        Assert.assertTrue(this.response.getEntity().toString().contains("Roberta") && this.response.getEntity().toString().contains("TEST"));
     }
 
     @Test
@@ -113,9 +111,6 @@ public class ClientGroupTest {
     @Test
     public void getMemberGroups() throws Exception {
         restGroup(this.sPid, "{'cmd':'getMemberGroups'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
-        //System.out.println("***");
-        //System.out.println(this.response.getEntity().toString());
-        //System.out.println("***");
         Assert.assertTrue(
             this.response.getEntity().toString().contains("\"TestGroup\",\"Roberta Roboter\"")
                 && this.response.getEntity().toString().contains("\"TestGroup1\",\"Roberta Roboter\"")

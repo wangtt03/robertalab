@@ -1,5 +1,5 @@
-define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.model', 'group.controller', 'blocks-msg', 'jquery', 'bootstrap-table' ], function(
-        require, exports, LOG, UTIL, COMM, GROUPLIST, GROUP, GROUP_C, Blockly, $) {
+define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.model', 'group.controller', 'guiState.controller', 'blocks-msg', 'jquery', 'bootstrap-table' ], function(
+        require, exports, LOG, UTIL, COMM, GROUPLIST, GROUP, GROUP_C, GUISTATE_C, Blockly, $) {
 
     /**
      * Initialize table of groups
@@ -129,6 +129,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
         
         
         $('#groupNameTable').onWrap('dbl-click-row.bs.table', function($element, row) {
+        	GUISTATE_C.setGroupName(row[0]);
         	$('#tabUserGroupList').data('type', 'userGroup');
             $('#tabUserGroupList').click();
         }, "Load group from listing double clicked");
@@ -169,6 +170,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
             return false;
         },
         'click .load' : function(e, value, row, index) {
+        	GUISTATE_C.setGroupName(row[0]);
         	$('#tabUserGroupList').data('type', 'userGroup');
             $('#tabUserGroupList').click();
         }
