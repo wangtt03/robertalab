@@ -16,12 +16,12 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
      *            {String} - name of the user
      * 
      */
-    function addUser(userName, groupName, successFn) {
+    function addUser(account, groupName, successFn) {
         COMM.json("/usergroups", {
             "cmd" : "addUser",
-            "userName" : userName,
+            "account" : account,
             "groupName" : groupName,
-        }, successFn, "add user '" + userName + "' to a group '" + groupName + "'");
+        }, successFn, "add user '" + account + "' to a group '" + groupName + "'");
     }
 
     exports.addUser = addUser;
@@ -36,12 +36,12 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
      *            {String} - name of the user
      * 
      */
-    function deleteUser(userName, groupName, successFn) {
+    function deleteUser(account, groupName, successFn) {
         COMM.json("/usergroups", {
             "cmd" : "deleteUser",
-            "userName" : userName,
+            "account" : account,
             "groupName" : groupName,
-        }, successFn, "delete user '" + userName + "' from a group'" + groupName + "'");
+        }, successFn, "delete user '" + account + "' from a group'" + groupName + "'");
     }
 
     exports.deleteUser = deleteUser;
