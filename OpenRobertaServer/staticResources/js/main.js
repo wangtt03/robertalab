@@ -166,6 +166,8 @@ function init() {
         progListController.init();
         groupListController.init();
         groupDeleteController.init();
+        userGroupListController.init();
+        userGroupDeleteController.init();
         progDeleteController.init();
         confListController.init();
         confDeleteController.init();

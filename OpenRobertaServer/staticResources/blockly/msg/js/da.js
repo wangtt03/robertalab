@@ -172,7 +172,7 @@ Blockly.Msg.EXTERNAL_INPUTS = "Udvendige inputs";
 Blockly.Msg.FOR = "for";
 Blockly.Msg.GET = "aflæs";
 Blockly.Msg.GETSAMPLE_TOOLTIP = "Aflæser den valgte sensor.";
-Blockly.Msg.GO_TO_GROUPS = "Go to groups.";  // untranslated
+Blockly.Msg.GO_TO_GROUPS = "go to groups";  // untranslated
 Blockly.Msg.GYRO_GETSAMPLE_TOOLTIP = "Aflæser gyrosensoren.";
 Blockly.Msg.GYRO_RESET_TOOLTIP = "Nulstiller gyrosensoren.";
 Blockly.Msg.GYRO_TOOLTIP = "Repræsenterer gyrosensoren.";
@@ -849,8 +849,12 @@ Blockly.Msg.PLAY_TONE = "tone";
 Blockly.Msg.PLAY_TONE_TOOLTIP = "Afspiller en tone.";
 Blockly.Msg.PLAY_VOLUME = "lydstyrke";
 Blockly.Msg.PLAY_WHOLE = "whole note";  // untranslated
+<<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
+=======
+Blockly.Msg.POPUP_2_1_3 = "2 3 1";  // untranslated
+>>>>>>> #384 corrected html part of userGroup table
 Blockly.Msg.POPUP_2_2_0 = "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.POPUP_ABOUT_JOIN = "Jeg vil gerne hjælpe";
@@ -863,6 +867,7 @@ Blockly.Msg.POPUP_BEFOREUNLOAD_LOGGEDIN = "Du har gemmer ændringer i dit progra
 Blockly.Msg.POPUP_CANCEL = "Afbryd";
 Blockly.Msg.POPUP_CHANGE_PASSWORD = "change password ...";  // untranslated
 Blockly.Msg.POPUP_CONFIRM_DELETE_CONFIGURATION = "Er du sikker på at du vil slette konfigurationen ?";
+Blockly.Msg.POPUP_CONFIRM_DELETE_GROUP = "confirm delete group";  // untranslated
 Blockly.Msg.POPUP_CONFIRM_DELETE_PROGRAM = "Vil du virkeligt slette programmet ?";
 Blockly.Msg.POPUP_CONFIRM_UPDATE_FIRMWARE = "Der er en ny software opdatering til din robot. Du kan forsøge at køre programmer med den gamle version, men det anbefales at du opdaterer din robot nu! Klik >>Opdater nu<< og genstart din robot bagefter.";
 Blockly.Msg.POPUP_CONTINUE = "continue anyway";  // untranslated
@@ -877,7 +882,7 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "now click on the »Save« button on the bot
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Opdater nu";
 Blockly.Msg.POPUP_EMAIL = "E-Mail";
 Blockly.Msg.POPUP_EMAIL_SEND = "Send now";  // untranslated
-Blockly.Msg.POPUP_GROUPNAME = "Group name.";  // untranslated
+Blockly.Msg.POPUP_GROUPNAME = "group name";  // untranslated
 Blockly.Msg.POPUP_NAME = "Navn";
 Blockly.Msg.POPUP_NEW_PASSWORD = "New Password";  // untranslated
 Blockly.Msg.POPUP_OLD_PASSWORD = "Old Password";  // untranslated

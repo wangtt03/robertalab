@@ -1,5 +1,5 @@
 define([ 'require', 'exports', 'log', 'util', 'comm', 'userGroupList.model', 'userGroup.model', 'userGroup.controller', 'blocks-msg', 'jquery', 'bootstrap-table' ], function(
-        require, exports, LOG, UTIL, COMM, GROUPLIST, GROUP, GROUP_C, Blockly, $) {
+        require, exports, LOG, UTIL, COMM, USERGROUPLIST, USERGROUP, USERGROUP_C, Blockly, $) {
 
     /**
      * Initialize table of user groups
@@ -17,7 +17,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'userGroupList.model', 'us
         $('#userGroupNameTable').bootstrapTable({
             height : UTIL.calcDataTableHeight(),
             pageList : '[ 10, 25, All ]',
-            toolbar : '#groupListToolbar',
+            toolbar : '#userGroupListToolbar',
             showRefresh : 'true',
             showPaginationSwitch : 'true',
             pagination : 'true',
@@ -30,18 +30,22 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'userGroupList.model', 'us
                 refresh : 'typcn-refresh',
             },
             columns : [ {
-                title : "<span lkey='Blockly.Msg.DATATABLE_USER_GROUP_NAME'>Name of the user</span>",
+                title : "<span lkey='Blockly.Msg.DATATABLE_USER_NAME'>Name of the user</span>",
                 sortable : true,
                 field : '0',
-            }, 
+            }, {
+                field : '1',
+                checkbox : true,
+                valign : 'middle',
+            },
             {
-                field : '7',
-                events : eventsDeleteLoad,
-                title : '<a href="#" class="deleteSomeUserGroup disabled" title="Delete selected user groups">' + '<span class="typcn typcn-delete"></span></a>',
+                field : '2',
+                events : eventsDelete,
+                title : '<a href="#" class="deleteSomeUserGroups disabled" title="Delete selected user groups">' + '<span class="typcn typcn-delete"></span></a>',
                 align : 'left',
                 valign : 'top',
-                formatter : formatDeleteShareLoad,
-                width : '89px',
+                formatter : formatDelete,
+                width : '60px',
             }, ]
         });
         $('#userGroupNameTable').bootstrapTable('togglePagination');
@@ -49,62 +53,63 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'userGroupList.model', 'us
 
     function initUserGroupListEvents() {
 
-        $(window).resize(function() {
+    	$(window).resize(function() {
             $('#userGroupNameTable').bootstrapTable('resetView', {
                 height : UTIL.calcDataTableHeight()
             });
         });
+        
         $('#tabUserGroupList').on('show.bs.tab', function(e) {
+        	var groupName = null;
             guiStateController.setView('tabUserGroupList');
-            USERGROUPLIST.loadUserGroupList(update);
+            USERGROUPLIST.loadUserGroupList(update, groupName);
         });
-
+                
+               
         $('.bootstrap-table').find('button[name="refresh"]').onWrap('click', function() {
-        	USERGROUPLIST.loadUserGroupList(update);
+        	var groupName = null;
+        	USERGROUPLIST.loadUserGroupList(update, groupName);
             return false;
         }, "refresh user group list clicked");
-
-        $('#userGroupNameTable').onWrap('dbl-click-row.bs.table', function($element, row) {
-            USERGROUP_C.loadFromListing(row);
-        }, "Load group from listing double clicked");
+        
+        $('#createUserGroup').onWrap('click', function() {
+            USERGROUP_C.showSaveAsModal();
+            return false;
+        }, "add a user")
 
         $('#userGroupNameTable').onWrap('check-all.bs.table', function($element, rows) {
-            $('.deleteSomeUserGroup').removeClass('disabled');
-            $('.delete').addClass('disabled');
-            $('.load').addClass('disabled');
-        }, 'check all user groups');
+	        $('.deleteSomeUserGroup').removeClass('disabled');
+	        $('.delete').addClass('disabled');
+        }, 'check all users');
 
         $('#userGroupNameTable').onWrap('check.bs.table', function($element, row) {
             $('.deleteSomeUserGroup').removeClass('disabled');
             $('.delete').addClass('disabled');
-            $('.load').addClass('disabled');
-        }, 'check one user group');
-
+        }, 'check one users');
+        
         $('#userGroupNameTable').onWrap('uncheck-all.bs.table', function($element, rows) {
             $('.deleteSomeUserGroup').addClass('disabled');
             $('.delete').removeClass('disabled');
-            $('.load').removeClass('disabled');
-        }, 'uncheck all user groups');
+        }, 'uncheck all users');
 
         $('#userGroupNameTable').onWrap('uncheck.bs.table', function($element, row) {
             var selectedRows = $('#userGroupNameTable').bootstrapTable('getSelections');
             if (selectedRows.length <= 0 || selectedRows == null) {
                 $('.deleteSomeUserGroup').addClass('disabled');
                 $('.delete').removeClass('disabled');
-                $('.load').removeClass('disabled');
             }
-        }, 'uncheck one user group');
+        }, 'uncheck one user');
 
         $('#backUserGroupList').onWrap('click', function() {
-            $('#tabGroup').trigger('click');
+            $('#tabProgram').trigger('click');
             return false;
-        }, "back to group view")
-
+        }, "back to program view")
+        
         $(document).onWrap('click', '.deleteSomeUserGroup', function() {
-            var userGroup = $('#userGroupNameTable').bootstrapTable('getSelections', {});
+            var group = $('#userGroupNameTable').bootstrapTable('getSelections', {});
             var names = '';
             for (var i = 0; i < group.length; i++) {
-                names += group[i][0];
+                names += userGroup[i][0];
                 names += '<br>';
             }
             $('#confirmDeleteUserGroupName').html(names);
@@ -114,20 +119,20 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'userGroupList.model', 'us
             $("#confirmDeleteUserGroup").data('group', group);
             $("#confirmDeleteUserGroup").modal("show");
             return false;
-        }, "delete user groups");
-
-        $('#groupUserNameTable').on('shown.bs.collapse hidden.bs.collapse', function(e) {
-            $('#groupUserNameTable').bootstrapTable('resetWidth');
+        }, "delete users from the group");
+                
+        
+        $('#userGroupNameTable').on('shown.bs.collapse hidden.bs.collapse', function(e) {
+            $('#userGroupNameTable').bootstrapTable('resetWidth');
         });
 
         function update(result) {
             UTIL.response(result);
             if (result.rc === 'ok') {
                 //$('#programNameTable').bootstrapTable({});
-                $('#groupUserNameTable').bootstrapTable("load", result.programNames);
-                $('#groupUserNameTable').bootstrapTable("showColumn", '2');
-                $('#groupUserNameTable').bootstrapTable("showColumn", '3');
-                if ($('#tabUserGroupList').data('type') === 'group') {
+                $('#userGroupNameTable').bootstrapTable("load", result.userNames);
+                $('#userGroupNameTable').bootstrapTable("showColumn", '2');
+                if ($('#tabUserGroupList').data('type') == 'userGroup') {
                     $('.deleteSomeUserGroup').show();
                 } else {
                     $('.deleteSomeUserGroup').hide();
@@ -136,7 +141,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'userGroupList.model', 'us
         }
     }
 
-    var eventsDeleteLoad = {
+    var eventsDelete = {
         'click .delete' : function(e, value, row, index) {
             var selectedRows = [ row ];
             var names = '';
@@ -150,19 +155,15 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'userGroupList.model', 'us
             });
             $("#confirmDeleteUserGroup").modal("show");
             return false;
-        },
-        'click .load' : function(e, value, row, index) {
-            USERGROUP_C.loadFromListing(row);
         }
     };
 
     
-    var formatDeleteLoad = function(value, row, index) {
+    var formatDelete = function(value, row, index) {
         var result = '';
         if ($('#tabUserGroupList').data('type') === 'userGroup') {
             result += '<a href="#" class="delete" title="Delete user group"><span class="typcn typcn-delete"></span></a>';
         }
-        result += '<a href="#" class="load "  title="Load user group"><span class="typcn typcn-document"></span></a>';
         return result;
     }
 

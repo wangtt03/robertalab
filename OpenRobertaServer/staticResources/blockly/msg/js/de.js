@@ -172,7 +172,7 @@ Blockly.Msg.EXTERNAL_INPUTS = "externe Eingänge";
 Blockly.Msg.FOR = "für";
 Blockly.Msg.GET = "gib";
 Blockly.Msg.GETSAMPLE_TOOLTIP = "Gibt den aktuellen Wert des ausgewählten Sensors zurück.";
-Blockly.Msg.GO_TO_GROUPS = "Go to groups.";  // untranslated
+Blockly.Msg.GO_TO_GROUPS = "go to groups";  // untranslated
 Blockly.Msg.GYRO_GETSAMPLE_TOOLTIP = "Gibt den aktuellen Wert des Kreiselensors zurück.";
 Blockly.Msg.GYRO_RESET_TOOLTIP = "Setzt den Kreiselensor zurück.";
 Blockly.Msg.GYRO_TOOLTIP = "Block für den Kreiselsensor.";
@@ -839,8 +839,12 @@ Blockly.Msg.PLAY_TONE = "Ton";
 Blockly.Msg.PLAY_TONE_TOOLTIP = "Spielt einen Ton.";
 Blockly.Msg.PLAY_VOLUME = "Lautstärke";
 Blockly.Msg.PLAY_WHOLE = "ganze Note";
+<<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
+=======
+Blockly.Msg.POPUP_2_1_3 = "2 3 1";  // untranslated
+>>>>>>> #384 corrected html part of userGroup table
 Blockly.Msg.POPUP_2_2_0 = "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.POPUP_ABOUT_JOIN = "Ich möchte mithelfen";
@@ -853,6 +857,7 @@ Blockly.Msg.POPUP_BEFOREUNLOAD_LOGGEDIN = "Du musst Dein Programm oder Deine Kon
 Blockly.Msg.POPUP_CANCEL = "Abbrechen";
 Blockly.Msg.POPUP_CHANGE_PASSWORD = "ändere Passwort ...";
 Blockly.Msg.POPUP_CONFIRM_DELETE_CONFIGURATION = "Möchtest du die Roboterkonfiguration wirklich löschen?";
+Blockly.Msg.POPUP_CONFIRM_DELETE_GROUP = "confirm delete group";  // untranslated
 Blockly.Msg.POPUP_CONFIRM_DELETE_PROGRAM = "Möchtest du das Programm wirklich löschen?";
 Blockly.Msg.POPUP_CONFIRM_UPDATE_FIRMWARE = "Die Firmware Deines Roboters wurde geändert. Deine Programme funktionieren vielleicht noch, aber es wäre besser, die Firmware jetzt zu aktualisieren! Klicke dazu einfach auf >>Aktualisieren<<.";
 Blockly.Msg.POPUP_CONTINUE = "Trotzdem weiter";
@@ -867,7 +872,7 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "jetzt klicke auf »Speichern« in der recht
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Aktualisieren";
 Blockly.Msg.POPUP_EMAIL = "E-Mail";
 Blockly.Msg.POPUP_EMAIL_SEND = "Jetzt abschicken";
-Blockly.Msg.POPUP_GROUPNAME = "Group name.";  // untranslated
+Blockly.Msg.POPUP_GROUPNAME = "group name";  // untranslated
 Blockly.Msg.POPUP_NAME = "Name";
 Blockly.Msg.POPUP_NEW_PASSWORD = "Neues Passwort";
 Blockly.Msg.POPUP_OLD_PASSWORD = "Altes Passwort";

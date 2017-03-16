@@ -172,7 +172,7 @@ Blockly.Msg.EXTERNAL_INPUTS = "External Inputs";
 Blockly.Msg.FOR = "for";
 Blockly.Msg.GET = "get";
 Blockly.Msg.GETSAMPLE_TOOLTIP = "Gets the current reading from chosen sensor.";
-Blockly.Msg.GO_TO_GROUPS = "Go to groups.";
+Blockly.Msg.GO_TO_GROUPS = "go to groups";
 Blockly.Msg.GYRO_GETSAMPLE_TOOLTIP = "Gets the current reading from the gyro sensor.";
 Blockly.Msg.GYRO_RESET_TOOLTIP = "Resets the gyro sensor.";
 Blockly.Msg.GYRO_TOOLTIP = "Represents a gyro sensor.";
@@ -849,8 +849,12 @@ Blockly.Msg.PLAY_TONE = "tone";
 Blockly.Msg.PLAY_TONE_TOOLTIP = "Plays a tone.";
 Blockly.Msg.PLAY_VOLUME = "volume";
 Blockly.Msg.PLAY_WHOLE = "whole note";
+<<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
+=======
+Blockly.Msg.POPUP_2_1_3 = "2 3 1";
+>>>>>>> #384 corrected html part of userGroup table
 Blockly.Msg.POPUP_2_2_0 = "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.POPUP_ABOUT_JOIN = "I want to help";
@@ -863,6 +867,7 @@ Blockly.Msg.POPUP_BEFOREUNLOAD_LOGGEDIN = "You have unsaved changes in your prog
 Blockly.Msg.POPUP_CANCEL = "Cancel";
 Blockly.Msg.POPUP_CHANGE_PASSWORD = "change password ...";
 Blockly.Msg.POPUP_CONFIRM_DELETE_CONFIGURATION = "Do you really want to delete the configuration ?";
+Blockly.Msg.POPUP_CONFIRM_DELETE_GROUP = "confirm delete group";
 Blockly.Msg.POPUP_CONFIRM_DELETE_PROGRAM = "Do you really want to delete the program ?";
 Blockly.Msg.POPUP_CONFIRM_UPDATE_FIRMWARE = "There is a new firmware version for your robot available. You can try to run programs with the old version, but best bet is to update your robot now! You just have to click >>Update now<<.";
 Blockly.Msg.POPUP_CONTINUE = "continue anyway";
@@ -877,7 +882,7 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "now click on the »Save« button on the bot
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Update now";
 Blockly.Msg.POPUP_EMAIL = "E-Mail";
 Blockly.Msg.POPUP_EMAIL_SEND = "Send now";
-Blockly.Msg.POPUP_GROUPNAME = "Group name.";
+Blockly.Msg.POPUP_GROUPNAME = "group name";
 Blockly.Msg.POPUP_NAME = "Name";
 Blockly.Msg.POPUP_NEW_PASSWORD = "New Password";
 Blockly.Msg.POPUP_OLD_PASSWORD = "Old Password";

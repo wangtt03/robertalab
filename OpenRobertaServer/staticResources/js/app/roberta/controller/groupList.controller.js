@@ -127,8 +127,10 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
             return false;
         }, "delete groups");
         
+        
         $('#groupNameTable').onWrap('dbl-click-row.bs.table', function($element, row) {
-            GROUP_C.loadFromListing(row);
+        	$('#tabUserGroupList').data('type', 'userGroup');
+            $('#tabUserGroupList').click();
         }, "Load group from listing double clicked");
         
         
@@ -167,7 +169,8 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
             return false;
         },
         'click .load' : function(e, value, row, index) {
-            GROUP_C.loadFromListing(row);
+        	$('#tabUserGroupList').data('type', 'userGroup');
+            $('#tabUserGroupList').click();
         }
     };
 

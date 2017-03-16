@@ -230,10 +230,14 @@ Blockly.Msg.EXTERNAL_INPUTS = "vnější vstupy";
 Blockly.Msg.FOR = "pro";
 Blockly.Msg.GET = "získat";
 Blockly.Msg.GETSAMPLE_TOOLTIP = "Vrátí aktuální hodnotu vybraného senzoru.";
+<<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.GO_TO_GROUPS = "Go to groups.";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.GO_TO_GROUPS = "go to groups";  // untranslated
+>>>>>>> #384 corrected html part of userGroup table
 Blockly.Msg.GYRO_GETSAMPLE_TOOLTIP = "Vrátí aktuální hodnotu gyra.";
 Blockly.Msg.GYRO_RESET_TOOLTIP = "Resetuje gyro senzor.";
 Blockly.Msg.GYRO_TOOLTIP = "Představuje gyro senzor.";
@@ -1010,8 +1014,12 @@ Blockly.Msg.PLAY_TONE = "tón";
 Blockly.Msg.PLAY_TONE_TOOLTIP = "Přehraje tón.";
 Blockly.Msg.PLAY_VOLUME = "hlasitost";
 Blockly.Msg.PLAY_WHOLE = "whole note";  // untranslated
+<<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
+=======
+Blockly.Msg.POPUP_2_1_3 = "2 3 1";  // untranslated
+>>>>>>> #384 corrected html part of userGroup table
 Blockly.Msg.POPUP_2_2_0 = "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.POPUP_ABOUT_JOIN = "Rád bych pomohl";
@@ -1024,6 +1032,7 @@ Blockly.Msg.POPUP_BEFOREUNLOAD_LOGGEDIN = "V programu nebo nastavení jsou neulo
 Blockly.Msg.POPUP_CANCEL = "Storno";
 Blockly.Msg.POPUP_CHANGE_PASSWORD = "změna hesla...";
 Blockly.Msg.POPUP_CONFIRM_DELETE_CONFIGURATION = "Opravdu chcete smazat nastavení?";
+Blockly.Msg.POPUP_CONFIRM_DELETE_GROUP = "confirm delete group";  // untranslated
 Blockly.Msg.POPUP_CONFIRM_DELETE_PROGRAM = "Opravdu chcete smazat program?";
 Blockly.Msg.POPUP_CONFIRM_UPDATE_FIRMWARE = "Pro vašeho robota je k dispozici nový firmware. Můžete zkusit spustit program se starým firmware, ale nejlépe bude když firmware svého robota nyní aktualizujete! Stačí, když kliknete na >>Aktualizovat nyní<<.";
 Blockly.Msg.POPUP_CONTINUE = "přesto pokračovat";
@@ -1038,12 +1047,16 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "now click on the »Save« button on the bot
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Aktualizovat nyní";
 Blockly.Msg.POPUP_EMAIL = "E-mail";
 Blockly.Msg.POPUP_EMAIL_SEND = "Odeslat nyní";
+<<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.POPUP_NAME = "Jméno";
 Blockly.Msg.POPUP_NEW_PASSWORD = "Nové heslo";
 Blockly.Msg.POPUP_OLD_PASSWORD = "Staré heslo";
 =======
 Blockly.Msg.POPUP_GROUPNAME = "Group name.";  // untranslated
+=======
+Blockly.Msg.POPUP_GROUPNAME = "group name";  // untranslated
+>>>>>>> #384 corrected html part of userGroup table
 Blockly.Msg.POPUP_NAME = "Jméno";
 Blockly.Msg.POPUP_NEW_PASSWORD = "Nové heslo";
 Blockly.Msg.POPUP_OLD_PASSWORD = "Staré heslo";

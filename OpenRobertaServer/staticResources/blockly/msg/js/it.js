@@ -172,7 +172,7 @@ Blockly.Msg.EXTERNAL_INPUTS = "Ingressi esterni";
 Blockly.Msg.FOR = "per";
 Blockly.Msg.GET = "ottieni";
 Blockly.Msg.GETSAMPLE_TOOLTIP = "Ottiene lettura corrente del sensore scelto.";
-Blockly.Msg.GO_TO_GROUPS = "Go to groups.";  // untranslated
+Blockly.Msg.GO_TO_GROUPS = "go to groups";  // untranslated
 Blockly.Msg.GYRO_GETSAMPLE_TOOLTIP = "Ottiene lettura corrente del sensore giroscopico.";
 Blockly.Msg.GYRO_RESET_TOOLTIP = "Risetta sensore giroscopico.";
 Blockly.Msg.GYRO_TOOLTIP = "Rappresenta sensore giroscopico.";
@@ -853,8 +853,12 @@ Blockly.Msg.PLAY_TONE = "suono/tuono";
 Blockly.Msg.PLAY_TONE_TOOLTIP = "Riproduce un suono.";
 Blockly.Msg.PLAY_VOLUME = "volume";
 Blockly.Msg.PLAY_WHOLE = "whole note";  // untranslated
+<<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
+=======
+Blockly.Msg.POPUP_2_1_3 = "2 3 1";  // untranslated
+>>>>>>> #384 corrected html part of userGroup table
 Blockly.Msg.POPUP_2_2_0 = "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 Blockly.Msg.POPUP_ABOUT_JOIN = "Voglio aiutare";
@@ -867,6 +871,7 @@ Blockly.Msg.POPUP_BEFOREUNLOAD_LOGGEDIN = "Ci sono cambiamenti che non sono stat
 Blockly.Msg.POPUP_CANCEL = "Cancella";
 Blockly.Msg.POPUP_CHANGE_PASSWORD = "cambia la password...";
 Blockly.Msg.POPUP_CONFIRM_DELETE_CONFIGURATION = "Vuoi veramente cancellare la configurazione?";
+Blockly.Msg.POPUP_CONFIRM_DELETE_GROUP = "confirm delete group";  // untranslated
 Blockly.Msg.POPUP_CONFIRM_DELETE_PROGRAM = "Vuoi veramente cancellare questo programma?";
 Blockly.Msg.POPUP_CONFIRM_UPDATE_FIRMWARE = "Una nuova versione della firmware per il tuo robot è disponibile. Puoi provare a eseguire programmi con la versione vecchia, però la soluzione migliore sarebbe attualizare il tuo robot adesso! Devio solo cliccare >>Attualiza subito<<.";
 Blockly.Msg.POPUP_CONTINUE = "continua comunque";
@@ -881,7 +886,7 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "now click on the »Save« button on the bot
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Attualiza subito";
 Blockly.Msg.POPUP_EMAIL = "E-mail";
 Blockly.Msg.POPUP_EMAIL_SEND = "Invia adesso";
-Blockly.Msg.POPUP_GROUPNAME = "Group name.";  // untranslated
+Blockly.Msg.POPUP_GROUPNAME = "group name";  // untranslated
 Blockly.Msg.POPUP_NAME = "Nome";
 Blockly.Msg.POPUP_NEW_PASSWORD = "Nuova password";
 Blockly.Msg.POPUP_OLD_PASSWORD = "Vecchia passoword";
