@@ -32,11 +32,11 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
         this.gd = new GroupDao(session);
     }
 
-    public UserGroup persistUserGroup(String userName, String groupName) throws Exception {
-        Assert.notNull(userName);
+    public UserGroup persistUserGroup(String accountName, String groupName) throws Exception {
+        Assert.notNull(accountName);
         Assert.notNull(groupName);
-        UserGroup userGroup = loadUserGroup(userName, groupName);
-        int userId = this.ud.loadUser(userName).getId();
+        UserGroup userGroup = loadUserGroup(accountName, groupName);
+        int userId = this.ud.loadUser(accountName).getId();
         int groupId = this.gd.loadGroup(groupName).getId();
         if ( userGroup == null ) {
             userGroup = new UserGroup(userId, groupId);

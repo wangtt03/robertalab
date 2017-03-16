@@ -20,7 +20,7 @@ define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.contr
     	$('.modal').modal('hide'); // close all opened popups
         var userName = $('#singleModalInput').val().trim();
         var groupName = GUISTATE_C.getGroupName();
-        LOG.info('add user ' + userName + 'to a group' + groupName);
+        LOG.info('add user ' + userName + ' to a group ' + groupName);
         USERGROUP.addUser(userName, groupName, function(result) {
         UTIL.response(result);
         if (result.rc === 'ok') {
@@ -36,11 +36,11 @@ define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.contr
             return value.match(regexp);
         }, "No special Characters allowed here.");
 
-        UTIL.addUserToGroup(function() {
+        UTIL.showSingleModal(function() {
             $('#singleModalInput').attr('type', 'text');
             $('#single-modal h3').text("Add a user");
             $('#single-modal label').text("Name");
-        }, createGroupToServer, function() {
+        }, addUserToGroup, function() {
 
         }, {
             rules : {
