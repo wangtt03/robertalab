@@ -113,7 +113,7 @@ public class ClientGroup {
                     break;
                 case "deleteUser":
                     userGroup = ugp.getUserGroup(account, groupName);
-                    ugp.deleteByIds(account, groupName);
+                    ugp.delete(account, groupName);
                     if ( userGroup == null ) {
                         Util.addErrorInfo(response, Key.USER_GROUP_DELETE_ERROR);
                     } else {
