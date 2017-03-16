@@ -3,15 +3,6 @@ define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.contr
 
     var $divForms;
     var $formSingleModal;
-    var $modalAnimateTime = 300;
-    var $msgAnimateTime = 150;
-    var $msgShowTime = 2000;
-    
-    function init() {
-        initEvents();
-        initGroupForms();
-    }
-    exports.init = init;
 
     /**
      * Add a user to group
