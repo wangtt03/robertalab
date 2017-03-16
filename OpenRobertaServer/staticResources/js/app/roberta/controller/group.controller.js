@@ -16,8 +16,7 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
     
     function createGroupToServer() {
         $('.modal').modal('hide'); // close all opened popups
-        var groupName;
-        groupName = $('#singleModalInput').val().trim();
+        var groupName = $('#singleModalInput').val().trim();
         LOG.info('create group ' + groupName);
         GROUP.createGroupToServer(groupName, function(result) {
         UTIL.response(result);

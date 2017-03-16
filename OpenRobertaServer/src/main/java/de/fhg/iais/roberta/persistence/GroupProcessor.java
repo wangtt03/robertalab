@@ -60,11 +60,17 @@ public class GroupProcessor extends AbstractProcessor {
      *
      * @param groupName the name of the group
      */
-    public List<User> getGroupMembers(String groupName) {
+    public JSONArray getGroupMembers(String groupName) {
         GroupDao groupDao = new GroupDao(this.dbSession);
-        List<User> user = groupDao.loadMembersByGroup(groupName);
-        setSuccess(Key.GROUP_GET_ALL_SUCCESS, "" + user);
-        return user;
+        List<User> users = groupDao.loadMembersByGroup(groupName);
+        JSONArray userNamesInfs = new JSONArray();
+        for ( User user : users ) {
+            JSONArray userNamesInf = new JSONArray();
+            userNamesInf.put(user.getAccount());
+            userNamesInfs.put(userNamesInf);
+        }
+        setSuccess(Key.GROUP_GET_ALL_SUCCESS, "" + userNamesInfs);
+        return userNamesInfs;
     }
 
     /**

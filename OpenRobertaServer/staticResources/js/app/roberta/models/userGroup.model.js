@@ -21,7 +21,7 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
             "cmd" : "addUser",
             "userName" : userName,
             "groupName" : groupName,
-        }, successFn, "add user '" + userName + "' to a group '" + groupNames + "'");
+        }, successFn, "add user '" + userName + "' to a group '" + groupName + "'");
     }
 
     exports.addUser = addUser;

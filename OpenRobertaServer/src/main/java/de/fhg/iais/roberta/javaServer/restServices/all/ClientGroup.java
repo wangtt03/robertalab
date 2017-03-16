@@ -1,7 +1,5 @@
 package de.fhg.iais.roberta.javaServer.restServices.all;
 
-import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -21,7 +19,6 @@ import de.fhg.iais.roberta.javaServer.provider.OraData;
 import de.fhg.iais.roberta.persistence.GroupProcessor;
 import de.fhg.iais.roberta.persistence.UserGroupProcessor;
 import de.fhg.iais.roberta.persistence.bo.Group;
-import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.bo.UserGroup;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.HttpSessionState;
@@ -77,7 +74,7 @@ public class ClientGroup {
                     }
                     break;
                 case "getGroupMembers":
-                    List<User> memberList = gp.getGroupMembers(groupName);
+                    JSONArray memberList = gp.getGroupMembers(groupName);
                     response.put("memberList", memberList);
                     Util.addResultInfo(response, gp);
                     break;
