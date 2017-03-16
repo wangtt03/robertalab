@@ -49,7 +49,7 @@ public class UserGroupProcessor extends AbstractProcessor {
      *
      * @param groupName the name of the program
      */
-    public void deleteByIds(String userName, String groupName) {
+    public void delete(String userName, String groupName) {
         UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
         int rowCount = userGroupDao.deleteByIds(userName, groupName);
         if ( rowCount > 0 ) {

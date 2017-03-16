@@ -44,6 +44,6 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
         }, successFn, "delete user '" + account + "' from a group'" + groupName + "'");
     }
 
-    exports.deleteUser = deleteUser;
+    exports.deleteUserFromTheGroup = deleteUserFromTheGroup;
 
 });

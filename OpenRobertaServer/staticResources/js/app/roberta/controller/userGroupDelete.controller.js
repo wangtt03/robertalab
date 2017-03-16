@@ -17,16 +17,16 @@ define([ 'require', 'exports', 'log', 'util', 'message', 'comm', 'userGroup.mode
          * Delete the user groups that were selected in a user group list
          */
         $('#doDeleteUserGroup').onWrap('click', function() {
-            var user = $("#confirmDeleteUserGroup").data('userGroup');
-            for (var i = 0; i < groupUsers.length; i++) {
-                var userName = user[0];
+            var userGroup = $("#confirmDeleteUserGroup").data('userGroup');
+            for (var i = 0; i < userGroup.length; i++) {
+                var userName = userGroup[0];
                 var groupName = GUISTATE_C.getGroupName();
-                USERGROUP.deleteUserFromTheGroup(userName, function(userName, groupName, result) {
+                USERGROUP.deleteUserFromTheGroup(userName, groupName, function(userName, groupName, result) {
                 UTIL.response(result);
                 if (result.rc === 'ok') {
-                    MSG.displayInformation(result, "MESSAGE_USERGROUP_DELETED", result.message, userGroupName);
+                    MSG.displayInformation(result, "MESSAGE_USERGROUP_DELETED", result.message, userName);
                     $('.bootstrap-table').find('button[name="refresh"]').trigger('click');
-                    LOG.info('delete group "' + groupName + "'");
+                    LOG.info('delete user "' + userName + "' from group '" groupName + "'");)
                 }
             });
                 
