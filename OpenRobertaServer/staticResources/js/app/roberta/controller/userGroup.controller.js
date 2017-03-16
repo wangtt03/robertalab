@@ -1,11 +1,7 @@
-define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.controller', 'jquery', 'blocks', 'blocks-msg' ], function(exports, LOG, MSG, UTIL, USER_GROUP,
+define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.controller', 'jquery', 'blocks', 'blocks-msg' ], function(exports, LOG, MSG, UTIL, USERGROUP,
         GUISTATE_C, $, Blockly) {
 
     var $divForms;
-    var $formLogin;
-    var $formLost;
-    var $formRegister;
-    var $formUserPasswordChange;
     var $formSingleModal;
     var $modalAnimateTime = 300;
     var $msgAnimateTime = 150;
@@ -17,7 +13,7 @@ define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.contr
     function createUserGroupToServer() {
         $formRegister.validate();
         if ($formRegister.valid()) {
-            USER_GROUP.createUserToServer($("#addUser").val(), $('#addGroup').val(), function(
+            USERGROUP.createUserToServer($("#addUser").val(), $('#addGroup').val(), function(
                     result) {
                 if (result.rc === "ok") {
                 	$('#addUser').val($('#addUser').val());
@@ -33,7 +29,7 @@ define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.contr
      * Get user group from server
      */
     function getUserFromServer() {
-        USER_GROUP.getUserGroupFromServer(GUISTATE_C.getUserGroup(), function(result) {
+        USERGROUP.getUserGroupFromServer(GUISTATE_C.getUserGroup(), function(result) {
             if (result.rc === "ok") {
                 $("#registerUserGroup").val(result.userGroup);
             }

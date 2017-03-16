@@ -64,14 +64,5 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
         });
     }
     exports.showSaveAsModal = showSaveAsModal;
-    
-    /**
-     * Load a selected group
-     */
-    function loadFromListing(userGroup) {
-    	$('#tabUserGroupList').data('type', 'userGroup');
-        $('#tabUserGroupList').click();
-    }
-    exports.loadFromListing = loadFromListing;
-    
+        
 });
