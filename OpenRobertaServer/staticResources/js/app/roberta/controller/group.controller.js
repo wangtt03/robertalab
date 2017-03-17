@@ -33,10 +33,9 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
     
    
     function showSaveAsModal() {
-        $.validator.addMethod("regex", function(value, element, regexp) {
-            value = value.trim();
-            return value.match(regexp);
-        }, "No special Characters allowed here.");
+        $.validator.addMethod("loginRegex", function(value, element) {
+            return this.optional(element) || /^[a-zA-Z0-9=+!?.,%#+&^@_ ]+$/gi.test(value);
+        }, "This field contains nonvalid symbols.");
 
         UTIL.showSingleModal(function() {
             $('#singleModalInput').attr('type', 'text');
@@ -48,7 +47,7 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
             rules : {
                 singleModalInput : {
                     required : true,
-                    regex : /^[a-zA-Z_öäüÖÄÜß$€][a-zA-Z0-9_öäüÖÄÜß$€]*$/
+                    loginRegex : true
                 }
             },
             errorClass : "form-invalid",
@@ -58,7 +57,7 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
             messages : {
                 singleModalInput : {
                     //required : Blockly.Msg["VALIDATION_FIELD_REQUIRED"],
-                    //regex : Blockly.Msg["MESSAGE_INVALID_NAME"]
+                    //loginRegex : Blockly.Msg["MESSAGE_INVALID_NAME"]
                 }
             }
         });

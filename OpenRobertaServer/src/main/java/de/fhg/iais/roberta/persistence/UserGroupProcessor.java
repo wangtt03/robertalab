@@ -1,5 +1,8 @@
 package de.fhg.iais.roberta.persistence;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import de.fhg.iais.roberta.persistence.bo.UserGroup;
 import de.fhg.iais.roberta.persistence.dao.UserGroupDao;
 import de.fhg.iais.roberta.persistence.util.DbSession;
@@ -38,6 +41,13 @@ public class UserGroupProcessor extends AbstractProcessor {
      * @throws Exception
      */
     public UserGroup persistUserGroup(String userName, String groupName) throws Exception {
+        Pattern p = Pattern.compile("[^a-zA-Z0-9=+!?.,%#+&^@_ ]", Pattern.CASE_INSENSITIVE);
+        Matcher name_symbols = p.matcher(userName);
+        boolean userGroup_check = name_symbols.find();
+        if ( userGroup_check ) {
+            setError(Key.USER_CREATE_ERROR_CONTAINS_SPECIAL_CHARACTERS, userName);
+            return null;
+        }
         UserGroupDao userGroupDao = new UserGroupDao(this.dbSession);
         UserGroup result;
         result = userGroupDao.persistUserGroup(userName, groupName);
