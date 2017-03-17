@@ -75,9 +75,8 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
         
         $('#createGroup').onWrap('click', function() {
             GROUP_C.showSaveAsModal();
-            //TODO: refresh
             return false;
-        }, "register a group")
+        }, "create a group")
 
         $('#groupNameTable').onWrap('check-all.bs.table', function($element, rows) {
 	        $('.deleteSomeGroup').removeClass('disabled');
