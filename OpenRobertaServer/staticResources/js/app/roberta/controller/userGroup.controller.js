@@ -1,9 +1,6 @@
 define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.controller', 'jquery', 'blocks', 'blocks-msg' ], function(exports, LOG, MSG, UTIL, USERGROUP,
         GUISTATE_C, $, Blockly) {
 
-    var $divForms;
-    var $formSingleModal;
-
     /**
      * Add a user to group
      */

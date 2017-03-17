@@ -94,7 +94,7 @@ public class ClientGroupTest {
 
     @Test
     public void getGroupMembersNotNull() throws Exception {
-        restGroup(this.sPid, "{'cmd':'getGroupMembers';'groupName':'TestGroup'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
+        restGroup(this.sPid, "{'cmd':'getGroupMembers';'groupName':'TestGroup'}", "ok", Key.GROUP_GET_MEMBERS_SUCCESS);
         Assert.assertTrue(this.response.getEntity().toString().contains("Roberta") && this.response.getEntity().toString().contains("TEST"));
     }
 
@@ -105,12 +105,12 @@ public class ClientGroupTest {
 
     @Test
     public void getGroupMembersZero() throws Exception {
-        restGroup(this.sPid, "{'cmd':'getGroupMembers';'groupName':'TestGroup2'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
+        restGroup(this.sPid, "{'cmd':'getGroupMembers';'groupName':'TestGroup2'}", "ok", Key.GROUP_GET_MEMBERS_SUCCESS);
     }
 
     @Test
     public void getMemberGroups() throws Exception {
-        restGroup(this.sPid, "{'cmd':'getMemberGroups'}", "ok", Key.GROUP_GET_ALL_SUCCESS);
+        restGroup(this.sPid, "{'cmd':'getMemberGroups'}", "ok", Key.USER_GET_GROUPS_SUCCESS);
         Assert.assertTrue(
             this.response.getEntity().toString().contains("\"TestGroup\",\"Roberta Roboter\"")
                 && this.response.getEntity().toString().contains("\"TestGroup1\",\"Roberta Roboter\"")
