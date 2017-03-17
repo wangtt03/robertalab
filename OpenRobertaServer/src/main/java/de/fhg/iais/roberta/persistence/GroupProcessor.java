@@ -1,6 +1,8 @@
 package de.fhg.iais.roberta.persistence;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.codehaus.jettison.json.JSONArray;
 
@@ -103,7 +105,11 @@ public class GroupProcessor extends AbstractProcessor {
      * @throws Exception
      */
     public Group persistGroup(String groupName, int userId) throws Exception {
-        if ( !Util1.isValidJavaIdentifier(groupName) ) {
+        Pattern p = Pattern.compile("[^a-zA-Z0-9=+!?.,%#+&^@_ ]", Pattern.CASE_INSENSITIVE);
+        Matcher group_symbols = p.matcher(groupName);
+        boolean group_check = group_symbols.find();
+
+        if ( !Util1.isValidJavaIdentifier(groupName) || group_check ) {
             setError(Key.GROUP_ERROR_NAME_INVALID, groupName);
             return null;
         }
