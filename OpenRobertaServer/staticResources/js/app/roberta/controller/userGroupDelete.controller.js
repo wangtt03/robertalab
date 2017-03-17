@@ -19,14 +19,14 @@ define([ 'require', 'exports', 'log', 'util', 'message', 'comm', 'userGroup.mode
         $('#doDeleteUserGroup').onWrap('click', function() {
             var userGroup = $("#confirmDeleteUserGroup").data('userGroup');
             for (var i = 0; i < userGroup.length; i++) {
-                var userName = userGroup[0];
+                var userName = userGroup[0][0];
                 var groupName = GUISTATE_C.getGroupName();
                 USERGROUP.deleteUserFromTheGroup(userName, groupName, function(userName, groupName, result) {
                 UTIL.response(result);
                 if (result.rc === 'ok') {
-                    MSG.displayInformation(result, "MESSAGE_USERGROUP_DELETED", result.message, userName);
+                    MSG.displayInformation(result.message, groupName);
                     $('.bootstrap-table').find('button[name="refresh"]').trigger('click');
-                    LOG.info('delete user "' + userName + "' from group '" groupName + "'");)
+                    LOG.info('delete user "' + userName + "' from group '" + groupName + "'");
                 }
             });
                 
