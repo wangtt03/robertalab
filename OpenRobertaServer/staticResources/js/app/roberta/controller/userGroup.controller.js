@@ -16,6 +16,7 @@ define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.contr
         UTIL.response(result);
         if (result.rc === 'ok') {
             MSG.displayInformation(result, "ADDED_USER", result.message, userName);
+            $('.bootstrap-table').find('button[name="refresh"]').trigger('click');
         }
         });
     }

@@ -24,6 +24,7 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
             result.name = groupName;
             GUISTATE_C.setGroupName(result);
             MSG.displayInformation(result, "MESSAGE_EDIT_SAVE_GROUP_AS", result.message, GUISTATE_C.getGroupName());
+            $('.bootstrap-table').find('button[name="refresh"]').trigger('click');
         }
         });
     }
