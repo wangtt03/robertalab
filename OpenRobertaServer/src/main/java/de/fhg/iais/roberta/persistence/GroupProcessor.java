@@ -47,7 +47,7 @@ public class GroupProcessor extends AbstractProcessor {
         GroupDao groupDao = new GroupDao(this.dbSession);
         List<Group> groups = groupDao.loadOwnerGroups(owner);
         if ( groups != null ) {
-            setSuccess(Key.GROUP_GET_ALL_SUCCESS);
+            setSuccess(Key.USER_GET_GROUPS_SUCCESS);
             return groups;
         } else {
             setError(Key.GROUP_GET_ONE_ERROR_NOT_FOUND);
@@ -69,7 +69,7 @@ public class GroupProcessor extends AbstractProcessor {
             userNamesInf.put(user.getAccount());
             userNamesInfs.put(userNamesInf);
         }
-        setSuccess(Key.GROUP_GET_ALL_SUCCESS, "" + userNamesInfs);
+        setSuccess(Key.GROUP_GET_MEMBERS_SUCCESS, "" + userNamesInfs);
         return userNamesInfs;
     }
 
@@ -91,7 +91,7 @@ public class GroupProcessor extends AbstractProcessor {
             groupNamesInf.put(usr.getUserName());
             groupNamesInfs.put(groupNamesInf);
         }
-        setSuccess(Key.GROUP_GET_ALL_SUCCESS, "" + groupNamesInfs);
+        setSuccess(Key.USER_GET_GROUPS_SUCCESS, "" + groupNamesInfs);
         return groupNamesInfs;
     }
 

@@ -2,19 +2,14 @@ define([ 'require', 'exports', 'log', 'util', 'message', 'comm', 'userGroup.mode
         UTIL, MSG, COMM, USERGROUP, GUISTATE_C, Blockly, $) {
 
     function init() {
-
         initEvents();
         LOG.info('init user group delete');
     }
     exports.init = init;
 
-    function initView() {
-
-    }
-
     function initEvents() {
         /**
-         * Delete the user groups that were selected in a user group list
+         * Delete the user groups those were selected in a user group list
          */
         $('#doDeleteUserGroup').onWrap('click', function() {
             var userGroup = $("#confirmDeleteUserGroup").data('userGroup');

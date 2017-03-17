@@ -69,7 +69,9 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'groupList.model', 'group.
                 
                
         $('.bootstrap-table').find('button[name="refresh"]').onWrap('click', function() {
-        	GROUPLIST.loadGroupList(update);
+        	if ($('#tabGroupList').data('type') === 'group') {
+        		GROUPLIST.loadGroupList(update);
+        	}     	
             return false;
         }, "refresh group list clicked");
         
