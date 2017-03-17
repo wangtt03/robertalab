@@ -142,12 +142,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'userGroupList.model', 'us
     var eventsDelete = {
         'click .delete' : function(e, value, row, index) {
             var selectedRows = [ row ];
-            var names = '';
-            for (var i = 0; i < selectedRows.length; i++) {
-                names += selectedRows[i][0];
-                names += '<br>';
-            }
-            $('#confirmDeleteUserGroupName').html(names);
+            $('#confirmDeleteUserGroupName').html(GUISTATE_C.getGroupName());
             $("#confirmDeleteUserGroup").data('userGroup', selectedRows);
             $('#confirmDeleteUserGroup').one('hidden.bs.modal', function(event) {
             });
