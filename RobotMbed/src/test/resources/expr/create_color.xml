@@ -1,5 +1,5 @@
 <block_set xmlns="http://de.fhg.iais.roberta.blockly"
-	robottype="calliope" xmlversion="">
+	robottype="calliope" xmlversion="" description="">
 	<instance x="163" y="37">
 		<block type="robControls_start" id="#KE2p]WB[YElOqLp;F@o"
 			intask="true" deletable="false">
