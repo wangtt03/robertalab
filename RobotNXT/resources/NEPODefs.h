@@ -35,6 +35,9 @@ void BoolOut(int column, int row, bool boolean) {
 
 void ColorOut(int column, int row, int color){
   switch(color) {
+    case 0:
+      TextOut(column, row, "Violet");
+      break;
     case 1:
       TextOut(column, row, "Black");
       break;
@@ -53,8 +56,31 @@ void ColorOut(int column, int row, int color){
     case 6:
       TextOut(column, row, "White");
       break;
+    case 7:
+      TextOut(column, row, "Orange");
+      break;
+    case 8:
+      TextOut(column, row, "Chartreuse");
+      break;
+    case 9:
+      TextOut(column, row, "Red-violet");
+      break;
+    case 10:
+      TextOut(column, row, "Magenta");
+      break;
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 16:
+      TextOut(column, row, "White");
+      break;
+    case 17:
+      TextOut(column, row, "Cyan");
+      break;
     default:
-      NumOut(column, row, color);
+      TextOut(column, row, "Grey");
       break;
   }
 }
@@ -79,6 +105,70 @@ int SensorColor(int port, string mode){
     SetSensor(port, SENSOR_COLORRED);
   } else {
     SetSensor(port, SENSOR_COLORFULL);
+  }
+  return Sensor(port);
+}
+
+int SensorHtColor(int port, string mode){
+  SetSensorLowspeed(port);
+  unsigned int red, green, blue, white;
+  int color;
+  int newColor;
+  if (mode == "AMBIENTLIGHT"){
+    SetHTColor2Mode(port, HT_CMD_COLOR2_PASSIVE);
+    ReadSensorHTNormalizedColor(port, color, red, green, blue);
+    return (red + green + blue)/3/2.55;
+  } else if (mode == "COLOR"){
+    SetHTColor2Mode(port, HT_CMD_COLOR2_ACTIVE);
+    color = SensorHTColorNum(port);
+    //rearrange numbers: 
+    switch(color) {
+	    case 0: // regular color sensor = none
+	      newColor = 1; //black
+	      break;
+	    case 1: // regular color sensor = black
+	      newColor = 0; //violet
+	      break;
+	    case 2: // regular color sensor = blue
+	      newColor = 2; //blue
+	      break;
+	    case 3: // regular color sensor = green
+	      newColor = 17; //cyan
+	      break;
+	    case 4: // regular color sensor = yellow
+	      newColor = 3; //green
+	      break;
+	    case 5: // regular color sensor = red
+	      newColor = 8; //chartreuse
+	      break;
+	    case 6: // regular color sensor = white
+	      newColor = 4; //yellow
+	      break;
+	    case 7:
+	      newColor = color; //orange
+	      break;
+	    case 8:
+	      newColor = 5; //red
+	      break;
+	    case 9:
+	    case 10:
+	    case 11:
+	    case 12:
+	    case 13:
+	    case 14:
+	    case 15:
+	    case 16:
+	      newColor = color;
+	      break;
+	    case 17:
+	      newColor = 6; //white
+	      break;
+	  }
+	  return newColor;
+  } else if (mode == "LIGHT") {
+    SetHTColor2Mode(port, HT_CMD_COLOR2_LED_HI);
+    ReadSensorHTNormalizedColor2Active(port, color, red, green, blue);
+    return (red + green + blue)/3/2.55;
   }
   return Sensor(port);
 }
