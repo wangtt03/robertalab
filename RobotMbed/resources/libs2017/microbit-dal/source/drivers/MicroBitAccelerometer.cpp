@@ -354,7 +354,7 @@ uint16_t MicroBitAccelerometer::instantaneousPosture()
     if (shakeDetected && shake.count < MICROBIT_ACCELEROMETER_SHAKE_COUNT_THRESHOLD)
     {
         shake.count++;
-  
+
         if (shake.count == 1)
             shake.timer = 0;
 
@@ -622,6 +622,24 @@ int MicroBitAccelerometer::getZ(MicroBitCoordinateSystem system)
         default:
             return sample.z;
     }
+}
+
+/**
+  * Determines the magnitude of the vector from the latest update retrieved from the accelerometer
+  *
+  * @return The magnitude of the vector, in milli-g.
+  *
+  * @code
+  * accelerometer.getStrength();
+  * @endcode
+  */
+int MicroBitAccelerometer::getStrength(MicroBitCoordinateSystem system)
+{
+  double x = getX(system);
+  double y = getY(system);
+  double z = getZ(system);
+
+  return (int) sqrt(x*x + y*y + z*z);
 }
 
 /**

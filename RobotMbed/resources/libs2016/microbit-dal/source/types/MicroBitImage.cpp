@@ -639,6 +639,27 @@ int MicroBitImage::shiftLeft(int16_t n)
 }
 
 /**
+  * Shifts the pixels of a copy of this Image given number of pixels to the left.
+  *
+  * @param n The number of pixels to shift.
+  *
+  * @return new shifted Image.
+  *
+  * @code
+  * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+  * MicroBitImage i(10,5,heart); // a big heart
+  * i.shiftImageLeft(5); // a small heart
+  * @endcode
+  */
+MicroBitImage MicroBitImage::shiftImageLeft(int16_t n)
+{
+    MicroBitImage imgCopy = clone();
+    imgCopy.shiftLeft(n);
+
+    return imgCopy;
+}
+
+/**
   * Shifts the pixels in this Image a given number of pixels to the right.
   *
   * @param n The number of pixels to shift.
@@ -675,6 +696,28 @@ int MicroBitImage::shiftRight(int16_t n)
     }
 
     return MICROBIT_OK;
+}
+
+/**
+  * Shifts the pixels of a copy of this Image given number of pixels to the right.
+  *
+  * @param n The number of pixels to shift.
+  *
+  * @return new shifted Image.
+  *
+  * @code
+  * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+  * MicroBitImage i(10,5,heart); // a big heart
+  * i.shiftImageLeft(5); // a small heart
+  * i.shiftImageRight(5); // a big heart
+  * @endcode
+  */
+MicroBitImage MicroBitImage::shiftImageRight(int16_t n)
+{
+    MicroBitImage imgCopy = clone();
+    imgCopy.shiftRight(n);
+
+    return imgCopy;
 }
 
 
@@ -722,6 +765,27 @@ int MicroBitImage::shiftUp(int16_t n)
     return MICROBIT_OK;
 }
 
+/**
+  * Shifts the pixels of a copy of this Image given number of pixels to the up.
+  *
+  * @param n The number of pixels to shift.
+  *
+  * @return new shifted Image.
+  *
+  * @code
+  * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+  * MicroBitImage i(10,5,heart); // a big heart
+  * i.shiftImageUp(1);
+  * @endcode
+  */
+MicroBitImage MicroBitImage::shiftImageUp(int16_t n)
+{
+    MicroBitImage imgCopy = clone();
+    imgCopy.shiftUp(n);
+
+    return imgCopy;
+}
+
 
 /**
   * Shifts the pixels in this Image a given number of pixels to downward.
@@ -766,6 +830,52 @@ int MicroBitImage::shiftDown(int16_t n)
 
     return MICROBIT_OK;
 }
+
+/**
+  * Shifts the pixels of a copy of this Image given number of pixels to the down.
+  *
+  * @param n The number of pixels to shift.
+  *
+  * @return new shifted Image.
+  *
+  * @code
+  * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+  * MicroBitImage i(10,5,heart); // a big heart
+  * i.shiftImageDown(1);
+  * @endcode
+  */
+MicroBitImage MicroBitImage::shiftImageDown(int16_t n)
+{
+    MicroBitImage imgCopy = clone();
+    imgCopy.shiftDown(n);
+
+    return imgCopy;
+}
+
+/**
+  * Inverts the pixels of a copy of this Image.
+  *
+  *
+  * @return new inverted Image.
+  *
+  * @code
+  * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+  * MicroBitImage i(10,5,heart);
+  * i.invert();
+  * @endcode
+  */
+MicroBitImage MicroBitImage::invert()
+{
+    MicroBitImage invertedImage(getWidth(), getHeight());
+    for (int i = 0; i < getWidth(); i++) {
+      for (int j = 0; j < getHeight(); j++) {
+        invertedImage.setPixelValue(i, j, 255-getPixelValue(i, j));
+      }
+    }
+
+    return invertedImage;
+}
+
 
 
 /**

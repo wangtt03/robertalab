@@ -341,6 +341,21 @@ class MicroBitImage
     int shiftLeft(int16_t n);
 
     /**
+      * Shifts the pixels of a copy of this Image given number of pixels to the left.
+      *
+      * @param n The number of pixels to shift.
+      *
+      * @return new shifted Image.
+      *
+      * @code
+      * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+      * MicroBitImage i(10,5,heart); // a big heart
+      * i.shiftImageLeft(5); // a small heart
+      * @endcode
+      */
+     MicroBitImage shiftImageLeft(int16_t n);
+
+    /**
       * Shifts the pixels in this Image a given number of pixels to the right.
       *
       * @param n The number of pixels to shift.
@@ -355,6 +370,21 @@ class MicroBitImage
       * @endcode
       */
     int shiftRight(int16_t n);
+
+    /**
+      * Shifts the pixels of a copy of this Image given number of pixels to the right.
+      *
+      * @param n The number of pixels to shift.
+      *
+      * @return new shifted Image.
+      *
+      * @code
+      * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+      * MicroBitImage i(10,5,heart); // a big heart
+      * i.shiftImageRight(5); // a small heart
+      * @endcode
+      */
+     MicroBitImage shiftImageRight(int16_t n);
 
     /**
       * Shifts the pixels in this Image a given number of pixels to upward.
@@ -372,6 +402,22 @@ class MicroBitImage
     int shiftUp(int16_t n);
 
     /**
+      * Shifts the pixels of a copy of this Image given number of pixels to upward.
+      *
+      * @param n The number of pixels to shift.
+      *
+      * @return new shifted Image.
+      *
+      *
+      * @code
+      * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+      * MicroBitImage i(10,5,heart);
+      * i.shiftImageUp(1);
+      * @endcode
+      */
+    MicroBitImage shiftImageUp(int16_t n);
+
+    /**
       * Shifts the pixels in this Image a given number of pixels to downward.
       *
       * @param n The number of pixels to shift.
@@ -385,6 +431,36 @@ class MicroBitImage
       * @endcode
       */
     int shiftDown(int16_t n);
+
+    /**
+      * Shifts the pixels of a copy of this Image given number of pixels to downward.
+      *
+      * @param n The number of pixels to shift.
+      *
+      * @return new shifted Image.
+      *
+      *
+      * @code
+      * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+      * MicroBitImage i(10,5,heart);
+      * i.shiftImageDown(1);
+      * @endcode
+      */
+    MicroBitImage shiftImageDown(int16_t n);
+
+    /**
+      * Inverts the pixels of a copy of this Image.
+      *
+      *
+      * @return new inverted Image.
+      *
+      * @code
+      * const uint8_t heart[] = { 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, }; // a cute heart
+      * MicroBitImage i(10,5,heart);
+      * i.invert();
+      * @endcode
+      */
+    MicroBitImage invert();
 
     /**
       * Gets the width of this image.

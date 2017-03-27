@@ -104,7 +104,7 @@ DEALINGS IN THE SOFTWARE.
 #define MICROBIT_ACCELEROMETER_6G_TOLERANCE                 6144
 #define MICROBIT_ACCELEROMETER_8G_TOLERANCE                 8192
 #define MICROBIT_ACCELEROMETER_GESTURE_DAMPING              5
-#define MICROBIT_ACCELEROMETER_SHAKE_DAMPING                10 
+#define MICROBIT_ACCELEROMETER_SHAKE_DAMPING                10
 #define MICROBIT_ACCELEROMETER_SHAKE_RTX                    30
 
 #define MICROBIT_ACCELEROMETER_REST_THRESHOLD               (MICROBIT_ACCELEROMETER_REST_TOLERANCE * MICROBIT_ACCELEROMETER_REST_TOLERANCE)
@@ -313,6 +313,17 @@ class MicroBitAccelerometer : public MicroBitComponent
       * @endcode
       */
     int getZ(MicroBitCoordinateSystem system = SIMPLE_CARTESIAN);
+
+    /**
+    * Determines the magnitude of the vector from the latest update retrieved from the accelerometer
+    *
+    * @return The magnitude of the vector, in milli-g.
+    *
+    * @code
+    * accelerometer.getStrength();
+    * @endcode
+    */
+     int getStrength(MicroBitCoordinateSystem system = SIMPLE_CARTESIAN);
 
     /**
       * Provides a rotation compensated pitch of the device, based on the latest update retrieved from the accelerometer.
