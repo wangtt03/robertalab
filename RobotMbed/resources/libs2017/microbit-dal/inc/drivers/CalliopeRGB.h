@@ -3,7 +3,7 @@ The MIT License (MIT)
 
 Copyright (c) 2016 Calliope GbR
 This software is provided by DELTA Systems (Georg Sommer) - Thomas Kern
-und Björn Eberhardt GbR by arrangement with Calliope GbR. 
+und Björn Eberhardt GbR by arrangement with Calliope GbR.
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
@@ -31,6 +31,7 @@ DEALINGS IN THE SOFTWARE.
 #include "mbed.h"
 #include "MicroBitComponent.h"
 #include "MicroBitPin.h"
+#include "MicroBitColor.h"
 
 //max light intensity
 #define RGB_LED_MAX_INTENSITY               40
@@ -41,40 +42,41 @@ DEALINGS IN THE SOFTWARE.
 #endif
 
 class CalliopeRGB : public MicroBitComponent
-{   
+{
     uint32_t outputPin;
     uint8_t maxIntensity;
 
     //values for the displayed color
     uint8_t GRBW[4];
-    
+
     //current state. 0 = off, 1 = on
     uint8_t state;
-        
+
     public:
         //constructor
         CalliopeRGB(uint32_t pin = RGB_DEFAULT_PIN, uint8_t maxBrightness = RGB_LED_MAX_INTENSITY);
-        
+
         //destructor
-        ~CalliopeRGB(); 
+        ~CalliopeRGB();
 
         void setMaxBrightness(uint8_t max);
 
         //functions to control the the LED
-        //sets all 4 color settings to the given values  
+        //sets all 4 color settings to the given values
         void setColour(uint8_t red, uint8_t green, uint8_t blue, uint8_t white);
+        void setColour(MicroBitColor color);
         void on();
         void off();
-        
+
         //getter functions
         uint8_t getRed();
         uint8_t getGreen();
         uint8_t getBlue();
         uint8_t getWhite();
-        
+
         //check function
         bool isOn();
-        
+
         //periodic callback from MicroBit system timer.
         virtual void systemTick();
 

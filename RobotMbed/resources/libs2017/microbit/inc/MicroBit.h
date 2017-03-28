@@ -5,8 +5,8 @@ Copyright (c) 2016 British Broadcasting Corporation.
 This software is provided by Lancaster University by arrangement with the BBC.
 
 Modifications Copyright (c) 2016 Calliope GbR
-Modifications are provided by DELTA Systems (Georg Sommer) - Thomas Kern 
-und Björn Eberhardt GbR by arrangement with Calliope GbR. 
+Modifications are provided by DELTA Systems (Georg Sommer) - Thomas Kern
+und Björn Eberhardt GbR by arrangement with Calliope GbR.
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
@@ -43,6 +43,7 @@ DEALINGS IN THE SOFTWARE.
 #include "ManagedType.h"
 #include "ManagedString.h"
 #include "MicroBitImage.h"
+#include "MicroBitColor.h"
 #include "MicroBitFont.h"
 #include "MicroBitEvent.h"
 #include "DynamicPwm.h"
@@ -97,20 +98,22 @@ class MicroBit
 
     uint8_t                     status;
 
+
+
     public:
-	
+
     // Serial Interface
     MicroBitSerial              serial;
 
 	// Reset Button
 	InterruptIn     		    resetButton;
-	
+
     // Persistent key value store
     MicroBitStorage             storage;
-	
+
     // I2C Interface
     MicroBitI2C                 i2c;
-	
+
     // Device level Message Bus abstraction
     MicroBitMessageBus          messageBus;
 
@@ -123,19 +126,19 @@ class MicroBit
     MicroBitCompass             compass;
     MicroBitCompassCalibrator   compassCalibrator;
     MicroBitThermometer         thermometer;
-    
+
     //An object of available IO pins on the device
     MicroBitIO                  io;
-	
+
     // Bluetooth related member variables.
 	MicroBitBLEManager		    bleManager;
     MicroBitRadio               radio;
     BLEDevice                   *ble;
-	
+
 	//Calliope MINI specific devices
 	CalliopeRGB 				rgb;
 	CalliopeSoundMotor 			soundmotor;
-	
+
     /**
       * Constructor.
       *
