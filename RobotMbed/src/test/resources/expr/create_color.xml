@@ -26,6 +26,11 @@
 							<field name="NUM">30</field>
 						</block>
 					</value>
+					<value name="WHITE">
+						<block type="math_number" id="IFvV|Sa{Z?7/,;yUKc,x" intask="true">
+							<field name="NUM">30</field>
+						</block>
+					</value>
 				</block>
 			</value>
 		</block>

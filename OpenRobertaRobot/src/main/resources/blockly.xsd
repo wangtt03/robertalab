@@ -134,6 +134,7 @@
 		<xs:attribute name="name" type="xs:string" use="optional" />
 		<xs:attribute name="output_type" type="xs:string" use="optional" />
 		<xs:attribute name="type" type="xs:string" use="optional" />
+		<xs:attribute name="protocol" type="xs:string" use="optional" />
 	</xs:complexType>
 	<xs:complexType name="arg">
 		<xs:attribute name="name" type="xs:string" />
