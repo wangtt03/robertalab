@@ -57,27 +57,27 @@ void ColorOut(int column, int row, int color){
       TextOut(column, row, "White");
       break;
     case 7:
-      TextOut(column, row, "Orange");
+      TextOut(column, row, "Pink");
       break;
     case 8:
-      TextOut(column, row, "Chartreuse");
+      TextOut(column, row, "Orange");
       break;
     case 9:
-      TextOut(column, row, "Red-violet");
+      TextOut(column, row, "Chartreuse");
       break;
     case 10:
-      TextOut(column, row, "Magenta");
+      TextOut(column, row, "Violet");
       break;
     case 11:
+      TextOut(column, row, "Magenta");
+      break;
     case 12:
     case 13:
     case 14:
     case 15:
     case 16:
-      TextOut(column, row, "White");
-      break;
     case 17:
-      TextOut(column, row, "Cyan");
+      TextOut(column, row, "White");
       break;
     default:
       TextOut(column, row, "Grey");
@@ -116,10 +116,10 @@ int SensorHtColor(int port, string mode){
   int newColor;
   if (mode == "AMBIENTLIGHT"){
     SetHTColor2Mode(port, HT_CMD_COLOR2_PASSIVE);
-    ReadSensorHTNormalizedColor(port, color, red, green, blue);
+    ReadSensorHTNormalizedColor2Active(port, color, red, green, blue);
     return (red + green + blue)/3/2.55;
   } else if (mode == "COLOR"){
-    SetHTColor2Mode(port, HT_CMD_COLOR2_ACTIVE);
+    SetHTColor2Mode(port, HT_CMD_COLOR2_LED_LOW);
     color = SensorHTColorNum(port);
     //rearrange numbers: 
     switch(color) {
@@ -127,46 +127,46 @@ int SensorHtColor(int port, string mode){
 	      newColor = 1; //black
 	      break;
 	    case 1: // regular color sensor = black
-	      newColor = 0; //violet
+	      newColor = 10; //violet
 	      break;
 	    case 2: // regular color sensor = blue
-	      newColor = 2; //blue
-	      break;
+        //blue
 	    case 3: // regular color sensor = green
-	      newColor = 17; //cyan
+	      newColor = 2; //blue
 	      break;
 	    case 4: // regular color sensor = yellow
 	      newColor = 3; //green
 	      break;
 	    case 5: // regular color sensor = red
-	      newColor = 8; //chartreuse
+	      newColor = 9; //chartreuse
 	      break;
 	    case 6: // regular color sensor = white
 	      newColor = 4; //yellow
 	      break;
-	    case 7:
-	      newColor = color; //orange
+	    case 7: //regular color sensor = pink
+	      newColor = 8; //orange
 	      break;
-	    case 8:
+	    case 8: //regular color sensor = orange
+        //red
+	    case 9: // regular color sensor = chartreuse
 	      newColor = 5; //red
 	      break;
-	    case 9:
-	    case 10:
+	    case 10: //regular color sensor = magenta
+        newColor = 7; //pink
+	      break;
 	    case 11:
 	    case 12:
 	    case 13:
 	    case 14:
 	    case 15:
 	    case 16:
-	      newColor = color;
-	      break;
 	    case 17:
 	      newColor = 6; //white
 	      break;
 	  }
 	  return newColor;
   } else if (mode == "LIGHT") {
-    SetHTColor2Mode(port, HT_CMD_COLOR2_LED_HI);
+    SetHTColor2Mode(port, HT_CMD_COLOR2_ACTIVE);
     ReadSensorHTNormalizedColor2Active(port, color, red, green, blue);
     return (red + green + blue)/3/2.55;
   }
