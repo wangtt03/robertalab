@@ -21,25 +21,30 @@
 #define INFINITY 0x7f800000
 #endif
 
-#ifndef INPUT_PINKCOLOR
-#define INPUT_PINKCOLOR 7
+#ifndef INPUT_MAGENTACOLOR
+#define INPUT_MAGENTACOLOR 7
 #endif
 
 #ifndef INPUT_ORANGECOLOR
 #define INPUT_ORANGECOLOR 8
 #endif
 
-#ifndef INPUT_CHARTRESEURCOLOR
-#define INPUT_CHARTRESEURCOLOR 9
+#ifndef INPUT_LIMECOLOR
+#define INPUT_LIMECOLOR 9
 #endif
 
 #ifndef INPUT_VIOLETCOLOR
 #define INPUT_VIOLETCOLOR 10
 #endif
 
-#ifndef INPUT_MAGENTACOLOR
-#define INPUT_MAGENTACOLOR 11
+#ifndef INPUT_CRIMSONCOLOR
+#define INPUT_CRIMSONCOLOR 11
 #endif
+
+#ifndef INPUT_PURPLECOLOR
+#define INPUT_PURPLECOLOR 12
+#endif
+
 
 
 //sensor functions
@@ -54,9 +59,6 @@ void BoolOut(int column, int row, bool boolean) {
 
 void ColorOut(int column, int row, int color){
   switch(color) {
-    case 0:
-      TextOut(column, row, "Violet");
-      break;
     case 1:
       TextOut(column, row, "Black");
       break;
@@ -76,21 +78,23 @@ void ColorOut(int column, int row, int color){
       TextOut(column, row, "White");
       break;
     case 7:
-      TextOut(column, row, "Pink");
+      TextOut(column, row, "Magenta");
       break;
     case 8:
       TextOut(column, row, "Orange");
       break;
     case 9:
-      TextOut(column, row, "Chartreuse");
+      TextOut(column, row, "Lime");
       break;
     case 10:
       TextOut(column, row, "Violet");
       break;
     case 11:
-      TextOut(column, row, "Magenta");
+      TextOut(column, row, "Crimson");
       break;
     case 12:
+      TextOut(column, row, "Purple");
+      break;
     case 13:
     case 14:
     case 15:
@@ -149,7 +153,8 @@ int SensorHtColor(int port, string mode){
 	      newColor = 10; //violet
 	      break;
 	    case 2: // regular color sensor = blue
-        //blue
+          newColor = 12; //purple
+	      break;
 	    case 3: // regular color sensor = green
 	      newColor = 2; //blue
 	      break;
@@ -157,21 +162,22 @@ int SensorHtColor(int port, string mode){
 	      newColor = 3; //green
 	      break;
 	    case 5: // regular color sensor = red
-	      newColor = 9; //chartreuse
+	      newColor = 9; //lime
 	      break;
 	    case 6: // regular color sensor = white
 	      newColor = 4; //yellow
 	      break;
-	    case 7: //regular color sensor = pink
+	    case 7:
 	      newColor = 8; //orange
 	      break;
-	    case 8: //regular color sensor = orange
-        //red
-	    case 9: // regular color sensor = chartreuse
-	      newColor = 5; //red
+	    case 8:
+          newColor = 5; //red
 	      break;
-	    case 10: //regular color sensor = magenta
-        newColor = 7; //pink
+	    case 9: 
+	      newColor = 11; //crimson
+	      break;
+	    case 10:
+          newColor = 7; //magenta
 	      break;
 	    case 11:
 	    case 12:
