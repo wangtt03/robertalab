@@ -21,6 +21,25 @@
 #define INFINITY 0x7f800000
 #endif
 
+#ifndef INPUT_PINKCOLOR
+#define INPUT_PINKCOLOR 7
+#endif
+
+#ifndef INPUT_ORANGECOLOR
+#define INPUT_ORANGECOLOR 8
+#endif
+
+#ifndef INPUT_CHARTRESEURCOLOR
+#define INPUT_CHARTRESEURCOLOR 9
+#endif
+
+#ifndef INPUT_VIOLETCOLOR
+#define INPUT_VIOLETCOLOR 10
+#endif
+
+#ifndef INPUT_MAGENTACOLOR
+#define INPUT_MAGENTACOLOR 11
+#endif
 
 
 //sensor functions
