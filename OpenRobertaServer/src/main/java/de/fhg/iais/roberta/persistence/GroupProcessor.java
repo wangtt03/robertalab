@@ -108,22 +108,22 @@ public class GroupProcessor extends AbstractProcessor {
         Pattern p = Pattern.compile("[^a-zA-Z0-9=+!?.,%#+&^@_ ]", Pattern.CASE_INSENSITIVE);
         Matcher group_symbols = p.matcher(groupName);
         boolean group_check = group_symbols.find();
-
-        if ( !Util1.isValidJavaIdentifier(groupName) || group_check ) {
+        if ( group_check ) {
             setError(Key.GROUP_ERROR_NAME_INVALID, groupName);
             return null;
-        }
-        if ( this.httpSessionState.isUserLoggedIn() ) {
-            GroupDao groupDao = new GroupDao(this.dbSession);
-            Group result;
-            result = groupDao.persistGroup(groupName, userId);
-            if ( result == null ) {
-                setError(Key.GROUP_CREATE_ERROR_NOT_SAVED_TO_DB);
-            }
-            return result;
         } else {
-            setError(Key.USER_ERROR_NOT_LOGGED_IN);
-            return null;
+            if ( this.httpSessionState.isUserLoggedIn() ) {
+                GroupDao groupDao = new GroupDao(this.dbSession);
+                Group result;
+                result = groupDao.persistGroup(groupName, userId);
+                if ( result == null ) {
+                    setError(Key.GROUP_CREATE_ERROR_NOT_SAVED_TO_DB);
+                }
+                return result;
+            } else {
+                setError(Key.USER_ERROR_NOT_LOGGED_IN);
+                return null;
+            }
         }
     }
 
