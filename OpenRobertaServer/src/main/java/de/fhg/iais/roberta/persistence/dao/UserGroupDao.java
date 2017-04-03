@@ -36,6 +36,9 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
         Assert.notNull(accountName);
         Assert.notNull(groupName);
         UserGroup userGroup = loadUserGroup(accountName, groupName);
+        if ( this.ud.loadUser(accountName) == null ) {
+            return null;
+        }
         int userId = this.ud.loadUser(accountName).getId();
         int groupId = this.gd.loadGroup(groupName).getId();
         if ( userGroup == null ) {
@@ -56,6 +59,9 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
     public UserGroup loadUserGroup(String account, String groupName) {
         Assert.notNull(account);
         Assert.notNull(groupName);
+        if ( this.ud.loadUser(account) == null ) {
+            return null;
+        }
         int userId = this.ud.loadUser(account).getId();
         int groupId = this.gd.loadGroup(groupName).getId();
         Query hql = this.session.createQuery("from UserGroup where userId=:userId and groupId=:groupId");

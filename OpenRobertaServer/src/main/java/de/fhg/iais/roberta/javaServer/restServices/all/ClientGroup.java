@@ -18,7 +18,9 @@ import com.google.inject.Inject;
 import de.fhg.iais.roberta.javaServer.provider.OraData;
 import de.fhg.iais.roberta.persistence.GroupProcessor;
 import de.fhg.iais.roberta.persistence.UserGroupProcessor;
+import de.fhg.iais.roberta.persistence.UserProcessor;
 import de.fhg.iais.roberta.persistence.bo.Group;
+import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.bo.UserGroup;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.HttpSessionState;
@@ -58,12 +60,13 @@ public class ClientGroup {
             response.put("cmd", cmd);
             final GroupProcessor gp = new GroupProcessor(dbSession, httpSessionState);
             final UserGroupProcessor ugp = new UserGroupProcessor(dbSession, httpSessionState);
-
+            final UserProcessor up = new UserProcessor(dbSession, httpSessionState);
             String groupName = request.optString("groupName");
             String account = request.optString("account");
             Group group;
             UserGroup userGroup;
             JSONArray groupList;
+            User user;
             switch ( cmd ) {
                 case "createGroup":
                     group = gp.persistGroup(groupName, userId);
@@ -108,8 +111,16 @@ public class ClientGroup {
                     break;
                 case "addUser":
                     // add a user to an already existing group
-                    ugp.persistUserGroup(account, groupName);
-                    Util.addSuccessInfo(response, Key.USER_GROUP_SAVE_SUCCESS);
+                    userGroup = ugp.persistUserGroup(account, groupName);
+                    user = up.getUser(account);
+                    if ( userGroup != null ) {
+                        Util.addSuccessInfo(response, Key.USER_GROUP_SAVE_SUCCESS);
+                    } else if ( user == null ) {
+                        Util.addErrorInfo(response, Key.USER_TO_ADD_NOT_FOUND);
+                    } else {
+                        Util.addErrorInfo(response, Key.USER_GROUP_SAVE_AS_ERROR_USER_GROUP_EXISTS);
+                    }
+
                     break;
                 case "deleteUser":
                     userGroup = ugp.getUserGroup(account, groupName);
