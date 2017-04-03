@@ -1,5 +1,5 @@
-define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controller', 'jquery', 'jquery-validate',  'blocks', 'blocks-msg' ], function(exports, LOG, MSG, UTIL, GROUP,
-        GUISTATE_C, $, Blockly) {
+define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controller', 'blocks', 'jquery', 'jquery-validate', 'blocks-msg' ], function(exports, LOG, MSG, UTIL, GROUP,
+        GUISTATE_C, Blockly, $) {
 
     var $divForms;
     var $formSingleModal;
@@ -39,8 +39,10 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
 
         UTIL.showSingleModal(function() {
             $('#singleModalInput').attr('type', 'text');
+            //TODO: add it to msg
+            //$('#single-modal h3').text(Blockly.Msg["GROUP_REGISTER"]);
             $('#single-modal h3').text("Register a group");
-            $('#single-modal label').text("Name");
+            $('#single-modal label').text(Blockly.Msg["POPUP_NAME"]);
         }, createGroupToServer, function() {
 
         }, {
@@ -56,8 +58,8 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
             },
             messages : {
                 singleModalInput : {
-                    //required : Blockly.Msg["VALIDATION_FIELD_REQUIRED"],
-                    //loginRegex : Blockly.Msg["MESSAGE_INVALID_NAME"]
+                    required : Blockly.Msg["VALIDATION_FIELD_REQUIRED"],
+                    loginRegex : Blockly.Msg["MESSAGE_INVALID_NAME"]
                 }
             }
         });

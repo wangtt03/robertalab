@@ -1133,5 +1133,7 @@ Blockly.Msg.PROCEDURES_IFRETURN_WARNING = 'Warning: This block may be used only 
 Blockly.Msg.GO_TO_GROUPS = 'go to groups';
 Blockly.Msg.POPUP_GROUPNAME = 'group name';
 Blockly.Msg.POPUP_CONFIRM_DELETE_GROUP = 'confirm delete group';
+Blockly.Msg.POPUP_CONFIRM_DELETE_GROUP = 'confirm delete group';
+Blockly.Msg.GROUP_REGISTER = '"Register a group"';
 Blockly.Msg.POPUP_2_1_3 = '2 3 1';
 
