@@ -21,7 +21,7 @@ define([ 'require', 'exports', 'log', 'util', 'message', 'comm', 'group.model', 
                 UTIL.response(result);
                 if (result.rc === 'ok') {
                     MSG.displayInformation(result, "MESSAGE_GROUP_DELETED", result.message, groupName);
-                    $('.bootstrap-table').find('button[name="refresh"]').trigger('click');
+                    $('#groupList').find('button[name="refresh"]').trigger('click');
                     LOG.info('delete group "' + groupName + "'");
                 }
             });

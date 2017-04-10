@@ -17,10 +17,10 @@ define([ 'require', 'exports', 'log', 'util', 'message', 'comm', 'userGroup.mode
                 var userName = userGroup[0][0];
                 var groupName = GUISTATE_C.getGroupName();
                 USERGROUP.deleteUserFromTheGroup(userName, groupName, function(userName, groupName, result) {
-                UTIL.response(result);
-                if (result.rc === 'ok') {
-                    MSG.displayInformation(result.message, groupName);
-                    $('.bootstrap-table').find('button[name="refresh"]').trigger('click');
+                UTIL.response(userName);
+                if (userName.rc === 'ok') {
+                    MSG.displayInformation(userName.message, groupName);
+                    $('#userGroupList').find('button[name="refresh"]').trigger('click');
                     LOG.info('delete user "' + userName + "' from group '" + groupName + "'");
                 }
             });
