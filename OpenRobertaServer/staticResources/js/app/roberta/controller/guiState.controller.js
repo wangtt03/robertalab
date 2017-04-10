@@ -514,7 +514,6 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'jquery' ], func
     exports.getGroupName = getGroupName;
     
     function setGroupName(name) {
-        //$('#tabGroupName').html(name);
         GUISTATE.group.name = name;
     }
     exports.setGroupName = setGroupName;
