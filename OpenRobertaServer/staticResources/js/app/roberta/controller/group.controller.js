@@ -16,7 +16,11 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
     
     function createGroupToServer() {
         $('.modal').modal('hide'); // close all opened popups
+        
         var groupName = $('#singleModalInput').val().trim();
+        if (!/^[a-zA-Z0-9=+!?.,%#+&^@_ ]+$/gi.test(groupName)){
+        	return null;
+        }
         LOG.info('create group ' + groupName);
         GROUP.createGroupToServer(groupName, function(result) {
         UTIL.response(result);
@@ -39,12 +43,12 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
 
         UTIL.showSingleModal(function() {
             $('#singleModalInput').attr('type', 'text');
-            //TODO: add it to msg
-            //$('#single-modal h3').text(Blockly.Msg["GROUP_REGISTER"]);
             $('#single-modal h3').text("Register a group");
             $('#single-modal label').text(Blockly.Msg["POPUP_NAME"]);
         }, createGroupToServer, function() {
-
+        	if (loginRegex === false){
+        		return null;
+        	}
         }, {
             rules : {
                 singleModalInput : {

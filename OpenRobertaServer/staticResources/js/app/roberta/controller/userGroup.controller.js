@@ -7,6 +7,9 @@ define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.contr
     function addUserToGroup() {
     	$('.modal').modal('hide'); // close all opened popups
         var userName = $('#singleModalInput').val().trim();
+        if (!/^[a-zA-Z0-9=+!?.,%#+&^@_ ]+$/gi.test(userName)){
+        	return null;
+        }
         var groupName = GUISTATE_C.getGroupName();
         LOG.info('add user ' + userName + ' to a group ' + groupName);
         USERGROUP.addUser(userName, groupName, function(result) {
