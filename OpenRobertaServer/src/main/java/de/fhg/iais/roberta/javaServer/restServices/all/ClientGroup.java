@@ -92,10 +92,10 @@ public class ClientGroup {
                     break;
                 case "deleteGroup":
                     group = gp.getGroup(groupName);
-                    gp.deleteByName(groupName);
                     if ( group == null ) {
                         Util.addErrorInfo(response, Key.GROUP_DELETE_ERROR);
                     } else {
+                        gp.deleteByName(groupName);
                         Util.addSuccessInfo(response, Key.GROUP_DELETE_SUCCESS);
                     }
                     break;

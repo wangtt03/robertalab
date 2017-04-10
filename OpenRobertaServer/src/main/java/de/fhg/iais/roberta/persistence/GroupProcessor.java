@@ -13,7 +13,6 @@ import de.fhg.iais.roberta.persistence.dao.UserDao;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.HttpSessionState;
 import de.fhg.iais.roberta.util.Key;
-import de.fhg.iais.roberta.util.Util1;
 
 public class GroupProcessor extends AbstractProcessor {
 
@@ -29,19 +28,14 @@ public class GroupProcessor extends AbstractProcessor {
      * @return the group; null, if no group was found
      */
     public Group getGroup(String groupName) {
-        if ( !Util1.isValidJavaIdentifier(groupName) ) {
-            setError(Key.GROUP_ERROR_NAME_INVALID, groupName);
-            return null;
+        GroupDao groupDao = new GroupDao(this.dbSession);
+        Group group = groupDao.loadGroup(groupName);
+        if ( group != null ) {
+            setSuccess(Key.GROUP_GET_ONE_SUCCESS);
+            return group;
         } else {
-            GroupDao groupDao = new GroupDao(this.dbSession);
-            Group group = groupDao.loadGroup(groupName);
-            if ( group != null ) {
-                setSuccess(Key.GROUP_GET_ONE_SUCCESS);
-                return group;
-            } else {
-                setError(Key.GROUP_GET_ONE_ERROR_NOT_FOUND);
-                return null;
-            }
+            setError(Key.GROUP_GET_ONE_ERROR_NOT_FOUND);
+            return null;
         }
     }
 
