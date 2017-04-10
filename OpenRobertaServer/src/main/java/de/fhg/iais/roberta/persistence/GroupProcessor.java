@@ -108,7 +108,7 @@ public class GroupProcessor extends AbstractProcessor {
         Pattern p = Pattern.compile("[^a-zA-Z0-9=+!?.,%#+&^@_ ]", Pattern.CASE_INSENSITIVE);
         Matcher group_symbols = p.matcher(groupName);
         boolean group_check = group_symbols.find();
-        if ( group_check ) {
+        if ( group_check || groupName.isEmpty() ) {
             setError(Key.GROUP_ERROR_NAME_INVALID, groupName);
             return null;
         } else {

@@ -73,6 +73,28 @@ public class ClientGroupTest {
     }
 
     @Test
+    public void createGroupNullWrongSymbol() throws Exception {
+        Assert.assertEquals(7, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS"));
+        Assert.assertTrue(this.sPid.isUserLoggedIn());
+        long initNumberOfGroups = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS");
+        restGroup(this.sPid, "{'cmd':'createGroup';'userId':'2','groupName':'<><><><';}", "error", Key.GROUP_CREATE_ERROR_NOT_SAVED_TO_DB);
+        long finalNumberOfGroups = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS");
+        long diff = finalNumberOfGroups - initNumberOfGroups;
+        Assert.assertEquals(0, diff);
+    }
+
+    @Test
+    public void createGroupNull() throws Exception {
+        Assert.assertEquals(7, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS"));
+        Assert.assertTrue(this.sPid.isUserLoggedIn());
+        long initNumberOfGroups = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS");
+        restGroup(this.sPid, "{'cmd':'createGroup';'userId':'2','groupName':'';}", "error", Key.GROUP_CREATE_ERROR_NOT_SAVED_TO_DB);
+        long finalNumberOfGroups = this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS");
+        long diff = finalNumberOfGroups - initNumberOfGroups;
+        Assert.assertEquals(0, diff);
+    }
+
+    @Test
     public void deleteGroupNotNull() throws Exception {
         Assert.assertEquals(8, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS"));
         Assert.assertTrue(this.sPid.isUserLoggedIn());
