@@ -86,7 +86,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'program
             }
         });
 
-        $('.bootstrap-table').find('button[name="refresh"]').onWrap('click', function() {
+        $('#progList').find('button[name="refresh"]').onWrap('click', function() {
             if ($('#tabProgList').data('type') === 'userProgram') {
                 PROGLIST.loadProgList(update);
             } else {

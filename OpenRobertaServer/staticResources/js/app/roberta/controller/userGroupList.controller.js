@@ -65,11 +65,9 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'userGroupList.model', 'us
         });
                 
                
-        $('.bootstrap-table').find('button[name="refresh"]').onWrap('click', function() {
-        	if ($('#tabUserGroupList')) {
-        		groupName = GUISTATE_C.getGroupName();
-            	USERGROUPLIST.loadUserGroupList(groupName, update);
-        	}
+        $('#userGroupList').find('button[name="refresh"]').onWrap('click', function() {
+        	groupName = GUISTATE_C.getGroupName();
+          	USERGROUPLIST.loadUserGroupList(groupName, update);
             return false;
         }, "refresh user group list clicked");
         

@@ -25,7 +25,7 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'jquery' ], func
             GUISTATE.program.shared = false;
             GUISTATE.program.toolbox.level = 'beginner';
             
-            GUISTATE.group.name = 'test';
+            GUISTATE.group.name;
 
             LOG.info('init gui state');
             ready.resolve();
