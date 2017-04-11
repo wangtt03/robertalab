@@ -15,9 +15,9 @@ define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.contr
         USERGROUP.addUser(userName, groupName, function(result) {
         UTIL.response(result);
         if (result.rc === 'ok') {
-            MSG.displayInformation(result, "ADDED_USER", result.message, userName);
             $('#userGroupList').find('button[name="refresh"]').trigger('click');
         }
+        MSG.displayInformation(result, "MESSAGE_ADDED_USER", result.message, userName);
         });
     }
     exports.addUserToGroup = addUserToGroup;
@@ -47,7 +47,7 @@ define([ 'exports', 'log', 'message', 'util', 'userGroup.model', 'guiState.contr
             messages : {
                 singleModalInput : {
                     required : Blockly.Msg["VALIDATION_FIELD_REQUIRED"],
-                    //loginRegex : Blockly.Msg["MESSAGE_INVALID_NAME"]
+                    loginRegex : Blockly.Msg["MESSAGE_INVALID_NAME"]
                 }
             }
         });

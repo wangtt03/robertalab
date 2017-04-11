@@ -6,17 +6,25 @@ goog.provide('Blockly.Msg.cs');
 
 goog.require('Blockly.Msg');
 
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.ACCELERATION = "acceleration mg";  // untranslated
 Blockly.Msg.ACCELERATION_TOOLTIP = "Get the acceleration value in milli-gravitys.";  // untranslated
 Blockly.Msg.ACCELEROMETER_ROTATION = "rotation °";  // untranslated
 Blockly.Msg.ACCELEROMETER_ROTATION_TOOLTIP = "Get the tilt or rotations in degrees.";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.ACTIVITY_TOOLTIP = "Značka pro doplňkovou aktivitu.";
 Blockly.Msg.ACTOR_TOOLTIP = "Představuje libovolné výstupní zařízení.";
 =======
 Blockly.Msg.ACTIVITY_TOOLTIP = "Značka pro doplňkovou aktivitu.";
 Blockly.Msg.ACTOR_TOOLTIP = "Představuje libovolný spotřebič.";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.ACTIVITY_TOOLTIP = "Značka pro doplňkovou aktivitu.";
+Blockly.Msg.ACTOR_TOOLTIP = "Představuje libovolné výstupní zařízení.";
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.ADD_COMMENT = "Přidat komentář";
 Blockly.Msg.ANALOG = "analog";  // untranslated
 Blockly.Msg.ARDUBRICK_TOOLTIP = "Představuje desku Bot'n Roll s připojenými pohony a senzory. Jsou tam také dostupné zabudované pohony a senzory, například tlačítka, displej...";
@@ -37,6 +45,7 @@ Blockly.Msg.BRICKLIGHT_RED = "červená";
 Blockly.Msg.BRICKLIGHT_RESET_TOOLTIP = "Resetovat LED na kostce. Nastavit původní stav: blikající zelená.";
 Blockly.Msg.BRICK_TRACK_WIDTH = "vzdálenost kol";
 Blockly.Msg.BRICK_WHEEL_DIAMETER = "průměr kola";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.BUTTON_DO_SHARE = "Sdílet";
 Blockly.Msg.BUTTON_EMPTY_LIST = "Prázdný seznam";
@@ -51,6 +60,10 @@ Blockly.Msg.BUTTON_REFRESH = "Obnovit";
 Blockly.Msg.BUTTON_START = "Zkusit";
 Blockly.Msg.BUTTON_STOP = "Zastavit";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.BUTTON_DO_SHARE = "Sdílet";
+Blockly.Msg.BUTTON_EMPTY_LIST = "Prázdný seznam";
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.CALLIOPEBRICK_TOOLTIP = "Represents Calliope, a pocket-sized codeable computer. There are also inbuilt actors and sensors available, e.g. buttons, display ...";  // untranslated
 Blockly.Msg.CENTER = "prostřední";
 Blockly.Msg.CHANGE_VALUE_TITLE = "Změnit hodnotu:";
@@ -76,10 +89,14 @@ Blockly.Msg.COLOUR_RGB_HELPURL = "http://www.december.com/html/spec/colorper.htm
 Blockly.Msg.COLOUR_RGB_RED = "červená";
 Blockly.Msg.COLOUR_RGB_TITLE = "obarvěte barvou";
 Blockly.Msg.COLOUR_RGB_TOOLTIP = "Vytvoř barvu se zadaným množstvím červené, zelené a modré.  Všechny hodnoty musí být mezi 0 a 100.";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.COLOUR_RGB_WHITE = "white";  // untranslated
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.COLOUR_RGB_WHITE = "white";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.COLOUR_TOOLTIP = "Představuje barevný senzor.";
 Blockly.Msg.COMPASS_GETSAMPLE_TOOLTIP = "Gets the current reading from the compass sensor.";  // untranslated
 Blockly.Msg.COMPASS_TOOLTIP = "Představuje kompas.";
@@ -104,10 +121,14 @@ Blockly.Msg.CONNECTION_CHECK_TOOLTIP = "zkontrolujte, zda je připojení k robot
 Blockly.Msg.CONNECTION_CONNECT = "připojit k robotovi";
 Blockly.Msg.CONNECTION_FROM_ROBOT = "od robota";
 Blockly.Msg.CONNECTION_OVER_CHANNEL = "přenosová cesta";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.CONNECTION_PROTOCOL_BLUETOOTH = "Bluetooth";  // untranslated
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.CONNECTION_PROTOCOL_BLUETOOTH = "Bluetooth";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.CONNECTION_RECEIVED_DATA = "přijmout zprávu";
 Blockly.Msg.CONNECTION_RECEIVE_TOOLTIP = "Čeká na zprávu od robota uvedeného v parametrech připojení.";
 Blockly.Msg.CONNECTION_SEND_DATA = "poslat zprávu";
@@ -116,10 +137,13 @@ Blockly.Msg.CONNECTION_START_TOOLTIP = "Zkusí vytvořit připojení k jinému r
 Blockly.Msg.CONNECTION_TOOLTIP = "Připojení k robotovi";
 Blockly.Msg.CONNECTION_TO_CONNECTION = "připojení";
 Blockly.Msg.CONNECTION_TO_ROBOT = "jméno robota";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.CONNECTION_USED_CONNECTION = "prostřednictvím připojení";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.CONNECTION_WAIT_FOR_CONNECTION = "čeká na připojení";
 Blockly.Msg.CONNECTION_WAIT_TOOLTIP = "Čeká na připojení pomocí Bluetooth.";
 Blockly.Msg.CONTROLS_FLOW_STATEMENTS_HELPURL = "https://github.com/google/blockly/wiki/Loops#loop-termination-blocks";  // untranslated
@@ -155,15 +179,19 @@ Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "opakovat když";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "Dokud je hodnota nepravdivá, prováděj určité příkazy.";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "Dokud je hodnota pravdivá, prováděj určité příkazy.";
 Blockly.Msg.DATATABLE_ACTUALIZATION = "Datum aktualizace.";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.DATATABLE_BY = "by";  // untranslated
 =======
 Blockly.Msg.DATATABLE_BLOCKS = "Bloky";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.DATATABLE_CONFIGURATIONS = "konfigurace";
 Blockly.Msg.DATATABLE_CONFIGURATION_NAME = "Jméno konfigurace";
 Blockly.Msg.DATATABLE_CREATED_BY = "Vytvořil";
 Blockly.Msg.DATATABLE_CREATED_ON = "Datum vytvoření";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
 Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
@@ -176,16 +204,21 @@ Blockly.Msg.DATATABLE_NEXT = "Next >";  // untranslated
 Blockly.Msg.DATATABLE_OF = "of";  // untranslated
 Blockly.Msg.DATATABLE_PREVIOUS = "< Prev";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.DATATABLE_PROGRAMS = "programy";
 Blockly.Msg.DATATABLE_PROGRAM_NAME = "Jméno programu";
 Blockly.Msg.DATATABLE_SHARED = "Sdílené";
 Blockly.Msg.DATATABLE_SHARED_WITH = "Sdílené s";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.DATATABLE_SHOW = "Ukázat";
 Blockly.Msg.DATATABLE_SHOWING = "Showing";  // untranslated
 Blockly.Msg.DATATABLE_TO = "to";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.DELETE_ALL_BLOCKS = "Smazat všech %1 bloků?";
 Blockly.Msg.DELETE_BLOCK = "Smazat blok";
 Blockly.Msg.DELETE_X_BLOCKS = "Smazat %1 bloků";
@@ -216,6 +249,7 @@ Blockly.Msg.DISPLAY_TEXT = "text";
 Blockly.Msg.DISPLAY_TEXT_TOOLTIP = "Zobrazí text na displeji.";
 Blockly.Msg.DUPLICATE_BLOCK = "Duplikovat";
 Blockly.Msg.ENABLE_BLOCK = "Povolit blok";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.ENCODER_GETSAMPLE_TOOLTIP = "Vrátí aktuální hodnotu z tachometru motoru.";
 Blockly.Msg.ENCODER_RESET_TOOLTIP = "Vynuluje tachometr motoru.";
@@ -223,6 +257,10 @@ Blockly.Msg.ENCODER_RESET_TOOLTIP = "Vynuluje tachometr motoru.";
 Blockly.Msg.ENCODER_GETSAMPLE_TOOLTIP = "Vrátí aktuální hodnotu z enkoderu (počítadla) motoru.";
 Blockly.Msg.ENCODER_RESET_TOOLTIP = "Vynuluje enkoder (počítadlo) motoru.";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.ENCODER_GETSAMPLE_TOOLTIP = "Vrátí aktuální hodnotu z tachometru motoru.";
+Blockly.Msg.ENCODER_RESET_TOOLTIP = "Vynuluje tachometr motoru.";
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.EV3BRICK_TOOLTIP = "Představuje kostku EV3 s připojenými pohony a senzory. Jsou tam také dostupné zabudované pohony a senzory, například tlačítka, displej...";
 Blockly.Msg.EXPAND_ALL = "Rozbalit bloky";
 Blockly.Msg.EXPAND_BLOCK = "Rozbalit blok";
@@ -230,6 +268,7 @@ Blockly.Msg.EXTERNAL_INPUTS = "vnější vstupy";
 Blockly.Msg.FOR = "pro";
 Blockly.Msg.GET = "získat";
 Blockly.Msg.GETSAMPLE_TOOLTIP = "Vrátí aktuální hodnotu vybraného senzoru.";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
@@ -238,16 +277,22 @@ Blockly.Msg.GO_TO_GROUPS = "Go to groups.";  // untranslated
 =======
 Blockly.Msg.GO_TO_GROUPS = "go to groups";  // untranslated
 >>>>>>> #384 corrected html part of userGroup table
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.GYRO_GETSAMPLE_TOOLTIP = "Vrátí aktuální hodnotu gyra.";
 Blockly.Msg.GYRO_RESET_TOOLTIP = "Resetuje gyro senzor.";
 Blockly.Msg.GYRO_TOOLTIP = "Představuje gyro senzor.";
 Blockly.Msg.HELP = "Nápověda";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.IF_TOOLTIP = "Zkontroluje podmínku v »když«. Pokud je podmínka splněna, provede akce v části »tak«.";
 =======
 Blockly.Msg.IFELSE_TOOLTIP = "Zkontroluje podmínku v 'když'. Pokud je podmínka splněna, provede akce v části 'tak', jinak provede akce části 'jinak'.";
 Blockly.Msg.IF_TOOLTIP = "Zkontroluje podmínku v 'když'. Pokud je podmínka splněna, provede akce v části 'tak'.";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.IF_TOOLTIP = "Zkontroluje podmínku v »když«. Pokud je podmínka splněna, provede akce v části »tak«.";
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.IMAGE_GET_TOOLTIP = "Returns the chosen image.";  // untranslated
 Blockly.Msg.IMAGE_GET_TOOLTIP_ANGRY = "angry";  // untranslated
 Blockly.Msg.IMAGE_GET_TOOLTIP_ASLEEP = "asleep";  // untranslated
@@ -419,10 +464,13 @@ Blockly.Msg.LOGIC_TERNARY_IF_TRUE = "pokud pravda";
 Blockly.Msg.LOGIC_TERNARY_TOOLTIP = "Zkontroluje podmínku v \"testu\". Když je podmínka pravda, vrátí hodnotu \"pokud pravda\"; v opačném případě vrátí hodnotu \"pokud nepravda\".";
 Blockly.Msg.LOOP = "opakuj dokud není";
 Blockly.Msg.LOOPFOREVER_TOOLTIP = "Opakuje akci stále.";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.LOOP_COUNT = "počet opakování";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.LOOP_FOREVER = "opakuj stále";
 Blockly.Msg.MATH_ADDITION_SYMBOL = "+";  // untranslated
 Blockly.Msg.MATH_ARITHMETIC_HELPURL = "https://cs.wikipedia.org/wiki/Aritmetika";
@@ -511,10 +559,13 @@ Blockly.Msg.ME = "Já";
 Blockly.Msg.MENU_ABOUT = "o aplikaci";
 Blockly.Msg.MENU_ATTACH = "připojit...";
 Blockly.Msg.MENU_BEGINNER = "začátečník";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.MENU_BUILDING_INSTRUCTIONS = "instrukce pro stavbu";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MENU_CHANGE = "změnit...";
 Blockly.Msg.MENU_CHECK = "zkontrolovat";
 Blockly.Msg.MENU_CODE_DOWNLOAD_TOOLTIP = "Download the source code of your program on the computer";  // untranslated
@@ -546,11 +597,15 @@ Blockly.Msg.MENU_LOGGING = "historie provedených akcí";
 Blockly.Msg.MENU_LOG_IN = "přihlásit se...";
 Blockly.Msg.MENU_LOG_OUT = "odhlásit se";
 Blockly.Msg.MENU_MESSAGE_DOWNLOAD = "Program byl úspěšně stažen.";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.MENU_NEW = "nový...";
 =======
 Blockly.Msg.MENU_NEW = "nový uživatel...";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.MENU_NEW = "nový...";
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MENU_PROGRAMMING = "programování s NEPO";
 Blockly.Msg.MENU_PROPERTIES = "vlastnosti";
 Blockly.Msg.MENU_RIGHT_HELP_TOOLTIP = "Open/close help view";  // untranslated
@@ -564,6 +619,7 @@ Blockly.Msg.MENU_SAVE_AS = "uložit jako...";
 Blockly.Msg.MENU_SHOW_AGAIN = "zobraz úvodní obrazovku ještě jednou";
 Blockly.Msg.MENU_SHOW_CODE = "ukázat kód";
 Blockly.Msg.MENU_SIM_BACK = "Zpět";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.MENU_SIM_DRAW = "Scéna Kreslení";
 Blockly.Msg.MENU_SIM_IMPORT_TOOLTIP = "Upload your own simulation background image, it will be appended at the end of the background's list.";  // untranslated
@@ -573,12 +629,17 @@ Blockly.Msg.MENU_SIM_DRAW = "Scéna Kreslení";
 Blockly.Msg.MENU_SIM_IMPORT_TOOLTIP = "Upload your own simulation background image, it will be appended at the end of the background's list.";  // untranslated
 Blockly.Msg.MENU_SIM_INFO = "Informace";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.MENU_SIM_DRAW = "Scéna Kreslení";
+Blockly.Msg.MENU_SIM_IMPORT_TOOLTIP = "Upload your own simulation background image, it will be appended at the end of the background's list.";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MENU_SIM_MATH = "Scéna Matematika";
 Blockly.Msg.MENU_SIM_RESCUE = "Scéna Záchrana";
 Blockly.Msg.MENU_SIM_ROBERTA = "Scéna Roberta";
 Blockly.Msg.MENU_SIM_ROBOT_TOOLTIP = "otevře/zavře pohled robota";
 Blockly.Msg.MENU_SIM_SCENE_TOOLTIP = "změna scény";
 Blockly.Msg.MENU_SIM_SIMPLE = "Scéna Jednoduchá";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.MENU_SIM_START_TOOLTIP = "Start your program in the simulation.";  // untranslated
 =======
@@ -586,6 +647,9 @@ Blockly.Msg.MENU_SIM_START_PAUSE = "Start/Pauza";
 Blockly.Msg.MENU_SIM_START_TOOLTIP = "Start your program in the simulation.";  // untranslated
 Blockly.Msg.MENU_SIM_STEP = "Krok";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.MENU_SIM_START_TOOLTIP = "Start your program in the simulation.";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MENU_SIM_STOP = "Stop";
 Blockly.Msg.MENU_SIM_STOP_TOOLTIP = "Stop your program in the simulation.";  // untranslated
 Blockly.Msg.MENU_SIM_VALUES_TOOLTIP = "Open/close the sensors' data view.";  // untranslated
@@ -596,10 +660,13 @@ Blockly.Msg.MENU_STATE_INFO = "informace o stavu";
 Blockly.Msg.MENU_TOOLBOX = "NEPO bloky";
 Blockly.Msg.MENU_TOOLBOX_BEGINNER = "NEPO bloky - začátečník";
 Blockly.Msg.MENU_TOOLBOX_EXPERT = "NEBO bloky - pokročilý";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.MENU_UPDATE_FIRMWARE = "aktualizovat firmware";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MENU_USER = "přihlásit se";
 Blockly.Msg.MENU_USER_STATE_TOOLTIP = "informace o uživateli";
 Blockly.Msg.MENU_USER_TOOLTIP = "uživatel";
@@ -607,22 +674,31 @@ Blockly.Msg.MENU_ZOOM = "měřítko";
 Blockly.Msg.MENU_ZOOM_IN = "přiblížit";
 Blockly.Msg.MENU_ZOOM_OUT = "oddálit";
 Blockly.Msg.MENU_ZOOM_RESET = "výchozí měřítko";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.MESSAGE_ADDED_USER = "User »$« was added";  // untranslated
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.MESSAGE_ADDED_USER = "User »$« was added";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MESSAGE_CONFIGURATION_DELETED = "Nastavení »$« bylo smazáno";
 Blockly.Msg.MESSAGE_EDIT_CHECK = "Váš program je nyní kontrolován!";
 Blockly.Msg.MESSAGE_EDIT_SAVE_CONFIGURATION = "Vaše nastavení bylo uloženo.";
 Blockly.Msg.MESSAGE_EDIT_SAVE_CONFIGURATION_AS = "Vaše nastavení bylo uloženo jako »$«";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.MESSAGE_EDIT_SAVE_GROUP_AS = "Your group has been created";  // untranslated
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.MESSAGE_EDIT_SAVE_GROUP_AS = "Your group has been created";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MESSAGE_EDIT_SAVE_PROGRAM = "Váš program byl uložen";
 Blockly.Msg.MESSAGE_EDIT_SAVE_PROGRAM_AS = "Váš program byl uložen jako »$«";
 Blockly.Msg.MESSAGE_EDIT_START = "Váš program $ se za chvíli spustí!";
 Blockly.Msg.MESSAGE_FIRMWARE_ERROR = "Verze firmwaru vašeho robota a verze Open Roberta Lab se liší. Kontaktujte nás prosím.";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.MESSAGE_GROUP_DELETED = "Group »$« was deleted";  // untranslated
 Blockly.Msg.MESSAGE_INVALID_NAME = "Vyplňte prosím správné jméno. Musí začínat písmenem a může obsahovat pouze písmena a číslice.";
@@ -643,21 +719,26 @@ Blockly.Msg.MICROPHONE_GETSAMPLE_TOOLTIP = "Gets the current reading from the mi
 Blockly.Msg.MODE = "mód";
 Blockly.Msg.MODE_ACCELERATION = "acceleration";  // untranslated
 =======
+=======
+Blockly.Msg.MESSAGE_GROUP_DELETED = "Group »$« was deleted";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MESSAGE_INVALID_NAME = "Vyplňte prosím správné jméno. Musí začínat písmenem a může obsahovat pouze písmena a číslice.";
 Blockly.Msg.MESSAGE_NOT_AVAILABLE = "Nedostupné";
-Blockly.Msg.MESSAGE_PASSWORD_ERROR = "Heslo se liší od zadaného.";
 Blockly.Msg.MESSAGE_PROGRAM_DELETED = "Program »$« byl smazán";
-Blockly.Msg.MESSAGE_RELATION_DELETED = "Propojení programu »$« bylo smazáno";
 Blockly.Msg.MESSAGE_RESTART_ROBOT = "Připojte prosím robota znovu k Open Roberta Lab.";
 Blockly.Msg.MESSAGE_ROBOT_CONNECTED = "Váš robot $ je připojen";
-Blockly.Msg.MESSAGE_ROBOT_FIRMWARE_UPDATE = "Váš robot nyní používá verzi »$«";
 Blockly.Msg.MESSAGE_USER_DELETED = "Uživatel byl smazán";
+Blockly.Msg.MESSAGE_USER_GROUP_DELETED = "User »$« was deleted";  // untranslated
 Blockly.Msg.MESSAGE_USER_LOGIN = "Ahoj »$«";
 Blockly.Msg.MESSAGE_USER_LOGOUT = "Byl jste odhlášen";
-Blockly.Msg.MESSAGE_USER_NEW = "Ahoj »$«";
 Blockly.Msg.MICROBITBRICK_TOOLTIP = "Represents micro:bit, a pocket-sized codeable computer. There are also inbuilt actors and sensors available, e.g. buttons, display ...";  // untranslated
+Blockly.Msg.MICROPHONE_GETSAMPLE_TOOLTIP = "Gets the current reading from the microphone.";  // untranslated
 Blockly.Msg.MODE = "mód";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.MODE_ACCELERATION = "acceleration";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MODE_AMBIENTLIGHT = "okolní světlo";
 Blockly.Msg.MODE_ANGLE = "úhel";
 Blockly.Msg.MODE_CLOSE = "close";  // untranslated
@@ -667,6 +748,7 @@ Blockly.Msg.MODE_DISTANCE = "vzdálenost";
 Blockly.Msg.MODE_LIGHT = "světlo";
 Blockly.Msg.MODE_OBSTACLE = "překážka";
 Blockly.Msg.MODE_OPEN = "open";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.MODE_ORIENTATION = "orientation";  // untranslated
 Blockly.Msg.MODE_PRESENCE = "přítomnost";
@@ -675,13 +757,19 @@ Blockly.Msg.MODE_RGB = "RGB";
 Blockly.Msg.MODE_ROTATION = "otáčky";
 Blockly.Msg.MODE_SOUND = "zvuk";
 =======
+=======
+Blockly.Msg.MODE_ORIENTATION = "orientation";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MODE_PRESENCE = "přítomnost";
-Blockly.Msg.MODE_RATE = "hodnotit";
+Blockly.Msg.MODE_RATE = "rychlost změny";
 Blockly.Msg.MODE_RGB = "RGB";
-Blockly.Msg.MODE_ROTATION = "otáčka";
+Blockly.Msg.MODE_ROTATION = "otáčky";
 Blockly.Msg.MODE_SOUND = "zvuk";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.MODE_STATE = "stav";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MOTOR = "motor";
 Blockly.Msg.MOTORDIFF_ON_FOR_TOOLTIP = "Spustí pohyb robota danou rychlostí a zastaví ho po určené vzdálenosti.";
 Blockly.Msg.MOTORDIFF_ON_TOOLTIP = "Spustí pohyb robota danou rychlostí.";
@@ -693,17 +781,22 @@ Blockly.Msg.MOTOR_BACKWARD = "dozadu";
 Blockly.Msg.MOTOR_BIG = "velký";
 Blockly.Msg.MOTOR_BIG_TOOLTIP = "Představuje velký motor.";
 Blockly.Msg.MOTOR_BRAKE = "brzda";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.MOTOR_DEGREE = "stupně";
 =======
 Blockly.Msg.MOTOR_DEGREE = "stupeň";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.MOTOR_DEGREE = "stupně";
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MOTOR_DISTANCE = "vzdálenost v cm";
 Blockly.Msg.MOTOR_DRIVE = "jízda";
 Blockly.Msg.MOTOR_FLOAT = "uvolnit";
 Blockly.Msg.MOTOR_FOREWARD = "dopředu";
 Blockly.Msg.MOTOR_GETPOWER_TOOLTIP = "Vrátí aktuální rychlost/sílu tohoto motoru.";
 Blockly.Msg.MOTOR_LEFT = "vlevo";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.MOTOR_MIDDLE = "střední";
 Blockly.Msg.MOTOR_MIDDLE_TOOLTIP = "Představuje střední motor.";
@@ -719,6 +812,14 @@ Blockly.Msg.MOTOR_ON_FOR_TOOLTIP = "Spustí motor a zastaví ho po otočení o d
 Blockly.Msg.MOTOR_ON_TOOLTIP = "Spustí motor určitou rychlostí/silou.";
 Blockly.Msg.MOTOR_OTHER = "jiný spotřebič";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.MOTOR_MIDDLE = "střední";
+Blockly.Msg.MOTOR_MIDDLE_TOOLTIP = "Představuje střední motor.";
+Blockly.Msg.MOTOR_NONE = "žádný";
+Blockly.Msg.MOTOR_ON_FOR_TOOLTIP = "Spustí motor a zastaví ho po otočení o daný počet otáček/stupňů.";
+Blockly.Msg.MOTOR_ON_TOOLTIP = "Spustí motor určitou rychlostí/silou.";
+Blockly.Msg.MOTOR_OTHER = "jiné výstupní zařízení";
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.MOTOR_PAN = "přejíždět";
 Blockly.Msg.MOTOR_PORT = "port motoru";
 Blockly.Msg.MOTOR_REGULATION = "regulace";
@@ -744,6 +845,7 @@ Blockly.Msg.NAO_BLINK = "blink";  // untranslated
 Blockly.Msg.NAO_CAMERA = "camera";  // untranslated
 Blockly.Msg.NAO_CAMERA_BOTTOM = "bottom";  // untranslated
 Blockly.Msg.NAO_CAMERA_TOP = "top";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.NAO_CHAT_TOOLTIP = "Add a reaction if a word is recognized.";  // untranslated
 =======
@@ -752,6 +854,9 @@ Blockly.Msg.NAO_COLOR_MAGENTA = "magenta";  // untranslated
 Blockly.Msg.NAO_COLOR_WHITE = "white";  // untranslated
 Blockly.Msg.NAO_COLOR_YELLOW = "yellow";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.NAO_CHAT_TOOLTIP = "Add a reaction if a word is recognized.";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.NAO_CURRENT = "electric current of";  // untranslated
 Blockly.Msg.NAO_DETECTFACE = "detect face";  // untranslated
 Blockly.Msg.NAO_DETECTFACE_TOOLTIP = "Detect a face previously saved under a given name";  // untranslated
@@ -844,10 +949,13 @@ Blockly.Msg.NAO_PLAYFILE_TOOLTIP = "Plays a sound file from the robot.";  // unt
 Blockly.Msg.NAO_PLAY_FILE = "play file";  // untranslated
 Blockly.Msg.NAO_POINTAT = "point at";  // untranslated
 Blockly.Msg.NAO_POINTLOOKAT_TOOLTIP = "Rbbot points or looks at a given position";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.NAO_POSITION = "position";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.NAO_POSTURE_CROUCH = "Crouch";  // untranslated
 Blockly.Msg.NAO_POSTURE_LYINGBACK = "LyingBack";  // untranslated
 Blockly.Msg.NAO_POSTURE_LYINGBELLY = "LyingBelly";  // untranslated
@@ -897,11 +1005,15 @@ Blockly.Msg.NAO_WIPE_FOREHEAD = "wipe forehead";  // untranslated
 Blockly.Msg.NEW_VARIABLE = "Nová proměnná...";
 Blockly.Msg.NEW_VARIABLE_TITLE = "Nový název proměnné:";
 Blockly.Msg.NO = "ne";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.NXTBRICK_TOOLTIP = "Představuje kostku NXT s připojenými motory a senzory. Jsou také dostupné zabudované součásti, například tlačítka, displej...";
 =======
 Blockly.Msg.NXTBRICK_TOOLTIP = "Představuje kostku NXT s připojenými pohony a senzory. Jsou tam také dostupné zabudované pohony a senzory, například tlačítka, displej...";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.NXTBRICK_TOOLTIP = "Představuje kostku NXT s připojenými motory a senzory. Jsou také dostupné zabudované součásti, například tlačítka, displej...";
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.OFF = "vypnout";
 Blockly.Msg.ON = "zapnout";
 Blockly.Msg.ORA_COMMAND_INVALID = "Chybný příkaz Javascriptu";
@@ -934,10 +1046,13 @@ Blockly.Msg.ORA_PROGRAM_GET_ONE_SUCCESS = "Program nahrán";
 Blockly.Msg.ORA_PROGRAM_IMPORT_ERROR = "Tento program nemá formát NEPO programu a nemůže být nahrán!";
 Blockly.Msg.ORA_PROGRAM_IMPORT_ERROR_WRONG_ROBOT_TYPE = "Pokoušíte se importovat program pro robota jiného typu než je nastaveno v menu. <br> Prosím změňte typ robota v menu a zkuste import znovu!";
 Blockly.Msg.ORA_PROGRAM_SAVE_AS_ERROR_PROGRAM_EXISTS = "Program už existuje.";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.ORA_PROGRAM_SAVE_ERROR_NOT_SAVED_TO_DB = "Při ukládání programu došlo k chybě.";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.ORA_PROGRAM_SAVE_ERROR_NO_WRITE_PERMISSION = "Nemáte právo měnit tento program!";
 Blockly.Msg.ORA_PROGRAM_SAVE_ERROR_OPTIMISTIC_TIMESTAMP_LOCKING = "Tento program byl naposledy změněn někým jiným. Pro uložení vašich změn do nového programu vyberte >uložit jako< !";
 Blockly.Msg.ORA_PROGRAM_SAVE_ERROR_PROGRAM_TO_UPDATE_NOT_FOUND = "Program nelze nalézt, proto ho nelze aktualizovat.";
@@ -958,11 +1073,14 @@ Blockly.Msg.ORA_TOOLBOX_ERROR_ID_INVALID = "Název palety nástrojů není platn
 Blockly.Msg.ORA_TOOLBOX_GET_ALL_SUCCESS = "Paleta nástrojů nahrána.";
 Blockly.Msg.ORA_TOOLBOX_GET_ONE_ERROR_NOT_FOUND = "Paleta nástrojů nemůže být nalezena v databázi.";
 Blockly.Msg.ORA_TOOLBOX_GET_ONE_SUCCESS = "Paleta nástrojů nahrána.";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.ORA_TOOLBOX_LOAD_ERROR_NOT_FOUND = "Vybrané bloky NEPO nelze nalézt v databázi.";
 Blockly.Msg.ORA_TOOLBOX_LOAD_SUCCESS = "Palena nástrojů nahrána";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.ORA_TOOLBOX_SAVE_ERROR = "Při ukládání palety nástrojů došlo k chybě.";
 Blockly.Msg.ORA_TOOLBOX_SAVE_ERROR_NOT_SAVED_TO_DB = "Při ukládání nastavení do databáze došlo k chybě.";
 Blockly.Msg.ORA_TOOLBOX_SAVE_SUCCESS = "Paleta nástrojů uložena.";
@@ -982,10 +1100,14 @@ Blockly.Msg.ORA_USER_GROUP_SAVE_AS_ERROR_USER_GROUP_EXISTS = "This user already 
 Blockly.Msg.ORA_USER_PASSWORD_RECOVERY_EXPIRED_URL = "Odkaz již není platný. Prosím požádejte znovu o resetování svého hesla, pokud si ho stále nepamatujete.";
 Blockly.Msg.ORA_USER_PASSWORD_RECOVERY_SENT_MAIL_FAIL = "Omlouváme se, ale nemůžeme vám poslat email, kontaktuje prosím »roberta-zentrale@iais.fraunhofer.de«";
 Blockly.Msg.ORA_USER_PASSWORD_RECOVERY_SENT_MAIL_SUCCESS = "Email odeslán, zkontrolujte si prosím emailovou schránku!";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.ORA_USER_TO_ADD_NOT_FOUND = "User was not found";  // untranslated
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.ORA_USER_TO_ADD_NOT_FOUND = "User was not found";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.ORA_USER_TO_SHARE_DOES_NOT_EXIST = "Uživatel, se kterým chcete sdílet program, neexistuje. <br />Zkuste to znovu!";
 Blockly.Msg.ORA_USER_TO_SHARE_SAME_AS_LOGIN_USER = "Nemůžete sdílet program sám se sebou.";
 Blockly.Msg.ORA_USER_UPDATE_SUCCESS = "Vaše heslo bylo úspěšně změněno!";
@@ -993,10 +1115,14 @@ Blockly.Msg.ORDINAL_NUMBER_SUFFIX = "";  // untranslated
 Blockly.Msg.PIN_GETSAMPLE_TOOLTIP = "Gets the current reading from a pin.";  // untranslated
 Blockly.Msg.PIN_ISTOUCHED_TOOLTIP = "Is the selected pin touched?";  // untranslated
 Blockly.Msg.PIN_WRITE = "write";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.PITCH = "pitch";  // untranslated
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.PITCH = "pitch";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.PLAY = "přehrát tón";
 Blockly.Msg.PLAY_DURATION = "doba trvání v ms";
 Blockly.Msg.PLAY_EIGHTH = "eighth note";  // untranslated
@@ -1014,6 +1140,7 @@ Blockly.Msg.PLAY_TONE = "tón";
 Blockly.Msg.PLAY_TONE_TOOLTIP = "Přehraje tón.";
 Blockly.Msg.PLAY_VOLUME = "hlasitost";
 Blockly.Msg.PLAY_WHOLE = "whole note";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
@@ -1022,6 +1149,8 @@ Blockly.Msg.POPUP_2_1_3 = "2 3 1";  // untranslated
 >>>>>>> #384 corrected html part of userGroup table
 Blockly.Msg.POPUP_2_2_0 = "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.POPUP_ABOUT_JOIN = "Rád bych pomohl";
 Blockly.Msg.POPUP_ABOUT_TEXT = "Open Roberta Lab je online integrované vývojové prostředí které umožňuje dětem snadno programovat různé robotické systémy. Prostředí je zcela open source, takže se můžete bez obav zapojit! Jak programy tak vývojové nástroje jsou dostupné na serverech Fraunhoferova institutu.";
 Blockly.Msg.POPUP_ABOUT_TEXT_DEV = "Open Roberta Lab je open source vývojová platforma vyvinutá Fraunhofer IAIS v rámci iniciativy <a href='http://www.roberta-home.de/'>»Roberta – Učení s roboty«</a>";
@@ -1032,7 +1161,6 @@ Blockly.Msg.POPUP_BEFOREUNLOAD_LOGGEDIN = "V programu nebo nastavení jsou neulo
 Blockly.Msg.POPUP_CANCEL = "Storno";
 Blockly.Msg.POPUP_CHANGE_PASSWORD = "změna hesla...";
 Blockly.Msg.POPUP_CONFIRM_DELETE_CONFIGURATION = "Opravdu chcete smazat nastavení?";
-Blockly.Msg.POPUP_CONFIRM_DELETE_GROUP = "confirm delete group";  // untranslated
 Blockly.Msg.POPUP_CONFIRM_DELETE_PROGRAM = "Opravdu chcete smazat program?";
 Blockly.Msg.POPUP_CONFIRM_UPDATE_FIRMWARE = "Pro vašeho robota je k dispozici nový firmware. Můžete zkusit spustit program se starým firmware, ale nejlépe bude když firmware svého robota nyní aktualizujete! Stačí, když kliknete na >>Aktualizovat nyní<<.";
 Blockly.Msg.POPUP_CONTINUE = "přesto pokračovat";
@@ -1047,6 +1175,7 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "now click on the »Save« button on the bot
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Aktualizovat nyní";
 Blockly.Msg.POPUP_EMAIL = "E-mail";
 Blockly.Msg.POPUP_EMAIL_SEND = "Odeslat nyní";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.POPUP_NAME = "Jméno";
@@ -1062,6 +1191,11 @@ Blockly.Msg.POPUP_NEW_PASSWORD = "Nové heslo";
 Blockly.Msg.POPUP_OLD_PASSWORD = "Staré heslo";
 Blockly.Msg.POPUP_OLD_RELEASE = "Version 2.1.3 <ul class='NonIcon'><li>Calliope - simulate programs for Calliope</li><li>micro:bit - simulate programs for micro:bit©</li><li>new feature - help for programming blocks in the editor (EV3 only)</li></ul>";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.POPUP_NAME = "Jméno";
+Blockly.Msg.POPUP_NEW_PASSWORD = "Nové heslo";
+Blockly.Msg.POPUP_OLD_PASSWORD = "Staré heslo";
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.POPUP_PASSWORD = "Heslo";
 Blockly.Msg.POPUP_PASSWORD_RECOVERY = "resetovat heslo...";
 Blockly.Msg.POPUP_PROGRAM_TERMINATED_UNEXPECTED = "Provádění programu robota neočekávaně skončilo!";
@@ -1070,16 +1204,20 @@ Blockly.Msg.POPUP_REPEAT_PASSWORD = "Zopakujte heslo";
 Blockly.Msg.POPUP_ROBOT_BATTERY = "Napětí";
 Blockly.Msg.POPUP_ROBOT_NAME = "Jméno";
 Blockly.Msg.POPUP_ROBOT_NOT_CONNECTED = "Nejprve musíte připojit svého robota.";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.POPUP_ROBOT_SIM = "Open Roberta Sim";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.POPUP_ROBOT_STATE = "Stav";
 Blockly.Msg.POPUP_ROBOT_STATE_BUSY = "zaneprázdněn";
 Blockly.Msg.POPUP_ROBOT_STATE_DISCONNECTED = "odpojený";
 Blockly.Msg.POPUP_ROBOT_STATE_WAIT = "čekej";
 Blockly.Msg.POPUP_ROBOT_SYSTEM = "Systém";
 Blockly.Msg.POPUP_ROBOT_WAIT = "Čekací doba";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.POPUP_STARTUP_COOKIES = "Používáme cookies pro přizpůsobení obsahu a pro analýzu provozu.";
 Blockly.Msg.POPUP_STARTUP_HELP = "Potřebujete pomoc?";
@@ -1091,13 +1229,19 @@ Blockly.Msg.POPUP_STARTUP_TOUR_TEXT = "Would you like to get started, but do not
 Blockly.Msg.POPUP_SHARE_READ = "ČTI";
 Blockly.Msg.POPUP_SHARE_WITH = "Sdílej s...";
 Blockly.Msg.POPUP_SHARE_WRITE = "PIŠ";
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.POPUP_STARTUP_COOKIES = "Používáme cookies pro přizpůsobení obsahu a pro analýzu provozu.";
 Blockly.Msg.POPUP_STARTUP_HELP = "Potřebujete pomoc?";
+Blockly.Msg.POPUP_STARTUP_HELP_TEXT = "In our detailed help, we will explain everything you need, from building instructions to frequently asked questions.";  // untranslated
 Blockly.Msg.POPUP_STARTUP_HIDE = "OK, toto okno už nezobrazuj a pamatuj si moji volbu.";
-Blockly.Msg.POPUP_STARTUP_NEW = "Co je nového?";
 Blockly.Msg.POPUP_STARTUP_START = "Vyberte váš systém!";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.POPUP_STARTUP_TITLE = "Vítejte";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.POPUP_STARTUP_TOUR_TEXT = "Would you like to get started, but do not know exactly how? We will show you the first steps in an interactive tutorial.";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.POPUP_TOUR = "prohlídka";
 Blockly.Msg.POPUP_USERNAME = "Uživatelské jméno";
 Blockly.Msg.POPUP_USERNAME_LOGOFF = "Nejste přihlášen.";
@@ -1144,6 +1288,7 @@ Blockly.Msg.REDO = "Redo";  // untranslated
 Blockly.Msg.REMOVE_COMMENT = "Odstranit komentář";
 Blockly.Msg.RENAME_VARIABLE = "Přejmenovat proměnnou...";
 Blockly.Msg.RENAME_VARIABLE_TITLE = "Přejmenuj všech '%1' proměnných na:";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.RETURN = "return";  // untranslated
 Blockly.Msg.ROLL = "roll";  // untranslated
@@ -1153,12 +1298,20 @@ Blockly.Msg.SENSOR_COLOUR = "barevný senzor";
 Blockly.Msg.SENSOR_COMPASS = "kompas";
 Blockly.Msg.SENSOR_ENCODER = "tachometr";
 =======
+=======
+Blockly.Msg.RETURN = "return";  // untranslated
+Blockly.Msg.ROLL = "roll";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.SEND_DATA = "poslat data";
 Blockly.Msg.SENSOR_BATTERY = "napětí ve V";
-Blockly.Msg.SENSOR_COLOUR = "senzor barvy";
+Blockly.Msg.SENSOR_COLOUR = "barevný senzor";
 Blockly.Msg.SENSOR_COMPASS = "kompas";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.SENSOR_ENCODER = "čítač/tachometr";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.SENSOR_ENCODER = "tachometr";
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.SENSOR_GESTURE = "gesture";  // untranslated
 Blockly.Msg.SENSOR_GESTURE_ACTIVE = "active?";  // untranslated
 Blockly.Msg.SENSOR_GESTURE_DOWN = "upside down";  // untranslated
@@ -1169,10 +1322,14 @@ Blockly.Msg.SENSOR_GESTURE_SHAKE = "shaking";  // untranslated
 Blockly.Msg.SENSOR_GESTURE_UP = "upright";  // untranslated
 Blockly.Msg.SENSOR_GET = "get";  // untranslated
 Blockly.Msg.SENSOR_GET_SAMPLE = "vrať hodnotu";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.SENSOR_GROVE = "Grove";  // untranslated
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.SENSOR_GROVE = "Grove";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.SENSOR_GYRO = "gyroskop";
 Blockly.Msg.SENSOR_INFRARED = "IR senzor";
 Blockly.Msg.SENSOR_IS_PIN = "is";  // untranslated
@@ -1188,10 +1345,14 @@ Blockly.Msg.SENSOR_KEY_LEFT = "vlevo";
 Blockly.Msg.SENSOR_KEY_RIGHT = "vpravo";
 Blockly.Msg.SENSOR_KEY_UP = "nahoru";
 Blockly.Msg.SENSOR_LIGHT = "světelný senzor";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.SENSOR_MIC = "microphone";  // untranslated
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.SENSOR_MIC = "microphone";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.SENSOR_MS_TIMER = "v ms";
 Blockly.Msg.SENSOR_PIN = "pin";  // untranslated
 Blockly.Msg.SENSOR_PRESSED = " (stisknuto)";
@@ -1205,11 +1366,14 @@ Blockly.Msg.SENSOR_TIMER = "časovač";
 Blockly.Msg.SENSOR_TOUCH = "dotykový senzor";
 Blockly.Msg.SENSOR_ULTRASONIC = "ultrazvukový senzor";
 Blockly.Msg.SENSOR_VALUE = "value";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.SENSOR_WAIT_PRESSED = "stisknut";
 Blockly.Msg.SENSOR_WAIT_PRESSED_RELEASED = "stisknut nebo uvolněn";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.SERVER_NOT_AVAILABLE = "Open Roberta Lab není momentálně dostupný. </br> Zkontrolujte prosím svoje internetové připojení a zkuste stránku obnovit. Pokud problém přetrvává, kontaktujte prosím:</br>roberta-zentrale@iais.fraunhofer.de";
 Blockly.Msg.SET = "nastavit";
 Blockly.Msg.SIM_BLOCK_NOT_SUPPORTED = "Bohužel tento blok nemůžete použít v simulaci!";
@@ -1224,6 +1388,7 @@ Blockly.Msg.START_ACTIVITY_TOOLTIP = "Spustí doplňkovou aktivitu.";
 Blockly.Msg.START_PROGRAM = "start";
 Blockly.Msg.START_PROGRAM_DEBUG = "zobrazovat data ze senzorů";
 Blockly.Msg.START_TOOLTIP = "Počáteční bod hlavního programu.";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.STRENGTH = "strength";  // untranslated
 Blockly.Msg.TAB_CONFIGURATION = "Konfigurace robota";
@@ -1233,6 +1398,11 @@ Blockly.Msg.TAB_CONFIGURATION = "Konfigurace robota";
 Blockly.Msg.TAB_PROGRAM = "Program";
 Blockly.Msg.TAB_SIMULATION = "Simulace";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.STRENGTH = "strength";  // untranslated
+Blockly.Msg.TAB_CONFIGURATION = "Konfigurace robota";
+Blockly.Msg.TAB_PROGRAM = "Program";
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.TEMPERATURE_GETSAMPLE_TOOLTIP = "Gets the current reading from the temperatur sensor.";  // untranslated
 Blockly.Msg.TEXT_APPEND_APPENDTEXT = "přidat text";
 Blockly.Msg.TEXT_APPEND_HELPURL = "https://github.com/google/blockly/wiki/Text#text-modification";  // untranslated
@@ -1306,6 +1476,7 @@ Blockly.Msg.TOOLBOX_CONTROL = "Ovládání";
 Blockly.Msg.TOOLBOX_DECISION = "Podmínky";
 Blockly.Msg.TOOLBOX_DISPLAY = "Displej";
 Blockly.Msg.TOOLBOX_DRIVE = "Jízda";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.TOOLBOX_IMAGE = "Images";  // untranslated
 Blockly.Msg.TOOLBOX_LIGHT = "LED na kostce";
@@ -1314,13 +1485,18 @@ Blockly.Msg.TOOLBOX_LOGIC = "Logické spojky";
 Blockly.Msg.TOOLBOX_LOOP = "Cykly";
 =======
 Blockly.Msg.TOOLBOX_GLOBAL_VARIABLE = "Globální proměnné";
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.TOOLBOX_IMAGE = "Images";  // untranslated
-Blockly.Msg.TOOLBOX_LIGHT = "Světla";
+Blockly.Msg.TOOLBOX_LIGHT = "LED na kostce";
 Blockly.Msg.TOOLBOX_LIST = "Seznamy";
 Blockly.Msg.TOOLBOX_LOGIC = "Logické spojky";
 Blockly.Msg.TOOLBOX_LOOP = "Cykly";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.TOOLBOX_LOOP_VARIABLE = "Proměnné cyklů";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.TOOLBOX_MATH = "Matematika";
 Blockly.Msg.TOOLBOX_MOVE = "Pohyb";
 Blockly.Msg.TOOLBOX_PIN = "Pin";  // untranslated
@@ -1345,6 +1521,7 @@ Blockly.Msg.TOUR1_DESCRIPTION07 = "Nástroje.<br>Zde naleznete všechny programo
 Blockly.Msg.TOUR1_DESCRIPTION08 = "Každý program začíná startovním blokem«.<br>Další programové bloky, které má robot vykonat, připojte k tomuto bloku.<br>Jednoduše přetáhněte požadovaný blok pod startovní blok.";
 Blockly.Msg.TOUR1_DESCRIPTION09 = "Zde najdete pár klávesových zkratek!<br>Zleva doprava:<br><span class='typcn typcn-media-play'></span> Klikněte zde pro spuštění programu ve skutečném robotovi<br><span class='typcn typcn-media-play-outline'></span> Klikněte zde pro spuštění robota v simulátoru<br><span class='typcn typcn-cloud-storage'></span> Uloží program, předtím se ale musíte přihlásit<br><span class='typcn typcn-zoom'></span> Klikněte zde a přibližte si bloky<br><span class='typcn typcn-archive'></span> Odpadkový koš! Jednoduše přesuňte bloky do koše a tím je smažete.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pozor: Po smazání bloků je už nelze obnovit!<br>";
 Blockly.Msg.TOUR1_DESCRIPTION10 = "Klikněte na »Akce«";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.TOUR1_DESCRIPTION12 = "Nyní přetáhněte nový blok pod blok začátku programu";
 Blockly.Msg.TOUR1_DESCRIPTION13 = "Nyní otestujte svůj programu v simulátoru!";
@@ -1356,6 +1533,11 @@ Blockly.Msg.TOUR1_DESCRIPTION13 = "Nyní otestujte svůj programu v simulátoru!
 Blockly.Msg.TOUR1_DESCRIPTION13a = "and test your program in the simulation!";  // untranslated
 Blockly.Msg.TOUR1_DESCRIPTION14 = "Ještě chvilku!";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.TOUR1_DESCRIPTION12 = "Nyní přetáhněte nový blok pod blok začátku programu";
+Blockly.Msg.TOUR1_DESCRIPTION13 = "Nyní otestujte svůj programu v simulátoru!";
+Blockly.Msg.TOUR1_DESCRIPTION13a = "and test your program in the simulation!";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.TOUR1_DESCRIPTION15 = "Výborně,<br>váš robot jede 20cm dopředu,<br>to je přesně to, co jste naprogramovali!";
 Blockly.Msg.TOUR1_DESCRIPTION16 = "Nashledanou a uživejte si dalších pokusů!";
 Blockly.Msg.ULTRASONIC_GETSAMPLE_TOOLTIP = "Vrátí aktuální hodnotu z ultrazvukového senzoru.";
@@ -1367,16 +1549,24 @@ Blockly.Msg.VALIDATION_MAX_LENGTH = "The max. lenght is 25 characters!";  // unt
 =======
 Blockly.Msg.VALIDATION_FIELD_REQUIRED = "Toto pole nemůže být prázdné.";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.VALIDATION_CONTAINS_SPECIAL_CHARACTERS = "Valid special characters: »=+!?.,%#+&^@_«";  // untranslated
+Blockly.Msg.VALIDATION_FIELD_REQUIRED = "Toto pole nemůže být prázdné.";
+Blockly.Msg.VALIDATION_MAX_LENGTH = "The max. lenght is 25 characters!";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.VALIDATION_PASSWORD_MIN_LENGTH = "Heslo musí mít nejméně 6 znaků!";
 Blockly.Msg.VALIDATION_SECOND_PASSWORD_EQUAL = "Obě hesla musí být stejná!";
 Blockly.Msg.VALIDATION_TOKEN_LENGTH = "Symbol musí mít alespoň 8 znaků!";
 Blockly.Msg.VALIDATION_VALID_EMAIL_ADDRESS = "Zadejte prosím platnou e-mailovou adresu!";
 Blockly.Msg.VALUE_TO = "value to";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.VARIABLES_CREATE_TITLE = "Vytvořit";
 Blockly.Msg.VARIABLES_CREATE_WITH = "čím";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.VARIABLES_DEFAULT_NAME = "položka";
 Blockly.Msg.VARIABLES_GET_CREATE_SET = "Vytvořit \"nastavit %1\"";
 Blockly.Msg.VARIABLES_GET_HELPURL = "https://github.com/google/blockly/wiki/Variables#get";  // untranslated
@@ -1401,10 +1591,13 @@ Blockly.Msg.VARIABLES_TYPE_IMAGE = "Image";  // untranslated
 Blockly.Msg.VARIABLES_TYPE_NUMBER = "Číslo";
 Blockly.Msg.VARIABLES_TYPE_STRING = "Řetězec";
 Blockly.Msg.WAIT = "čekej (ms)";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.WAIT_FOREVER = "stále";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.WAIT_FOR_TOOLTIP = "Čeká na hodnoty ze senzorů";
 Blockly.Msg.WAIT_OR = "nebo čekej na";
 Blockly.Msg.WAIT_TIME_TOOLTIP = "Čeká po určitý čas (v ms).";

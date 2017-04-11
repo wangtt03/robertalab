@@ -363,10 +363,6 @@
 	"PROCEDURES_IFRETURN_TOOLTIP": "tooltip - If the first value is true, this causes the second value to be returned immediately from the enclosing function.",
 	"PROCEDURES_IFRETURN_HELPURL": "url - Information about guard clauses.",
 	"PROCEDURES_IFRETURN_WARNING": "warning - This appears if the user tries to use this block outside of a function definition.",
-	"GO_TO_GROUPS": "",
-	"POPUP_GROUPNAME": "",
-	"POPUP_CONFIRM_DELETE_GROUP": "",
-	"POPUP_2_1_3": "",
 	"MOTOR_ON_TOOLTIP": "Rob Actions tooltips",
 	"MOTOR_ON_FOR_TOOLTIP": "",
 	"MOTOR_GETPOWER_TOOLTIP": "",
@@ -806,10 +802,13 @@
 	"TOUR1_DESCRIPTION12": "",
 	"TOUR1_DESCRIPTION13": "",
 	"TOUR1_DESCRIPTION13a": "",
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 	"TOUR1_DESCRIPTION14": "",
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 	"TOUR1_DESCRIPTION15": "",
 	"TOUR1_DESCRIPTION16": "",
 	"PROCEDURES_DEFNORETURN_PROCEDURE": "",
@@ -834,11 +833,14 @@
 	"CONFIGURATION_ERROR_MULTIPLE_RIGHT_MOTORS": "",
 	"CONFIGURATION_ERROR_MULTIPLE_LEFT_MOTORS": "",
 	"WAIT_TIME_TOOLTIP": "",
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 	"POPUP_2_2_0": "",
 	"POPUP_OLD_RELEASE": "",
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 	"ORA_TOKEN_SET_ERROR_WRONG_ROBOTTYPE": "",
 	"ORA_USER_ERROR_EMAIL_USED": "",
 	"ORA_USER_PASSWORD_RECOVERY_EXPIRED_URL": "",
@@ -1101,11 +1103,16 @@
 	"NAO_HAND_TOOLTIP": "",
 	"NAO_SAY_TOOLTIP": "",
 	"NAO_GETCURRENT_TOOLTIP": "",
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 	"NAO_SETINTENSITY_TOOLTIP": "",
 	"NAO_CHAT_TOOLTIP": "",
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+	"NAO_SETINTENSITY_TOOLTIP": "",
+	"NAO_CHAT_TOOLTIP": "",
+>>>>>>> #384 corrected most of the messages
 	"MENU_CODE_DOWNLOAD_TOOLTIP": "",
 	"MENU_CODE_REFRESH_TOOLTIP": "",
 	"MENU_SIM_WRO": "",
@@ -1122,7 +1129,10 @@
 	"DISPLAY_GET_PIXEL_TOOLTIP": "",
 	"DISPLAY_SET_PIXEL_TOOLTIP": "",
 	"DISPLAY_GET_BRIGHTNESS_TOOLTIP": "",
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+>>>>>>> #384 corrected most of the messages
 	"DISPLAY_SET_BRIGHTNESS_TOOLTIP": "",
 	"POPUP_STARTUP_TOUR_TEXT": "",
 	"POPUP_STARTUP_HELP_TEXT": "",
@@ -1130,6 +1140,7 @@
 	"MESSAGE_USER_GROUP_DELETED": "",
 	"MESSAGE_ADDED_USER": "",
 	"ORA_USER_TO_ADD_NOT_FOUND": "",
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 	"MESSAGE_EDIT_SAVE_GROUP_AS": "",
 	"ORA_GROUP_CREATE_ERROR_NOT_SAVED_TO_DB": "",
 	"ORA_USER_GROUP_SAVE_AS_ERROR_USER_GROUP_EXISTS": "",

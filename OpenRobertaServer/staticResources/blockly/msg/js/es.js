@@ -125,10 +125,19 @@ Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "repetir mientras";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "Mientras un valor sea falso, entonces hacer algunas declaraciones.";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "Mientras un valor sea verdadero, entonces hacer algunas declaraciones.";
 Blockly.Msg.DATATABLE_ACTUALIZATION = "Última actualización";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
+Blockly.Msg.DATATABLE_BY = "by";  // untranslated
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.DATATABLE_CONFIGURATIONS = "configuraciones";
 Blockly.Msg.DATATABLE_CONFIGURATION_NAME = "Nombre de configuración";
 Blockly.Msg.DATATABLE_CREATED_BY = "Creador";
 Blockly.Msg.DATATABLE_CREATED_ON = "Fecha de creación";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
+Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
+Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.DATATABLE_PROGRAMS = "programas";
 Blockly.Msg.DATATABLE_PROGRAM_NAME = "Nombre del programa";
 Blockly.Msg.DATATABLE_SHARED = "Compartido";
@@ -172,7 +181,6 @@ Blockly.Msg.EXTERNAL_INPUTS = "Entradas externas";
 Blockly.Msg.FOR = "para";
 Blockly.Msg.GET = "obtener";
 Blockly.Msg.GETSAMPLE_TOOLTIP = "Obtiene la lectura actual del sensor seleccionado";
-Blockly.Msg.GO_TO_GROUPS = "go to groups";  // untranslated
 Blockly.Msg.GYRO_GETSAMPLE_TOOLTIP = "Obtiene la lectura actual del sensor de giroscopio";
 Blockly.Msg.GYRO_RESET_TOOLTIP = "Reinicia el sensor de giroscopio";
 Blockly.Msg.GYRO_TOOLTIP = "Representa el sensor de giroscopio";
@@ -598,6 +606,7 @@ Blockly.Msg.NAO_BLINK = "blink";  // untranslated
 Blockly.Msg.NAO_CAMERA = "camera";  // untranslated
 Blockly.Msg.NAO_CAMERA_BOTTOM = "bottom";  // untranslated
 Blockly.Msg.NAO_CAMERA_TOP = "top";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.NAO_CHAT_TOOLTIP = "Add a reaction if a word is recognized.";  // untranslated
 =======
@@ -606,6 +615,9 @@ Blockly.Msg.NAO_COLOR_MAGENTA = "magenta";  // untranslated
 Blockly.Msg.NAO_COLOR_WHITE = "white";  // untranslated
 Blockly.Msg.NAO_COLOR_YELLOW = "yellow";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.NAO_CHAT_TOOLTIP = "Add a reaction if a word is recognized.";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.NAO_CURRENT = "electric current of";  // untranslated
 Blockly.Msg.NAO_DETECTFACE = "detect face";  // untranslated
 Blockly.Msg.NAO_DETECTFACE_TOOLTIP = "Detect a face previously saved under a given name";  // untranslated
@@ -698,10 +710,13 @@ Blockly.Msg.NAO_PLAYFILE_TOOLTIP = "Plays a sound file from the robot.";  // unt
 Blockly.Msg.NAO_PLAY_FILE = "play file";  // untranslated
 Blockly.Msg.NAO_POINTAT = "point at";  // untranslated
 Blockly.Msg.NAO_POINTLOOKAT_TOOLTIP = "Rbbot points or looks at a given position";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.NAO_POSITION = "position";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.NAO_POSTURE_CROUCH = "Crouch";  // untranslated
 Blockly.Msg.NAO_POSTURE_LYINGBACK = "LyingBack";  // untranslated
 Blockly.Msg.NAO_POSTURE_LYINGBELLY = "LyingBelly";  // untranslated
@@ -849,6 +864,7 @@ Blockly.Msg.PLAY_TONE = "tono";
 Blockly.Msg.PLAY_TONE_TOOLTIP = "Reproduce un tono";
 Blockly.Msg.PLAY_VOLUME = "volumen";
 Blockly.Msg.PLAY_WHOLE = "whole note";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
@@ -857,6 +873,8 @@ Blockly.Msg.POPUP_2_1_3 = "2 3 1";  // untranslated
 >>>>>>> #384 corrected html part of userGroup table
 Blockly.Msg.POPUP_2_2_0 = "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.POPUP_ABOUT_JOIN = "quiero ayudar";
 Blockly.Msg.POPUP_ABOUT_TEXT = "Open Roberta Lab es un entorno de programación integrado basado en la nube que permite a niñas,  niños y adolescentes programar de un modo sencillo robots Lego Mindstorms EV3. Esta plataforma es totalmente de código abierto, así que la participación en ella es bienvenida. Tanto el software como las herramientas de desarrollo en código abierto están disponibles en los servidores de Fraunhofer.";
 Blockly.Msg.POPUP_ABOUT_TEXT_DEV = "Open Roberta Lab es una plataforma de programación en código abierto desarrollada por Fraunhofer IAIS a iniciativa de <a href='http://www.roberta-home.de/'>»Roberta – Learning with Robots«</a>";
@@ -867,7 +885,6 @@ Blockly.Msg.POPUP_BEFOREUNLOAD_LOGGEDIN = "Tienes cambios sin guardar en tu prog
 Blockly.Msg.POPUP_CANCEL = "Cancelar";
 Blockly.Msg.POPUP_CHANGE_PASSWORD = "cambiar contraeña ...";
 Blockly.Msg.POPUP_CONFIRM_DELETE_CONFIGURATION = "¿Estás seguro de querer borrar esta configuración?";
-Blockly.Msg.POPUP_CONFIRM_DELETE_GROUP = "confirm delete group";  // untranslated
 Blockly.Msg.POPUP_CONFIRM_DELETE_PROGRAM = "¿Estás seguro de querer borrar este programa?";
 Blockly.Msg.POPUP_CONFIRM_UPDATE_FIRMWARE = "Hay disponible una nueva versión de firmware para tu robot. Puedes intentar ejecutar programas con la versión antigua, pero la mejor opción es actualizar tu robot ahora. Lo único que tienes que hacer es hacer clic sobre >>Actualiza ahora<< y reiniciar el robot a continuación.";
 Blockly.Msg.POPUP_CONTINUE = "continuar de todas maneras";
@@ -882,14 +899,16 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "now click on the »Save« button on the bot
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Actualizar ahora";
 Blockly.Msg.POPUP_EMAIL = "Correo electrónico";
 Blockly.Msg.POPUP_EMAIL_SEND = "Enviar ahora";
-Blockly.Msg.POPUP_GROUPNAME = "group name";  // untranslated
 Blockly.Msg.POPUP_NAME = "Nombre";
 Blockly.Msg.POPUP_NEW_PASSWORD = "Nueva contraseña";
 Blockly.Msg.POPUP_OLD_PASSWORD = "Contraseña antigua";
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.POPUP_OLD_RELEASE = "Version 2.1.3 <ul class='NonIcon'><li>Calliope - simulate programs for Calliope</li><li>micro:bit - simulate programs for micro:bit©</li><li>new feature - help for programming blocks in the editor (EV3 only)</li></ul>";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.POPUP_PASSWORD = "Contraseña";
 Blockly.Msg.POPUP_PASSWORD_RECOVERY = "resetear password ...";
 Blockly.Msg.POPUP_PROGRAM_TERMINATED_UNEXPECTED = "La ejecición del programa en el robot ha terminado inesperadamente.";
@@ -1122,10 +1141,13 @@ Blockly.Msg.TOUR1_DESCRIPTION10 = "Pulsa sobre »Acción«";
 Blockly.Msg.TOUR1_DESCRIPTION12 = "Ahora arrastra el bloque justo debajo del bloque inicio para que conecten.";
 Blockly.Msg.TOUR1_DESCRIPTION13 = "¡Ahora, prueba tu programa en la simulación!";
 Blockly.Msg.TOUR1_DESCRIPTION13a = "and test your program in the simulation!";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.TOUR1_DESCRIPTION14 = "¡Un momento!";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.TOUR1_DESCRIPTION15 = "Perfecto,<br>tu robot avanza 20 cm,<br> ¡exactamente lo que has programado!";
 Blockly.Msg.TOUR1_DESCRIPTION16 = "Adios. ¡Diviértete probando más cosas!";
 Blockly.Msg.ULTRASONIC_GETSAMPLE_TOOLTIP = "Obtiene la lectura actual del sensor ultrasónico.";

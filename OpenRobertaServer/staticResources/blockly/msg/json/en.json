@@ -369,10 +369,6 @@
 	"PROCEDURES_IFRETURN_TOOLTIP": "If a value is true, then return a second value.",
 	"PROCEDURES_IFRETURN_HELPURL": "http://c2.com/cgi/wiki?GuardClause",
 	"PROCEDURES_IFRETURN_WARNING": "Warning: This block may be used only within a function definition.",
-	"GO_TO_GROUPS": "go to groups",
-	"POPUP_GROUPNAME": "group name",
-	"POPUP_CONFIRM_DELETE_GROUP": "confirm delete group",
-	"POPUP_2_1_3": "2 3 1",
 	"MOTOR_ON_TOOLTIP": "Turns motor on with specific power.",
 	"MOTOR_ON_FOR_TOOLTIP": "Turns motor on and stops motor after execution of rotations/degrees.",
 	"MOTOR_GETPOWER_TOOLTIP": "Gets current power of this motor.",
@@ -812,10 +808,13 @@
 	"TOUR1_DESCRIPTION12": "Now drag'n drop the new block just below the start-program-block so that they are connected",
 	"TOUR1_DESCRIPTION13": "Now open the simulation ...",
 	"TOUR1_DESCRIPTION13a": "and test your program in the simulation!",
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 	"TOUR1_DESCRIPTION14": "Just a moment!",
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 	"TOUR1_DESCRIPTION15": "Perfect,<br>your robot is driving 20 cm forward,<br>this is what you have programmed!",
 	"TOUR1_DESCRIPTION16": "Bye and have fun trying out more!",
 	"PROCEDURES_DEFNORETURN_PROCEDURE": "doSomething",
@@ -840,11 +839,14 @@
 	"CONFIGURATION_ERROR_MULTIPLE_RIGHT_MOTORS": "You have multiple right motors assigned to your configuration!",
 	"CONFIGURATION_ERROR_MULTIPLE_LEFT_MOTORS": "You have multiple left motors assigned to your configuration!",
 	"WAIT_TIME_TOOLTIP": "Waits for a certain time in milliseconds.",
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 	"POPUP_2_2_0": "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>",
 	"POPUP_OLD_RELEASE": "Version 2.1.3 <ul class='NonIcon'><li>Calliope - simulate programs for Calliope</li><li>micro:bit - simulate programs for micro:bit©</li><li>new feature - help for programming blocks in the editor (EV3 only)</li></ul>",
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 	"ORA_TOKEN_SET_ERROR_WRONG_ROBOTTYPE": "You are trying to connect a robot of a different type as selected in the menu. <br> Please switch the robot type in the robot's menu and try to connect again!",
 	"ORA_USER_ERROR_EMAIL_USED": "There is already an account with this email address registered. Please enter another email address!",
 	"ORA_USER_PASSWORD_RECOVERY_EXPIRED_URL": "The link is not valid anymore. Please ask for resetting your password again, if you still cannot remember it!",
@@ -1107,11 +1109,16 @@
 	"NAO_HAND_TOOLTIP": "Open/close a hand.",
 	"NAO_SAY_TOOLTIP": "The robot says the given text.",
 	"NAO_GETCURRENT_TOOLTIP": "Get the electric current from the selected joint.",
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 	"NAO_SETINTENSITY_TOOLTIP": "Set the intensity of a group of LEDs.",
 	"NAO_CHAT_TOOLTIP": "Add a reaction if a word is recognized.",
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+	"NAO_SETINTENSITY_TOOLTIP": "Set the intensity of a group of LEDs.",
+	"NAO_CHAT_TOOLTIP": "Add a reaction if a word is recognized.",
+>>>>>>> #384 corrected most of the messages
 	"MENU_CODE_DOWNLOAD_TOOLTIP": "Download the source code of your program on the computer",
 	"MENU_CODE_REFRESH_TOOLTIP": "Refresh the source code, if you have changed the NEPO Block's.",
 	"MENU_SIM_WRO": "World Robot Olympiad scene",
@@ -1128,7 +1135,10 @@
 	"DISPLAY_GET_PIXEL_TOOLTIP": "Returns the brightness for this led. 0 means the led is turned off, 9 is the brightest value.",
 	"DISPLAY_SET_PIXEL_TOOLTIP": "Sets the brightness for this led. 0 means the led is turned off, 9 is the brightest value.",
 	"DISPLAY_GET_BRIGHTNESS_TOOLTIP": "Returns the brightness for all leds of the display. 0 means all leds are turned off, 9 is the brightest value.",
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+>>>>>>> #384 corrected most of the messages
 	"DISPLAY_SET_BRIGHTNESS_TOOLTIP": "Sets the brightness for all leds of the display. 0 means all leds are turned off, 9 is the brightest value.",
 	"POPUP_STARTUP_TOUR_TEXT": "Would you like to get started, but do not know exactly how? We will show you the first steps in an interactive tutorial.",
 	"POPUP_STARTUP_HELP_TEXT": "In our detailed help, we will explain everything you need, from building instructions to frequently asked questions.",
@@ -1136,6 +1146,7 @@
 	"MESSAGE_USER_GROUP_DELETED": "User »$« was deleted",
 	"MESSAGE_ADDED_USER": "User »$« was added",
 	"ORA_USER_TO_ADD_NOT_FOUND": "User was not found",
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 	"MESSAGE_EDIT_SAVE_GROUP_AS": "Your group has been created",
 	"ORA_GROUP_CREATE_ERROR_NOT_SAVED_TO_DB": "This group already exists",
 	"ORA_USER_GROUP_SAVE_AS_ERROR_USER_GROUP_EXISTS": "This user already belongs to the group",

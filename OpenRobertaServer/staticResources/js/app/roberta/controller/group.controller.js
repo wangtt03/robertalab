@@ -16,9 +16,9 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
     
     function createGroupToServer() {
         $('.modal').modal('hide'); // close all opened popups
-        
         var groupName = $('#singleModalInput').val().trim();
         if (!/^[a-zA-Z0-9=+!?.,%#+&^@_ ]+$/gi.test(groupName)){
+        	$('#singleModalOk').button("disable");
         	return null;
         }
         LOG.info('create group ' + groupName);
@@ -27,9 +27,9 @@ define([ 'exports', 'log', 'message', 'util', 'group.model', 'guiState.controlle
         if (result.rc === 'ok') {
             result.name = groupName;
             GUISTATE_C.setGroupName(result);
-            MSG.displayInformation(result, "MESSAGE_EDIT_SAVE_GROUP_AS", result.message, GUISTATE_C.getGroupName());
             $('#groupList').find('button[name="refresh"]').trigger('click');
         }
+        MSG.displayInformation(result, "MESSAGE_EDIT_SAVE_GROUP_AS", result.message, GUISTATE_C.getGroupName());
         });
     }
     

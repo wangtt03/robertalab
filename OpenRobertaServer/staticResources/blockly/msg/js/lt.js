@@ -125,10 +125,19 @@ Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "kartok kol";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "Kartoja veiksmus, kol bus pasiekta nurodyta sąlyga.";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "Kartoja veiksmus, kol sąlyga tenkinama.";
 Blockly.Msg.DATATABLE_ACTUALIZATION = "Actualization date";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
+Blockly.Msg.DATATABLE_BY = "by";  // untranslated
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.DATATABLE_CONFIGURATIONS = "configurations";  // untranslated
 Blockly.Msg.DATATABLE_CONFIGURATION_NAME = "Configuration name";  // untranslated
 Blockly.Msg.DATATABLE_CREATED_BY = "Creator";  // untranslated
 Blockly.Msg.DATATABLE_CREATED_ON = "Creation date";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
+Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
+Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.DATATABLE_PROGRAMS = "programs";  // untranslated
 Blockly.Msg.DATATABLE_PROGRAM_NAME = "Program name";  // untranslated
 Blockly.Msg.DATATABLE_SHARED = "Shared";  // untranslated
@@ -172,7 +181,6 @@ Blockly.Msg.EXTERNAL_INPUTS = "Išdėstyti stulpeliu, kai daug parametrų";
 Blockly.Msg.FOR = "for";  // untranslated
 Blockly.Msg.GET = "get";  // untranslated
 Blockly.Msg.GETSAMPLE_TOOLTIP = "Gets the current reading from chosen sensor.";  // untranslated
-Blockly.Msg.GO_TO_GROUPS = "go to groups";  // untranslated
 Blockly.Msg.GYRO_GETSAMPLE_TOOLTIP = "Gets the current reading from the gyro sensor.";  // untranslated
 Blockly.Msg.GYRO_RESET_TOOLTIP = "Resets the gyro sensor.";  // untranslated
 Blockly.Msg.GYRO_TOOLTIP = "Represents a gyro sensor.";  // untranslated
@@ -598,6 +606,7 @@ Blockly.Msg.NAO_BLINK = "blink";  // untranslated
 Blockly.Msg.NAO_CAMERA = "camera";  // untranslated
 Blockly.Msg.NAO_CAMERA_BOTTOM = "bottom";  // untranslated
 Blockly.Msg.NAO_CAMERA_TOP = "top";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.NAO_CHAT_TOOLTIP = "Add a reaction if a word is recognized.";  // untranslated
 =======
@@ -606,6 +615,9 @@ Blockly.Msg.NAO_COLOR_MAGENTA = "magenta";  // untranslated
 Blockly.Msg.NAO_COLOR_WHITE = "white";  // untranslated
 Blockly.Msg.NAO_COLOR_YELLOW = "yellow";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.NAO_CHAT_TOOLTIP = "Add a reaction if a word is recognized.";  // untranslated
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.NAO_CURRENT = "electric current of";  // untranslated
 Blockly.Msg.NAO_DETECTFACE = "detect face";  // untranslated
 Blockly.Msg.NAO_DETECTFACE_TOOLTIP = "Detect a face previously saved under a given name";  // untranslated
@@ -698,10 +710,13 @@ Blockly.Msg.NAO_PLAYFILE_TOOLTIP = "Plays a sound file from the robot.";  // unt
 Blockly.Msg.NAO_PLAY_FILE = "play file";  // untranslated
 Blockly.Msg.NAO_POINTAT = "point at";  // untranslated
 Blockly.Msg.NAO_POINTLOOKAT_TOOLTIP = "Rbbot points or looks at a given position";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.NAO_POSITION = "position";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.NAO_POSTURE_CROUCH = "Crouch";  // untranslated
 Blockly.Msg.NAO_POSTURE_LYINGBACK = "LyingBack";  // untranslated
 Blockly.Msg.NAO_POSTURE_LYINGBELLY = "LyingBelly";  // untranslated
@@ -849,6 +864,7 @@ Blockly.Msg.PLAY_TONE = "tone";  // untranslated
 Blockly.Msg.PLAY_TONE_TOOLTIP = "Plays a tone.";  // untranslated
 Blockly.Msg.PLAY_VOLUME = "volume";  // untranslated
 Blockly.Msg.PLAY_WHOLE = "whole note";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
@@ -857,6 +873,8 @@ Blockly.Msg.POPUP_2_1_3 = "2 3 1";  // untranslated
 >>>>>>> #384 corrected html part of userGroup table
 Blockly.Msg.POPUP_2_2_0 = "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.POPUP_ABOUT_JOIN = "I want to help";  // untranslated
 Blockly.Msg.POPUP_ABOUT_TEXT = "The Open Roberta Lab is a cloud-based integrated programming environment that enables children and adolescents to program easily different robot systems. This platform is completely open source so taking part is desirable! Both the software and the open source developer tools are available via Fraunhofer servers.";  // untranslated
 Blockly.Msg.POPUP_ABOUT_TEXT_DEV = "The Open Roberta Lab is an open-source programming platform developed by Fraunhofer IAIS within the initiative <a href='http://www.roberta-home.de/'>»Roberta – Learning with Robots«</a>";  // untranslated
@@ -867,7 +885,6 @@ Blockly.Msg.POPUP_BEFOREUNLOAD_LOGGEDIN = "You have unsaved changes in your prog
 Blockly.Msg.POPUP_CANCEL = "Cancel";  // untranslated
 Blockly.Msg.POPUP_CHANGE_PASSWORD = "change password ...";  // untranslated
 Blockly.Msg.POPUP_CONFIRM_DELETE_CONFIGURATION = "Do you really want to delete the configuration ?";  // untranslated
-Blockly.Msg.POPUP_CONFIRM_DELETE_GROUP = "confirm delete group";  // untranslated
 Blockly.Msg.POPUP_CONFIRM_DELETE_PROGRAM = "Do you really want to delete the program ?";  // untranslated
 Blockly.Msg.POPUP_CONFIRM_UPDATE_FIRMWARE = "There is a new firmware version for your robot available. You can try to run programs with the old version, but best bet is to update your robot now! You just have to click >>Update now<<.";  // untranslated
 Blockly.Msg.POPUP_CONTINUE = "continue anyway";  // untranslated
@@ -882,14 +899,16 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "now click on the »Save« button on the bot
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Update now";  // untranslated
 Blockly.Msg.POPUP_EMAIL = "E-Mail";  // untranslated
 Blockly.Msg.POPUP_EMAIL_SEND = "Send now";  // untranslated
-Blockly.Msg.POPUP_GROUPNAME = "group name";  // untranslated
 Blockly.Msg.POPUP_NAME = "Name";  // untranslated
 Blockly.Msg.POPUP_NEW_PASSWORD = "New Password";  // untranslated
 Blockly.Msg.POPUP_OLD_PASSWORD = "Old Password";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.POPUP_OLD_RELEASE = "Version 2.1.3 <ul class='NonIcon'><li>Calliope - simulate programs for Calliope</li><li>micro:bit - simulate programs for micro:bit©</li><li>new feature - help for programming blocks in the editor (EV3 only)</li></ul>";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.POPUP_PASSWORD = "Password";  // untranslated
 Blockly.Msg.POPUP_PASSWORD_RECOVERY = "reset password ...";  // untranslated
 Blockly.Msg.POPUP_PROGRAM_TERMINATED_UNEXPECTED = "The execution of the program on the robot has terminated unexpectedly!";  // untranslated
@@ -1122,10 +1141,13 @@ Blockly.Msg.TOUR1_DESCRIPTION10 = "Click on »Action«";  // untranslated
 Blockly.Msg.TOUR1_DESCRIPTION12 = "Now drag'n drop the new block just below the start-program-block so that they are connected";  // untranslated
 Blockly.Msg.TOUR1_DESCRIPTION13 = "Now open the simulation ...";  // untranslated
 Blockly.Msg.TOUR1_DESCRIPTION13a = "and test your program in the simulation!";  // untranslated
+<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 =======
 Blockly.Msg.TOUR1_DESCRIPTION14 = "Just a moment!";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> #384 corrected most of the messages
 Blockly.Msg.TOUR1_DESCRIPTION15 = "Perfect,<br>your robot is driving 20 cm forward,<br>this is what you have programmed!";  // untranslated
 Blockly.Msg.TOUR1_DESCRIPTION16 = "Bye and have fun trying out more!";  // untranslated
 Blockly.Msg.ULTRASONIC_GETSAMPLE_TOOLTIP = "Gets the current reading from the ultrasonic sensor.";  // untranslated
