@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.hibernate.Query;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import de.fhg.iais.roberta.persistence.bo.Group;
 import de.fhg.iais.roberta.persistence.bo.User;
@@ -19,7 +17,6 @@ import de.fhg.iais.roberta.util.dbc.Assert;
  * database access takes place.
  */
 public class GroupDao extends AbstractDao<Group> {
-    private static final Logger LOG = LoggerFactory.getLogger(GroupDao.class);
 
     /**
      * create a new DAO for groups. This creation is cheap.
@@ -30,16 +27,15 @@ public class GroupDao extends AbstractDao<Group> {
         super(Group.class, session);
     }
 
-    public Group persistGroup(String groupName, int owner) throws Exception {
+    public Group persistGroup(String groupName, int ownerId) throws Exception {
         Assert.notNull(groupName);
         Group group = loadGroup(groupName);
         UserDao ud = new UserDao(this.session);
-        String ownerName = ud.loadUser(owner).getAccount();
+        String ownerName = ud.loadUser(ownerId).getAccount();
         UserGroupDao userGroupDao = new UserGroupDao(this.session);
         if ( group == null ) {
-            group = new Group(groupName, owner);
+            group = new Group(groupName, ownerId);
             this.session.save(group);
-            //group.setPassword(password);
             userGroupDao.persistUserGroup(ownerName, groupName);
             return group;
         } else {
@@ -53,23 +49,23 @@ public class GroupDao extends AbstractDao<Group> {
      * @return the list of all groups, may be an empty list, but never null
      */
 
-    public Group loadGroup(String name) {
-        Assert.notNull(name);
+    public Group loadGroup(String groupName) {
+        Assert.notNull(groupName);
         Query hql = this.session.createQuery("from Group where name=:name");
-        hql.setString("name", name);
+        hql.setString("name", groupName);
         return checkGroupExistance(hql);
     }
 
-    public List<Group> loadOwnerGroups(int owner) {
+    public List<Group> loadOwnerGroups(int ownerId) {
         Query hql = this.session.createQuery("from Group where owner=:owner");
-        hql.setInteger("owner", owner);
+        hql.setInteger("owner", ownerId);
         @SuppressWarnings("unchecked")
         List<Group> il = hql.list();
         return Collections.unmodifiableList(il);
     }
 
-    public List<User> loadMembersByGroup(String name) {
-        Group group = this.loadGroup(name);
+    public List<User> loadMembersByGroup(String groupName) {
+        Group group = this.loadGroup(groupName);
         UserDao userDao = new UserDao(this.session);
         int groupId = group.getId();
         Query hql = this.session.createQuery("from UserGroup where groupId=:groupId");
@@ -109,8 +105,8 @@ public class GroupDao extends AbstractDao<Group> {
         }
     }
 
-    public int deleteByName(String name) {
-        final Group toBeDeleted = loadGroup(name);
+    public int deleteByName(String groupName) {
+        final Group toBeDeleted = loadGroup(groupName);
         if ( toBeDeleted == null ) {
             return 0;
         } else {

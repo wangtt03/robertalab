@@ -10,7 +10,7 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
      */
     function loadGroupList(successFn) {
         COMM.json("/usergroups", {
-            "cmd" : "getMemberGroups"
+            "cmd" : "getGroupsList"
         }, successFn, "load group list");
     }
     exports.loadGroupList = loadGroupList;
