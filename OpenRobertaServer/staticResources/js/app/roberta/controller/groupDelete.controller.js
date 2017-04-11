@@ -16,8 +16,8 @@ define([ 'require', 'exports', 'log', 'util', 'message', 'comm', 'group.model', 
             for (var i = 0; i < group.length; i++) {
                 var gr = group[i];
                 var groupName = gr[0];
-                var groupOwner = gr[1];
-                GROUP.deleteGroupFromListing(groupName, function(result, groupName) {
+                var resulting;
+                GROUP.deleteGroupFromListing(groupName, function(result, resulting) {
                 UTIL.response(result);
                 if (result.rc === 'ok') {
                     MSG.displayInformation(result, "MESSAGE_GROUP_DELETED", result.message, groupName);

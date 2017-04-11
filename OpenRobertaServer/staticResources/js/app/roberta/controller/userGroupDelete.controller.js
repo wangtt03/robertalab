@@ -16,10 +16,12 @@ define([ 'require', 'exports', 'log', 'util', 'message', 'comm', 'userGroup.mode
             for (var i = 0; i < userGroup.length; i++) {
                 var userName = userGroup[0][0];
                 var groupName = GUISTATE_C.getGroupName();
-                USERGROUP.deleteUserFromTheGroup(userName, groupName, function(userName, groupName, result) {
-                UTIL.response(userName);
-                if (userName.rc === 'ok') {
-                    MSG.displayInformation(userName.message, groupName);
+                var resulting1;
+                var resulting2;
+                USERGROUP.deleteUserFromTheGroup(userName, groupName, function(resulting1, resulting2, result) {
+                UTIL.response(resulting1);
+                if (resulting1.rc === 'ok') {
+                    MSG.displayInformation(resulting1, "MESSAGE_USER_GROUP_DELETED", resulting1.message, userName);
                     $('#userGroupList').find('button[name="refresh"]').trigger('click');
                     LOG.info('delete user "' + userName + "' from group '" + groupName + "'");
                 }
