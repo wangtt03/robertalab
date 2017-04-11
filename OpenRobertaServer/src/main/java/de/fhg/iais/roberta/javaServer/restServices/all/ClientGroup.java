@@ -67,6 +67,7 @@ public class ClientGroup {
             UserGroup userGroup;
             JSONArray groupList;
             User user;
+            //TODO: add access rights to database -- after we decide which exactly access right we need to have
             switch ( cmd ) {
                 case "createGroup":
                     group = gp.persistGroup(groupName, userId);
@@ -94,6 +95,8 @@ public class ClientGroup {
                     group = gp.getGroup(groupName);
                     if ( group == null ) {
                         Util.addErrorInfo(response, Key.GROUP_DELETE_ERROR);
+                    } else if ( group.getOwner() != userId ) {
+                        Util.addErrorInfo(response, Key.USER_HAS_NO_ACCESS_RIGHTS);
                     } else {
                         gp.deleteByName(groupName);
                         Util.addSuccessInfo(response, Key.GROUP_DELETE_SUCCESS);
@@ -124,10 +127,13 @@ public class ClientGroup {
                     break;
                 case "deleteUser":
                     userGroup = ugp.getUserGroup(account, groupName);
-                    ugp.delete(account, groupName);
+                    group = gp.getGroup(groupName);
                     if ( userGroup == null ) {
                         Util.addErrorInfo(response, Key.USER_GROUP_DELETE_ERROR);
+                    } else if ( (group.getOwner() != userId) && (userId != up.getUser(account).getId()) ) {
+                        Util.addErrorInfo(response, Key.USER_HAS_NO_ACCESS_RIGHTS);
                     } else {
+                        ugp.delete(account, groupName);
                         Util.addSuccessInfo(response, Key.USER_GROUP_DELETE_SUCCESS);
                     }
 
