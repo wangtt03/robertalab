@@ -39,9 +39,9 @@ public class GroupProcessor extends AbstractProcessor {
         }
     }
 
-    public List<Group> loadOwnerGroups(int owner) {
+    public List<Group> loadOwnerGroups(int ownerId) {
         GroupDao groupDao = new GroupDao(this.dbSession);
-        List<Group> groups = groupDao.loadOwnerGroups(owner);
+        List<Group> groups = groupDao.loadOwnerGroups(ownerId);
         if ( groups != null ) {
             setSuccess(Key.USER_GET_GROUPS_SUCCESS);
             return groups;
@@ -56,7 +56,7 @@ public class GroupProcessor extends AbstractProcessor {
      *
      * @param groupName the name of the group
      */
-    public JSONArray getGroupMembers(String groupName) {
+    public JSONArray getMembersList(String groupName) {
         GroupDao groupDao = new GroupDao(this.dbSession);
         List<User> users = groupDao.loadMembersByGroup(groupName);
         JSONArray userNamesInfs = new JSONArray();
@@ -74,7 +74,7 @@ public class GroupProcessor extends AbstractProcessor {
      *
      * @param userName the user
      */
-    public JSONArray getMemberGroups(int userId) {
+    public JSONArray getGroupsList(int userId) {
         GroupDao groupDao = new GroupDao(this.dbSession);
         User usr;
         UserDao usrDao = new UserDao(this.dbSession);

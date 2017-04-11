@@ -3,8 +3,6 @@ package de.fhg.iais.roberta.persistence.dao;
 import java.util.List;
 
 import org.hibernate.Query;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import de.fhg.iais.roberta.persistence.bo.UserGroup;
 import de.fhg.iais.roberta.persistence.util.DbSession;
@@ -15,7 +13,6 @@ import de.fhg.iais.roberta.util.dbc.Assert;
  * database access takes place.
  */
 public class UserGroupDao extends AbstractDao<UserGroup> {
-    private static final Logger LOG = LoggerFactory.getLogger(UserGroupDao.class);
 
     /**
      * create a new DAO for user groups. This creation is cheap.
@@ -56,13 +53,13 @@ public class UserGroupDao extends AbstractDao<UserGroup> {
      * @return the list of all groups, may be an empty list, but never null
      */
 
-    public UserGroup loadUserGroup(String account, String groupName) {
-        Assert.notNull(account);
+    public UserGroup loadUserGroup(String accountName, String groupName) {
+        Assert.notNull(accountName);
         Assert.notNull(groupName);
-        if ( this.ud.loadUser(account) == null ) {
+        if ( this.ud.loadUser(accountName) == null ) {
             return null;
         }
-        int userId = this.ud.loadUser(account).getId();
+        int userId = this.ud.loadUser(accountName).getId();
         int groupId = this.gd.loadGroup(groupName).getId();
         Query hql = this.session.createQuery("from UserGroup where userId=:userId and groupId=:groupId");
         hql.setDouble("userId", userId);

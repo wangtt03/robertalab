@@ -62,7 +62,7 @@ public class ClientGroup {
             final UserGroupProcessor ugp = new UserGroupProcessor(dbSession, httpSessionState);
             final UserProcessor up = new UserProcessor(dbSession, httpSessionState);
             String groupName = request.optString("groupName");
-            String account = request.optString("account");
+            String accountName = request.optString("account");
             Group group;
             UserGroup userGroup;
             JSONArray groupList;
@@ -77,13 +77,13 @@ public class ClientGroup {
                         Util.addSuccessInfo(response, Key.GROUP_CREATE_SUCCESS);
                     }
                     break;
-                case "getGroupMembers":
-                    JSONArray memberList = gp.getGroupMembers(groupName);
+                case "getMembersList":
+                    JSONArray memberList = gp.getMembersList(groupName);
                     response.put("memberList", memberList);
                     Util.addResultInfo(response, gp);
                     break;
-                case "getMemberGroups":
-                    groupList = gp.getMemberGroups(userId);
+                case "getGroupsList":
+                    groupList = gp.getGroupsList(userId);
                     if ( groupList == null ) {
                         Util.addErrorInfo(response, Key.GROUP_GET_ONE_ERROR_NOT_FOUND);
                     } else {
@@ -108,14 +108,13 @@ public class ClientGroup {
                     Util.addResultInfo(response, gp);
                     break;
                 case "getUserGroup":
-                    userGroup = ugp.getUserGroup(account, groupName);
+                    userGroup = ugp.getUserGroup(accountName, groupName);
                     response.put("userGroup", userGroup);
                     Util.addResultInfo(response, ugp);
                     break;
                 case "addUser":
-                    // add a user to an already existing group
-                    userGroup = ugp.persistUserGroup(account, groupName);
-                    user = up.getUser(account);
+                    userGroup = ugp.persistUserGroup(accountName, groupName);
+                    user = up.getUser(accountName);
                     if ( userGroup != null ) {
                         Util.addSuccessInfo(response, Key.USER_GROUP_SAVE_SUCCESS);
                     } else if ( user == null ) {
@@ -123,17 +122,16 @@ public class ClientGroup {
                     } else {
                         Util.addErrorInfo(response, Key.USER_GROUP_SAVE_AS_ERROR_USER_GROUP_EXISTS);
                     }
-
                     break;
                 case "deleteUser":
-                    userGroup = ugp.getUserGroup(account, groupName);
+                    userGroup = ugp.getUserGroup(accountName, groupName);
                     group = gp.getGroup(groupName);
                     if ( userGroup == null ) {
                         Util.addErrorInfo(response, Key.USER_GROUP_DELETE_ERROR);
-                    } else if ( (group.getOwner() != userId) && (userId != up.getUser(account).getId()) ) {
+                    } else if ( (group.getOwner() != userId) && (userId != up.getUser(accountName).getId()) ) {
                         Util.addErrorInfo(response, Key.USER_HAS_NO_ACCESS_RIGHTS);
                     } else {
-                        ugp.delete(account, groupName);
+                        ugp.delete(accountName, groupName);
                         Util.addSuccessInfo(response, Key.USER_GROUP_DELETE_SUCCESS);
                     }
 
