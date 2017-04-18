@@ -125,19 +125,28 @@ Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "повторювати пок�
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "Поки значення хибне, виконувати певні дії.";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "Поки значення істинне, виконувати певні дії.";
 Blockly.Msg.DATATABLE_ACTUALIZATION = "Actualization date";  // untranslated
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_BY = "by";  // untranslated
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_BY = "by";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_CONFIGURATIONS = "configurations";  // untranslated
 Blockly.Msg.DATATABLE_CONFIGURATION_NAME = "Configuration name";  // untranslated
 Blockly.Msg.DATATABLE_CREATED_BY = "Creator";  // untranslated
 Blockly.Msg.DATATABLE_CREATED_ON = "Creation date";  // untranslated
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
 Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
+Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_PROGRAMS = "programs";  // untranslated
 Blockly.Msg.DATATABLE_PROGRAM_NAME = "Program name";  // untranslated
 Blockly.Msg.DATATABLE_SHARED = "Shared";  // untranslated

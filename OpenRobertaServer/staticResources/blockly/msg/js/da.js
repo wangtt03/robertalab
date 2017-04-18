@@ -125,19 +125,28 @@ Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "gentag sålænge";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "Udfør nogle kommandoer, sålænge en værdi er falsk.";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "Udfør nogle kommandoer, sålænge en værdi er sand.";
 Blockly.Msg.DATATABLE_ACTUALIZATION = "Aktualiseringsdato";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_BY = "by";  // untranslated
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_BY = "by";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_CONFIGURATIONS = "konfiguration";
 Blockly.Msg.DATATABLE_CONFIGURATION_NAME = "Konfigurationsnavn";
 Blockly.Msg.DATATABLE_CREATED_BY = "Forfatter";
 Blockly.Msg.DATATABLE_CREATED_ON = "Oprettelsesdato";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
 Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
+Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_PROGRAMS = "programmer";
 Blockly.Msg.DATATABLE_PROGRAM_NAME = "Program navn";
 Blockly.Msg.DATATABLE_SHARED = "Delt";

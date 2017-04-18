@@ -125,19 +125,28 @@ Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "repeat while";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "While a value is false, then do some statements.";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "While a value is true, then do some statements.";
 Blockly.Msg.DATATABLE_ACTUALIZATION = "Actualization date";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_BY = "by";
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_BY = "by";
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_CONFIGURATIONS = "configurations";
 Blockly.Msg.DATATABLE_CONFIGURATION_NAME = "Configuration name";
 Blockly.Msg.DATATABLE_CREATED_BY = "Creator";
 Blockly.Msg.DATATABLE_CREATED_ON = "Creation date";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_DATE = "modified";
 Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_DATE = "modified";
+Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_PROGRAMS = "programs";
 Blockly.Msg.DATATABLE_PROGRAM_NAME = "Program name";
 Blockly.Msg.DATATABLE_SHARED = "Shared";

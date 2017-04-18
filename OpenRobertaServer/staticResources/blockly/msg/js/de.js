@@ -125,19 +125,28 @@ Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "Wiederhole solange";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "Führe die Anweisung solange aus wie die Bedingung falsch (false) ist.";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "Führe die Anweisung solange aus wie die Bedingung wahr (true) ist.";
 Blockly.Msg.DATATABLE_ACTUALIZATION = "Letzte Aktualisierung";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_BY = "by";  // untranslated
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_BY = "by";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_CONFIGURATIONS = "Konfigurationen";
 Blockly.Msg.DATATABLE_CONFIGURATION_NAME = "Name der Konfiguration";
 Blockly.Msg.DATATABLE_CREATED_BY = "Erzeugt von";
 Blockly.Msg.DATATABLE_CREATED_ON = "Erzeugt am";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
 Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
+Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_PROGRAMS = "Programme";
 Blockly.Msg.DATATABLE_PROGRAM_NAME = "Name des Programms";
 Blockly.Msg.DATATABLE_SHARED = "Geteilt";

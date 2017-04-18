@@ -125,19 +125,28 @@ Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "повторять, пока";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "Пока значение ложно, выполняет команды";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "Пока значение истинно, выполняет команды.";
 Blockly.Msg.DATATABLE_ACTUALIZATION = "Дата актуализации";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_BY = "by";  // untranslated
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_BY = "by";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_CONFIGURATIONS = "конфигурации";
 Blockly.Msg.DATATABLE_CONFIGURATION_NAME = "Название конфигурации";
 Blockly.Msg.DATATABLE_CREATED_BY = "Создатель";
 Blockly.Msg.DATATABLE_CREATED_ON = "Дата создания";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
 Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
+Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_PROGRAMS = "программы";
 Blockly.Msg.DATATABLE_PROGRAM_NAME = "Название программы";
 Blockly.Msg.DATATABLE_SHARED = "Предоставленный для общего доступа";

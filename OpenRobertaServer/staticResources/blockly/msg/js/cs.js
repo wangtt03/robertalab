@@ -110,12 +110,18 @@ Blockly.Msg.CONFIGURATION_ERROR_MULTIPLE_LEFT_MOTORS = "V konfiguraci je přiřa
 Blockly.Msg.CONFIGURATION_ERROR_MULTIPLE_RIGHT_MOTORS = "V konfiguraci je přiřazeno více pravých motorů!";
 Blockly.Msg.CONFIGURATION_ERROR_SENSOR_MISSING = "Tento senzor není připojen do portu.";
 Blockly.Msg.CONFIGURATION_ERROR_SENSOR_WRONG = "Do daného portu je připojen špatný senzor.";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.CONFLIST_DELETE_ALL_TOOLTIP = "Click here to delete all selected programs.";  // untranslated
 Blockly.Msg.CONFLIST_DELETE_TOOLTIP = "Click here to delete your robot configuration.";  // untranslated
 Blockly.Msg.CONFLIST_LOAD_TOOLTIP = "Click here to load your robot configuration in the configuration environment.";  // untranslated
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.CONFLIST_DELETE_ALL_TOOLTIP = "Click here to delete all selected programs.";  // untranslated
+Blockly.Msg.CONFLIST_DELETE_TOOLTIP = "Click here to delete your robot configuration.";  // untranslated
+Blockly.Msg.CONFLIST_LOAD_TOOLTIP = "Click here to load your robot configuration in the configuration environment.";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.CONNECTION_CHECK = "je připojení robota %1 aktivní?";
 Blockly.Msg.CONNECTION_CHECK_TOOLTIP = "zkontrolujte, zda je připojení k robotovi aktivní";
 Blockly.Msg.CONNECTION_CONNECT = "připojit k robotovi";
@@ -179,6 +185,7 @@ Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "opakovat když";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "Dokud je hodnota nepravdivá, prováděj určité příkazy.";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "Dokud je hodnota pravdivá, prováděj určité příkazy.";
 Blockly.Msg.DATATABLE_ACTUALIZATION = "Datum aktualizace.";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.DATATABLE_BY = "by";  // untranslated
@@ -187,10 +194,14 @@ Blockly.Msg.DATATABLE_BLOCKS = "Bloky";
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_BY = "by";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_CONFIGURATIONS = "konfigurace";
 Blockly.Msg.DATATABLE_CONFIGURATION_NAME = "Jméno konfigurace";
 Blockly.Msg.DATATABLE_CREATED_BY = "Vytvořil";
 Blockly.Msg.DATATABLE_CREATED_ON = "Datum vytvoření";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
@@ -206,6 +217,10 @@ Blockly.Msg.DATATABLE_PREVIOUS = "< Prev";  // untranslated
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
 =======
 >>>>>>> #384 corrected most of the messages
+=======
+Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
+Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.DATATABLE_PROGRAMS = "programy";
 Blockly.Msg.DATATABLE_PROGRAM_NAME = "Jméno programu";
 Blockly.Msg.DATATABLE_SHARED = "Sdílené";
@@ -578,11 +593,16 @@ Blockly.Msg.MENU_EV3 = "příprava robota";
 Blockly.Msg.MENU_EXPERT = "expert";
 Blockly.Msg.MENU_EXPORT_PROG = "exportovat program";
 Blockly.Msg.MENU_FAQ = "otázky a odpovědi";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 Blockly.Msg.MENU_GALLERY = "gallery";  // untranslated
 Blockly.Msg.MENU_GALLERY_TOOLTIP = "gallery";  // untranslated
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+Blockly.Msg.MENU_GALLERY = "gallery";  // untranslated
+Blockly.Msg.MENU_GALLERY_TOOLTIP = "gallery";  // untranslated
+>>>>>>> upd msg files
 Blockly.Msg.MENU_GENERAL = "nápověda";
 Blockly.Msg.MENU_HELP = "nápověda";
 Blockly.Msg.MENU_HELP_TOOLTIP = "nápověda";
@@ -1275,15 +1295,21 @@ Blockly.Msg.PROCEDURES_MUTATORCONTAINER_TOOLTIP = "Přidat, odebrat nebo změnit
 Blockly.Msg.PROCEDURES_TITLE = "procedura";
 Blockly.Msg.PROCEDURES_VARIABLES_ERROR = "Chyba: Tento blok může být použit jen v rámci";
 Blockly.Msg.PROCEDURES_VARIABLES_LOOP_ERROR = "Chyba: Tento blok může být použit jen v rámci cyklu který deklaruje";
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 <<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
+=======
+>>>>>>> upd msg files
 Blockly.Msg.PROGLIST_DELETE_ALL_TOOLTIP = "Click here to delete all selected programs.";  // untranslated
 Blockly.Msg.PROGLIST_DELETE_SHARE_WITH_GALLERY = "Your program is allready shared with the gallery. If you change it, it will be automatically updated. Do you want to remove your program from the gallery?";  // untranslated
 Blockly.Msg.PROGLIST_DELETE_TOOLTIP = "Click here to delete your program.";  // untranslated
 Blockly.Msg.PROGLIST_LOAD_TOOLTIP = "Click here to load your robot configuration in the configuration environment.";  // untranslated
 Blockly.Msg.PROGLIST_SHARE_TOOLTIP = "Click here to share your program with a friend.";  // untranslated
 Blockly.Msg.PROGLIST_SHARE_WITH_GALLERY = "Do you really want to share your program with everybody?";  // untranslated
+<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
 =======
 >>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
+=======
+>>>>>>> upd msg files
 Blockly.Msg.REDO = "Redo";  // untranslated
 Blockly.Msg.REMOVE_COMMENT = "Odstranit komentář";
 Blockly.Msg.RENAME_VARIABLE = "Přejmenovat proměnnou...";
