@@ -245,11 +245,12 @@ public class ClientGroupTest {
     private void loadPlugin(Map<String, IRobotFactory> robotPlugins) {
         try {
             @SuppressWarnings("unchecked")
-            Class<IRobotFactory> factoryClass = (Class<IRobotFactory>) ServerStarter.class.getClassLoader().loadClass("de.fhg.iais.roberta.factory.EV3Factory");
+            Class<IRobotFactory> factoryClass =
+                (Class<IRobotFactory>) ServerStarter.class.getClassLoader().loadClass("de.fhg.iais.roberta.factory.EV3lejosFactory");
             Constructor<IRobotFactory> factoryConstructor = factoryClass.getDeclaredConstructor(RobotCommunicator.class);
-            robotPlugins.put("ev3", factoryConstructor.newInstance(this.brickCommunicator));
+            robotPlugins.put("ev3lejos", factoryConstructor.newInstance(this.brickCommunicator));
         } catch ( Exception e ) {
-            throw new DbcException("robot plugin ev3 has an invalid factory. Check the properties. Server does NOT start", e);
+            throw new DbcException("robot plugin ev3lejos has an invalid factory. Check the properties. Server does NOT start", e);
         }
     }
 }

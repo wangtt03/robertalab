@@ -90,11 +90,8 @@ public class AccessRightDao extends AbstractDao<AccessRight> {
         return Collections.unmodifiableList(il);
     }
 
-<<<<<<< ae5a6579d9bb30e8a6c88ff64bb337e71d22ec59
-	public List<AccessRight> loadAccessRightsByProgram(Group group) {
-=======
+
     public List<AccessRight> loadAccessRightsByProgram(Group group) {
->>>>>>> #384 fixed hql queries for group; created a test for a group creation
         Assert.notNull(group);
 
         Query hql = this.session.createQuery("from AccessRight where group=:group");

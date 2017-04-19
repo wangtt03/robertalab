@@ -802,13 +802,7 @@
 	"TOUR1_DESCRIPTION12": "",
 	"TOUR1_DESCRIPTION13": "",
 	"TOUR1_DESCRIPTION13a": "",
-<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
-<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
-=======
 	"TOUR1_DESCRIPTION14": "",
->>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
-=======
->>>>>>> #384 corrected most of the messages
 	"TOUR1_DESCRIPTION15": "",
 	"TOUR1_DESCRIPTION16": "",
 	"PROCEDURES_DEFNORETURN_PROCEDURE": "",
@@ -833,14 +827,8 @@
 	"CONFIGURATION_ERROR_MULTIPLE_RIGHT_MOTORS": "",
 	"CONFIGURATION_ERROR_MULTIPLE_LEFT_MOTORS": "",
 	"WAIT_TIME_TOOLTIP": "",
-<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
-<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
-=======
 	"POPUP_2_2_0": "",
 	"POPUP_OLD_RELEASE": "",
->>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
-=======
->>>>>>> #384 corrected most of the messages
 	"ORA_TOKEN_SET_ERROR_WRONG_ROBOTTYPE": "",
 	"ORA_USER_ERROR_EMAIL_USED": "",
 	"ORA_USER_PASSWORD_RECOVERY_EXPIRED_URL": "",
@@ -1102,17 +1090,8 @@
 	"NAO_MOVEJOINT_TOOLTIP": "",
 	"NAO_HAND_TOOLTIP": "",
 	"NAO_SAY_TOOLTIP": "",
-	"NAO_GETCURRENT_TOOLTIP": "",
-<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
-<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
 	"NAO_SETINTENSITY_TOOLTIP": "",
 	"NAO_CHAT_TOOLTIP": "",
-=======
->>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
-=======
-	"NAO_SETINTENSITY_TOOLTIP": "",
-	"NAO_CHAT_TOOLTIP": "",
->>>>>>> #384 corrected most of the messages
 	"MENU_CODE_DOWNLOAD_TOOLTIP": "",
 	"MENU_CODE_REFRESH_TOOLTIP": "",
 	"MENU_SIM_WRO": "",
@@ -1129,10 +1108,6 @@
 	"DISPLAY_GET_PIXEL_TOOLTIP": "",
 	"DISPLAY_SET_PIXEL_TOOLTIP": "",
 	"DISPLAY_GET_BRIGHTNESS_TOOLTIP": "",
-<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
-<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
-=======
->>>>>>> #384 corrected most of the messages
 	"DISPLAY_SET_BRIGHTNESS_TOOLTIP": "",
 	"POPUP_STARTUP_TOUR_TEXT": "",
 	"POPUP_STARTUP_HELP_TEXT": "",
@@ -1140,10 +1115,6 @@
 	"MESSAGE_USER_GROUP_DELETED": "",
 	"MESSAGE_ADDED_USER": "",
 	"ORA_USER_TO_ADD_NOT_FOUND": "",
-<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
-<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
-=======
->>>>>>> upd msg files
 	"MESSAGE_EDIT_SAVE_GROUP_AS": "",
 	"ORA_GROUP_CREATE_ERROR_NOT_SAVED_TO_DB": "",
 	"ORA_USER_GROUP_SAVE_AS_ERROR_USER_GROUP_EXISTS": "",

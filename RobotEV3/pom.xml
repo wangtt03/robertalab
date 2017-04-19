@@ -24,11 +24,7 @@
 		<dbusjava.version>0.9.0-beta</dbusjava.version>
 		<jna.version>3.2.7</jna.version>
 		<ev3classes.version>0.9.0-beta</ev3classes.version>
-<<<<<<< 102cf3a8108f097582bee65c2318e74910c52f7b
 		<ev3runtime.version>2.2.0</ev3runtime.version>
-=======
-		<ev3runtime.version>2.1.2</ev3runtime.version>
->>>>>>> fixed maven ev3 factory dependency that was breaking REST test
 	</properties>
 	<dependencies>
 		<dependency>
