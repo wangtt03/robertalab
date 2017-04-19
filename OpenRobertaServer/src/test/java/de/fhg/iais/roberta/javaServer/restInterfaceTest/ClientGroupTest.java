@@ -251,6 +251,7 @@ public class ClientGroupTest {
             robotPlugins.put("ev3lejos", factoryConstructor.newInstance(this.brickCommunicator));
         } catch ( Exception e ) {
             throw new DbcException("robot plugin ev3lejos has an invalid factory. Check the properties. Server does NOT start", e);
+
         }
     }
 }

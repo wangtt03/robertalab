@@ -1,5 +1,5 @@
-define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller', 'configuration.controller', 'user.controller', 'progHelp.controller', 'group.controller' ], function(
-        exports, LOG, $, GUISTATE_C, PROGRAM_C, CONFIGURATION_C, USER_C, HELP_C, GROUP_C) {
+define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller', 'configuration.controller', 'user.controller', 'group.controller' ], function(exports, LOG, $,
+        GUISTATE_C, PROGRAM_C, CONFIGURATION_C, USER_C, GROUP_C) {
 
     /**
      * Initialize language switching

@@ -90,7 +90,6 @@ public class AccessRightDao extends AbstractDao<AccessRight> {
         return Collections.unmodifiableList(il);
     }
 
-
     public List<AccessRight> loadAccessRightsByProgram(Group group) {
         Assert.notNull(group);
 
