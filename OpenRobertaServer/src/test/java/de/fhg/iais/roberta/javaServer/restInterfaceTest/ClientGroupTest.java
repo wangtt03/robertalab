@@ -11,7 +11,6 @@ import org.hibernate.Session;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
-import org.junit.Test;
 
 import de.fhg.iais.roberta.factory.IRobotFactory;
 import de.fhg.iais.roberta.javaServer.restServices.all.ClientGroup;
@@ -84,7 +83,7 @@ public class ClientGroupTest {
         Assert.assertEquals(0, diff);
     }
 
-    @Test
+    @Ignore
     public void createGroupNull() throws Exception {
         Assert.assertEquals(7, this.memoryDbSetup.getOneBigIntegerAsLong("select count(*) from GROUPS"));
         Assert.assertTrue(this.sPid.isUserLoggedIn());
