@@ -125,28 +125,13 @@ Blockly.Msg.CONTROLS_WHILEUNTIL_OPERATOR_WHILE = "Wiederhole solange";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_UNTIL = "Führe die Anweisung solange aus wie die Bedingung falsch (false) ist.";
 Blockly.Msg.CONTROLS_WHILEUNTIL_TOOLTIP_WHILE = "Führe die Anweisung solange aus wie die Bedingung wahr (true) ist.";
 Blockly.Msg.DATATABLE_ACTUALIZATION = "Letzte Aktualisierung";
-<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
-<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_BY = "by";  // untranslated
-=======
->>>>>>> #384 corrected most of the messages
-=======
-Blockly.Msg.DATATABLE_BY = "by";  // untranslated
->>>>>>> upd msg files
 Blockly.Msg.DATATABLE_CONFIGURATIONS = "Konfigurationen";
 Blockly.Msg.DATATABLE_CONFIGURATION_NAME = "Name der Konfiguration";
 Blockly.Msg.DATATABLE_CREATED_BY = "Erzeugt von";
 Blockly.Msg.DATATABLE_CREATED_ON = "Erzeugt am";
-<<<<<<< 9ea92d5d55d44ef15b61f8269a11555eb1f32efc
-<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
 Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
 Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
-=======
->>>>>>> #384 corrected most of the messages
-=======
-Blockly.Msg.DATATABLE_DATE = "modified";  // untranslated
-Blockly.Msg.DATATABLE_NUMBER_OF_BLOCKS = "blocks";  // untranslated
->>>>>>> upd msg files
 Blockly.Msg.DATATABLE_PROGRAMS = "Programme";
 Blockly.Msg.DATATABLE_PROGRAM_NAME = "Name des Programms";
 Blockly.Msg.DATATABLE_SHARED = "Geteilt";
@@ -857,17 +842,6 @@ Blockly.Msg.PLAY_TONE = "Ton";
 Blockly.Msg.PLAY_TONE_TOOLTIP = "Spielt einen Ton.";
 Blockly.Msg.PLAY_VOLUME = "Lautstärke";
 Blockly.Msg.PLAY_WHOLE = "ganze Note";
-<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
-<<<<<<< e110b5c24466b3c3433120c084e2a7755b43eab5
-<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
-=======
-=======
-Blockly.Msg.POPUP_2_1_3 = "2 3 1";  // untranslated
->>>>>>> #384 corrected html part of userGroup table
-Blockly.Msg.POPUP_2_2_0 = "Version 2.2.0 <ul class='NonIcon'><li>bug fixes for Bot'n Roll, EV3 and Calliope</li><li>new feature - upload custom simulation environments</li><li>new feature - document your programs directly</li></ul>";
->>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
-=======
->>>>>>> #384 corrected most of the messages
 Blockly.Msg.POPUP_ABOUT_JOIN = "Ich möchte mithelfen";
 Blockly.Msg.POPUP_ABOUT_TEXT = "Open Roberta Lab ist eine cloudbasierte grafische Programmierumgebung, die es Kindern und Jugendlichen ermöglicht ohne technische Hürden einen Roboter zu programmieren. <br /> Die Programmierplattform ist komplett »open source«, Mitmachen und Anregungen erwünscht! Alle benötigte Software und Open-Source-Entwicklertools stehen über Fraunhofer-Server bereit.";
 Blockly.Msg.POPUP_ABOUT_TEXT_DEV = "Das Open Roberta Lab ist eine Open-Source-Entwicklung des Fraunhofer-Instituts IAIS im Kontext der Initiative  <a href='http://www.roberta-home.de/'>»Roberta – Lernen mit Robotern«</a>";
@@ -892,16 +866,10 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "jetzt klicke auf »Speichern« in der recht
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Aktualisieren";
 Blockly.Msg.POPUP_EMAIL = "E-Mail";
 Blockly.Msg.POPUP_EMAIL_SEND = "Jetzt abschicken";
+Blockly.Msg.POPUP_GET_LINK = "Hier ist der Link zu deinem aktuellen Programm. Bitte ändere ihn nicht. Er ist bereits in deine Zwischenablage kopiert!</br>$";
 Blockly.Msg.POPUP_NAME = "Name";
 Blockly.Msg.POPUP_NEW_PASSWORD = "Neues Passwort";
 Blockly.Msg.POPUP_OLD_PASSWORD = "Altes Passwort";
-<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
-<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
-=======
-Blockly.Msg.POPUP_OLD_RELEASE = "Version 2.1.3 <ul class='NonIcon'><li>Calliope - simuliere einen Calliope!</li><li>micro:bit - simuliere einen micro:bit©</li><li>Hilfe jetzt direkt im Arbeitsbereich neben den Programmierblöcken! (nur EV3)</li></ul>";
->>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
-=======
->>>>>>> #384 corrected most of the messages
 Blockly.Msg.POPUP_PASSWORD = "Passwort";
 Blockly.Msg.POPUP_PASSWORD_RECOVERY = "Passwort zurücksetzen ...";
 Blockly.Msg.POPUP_PROGRAM_TERMINATED_UNEXPECTED = "Dein Programm konnte auf dem Roboter nicht ausgeführt werden!";
@@ -1134,13 +1102,6 @@ Blockly.Msg.TOUR1_DESCRIPTION10 = "Klicke auf Aktion";
 Blockly.Msg.TOUR1_DESCRIPTION12 = "Halte die Maus gedrückt und ziehe den Block unter den Startblock!";
 Blockly.Msg.TOUR1_DESCRIPTION13 = "Öffne nun die Simulation ...";
 Blockly.Msg.TOUR1_DESCRIPTION13a = "und probiere dein Programm in der Simulation aus!";
-<<<<<<< 5abbc6947084bfc0c0bb137d06d0809358510445
-<<<<<<< 48f0295f6ce73d085b651fec5d098f0c5ba734dc
-=======
-Blockly.Msg.TOUR1_DESCRIPTION14 = "Gleich geht es los!";
->>>>>>> #384 fixed groups table, added groups and user_group tables to an actual databale
-=======
->>>>>>> #384 corrected most of the messages
 Blockly.Msg.TOUR1_DESCRIPTION15 = "Super,<br>dein Roboter ist jetzt 20 cm vorwärts gefahren,<br>genau wie du es programmiert hast!";
 Blockly.Msg.TOUR1_DESCRIPTION16 = "Tschüss und viel Spaß beim Ausprobieren!";
 Blockly.Msg.ULTRASONIC_GETSAMPLE_TOOLTIP = "Gibt den aktuellen Wert des Ultraschallsensors zurück.";

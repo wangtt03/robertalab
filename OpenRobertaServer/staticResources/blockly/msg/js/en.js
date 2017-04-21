@@ -1,3 +1,5 @@
+// This file was automatically generated.  Do not modify.
+
 'use strict';
 
 goog.provide('Blockly.Msg.en');
@@ -862,6 +864,7 @@ Blockly.Msg.POPUP_DOWNLOAD_STEP_D = "now click on the »Save« button on the bot
 Blockly.Msg.POPUP_DO_UPDATE_FIRMWARE = "Update now";
 Blockly.Msg.POPUP_EMAIL = "E-Mail";
 Blockly.Msg.POPUP_EMAIL_SEND = "Send now";
+Blockly.Msg.POPUP_GET_LINK = "Here is the link to your actual program. Please don't change it, it probably won't work anymore. It's already copied to your clipboard!</br>$";
 Blockly.Msg.POPUP_NAME = "Name";
 Blockly.Msg.POPUP_NEW_PASSWORD = "New Password";
 Blockly.Msg.POPUP_OLD_PASSWORD = "Old Password";
