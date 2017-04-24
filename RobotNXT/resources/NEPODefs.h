@@ -327,10 +327,20 @@ inline bool MathIsWhole(float val){
 
 inline float MathPow(float firstValue, float secondValue) {
   float result = 1;
-  for (int i = 0; i < secondValue; i++) {
+  for (int i = 0; i < abs(secondValue); i++) {
     result = result * firstValue;
   }
-  return result;
+  if (secondValue < 0){
+     if(firstValue == 0){
+       return NULL;
+     }
+     else{
+       return 1/result;
+     }
+  }
+  else{
+    return result;
+  }
 }
 
 inline float MathMin(float firstValue, float secondValue) {
