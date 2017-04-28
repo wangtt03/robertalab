@@ -139,7 +139,10 @@ void MicroBitDisplay::render()
     // Simple optimisation.
     // If display is at zero brightness, there's nothing to do.
     if(brightness == 0)
+    {
+        renderFinish();
         return;
+    }
 
     // Calculate the bitpattern to write.
     uint32_t row_data = 0x01 << (matrixMap.rowStart + strobeRow);
@@ -211,6 +214,14 @@ void MicroBitDisplay::renderWithLightSense()
 
 void MicroBitDisplay::renderGreyscale()
 {
+    // Simple optimisation.
+    // If display is at zero brightness, there's nothing to do.
+    if(brightness == 0)
+    {
+        renderFinish();
+        return;
+    }
+
     uint32_t row_data = 0x01 << (matrixMap.rowStart + strobeRow);
     uint32_t col_data = 0;
 
