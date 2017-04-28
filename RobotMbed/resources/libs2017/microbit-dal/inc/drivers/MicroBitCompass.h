@@ -23,6 +23,8 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
+#ifdef TARGET_NRF51_MICROBIT
+
 #ifndef MICROBIT_COMPASS_H
 #define MICROBIT_COMPASS_H
 
@@ -30,11 +32,7 @@ DEALINGS IN THE SOFTWARE.
 #include "MicroBitConfig.h"
 #include "MicroBitComponent.h"
 #include "MicroBitCoordinateSystem.h"
-#ifdef TARGET_NRF51_CALLIOPE
-#include "MicroBitAccelerometer-bmx.h"
-#else
 #include "MicroBitAccelerometer.h"
-#endif
 #include "MicroBitStorage.h"
 
 /**
@@ -513,5 +511,7 @@ class MicroBitCompass : public MicroBitComponent
       */
     void init(uint16_t id, uint16_t address);
 };
+
+#endif
 
 #endif
