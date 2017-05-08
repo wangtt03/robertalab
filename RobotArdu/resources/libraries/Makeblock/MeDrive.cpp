@@ -71,3 +71,9 @@ void MeDrive::steer(int16_t speedLeft, int16_t speedRight, boolean direction)
         rigthMotor.run(-2*speedRight);
     }
 }
+
+void MeDrive::stop()
+{
+	leftMotor.stop();
+	rigthMotor.stop();
+}
