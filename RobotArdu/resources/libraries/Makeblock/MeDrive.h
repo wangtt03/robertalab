@@ -44,7 +44,11 @@ class MeDrive
 public:
     /* true for forward, false for backward drive direction */
     void drive(int16_t speed, boolean direction);
+	void drive(int16_t speed, boolean direction, uint16_t duration);
+	void turn(int16_t speed, boolean direction);
+	void turn(int16_t speed, boolean direction, uint16_t duration);
 	void steer(int16_t speedLeft, int16_t speedRight, boolean direction);
+	void steer(int16_t speedLeft, int16_t speedRight, boolean direction, uint16_t duration);
 	void stop();
     /* constructor - destructor pair */
     MeDrive();

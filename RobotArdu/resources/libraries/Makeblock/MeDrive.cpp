@@ -53,7 +53,37 @@ void MeDrive::drive(int16_t speed, boolean direction)
     steer(speed, speed, direction);
 }
 
+void MeDrive::drive(int16_t speed, boolean direction, uint16_t duration)
+{
+    steer(speed, speed, direction, duration);
+}
+
+void MeDrive::turn(int16_t speed, boolean direction)
+{
+	turn(speed, direction, 0);
+}
+
+void MeDrive::turn(int16_t speed, boolean direction, uint16_t duration)
+{
+	if (direction)
+	{
+		// left
+		steer(speed, -1*speed, 0, duration);
+	}
+	else
+	{
+		// right
+		steer(-1*speed, speed, 0, duration);
+	}
+}
+
 void MeDrive::steer(int16_t speedLeft, int16_t speedRight, boolean direction)
+{
+	// duration 0 means infinite steer (drive)
+	steer(speedLeft, speedRight, direction, 0);
+}
+
+void MeDrive::steer(int16_t speedLeft, int16_t speedRight, boolean direction, uint16_t duration)
 {
 	/* 
 	* speed is given in percentage
@@ -70,6 +100,11 @@ void MeDrive::steer(int16_t speedLeft, int16_t speedRight, boolean direction)
         leftMotor.run(2*speedLeft);
         rigthMotor.run(-2*speedRight);
     }
+	if (duration != 0) {
+		delay(duration);
+		leftMotor.stop();
+		rigthMotor.stop();
+	}
 }
 
 void MeDrive::stop()
