@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="ev3" xmlversion="" description="">
       <instance x="-8" y="1">
     <block type="robControls_start" id="468" deletable="false">
       <mutation declare="false"></mutation>

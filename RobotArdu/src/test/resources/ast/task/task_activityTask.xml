@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="ev3" xmlversion="" description="">
     <instance x="66" y="175">
     <block type="robControls_activity" id="342" inline="true">
       <value name="ACTIVITY">

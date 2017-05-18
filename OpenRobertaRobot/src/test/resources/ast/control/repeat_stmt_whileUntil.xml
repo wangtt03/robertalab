@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="ev3" xmlversion="" description="">
        <instance x="-372" y="47">
     <block type="controls_whileUntil" id="50" inline="false">
       <field name="MODE">WHILE</field>
