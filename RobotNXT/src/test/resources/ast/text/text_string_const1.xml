@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set  xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
   <instance x="-656" y="1">
     <block type="text" id="3" disabled="true">
       <field name="TEXT">as</field>

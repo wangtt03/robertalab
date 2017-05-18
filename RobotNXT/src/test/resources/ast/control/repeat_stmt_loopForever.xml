@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set  xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
   <instance x="1" y="379">
     <block type="robControls_loopForever" id="11">
       <statement name="DO">

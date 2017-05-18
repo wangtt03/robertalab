@@ -1,4 +1,4 @@
-<block_set xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
   <instance x="-326" y="36">
     <block type="lists_repeat" id="932" inline="true" >
     <field name="LIST_TYPE">Number</field>

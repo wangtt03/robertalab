@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set  xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
  <instance x="-8" y="1">
     <block type="robActions_play_tone" id="414" inline="false" disabled="true"></block>
     <block type="robActions_play_tone" id="417" inline="false" disabled="true">

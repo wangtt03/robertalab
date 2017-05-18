@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set  xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
    <instance x="-7" y="173">
     <block type="logic_boolean" id="65" disabled="true">
       <field name="BOOL">TRUE</field>
