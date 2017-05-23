@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2017-05-01 11:29:19.737043",
+		"lastupdated": "2017-05-23 10:56:43.833589",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -1123,6 +1123,8 @@
 	"MESSAGE_ADDED_USER": "User »$« was added",
 	"ORA_USER_TO_ADD_NOT_FOUND": "User was not found",
 	"MESSAGE_EDIT_SAVE_GROUP_AS": "Your group has been created",
+	"ORA_GROUP_CREATE_ERROR_NOT_SAVED_TO_DB": "This group already exists",
+	"ORA_USER_GROUP_SAVE_AS_ERROR_USER_GROUP_EXISTS": "This user already belongs to the group",
 	"LIST_BACK_TOOLTIP": "Back to previous view.",
 	"PROGLIST_DELETE_ALL_TOOLTIP": "Click here to delete all selected programs.",
 	"PROGLIST_DELETE_TOOLTIP": "Click here to delete your program.",
@@ -1141,5 +1143,12 @@
 	"MENU_CREATE_LINK": "create program link ...",
 	"POPUP_GET_LINK": "Here is the link to your actual program. Please don't change it, it probably won't work anymore. It's already copied to your clipboard!</br>$",
 	"IMAGE_INVERT": "invert",
-	"IMAGE_SHIFT": "shift"
+	"IMAGE_SHIFT": "shift",
+	"POPUP_AGE": "Age",
+	"YOUNGER_THEN_14": "I am younger then 14!",
+	"OLDER_THEN_14": "I am older then 14!",
+	"ORA_USER_ACTIVATION_SENT_MAIL_SUCCESS": "We send a mail to you, please check your mailbox!",
+	"ORA_USER_ACTIVATION_SENT_MAIL_FAIL": "Sorry, we cannot send a mail to you, please contact »roberta-zentrale@iais.fraunhofer.de«",
+	"ORA_USER_ACTIVATION_SUCCESS": "Activation of the user account is successful!",
+	"ORA_ACCOUNT_NOT_ACTIVATED_TO_SHARE": "Your are not allowed to share. Please activate your account!"
 }

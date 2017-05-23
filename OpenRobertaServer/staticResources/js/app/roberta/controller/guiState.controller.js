@@ -58,7 +58,7 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'jquery' ], func
 
     /**
      * Set gui state
-     * 
+     *
      * @param {result}
      *            result of server call
      */
@@ -624,6 +624,11 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'jquery' ], func
     }
     exports.getUserAccountName = getUserAccountName;
 
+    function isUserAccountActivated() {
+        return GUISTATE.user.isAccountActivated;
+    }
+    exports.isUserAccountActivated = isUserAccountActivated;
+
     function setLogin(result) {
         setState(result);
         GUISTATE.user.accountName = result.userAccountName;
@@ -633,6 +638,7 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'jquery' ], func
             GUISTATE.user.name = result.userName;
         }
         GUISTATE.user.id = result.userId;
+        GUISTATE.user.isAccountActivated = result.isAccountActivated;
 
         $('.nav > li > ul > .login, .logout').removeClass('disabled');
         $('.nav > li > ul > .logout').addClass('disabled');
@@ -687,7 +693,7 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'jquery' ], func
 
     /**
      * Set program name
-     * 
+     *
      * @param {name}
      *            Name to be set
      */

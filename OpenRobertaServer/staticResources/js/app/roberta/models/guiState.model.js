@@ -32,6 +32,7 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
         exports.user.id = -1;
         exports.user.accountName = '';
         exports.user.name = '';
+        exports.user.isAccountActivated = false;
 
         exports.program = {};
         exports.program.name = '';
