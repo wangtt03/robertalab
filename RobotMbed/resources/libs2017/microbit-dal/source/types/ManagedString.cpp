@@ -399,6 +399,32 @@ bool ManagedString::operator== (const ManagedString& s)
 }
 
 /**
+  * Not Equal operation.
+  *
+  * Called when one ManagedString is tested to be equal to another using the '!=' operator.
+  *
+  * @param s The ManagedString to test ourselves against.
+  *
+  * @return true if this ManagedString is not identical to the one supplied, false otherwise.
+  *
+  * @code
+  * MicroBitDisplay display;
+  * ManagedString s("abcd");
+  * ManagedString p("efgh");
+  *
+  * if(p != s)
+  *     display.scroll("We are different!"); //p is not equal to s - this will be called
+  * else
+  *     display.scroll("We are the same!");
+  *
+  * @endcode
+  */
+bool ManagedString::operator!= (const ManagedString& s)
+{
+    return ((length() != s.length()) && (strcmp(toCharArray(),s.toCharArray())!=0));
+}
+
+/**
   * Inequality operation.
   *
   * Called when one ManagedString is tested to be less than another using the '<' operator.
