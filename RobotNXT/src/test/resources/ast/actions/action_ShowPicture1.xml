@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set  xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
     <instance x="-420" y="106">
     <block type="robActions_display_picture" id="403" inline="true" disabled="true">
       <field name="PICTURE">EYESCLOSED</field>

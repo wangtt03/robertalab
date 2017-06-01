@@ -23,6 +23,8 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 */
 
+#ifdef TARGET_NRF51_MICROBIT
+
 /**
   * Class definition for MicroBit Compass.
   *
@@ -766,3 +768,5 @@ const MAG3110SampleRateConfig MAG3110SampleRate[MAG3110_SAMPLE_RATES] = {
     {6400000,    0xf0},        // 0.16 hz
     {12800000,   0xf8}         // 0.08 hz
 };
+
+#endif // TARGET_NRF51_MICROBIT

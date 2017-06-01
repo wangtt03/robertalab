@@ -1,4 +1,4 @@
-<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="ardu" xmlversion="">
+<block_set xmlns="http://de.fhg.iais.roberta.blockly">
   <instance x="263" y="63">
     <block type="robBrick_ardu-Brick" id="fgFk8xvySqwSFpvBVC_X" intask="true" deletable="false">
       <value name="S1">

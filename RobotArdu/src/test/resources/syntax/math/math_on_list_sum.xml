@@ -1,4 +1,4 @@
-<block_set xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="ev3" xmlversion="" description="">
   <instance x="34" y="134">
     <block type="math_on_list" id="266" inline="false" >
       <field name="OP">SUM</field>

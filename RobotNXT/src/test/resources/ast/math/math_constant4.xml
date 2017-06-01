@@ -1,4 +1,4 @@
-<block_set xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
   <instance x="94" y="154">
     <block type="math_constant" id="33" disabled="true">
       <field name="CONSTANT">PI</field>

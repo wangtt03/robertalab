@@ -1,4 +1,4 @@
-<block_set xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
   <instance x="-20" y="94">
     <block type="robSensors_encoder_getSample" id="110" >
       <field name="MODE">ROTATION</field>

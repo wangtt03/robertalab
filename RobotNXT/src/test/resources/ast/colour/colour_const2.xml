@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set  xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
   <instance x="77" y="43">
     <block type="robColour_picker" id="70" disabled="true">
       <field name="COLOUR">#585858</field>

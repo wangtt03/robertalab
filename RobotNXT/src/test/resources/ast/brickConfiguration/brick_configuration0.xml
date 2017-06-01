@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set  xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
   <instance x="20" y="20">
     <block type="robBrick_EV3-Brick" id="1" inline="false" disabled="false" intask="true">
       <field name="WHEEL_DIAMETER">5.5</field>
