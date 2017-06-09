@@ -14,7 +14,7 @@ import org.codehaus.jettison.json.JSONObject;
 import org.hibernate.Session;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.Test;
 
 import de.fhg.iais.roberta.factory.IRobotFactory;
 import de.fhg.iais.roberta.javaServer.restServices.all.ClientProgram;
@@ -100,19 +100,19 @@ public class RestInterfaceTest {
      *
      * @throws Exception
      */
-    @Ignore
+    @Test
     public void test() throws Exception {
         this.memoryDbSetup.deleteAllFromUserAndProgramTmpPasswords();
         createTwoUsers();
-        updateUser();
-        changeUserPassword();
-        loginLogoutPid();
-        pidCreateAndUpdate4Programs();
-        minschaCreate2Programs();
-        pidSharesProgramsMinschaCanAccessRW();
-        pidDeletesProgramsMinschaCannotAccess();
-        pidSharesProgram1MinschaCanDeleteTheShare();
-        pidAndMinschaAccessConcurrently();
+        //updateUser();
+        //changeUserPassword();
+        //loginLogoutPid();
+        //pidCreateAndUpdate4Programs();
+        //minschaCreate2Programs();
+        //pidSharesProgramsMinschaCanAccessRW();
+        //pidDeletesProgramsMinschaCannotAccess();
+        //pidSharesProgram1MinschaCanDeleteTheShare();
+        //pidAndMinschaAccessConcurrently();
 
         // "pid" registers the robot with token "garzi" (and optionally many more ...); runs "p1"
         // registerToken(this.brickCommand, this.restBlocks, this.s1, this.sessionFactoryWrapper.getSession(), "garzi");
