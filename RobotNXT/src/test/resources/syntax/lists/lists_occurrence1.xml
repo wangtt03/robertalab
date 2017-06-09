@@ -1,4 +1,4 @@
-<block_set xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
   <instance x="-481" y="194">
     <block type="lists_indexOf" id="1304" inline="true" >
       <field name="END">LAST</field>

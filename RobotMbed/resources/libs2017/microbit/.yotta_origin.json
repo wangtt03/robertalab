@@ -1,5 +1,11 @@
 {
+<<<<<<< HEAD
   "url": "github://OpenRoberta/microbit#2.0.0-rc8-calliope-1.0.2-or3",
   "hash": {},
   "size": 8441
+=======
+  "url": "github://OpenRoberta/microbit#2.0.0-rc8-calliope-1.0.2-or4",
+  "hash": {},
+  "size": 8444
+>>>>>>> develop
 }

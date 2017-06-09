@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set  xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
   <instance x="-666" y="1">
     <block type="robActions_brickLight_on" id="268" disabled="true">
       <field name="SWITCH_COLOR">GREEN</field>

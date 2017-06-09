@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set xmlns="http://de.fhg.iais.roberta.blockly" robottype="ev3" xmlversion="" description="">
         <instance x="-86" y="1">
     <block type="robSensors_touch_isPressed" id="227">
       <field name="SENSORPORT">1</field>

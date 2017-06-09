@@ -1,4 +1,4 @@
-<block_set  xmlns="http://de.fhg.iais.roberta.blockly">
+<block_set  xmlns="http://de.fhg.iais.roberta.blockly" robottype="nxt" xmlversion="" description="">
   <instance x="-15" y="2">
     <block type="robBrick_EV3-Brick" id="1" inline="false" disabled="true">
       <field name="WHEEL_DIAMETER">5</field>
