@@ -12,6 +12,7 @@ import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.hibernate.Session;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -104,15 +105,15 @@ public class RestInterfaceTest {
     public void test() throws Exception {
         this.memoryDbSetup.deleteAllFromUserAndProgramTmpPasswords();
         createTwoUsers();
-        //updateUser();
-        //changeUserPassword();
-        //loginLogoutPid();
-        //pidCreateAndUpdate4Programs();
-        //minschaCreate2Programs();
-        //pidSharesProgramsMinschaCanAccessRW();
-        //pidDeletesProgramsMinschaCannotAccess();
-        //pidSharesProgram1MinschaCanDeleteTheShare();
-        //pidAndMinschaAccessConcurrently();
+        updateUser();
+        changeUserPassword();
+        loginLogoutPid();
+        pidCreateAndUpdate4Programs();
+        minschaCreate2Programs();
+        pidSharesProgramsMinschaCanAccessRW();
+        pidDeletesProgramsMinschaCannotAccess();
+        pidSharesProgram1MinschaCanDeleteTheShare();
+        pidAndMinschaAccessConcurrently();
 
         // "pid" registers the robot with token "garzi" (and optionally many more ...); runs "p1"
         // registerToken(this.brickCommand, this.restBlocks, this.s1, this.sessionFactoryWrapper.getSession(), "garzi");
@@ -662,4 +663,12 @@ public class RestInterfaceTest {
             throw new DbcException("robot plugin ev3 has an invalid factory. Check the properties. Server does NOT start", e);
         }
     }
+
+    @After
+    public void deleteOutputFile() {
+        this.memoryDbSetup = null;
+        this.sPid = null;
+        this.sMinscha = null;
+    }
+
 }
