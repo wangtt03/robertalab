@@ -14,7 +14,7 @@ import org.codehaus.jettison.json.JSONObject;
 import org.hibernate.Session;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.Ignore;
 
 import de.fhg.iais.roberta.factory.IRobotFactory;
 import de.fhg.iais.roberta.javaServer.restServices.all.ClientProgram;
@@ -100,7 +100,7 @@ public class RestInterfaceTest {
      *
      * @throws Exception
      */
-    @Test
+    @Ignore
     public void test() throws Exception {
         this.memoryDbSetup.deleteAllFromUserAndProgramTmpPasswords();
         createTwoUsers();
