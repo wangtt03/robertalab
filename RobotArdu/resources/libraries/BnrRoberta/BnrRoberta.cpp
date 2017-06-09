@@ -195,15 +195,6 @@ bool BnrRoberta::infraredSensorObstacle(int port)
 		return true;
 	}
 	return port == one.obstacleSensors();
-	// if (port == 1 && (one.obstacleSensors() == 1 || one.obstacleSensors() == 3)){
-	// 		return true;
-	// }
-	// else if (port == 2 && (one.obstacleSensors() == 2 || one.obstacleSensors() == 3)){
-	// 		return true;
-	// }
-	// else{
-	// 	return false;
-	// }
 }
 
 bool BnrRoberta::infraredSensorPresence(int port)
