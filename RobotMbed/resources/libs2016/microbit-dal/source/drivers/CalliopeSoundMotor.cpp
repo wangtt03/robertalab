@@ -89,10 +89,10 @@ void CalliopeSoundMotor::PWM_init()
     //create tasks to perform on timer compare match
     NRF_GPIOTE->POWER = 1;
     //task 0
-    nrf_gpiote_task_configure(0, CALLIOPE_PIN_MOTOR_IN1, NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_LOW);
+    nrf_gpiote_task_configure(0, CALLIOPE_PIN_MOTOR_IN1, NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_HIGH);
     nrf_gpiote_task_enable(0);
     //task 1
-    nrf_gpiote_task_configure(1, CALLIOPE_PIN_MOTOR_IN2, NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_HIGH);
+    nrf_gpiote_task_configure(1, CALLIOPE_PIN_MOTOR_IN2, NRF_GPIOTE_POLARITY_TOGGLE, NRF_GPIOTE_INITIAL_VALUE_LOW);
     nrf_gpiote_task_enable(1);
 
     //Three NOPs are required to make sure configuration is written before setting tasks or getting events
@@ -293,6 +293,9 @@ void CalliopeSoundMotor::motorAOn(uint8_t duty_percent)
 {
     //if value is out of bounds, do nothing
     if(duty_percent > 100) return;
+	if(duty_percent < 4) {
+        duty_percent = 4;
+	}
 
     //save current setting
     duty_motor_A_percent = duty_percent;
@@ -356,6 +359,9 @@ void CalliopeSoundMotor::motorBOn(uint8_t duty_percent)
 {
     //if value is out of bounds, do nothing
     if(duty_percent > 100) return;
+	if(duty_percent < 4) {
+        duty_percent = 4;
+	}
 
     //save current setting
     duty_motor_B_percent = duty_percent;
