@@ -296,6 +296,79 @@ int MicroBitPin::getAnalogValue()
 }
 
 /**
+  * Configures microphone pin as an analogue input (if necessary), and samples the Pin for its analog value.
+  * Normalises the read value in 1-100 range
+  *
+  * @return the current analogue level on the pin, in the range 1-100, or
+  *         MICROBIT_NOT_SUPPORTED if the given pin does not have analog capability.
+  *
+  */
+int MicroBitPin::getMicrophoneValue()
+{
+    int min = 1023;
+    int max = 0;
+    int value = 0;
+    for (int i = 0; i < 32; i += 1) {
+        value = getAnalogValue();
+        if ( value > max ) {
+           max = value;
+       } else if ( value < min ) {
+           min = value;
+       }
+    }
+    return (( max - min ) * 0.0977);
+}
+
+/**
+* Reads pulse
+*/
+int MicroBitPin::readPulse(int level)
+{
+    const long timeout = 1000000L;
+    Timer pulsetime, runtime;
+    setDigitalValue(1 - level);
+    wait_us(2);
+    setDigitalValue(level);
+    wait_us(5);
+    setDigitalValue(1 - level);
+    runtime.reset();
+    runtime.start();
+    while (getDigitalValue() == level) {
+        if (runtime.read_us() > timeout) {
+            return -1;
+        }
+    }
+    while (getDigitalValue() == 1 - level) {
+        if (runtime.read_us() > timeout) {
+            return -1;
+        }
+    }
+    runtime.reset();
+    runtime.start();
+    while (getDigitalValue() == level) {
+        if (runtime.read_us() > timeout) {
+            return -1;
+        }
+    }
+    pulsetime.stop();
+    return pulsetime.read_us();
+}
+
+/**
+* Reads high pulse
+*/
+int MicroBitPin::readPulseHigh() {
+    return readPulse(1);
+}
+
+/**
+* Reads low pulse
+*/
+int MicroBitPin::readPulseLow() {
+    return readPulse(0);
+}
+
+/**
   * Determines if this IO pin is currently configured as an input.
   *
   * @return 1 if pin is an analog or digital input, 0 otherwise.
