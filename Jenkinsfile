@@ -1,4 +1,5 @@
 podTemplate(label: 'mypod', containers: [
+    containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:2.62-alpine', args: '${computer.jnlpmac} ${computer.name}'),
     containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
     containerTemplate(name: 'docker', image: 'docker:17.06.0-dind', privileged: true, ttyEnabled: true),
     containerTemplate(name: 'ubuntu', image: 'dock0/ssh', ttyEnabled: true),
