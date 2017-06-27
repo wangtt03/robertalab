@@ -15,13 +15,9 @@ podTemplate(label: 'mypod', containers: [
                     sh 'cd OpenRobertaParent && mvn compile'
                 }
 
-                try {
-                    stage('Test') {
-                        sh 'cd OpenRobertaParent && mvn test'
-                    }
-                } catch (e) {
-                    echo 'Error when testing.'
-                }
+                // stage('Test') {
+                //     sh 'cd OpenRobertaParent && mvn test'
+                // }
                 
                 stage('Clean & Install') {
                     sh 'cd OpenRobertaParent && mvn install -DskipTests'
