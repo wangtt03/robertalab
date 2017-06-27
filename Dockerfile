@@ -10,7 +10,7 @@ RUN apt-get update \
 RUN mkdir -p /data/project/robertalab
 COPY . /data/project/robertalab/
 WORKDIR /data/project/robertalab
-RUN cp -r OpenRobertaServer/dbBase OpenRobertaServer/db-2.2.0
+RUN cp -rf OpenRobertaServer/dbBase OpenRobertaServer/db-2.2.0
 
 EXPOSE 1999
 ENTRYPOINT ["./ora.sh", "--start-from-git"]
