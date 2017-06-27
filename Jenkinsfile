@@ -16,9 +16,7 @@ podTemplate(label: 'mypod', containers: [
                 // }
                 
                 stage('Clean & Install') {
-                    dir ('OpenRobertaParent') {
-                        sh 'mvn clean install -DskipTests'
-                    }
+                    sh 'cd OpenRobertaParent && mvn clean install -DskipTests'
                 }
             }
         }
