@@ -5,7 +5,7 @@ podTemplate(label: 'mypod', containers: [
   ]) {
 
     node('mypod') {
-        stage('Build Maven Project') {
+        stage('Build Stage: ') {
             container('maven') {
                 stage('Clone repository') {
                     checkout scm
@@ -15,13 +15,13 @@ podTemplate(label: 'mypod', containers: [
                 //     sh 'mvn test'
                 // }
                 
-                // stage('Clean & Install') {
-                //     sh 'mvn clean install -DskipTests'
-                // }
+                stage('Clean & Install') {
+                    sh 'mvn clean install -DskipTests'
+                }
             }
         }
         
-        stage('Build Docker Image') {
+        stage('Publish Stage: ') {
             def robertalab
             container('docker') {
                 stage('Build Docker Image') {
@@ -40,7 +40,7 @@ podTemplate(label: 'mypod', containers: [
             
         }
 
-        stage('Deploy to TestEnv') {
+        stage('Deploy TestEnv Stage: ') {
             container('ubuntu'){
                 stage('Deploy') {
                     /*ssh to master node and run docker stack deploy*/
