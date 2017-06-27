@@ -26,7 +26,7 @@ podTemplate(label: 'mypod', containers: [
             container('docker') {
                 stage('Build Docker Image') {
                     // sh 'docker build -t csdiregistry.azurecr.io/demo/javademo .'
-                    def imageName = 'stem/robertalab:${env.BUILD_NUMBER}'
+                    def imageName = 'stem/robertalab'
                     sh "docker build -t ${imageName} ."
                     robertalab = docker.image(imageName)
                 }
