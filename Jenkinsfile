@@ -11,12 +11,16 @@ podTemplate(label: 'mypod', containers: [
                     checkout scm
                 }
 
-                // stage('Test a Maven project') {
-                //     sh 'mvn test'
-                // }
+                stage('Compile') {
+                    sh 'cd OpenRobertaParent && mvn compile'
+                }
+
+                stage('Test') {
+                    sh 'cd OpenRobertaParent && mvn test'
+                }
                 
                 stage('Clean & Install') {
-                    sh 'cd OpenRobertaParent && mvn clean install -DskipTests'
+                    sh 'cd OpenRobertaParent && mvn install -DskipTests'
                 }
             }
         }
