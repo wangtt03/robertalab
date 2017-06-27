@@ -11,13 +11,13 @@ podTemplate(label: 'mypod', containers: [
                     checkout scm
                 }
 
-                stage('Test a Maven project') {
-                    sh 'mvn test'
-                }
+                // stage('Test a Maven project') {
+                //     sh 'mvn test'
+                // }
                 
-                stage('Clean & Install') {
-                    sh 'mvn clean install -DskipTests'
-                }
+                // stage('Clean & Install') {
+                //     sh 'mvn clean install -DskipTests'
+                // }
             }
         }
         
