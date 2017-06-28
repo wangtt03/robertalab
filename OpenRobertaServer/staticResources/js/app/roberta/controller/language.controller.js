@@ -33,6 +33,10 @@ define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller'
 //            language = 'eu';
 //        } else if (navigator.language.indexOf("gl") > -1) {
 //            language = 'gl';
+        } else if (navigator.language.indexOf("zh-CN") > -1) {
+            language = 'zh-hans';
+        } else if (navigator.language.indexOf("zh-TW") > -1) {
+            language = 'zh-hant';
         } else {
             language = 'en';
         }
