@@ -138,6 +138,18 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
         }
     }
 
+    function loginWith(username, password) {
+        alert(username)
+        USER.login(username, password, function(result) {
+            if (result.rc === "ok") {
+                GUISTATE_C.setLogin(result);
+            }
+            MSG.displayInformation(result, "MESSAGE_USER_LOGIN", result.message, GUISTATE_C.getUserName());
+        });
+    }
+
+    exports.loginWith = loginWith;
+
     /**
      * Logout user
      */

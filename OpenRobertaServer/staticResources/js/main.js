@@ -138,6 +138,68 @@ require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', '
     $(document).ready(WRAP.fn3(init, 'page init'));
 });
 
+
+function connectToSwiftWebViewBridge(callback) {
+    if (window.SwiftWebViewBridge) {
+        callback(SwiftWebViewBridge);
+    } else {
+        document.addEventListener('SwiftWebViewBridgeReady', function() {
+            callback(SwiftWebViewBridge);
+        }, false);
+    }
+}
+
+connectToSwiftWebViewBridge(function(bridge) {
+    bridge.init(function(message, responseCallback) {
+        log('JS got a message', message);
+        var data = {
+            'JS Responds': 'Message received = )'
+        };
+        responseCallback(data);
+    });
+
+    bridge.registerHandlerForSwift('alertReceivedParmas', function(data, responseCallback) {
+        log('Swift called alertPassinParmas with', JSON.stringify(data));
+        var responseData = {
+            'JS Responds': 'alert triggered'
+        };
+        responseCallback(responseData);
+    });
+
+    window.testSendDataToSwift = function() {
+        bridge.sendDataToSwift('Say Hello Swiftly to Swift');
+    };
+});
+
+function testSendDataToSwiftWithCallback() {
+    SwiftWebViewBridge.sendDataToSwift('Hi, anybody there?' , function(responseData) {
+        userController.loginWith(responseData.username, responseData.password);
+    });
+}
+
+function testCallSwiftHandler() {
+    data = {
+        "name": "小明",
+        "age": "6",
+        "school": "GDUT"
+    };
+    log('JS is calling printReceivedParmas handler of Swift', data);
+    SwiftWebViewBridge.callSwiftHandler("printReceivedParmas", data, null);
+}
+
+function testCallSwiftHandlerWithCallback() {
+    SwiftWebViewBridge.callSwiftHandler("printReceivedParmas",
+                                        {
+                                            "name": "小明",
+                                            "age": "6",
+                                            "school": "GDUT"
+                                        },
+                                        function(responseData)
+                                        {
+                                            log('JS got responds from Swift: ', responseData);
+                                        });
+}
+
 /**
  * Initializations
  */
@@ -169,6 +231,8 @@ function init() {
             }
         });
         $(".pace").fadeOut(500);
+    }).then(function(){
+        testSendDataToSwiftWithCallback();
     });
 }
 

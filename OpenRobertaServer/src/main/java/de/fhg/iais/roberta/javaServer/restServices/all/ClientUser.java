@@ -135,6 +135,37 @@ public class ClientUser {
                 }
                 Util.addResultInfo(response, up);
 
+            } else if ( cmd.equals("loginwithcreate")){
+                String account = request.getString("accountName");
+                String userName = request.getString("userName");
+                String token = request.getString("token");
+                String role = request.getString("role");
+                String email = request.getString("userEmail");
+                boolean youngerThen14 = Boolean.parseBoolean(request.getString("youngerThen14"));
+                User user = up.getUser(account);
+                if (user == null){
+                    up.createUser(account, "", userName, role, email, null, youngerThen14);
+                    Util.addResultInfo(response, up);
+                    if ( !up.isOk() ) {
+                        Util.addFrontendInfo(response, httpSessionState, this.brickCommunicator);
+                        MDC.clear();
+                        return Response.ok(response).build();
+                    }
+                    user = up.getUser(account);
+                }
+
+                int id = user.getId();
+                String name = user.getUserName();
+                httpSessionState.setUserClearDataKeepTokenAndRobotId(id);
+                user.setLastLogin();
+                response.put("userId", id);
+                response.put("userRole", user.getRole());
+                response.put("userAccountName", account);
+                response.put("userName", name);
+                response.put("isAccountActivated", user.isActivated());
+                ClientUser.LOG.info("login: user {} (id {}) logged in", account, id);
+                AliveData.rememberLogin();
+
             } else if ( cmd.equals("updateUser") ) {
                 String account = request.getString("accountName");
                 String userName = request.getString("userName");
