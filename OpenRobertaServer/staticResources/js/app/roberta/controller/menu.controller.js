@@ -1,6 +1,6 @@
 define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socket.controller', 'user.controller', 'guiState.controller', 'program.controller',
-        'configuration.controller', 'enjoyHint', 'tour.controller', 'simulation.simulation', 'jquery', 'blocks' ], function(exports, LOG, UTIL, MSG, COMM,
-        ROBOT_C, SOCKET_C, USER_C, GUISTATE_C, PROGRAM_C, CONFIGURATION_C, EnjoyHint, TOUR_C, SIM, $, Blockly) {
+        'lessonList.controller', 'configuration.controller', 'enjoyHint', 'tour.controller', 'simulation.simulation', 'jquery', 'blocks' ], function(exports, LOG, UTIL, MSG, COMM,
+        ROBOT_C, SOCKET_C, USER_C, GUISTATE_C, PROGRAM_C, LESSON_C, CONFIGURATION_C, EnjoyHint, TOUR_C, SIM, $, Blockly) {
 
     function init() {
 
@@ -310,6 +310,11 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             $('#tabGalleryList').click();
             return false;
         }, 'gallery clicked');
+
+        $('#head-navigation-lesson').onWrap('click', function(event) {
+            LESSON_C.loadLessonAll();
+
+        }, 'lesson clicked');
 
         $('.sim-nav').onWrap('click', 'li:not(.disabled) a', function(event) {
             $('.modal').modal('hide'); // head-navigation-sim-control

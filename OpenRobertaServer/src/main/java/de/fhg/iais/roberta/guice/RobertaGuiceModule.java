@@ -3,6 +3,7 @@ package de.fhg.iais.roberta.guice;
 import java.util.Map;
 import java.util.Properties;
 
+import de.fhg.iais.roberta.javaServer.restServices.all.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,13 +13,6 @@ import com.google.inject.TypeLiteral;
 import com.google.inject.name.Names;
 
 import de.fhg.iais.roberta.factory.IRobotFactory;
-import de.fhg.iais.roberta.javaServer.restServices.all.ClientAdmin;
-import de.fhg.iais.roberta.javaServer.restServices.all.ClientConfiguration;
-import de.fhg.iais.roberta.javaServer.restServices.all.ClientPing;
-import de.fhg.iais.roberta.javaServer.restServices.all.ClientProgram;
-import de.fhg.iais.roberta.javaServer.restServices.all.ClientToolbox;
-import de.fhg.iais.roberta.javaServer.restServices.all.ClientUser;
-import de.fhg.iais.roberta.javaServer.restServices.all.RestExample;
 import de.fhg.iais.roberta.javaServer.restServices.robot.RobotCommand;
 import de.fhg.iais.roberta.javaServer.restServices.robot.RobotDownloadProgram;
 import de.fhg.iais.roberta.javaServer.restServices.robot.RobotSensorLogging;
@@ -45,6 +39,7 @@ public class RobertaGuiceModule extends AbstractModule {
         bind(ClientConfiguration.class);
         bind(ClientToolbox.class);
         bind(ClientProgram.class);
+        bind(ClientLesson.class);
         bind(ClientUser.class);
         bind(RobotDownloadProgram.class);
         bind(RobotCommand.class);
