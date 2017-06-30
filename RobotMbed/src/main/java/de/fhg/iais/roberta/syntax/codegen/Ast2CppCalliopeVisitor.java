@@ -315,8 +315,8 @@ public class Ast2CppCalliopeVisitor extends Ast2CppVisitor implements MbedAstVis
         this.sb.append("while (1) {");
         incrIndentation();
         visitStmtList(waitStmt.getStatements());
-        //        nlIndent();
-        //        this.sb.append("uBit.sleep(1);");
+        nlIndent();
+        this.sb.append("uBit.sleep(100);");
         decrIndentation();
         nlIndent();
         this.sb.append("}");
@@ -506,7 +506,7 @@ public class Ast2CppCalliopeVisitor extends Ast2CppVisitor implements MbedAstVis
 
     @Override
     public Void visitMicrophoneSensor(MicrophoneSensor<Void> microphoneSensor) {
-        this.sb.append("uBit.io.P21.getAnalogValue()");
+        this.sb.append("uBit.io.P21.getMicrophoneValue()");
         return null;
     }
 

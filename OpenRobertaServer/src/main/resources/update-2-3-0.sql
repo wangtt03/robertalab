@@ -16,3 +16,14 @@ insert into USER
 values (2, 'Gallery','f17a0084220e822e:313c4eda282166163f78cd0b13da3b66f5ed6a0e','','TEACHER',now ,now ,'','The Gallery', true
 );
 commit;
+
+insert into LESSON (ID, NAME, DOCURL, THUMBNAIL, PRGURL)
+values (1, 'lesson1','http://www.baidu.com', 'https://www.baidu.com/img/bd_logo1.png', 'http://www.baidu.com');
+
+insert into LESSON (ID, NAME, DOCURL, THUMBNAIL, PRGURL)
+values (2, 'lesson2','http://www.baidu.com', 'https://www.baidu.com/img/bd_logo1.png', 'http://www.baidu.com');
+
+insert into LESSON (ID, NAME, DOCURL, THUMBNAIL, PRGURL)
+values (3, 'lesson3','http://www.baidu.com', 'https://www.baidu.com/img/bd_logo1.png', 'http://www.baidu.com');
+
+commit;

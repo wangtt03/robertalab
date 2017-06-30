@@ -296,7 +296,27 @@ class MicroBitPin : public MicroBitComponent
       * @endcode
       */
     int getAnalogValue();
+	
+	/**
+    * Reads normalised microphone value
+    */
+    int getMicrophoneValue();
 
+    /**
+    * Reads pulse
+    */
+    int readPulse(int level);
+
+    /**
+    * Reads high pulse
+    */
+    int readPulseHigh();
+
+    /**
+    * Reads low pulse
+    */
+    int readPulseLow();
+	
     /**
       * Determines if this IO pin is currently configured as an input.
       *
