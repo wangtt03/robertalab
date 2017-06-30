@@ -660,6 +660,11 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
             saveToServer();
             return false;
         });
+        Blockly.bindEvent_(blocklyWorkspace.robControls.selectCourse, 'mousedown', null, function(e){
+            LOG.info('selectCourse from blockly button');
+            showCourseMenu();
+            return false;
+        });
         blocklyWorkspace.robControls.disable('saveProgram');
         if (GUISTATE_C.getConnection() == 'token') {
             blocklyWorkspace.robControls.disable('runOnBrick');
@@ -739,5 +744,9 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
         setTimeout(function() {
             listenToBlocklyEvents = true;
         }, 500);
+    }
+
+    function showCourseMenu(){
+        $("#select-course").modal("show");
     }
 });

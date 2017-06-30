@@ -6,6 +6,7 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
 
         initMenu();
         initMenuEvents();
+        initCourseMenu();
         /**
          * Regularly ping the server to keep status information up-to-date
          */
@@ -526,5 +527,18 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             Blockly.svgResize(GUISTATE_C.getBlocklyWorkspace());
             Blockly.svgResize(GUISTATE_C.getBricklyWorkspace());
         });
+    }
+
+    function initCourseMenu() {
+        var proto = $('#popup-course-example');
+        for (var i = 0; i < 5; i++) {
+            var clone = proto.clone().prop('id', 'menu-course-' + i.toString());
+            clone.attr('data-type', 'ev3');
+            clone.find('span:eq( 0 )').removeClass('typcn-open');
+            clone.find('span:eq( 0 )').addClass('typcn-ev3');
+            clone.find('span:eq( 1 )').text('Course ' + i.toString());
+            $("#popup-course-container").append(clone);
+            proto.remove();
+        }
     }
 });

@@ -172,7 +172,8 @@ public class ServerStarter {
         ServletHolder staticResourceServlet = rootHandler.addServlet(DefaultServlet.class, "/*");
 
         staticResourceServlet.setInitParameter("gzip", "true");
-        staticResourceServlet.setInitParameter("resourceBase", ServerStarter.class.getResource("/staticResources").toExternalForm());
+//        staticResourceServlet.setInitParameter("resourceBase", ServerStarter.class.getResource("/staticResources").toExternalForm());
+        staticResourceServlet.setInitParameter("resourceBase", "./OpenRobertaServer/staticResources/");
 
         // websockets with /ws/<version>/ prefix
         ServletContextHandler wsHandler = new ServletContextHandler();
