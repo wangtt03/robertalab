@@ -151,55 +151,13 @@ function connectToSwiftWebViewBridge(callback) {
     }
 }
 
-connectToSwiftWebViewBridge(function(bridge) {
-    bridge.init(function(message, responseCallback) {
-        log('JS got a message', message);
-        var data = {
-            'JS Responds': 'Message received = )'
-        };
-        responseCallback(data);
-    });
 
-    bridge.registerHandlerForSwift('alertReceivedParmas', function(data, responseCallback) {
-        log('Swift called alertPassinParmas with', JSON.stringify(data));
-        var responseData = {
-            'JS Responds': 'alert triggered'
-        };
-        responseCallback(responseData);
-    });
 
-    window.testSendDataToSwift = function() {
-        bridge.sendDataToSwift('Say Hello Swiftly to Swift');
-    };
-});
-
-function testSendDataToSwiftWithCallback() {
-    SwiftWebViewBridge.sendDataToSwift('Hi, anybody there?' , function(responseData) {
-        userController.loginWith(responseData.username, responseData.password);
-    });
-}
-
-function testCallSwiftHandler() {
-    data = {
-        "name": "小明",
-        "age": "6",
-        "school": "GDUT"
-    };
-    log('JS is calling printReceivedParmas handler of Swift', data);
-    SwiftWebViewBridge.callSwiftHandler("printReceivedParmas", data, null);
-}
-
-function testCallSwiftHandlerWithCallback() {
-    SwiftWebViewBridge.callSwiftHandler("printReceivedParmas",
-                                        {
-                                            "name": "小明",
-                                            "age": "6",
-                                            "school": "GDUT"
-                                        },
-                                        function(responseData)
-                                        {
-                                            log('JS got responds from Swift: ', responseData);
-                                        });
+function requireLoginWithCallback() {
+    SwiftWebViewBridge.callSwiftHandler("requireLogin", {}, function(responseData){
+        log('JS got responds from Swift: ', responseData);
+        userController.loginWith(data.username, data.password);
+    })
 }
 
 /**
@@ -213,29 +171,47 @@ function init() {
         return robotController.init();
     }).then(function() {
         return userController.init();
-    }).then(function() {
-        galleryListController.init();
-        progListController.init();
-        progDeleteController.init();
-        confListController.init();
-        confDeleteController.init();
-        progShareController.init();
-        logListController.init();
-        configurationController.init();
-        programController.init();
-        menuController.init();
-        //socketController.init();
+    }).then(
+        function() {
+            connectToSwiftWebViewBridge(function (bridge) {
+                bridge.init(function (message, responseCallback) {
+                    log('Got a message from swift', message);
+                    var responseData = {
+                        'response': 'received'
+                    };
+                    responseCallback(responseData);
+                });
 
-        //console.log(robotList);
-        $(".cover").fadeOut(100, function() {
-            if (guiStateController.noCookie()) {
-                $("#show-startup-message").modal("show");
-            }
+                bridge.registerHandlerForSwift('loginWith', function (receiveData, responseCallback) {
+                    //log('Swift called the login function with', JSON.stringify(receiveData));
+                    userController.loginWith(receiveData.username, receiveData.passkey);
+                    var responseData = {
+                        'response': 'success'
+                    };
+                    responseCallback(responseData);
+                });
+            });
+        }).then(function() {
+            galleryListController.init();
+            progListController.init();
+            progDeleteController.init();
+            confListController.init();
+            confDeleteController.init();
+            progShareController.init();
+            logListController.init();
+            configurationController.init();
+            programController.init();
+            menuController.init();
+            //socketController.init();
+
+            //console.log(robotList);
+            $(".cover").fadeOut(100, function() {
+                if (guiStateController.noCookie()) {
+                    $("#show-startup-message").modal("show");
+                }
+            });
+            $(".pace").fadeOut(500);
         });
-        $(".pace").fadeOut(500);
-    }).then(function(){
-        testSendDataToSwiftWithCallback();
-    });
 }
 
 /**
