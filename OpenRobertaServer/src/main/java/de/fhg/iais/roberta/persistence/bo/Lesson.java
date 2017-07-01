@@ -35,6 +35,14 @@ public class Lesson implements WithSurrogateId{
     @Column(name = "LEVEL")
     private LessonLevel level;
 
+    protected Lesson(){
+
+    }
+
+    public Lesson(String name) {
+        this.name = name;
+    }
+
     @Override
     public int getId() {
         return this.id;

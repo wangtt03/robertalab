@@ -154,3 +154,10 @@ now, now, now, now,
 0,'', 0
  );
 commit;
+
+INSERT INTO LESSON VALUES(1,'lesson1','http://www.baidu.com',NULL,'https://www.baidu.com/img/bd_logo1.png','http://www.baidu.com');
+commit;
+INSERT INTO LESSON VALUES(2,'lesson2','http://www.baidu.com',NULL,'https://www.baidu.com/img/bd_logo1.png','http://www.baidu.com');
+commit;
+INSERT INTO LESSON VALUES(3,'lesson3','http://www.baidu.com',NULL,'https://www.baidu.com/img/bd_logo1.png','http://www.baidu.com');
+commit;

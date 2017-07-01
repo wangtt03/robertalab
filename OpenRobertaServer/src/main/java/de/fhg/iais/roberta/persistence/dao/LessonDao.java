@@ -37,9 +37,15 @@ public class LessonDao extends AbstractDao<Lesson> {
      * @return the list of all lessons, may be an empty list, but never null
      */
     public List<Lesson> loadAll() {
+        LOG.info("LessonDao loadAll.");
         Query hql = this.session.createQuery("from Lesson");
         @SuppressWarnings("unchecked")
         List<Lesson> il = hql.list();
+        LOG.info("LessonDao loadAll count: " + il.size());
+        for (Lesson lesson : il
+                ) {
+            LOG.info("Lesson object: " + lesson);
+        }
         return Collections.unmodifiableList(il);
     }
 
@@ -55,7 +61,7 @@ public class LessonDao extends AbstractDao<Lesson> {
 
     public int deleteByName(String name) {
         Lesson toBeDeleted = load(name);
-        if ( toBeDeleted == null ) {
+        if (toBeDeleted == null) {
             return 0;
         } else {
             this.session.delete(toBeDeleted);
@@ -68,18 +74,17 @@ public class LessonDao extends AbstractDao<Lesson> {
         Assert.notNull(user);
         Assert.notNull(robot);
         Lesson program = load(name);
-        if ( program == null ) {
-            if ( timestamp == null ) {
+        if (program == null) {
+            if (timestamp == null) {
                 // save as && the program doesn't exist.
-                program = new Lesson();
-                program.setName(name);
+                program = new Lesson(name);
                 this.session.save(program);
                 return Pair.of(Key.PROGRAM_SAVE_SUCCESS, program); // the only legal key if success
             } else {
                 return Pair.of(Key.PROGRAM_SAVE_ERROR_PROGRAM_TO_UPDATE_NOT_FOUND, null);
             }
         } else {
-            if ( timestamp == null ) {
+            if (timestamp == null) {
                 // save as && the program exists.
                 return Pair.of(Key.PROGRAM_SAVE_AS_ERROR_PROGRAM_EXISTS, null);
             } else {

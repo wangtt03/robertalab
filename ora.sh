@@ -174,6 +174,8 @@ case "$cmd" in
 
 --start-from-git) java -cp OpenRobertaServer/target/resources/\* de.fhg.iais.roberta.main.ServerStarter -d database.mode=embedded $* ;;
 
+--debug) java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp OpenRobertaServer/target/resources/\* de.fhg.iais.roberta.main.ServerStarter -d database.mode=embedded $* ;;
+
 --sqlclient)      dir="OpenRobertaServer/target/resources"
                   databaseurl=$1
                   java -jar $dir/hsqldb-2.3.2.jar --driver org.hsqldb.jdbc.JDBCDriver --url $databaseurl --user orA --password Pid ;;

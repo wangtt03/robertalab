@@ -23,7 +23,7 @@
         <property name="c3p0.idle_test_period">3600</property>
 
         <mapping class="de.fhg.iais.roberta.persistence.bo.Program"/>
-            <mapping class="de.fhg.iais.roberta.persistence.bo.Lesson"/>
+        <mapping class="de.fhg.iais.roberta.persistence.bo.Lesson"/>
         <mapping class="de.fhg.iais.roberta.persistence.bo.Configuration"/>
 		<mapping class="de.fhg.iais.roberta.persistence.bo.Toolbox"/>
 		<mapping class="de.fhg.iais.roberta.persistence.bo.Robot"/>
