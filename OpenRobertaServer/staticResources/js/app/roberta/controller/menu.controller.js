@@ -317,6 +317,29 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
 
         }, 'lesson clicked');
 
+        $('#head-navi-icon-connect').onWrap('click', function(event) {
+            console.log(GUISTATE_C.getIsAgent());
+            console.log(GUISTATE_C.getConnection());
+            if (GUISTATE_C.getConnection() == 'arduinoAgent'
+                || (GUISTATE_C.getConnection() == 'arduinoAgentOrToken' && GUISTATE_C.getIsAgent() == true)) {
+                var ports = SOCKET_C.getPortList();
+                var robots = SOCKET_C.getRobotList();
+                $('#singleModalListInput').empty();
+                i = 0;
+                ports.forEach(function(port) {
+                    $('#singleModalListInput').append("<option value=\"" + port + "\" selected>" + robots[i] + " " + port + "</option>");
+                    i++;
+                });
+                ROBOT_C.showListModal();
+            } else {
+                $('#buttonCancelFirmwareUpdate').css('display', 'inline');
+                $('#buttonCancelFirmwareUpdateAndRun').css('display', 'none');
+                SwiftWebViewBridge.callSwiftHandler("requireScanToConnect", {}, function(responseData){
+                    log('JS got responds from Swift: ', responseData);
+                })
+            }
+        }, 'connect clicked');
+
         $('.sim-nav').onWrap('click', 'li:not(.disabled) a', function(event) {
             $('.modal').modal('hide'); // head-navigation-sim-control
             var domId = event.target.id;
@@ -535,15 +558,6 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
     }
 
     function initCourseMenu() {
-        var proto = $('#popup-course-example');
-        for (var i = 0; i < 5; i++) {
-            var clone = proto.clone().prop('id', 'menu-course-' + i.toString());
-            clone.attr('data-type', 'ev3');
-            clone.find('span:eq( 0 )').removeClass('typcn-open');
-            clone.find('span:eq( 0 )').addClass('typcn-ev3');
-            clone.find('span:eq( 1 )').text('Course ' + i.toString());
-            $("#popup-course-container").append(clone);
-            proto.remove();
-        }
+
     }
 });

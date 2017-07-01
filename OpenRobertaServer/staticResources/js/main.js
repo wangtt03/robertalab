@@ -151,8 +151,6 @@ function connectToSwiftWebViewBridge(callback) {
     }
 }
 
-
-
 function requireLoginWithCallback() {
     SwiftWebViewBridge.callSwiftHandler("requireLogin", {}, function(responseData){
         log('JS got responds from Swift: ', responseData);
@@ -190,6 +188,15 @@ function init() {
                     };
                     responseCallback(responseData);
                 });
+
+                bridge.registerHandlerForSwift('scanToConnect', function (receiveData, responseCallback){
+                    if('token' in receiveData) {
+                        robotController.setTokenWithoutModal(receiveData['token'].toUpperCase());
+                    }
+                    else{
+                        alert("连接代码错误，请联系主办方解决。");
+                    }
+                })
             });
         }).then(function() {
             galleryListController.init();

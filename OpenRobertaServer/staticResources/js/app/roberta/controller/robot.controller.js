@@ -50,6 +50,24 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.controller', 'guiState.m
         }
     }
 
+    function setTokenWithoutModal(token){
+        ROBOT.setToken(token, function(result) {
+            if (result.rc === "ok") {
+                GUISTATE_C.setRobotToken(token);
+                GUISTATE_C.setState(result);
+                MSG.displayInformation(result, "MESSAGE_ROBOT_CONNECTED", result.message, GUISTATE_C.getRobotName());
+                handleFirmwareConflict();
+            } else {
+                if (result.message === 'ORA_TOKEN_SET_ERROR_WRONG_ROBOTTYPE') {
+                    $('.modal').modal('hide');
+                }
+            }
+            UTIL.response(result);
+        });
+    }
+
+    exports.setTokenWithoutModal = setTokenWithoutModal;
+
     function setPort(port) {
         robotPort = port;
         $('#single-modal-list').modal('hide');

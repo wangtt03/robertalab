@@ -1,6 +1,6 @@
 define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'program.model', 'prettify', 'robot.controller', 'socket.controller',
-        'progHelp.controller', 'progInfo.controller', 'progCode.controller', 'progSim.controller', 'blocks', 'jquery', 'jquery-validate', 'blocks-msg' ], function(
-        exports, COMM, MSG, LOG, UTIL, GUISTATE_C, PROGRAM, Prettify, ROBOT_C, SOCKET_C, HELP_C, INFO_C, CODE_C, SIM_C, Blockly, $) {
+        'progHelp.controller', 'progInfo.controller', 'progCode.controller', 'progSim.controller', 'lessonList.controller', 'blocks', 'jquery', 'jquery-validate', 'blocks-msg' ], function(
+        exports, COMM, MSG, LOG, UTIL, GUISTATE_C, PROGRAM, Prettify, ROBOT_C, SOCKET_C, HELP_C, INFO_C, CODE_C, SIM_C, LESSON_C, Blockly, $) {
 
     var $formSingleModal;
 
@@ -18,6 +18,7 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
         INFO_C.init(blocklyWorkspace);
         CODE_C.init(blocklyWorkspace);
         SIM_C.init(blocklyWorkspace);
+        LESSON_C.init();
         LOG.info('init program view');
     }
     exports.init = init;
@@ -660,11 +661,6 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
             saveToServer();
             return false;
         });
-        Blockly.bindEvent_(blocklyWorkspace.robControls.selectCourse, 'mousedown', null, function(e){
-            LOG.info('selectCourse from blockly button');
-            showCourseMenu();
-            return false;
-        });
         blocklyWorkspace.robControls.disable('saveProgram');
         if (GUISTATE_C.getConnection() == 'token') {
             blocklyWorkspace.robControls.disable('runOnBrick');
@@ -744,9 +740,5 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
         setTimeout(function() {
             listenToBlocklyEvents = true;
         }, 500);
-    }
-
-    function showCourseMenu(){
-        $("#select-course").modal("show");
     }
 });

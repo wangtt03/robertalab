@@ -249,20 +249,20 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 					</a></li>
 					<li id="head-navigation-lesson"><a href="#"
 														id="head-navi-tooltip-lesson"
-														lkey="Blockly.Msg.MENU_GALLERY_TOOLTIP" rel="tooltip"
+														lkey="Blockly.Msg.MENU_LESSON_TOOLTIP" rel="tooltip"
 														data-original-title="" title=""> <span
 							id="head-navi-icon-lesson"
-							class="head-navi-icons typcn typcn-puzzle-outline"></span><span
+							class="head-navi-icons typcn typcn-sort-numerically-outline"></span><span
 							class="head-navi-title hidden-sm hidden-md hidden-lg"
-							lkey="Blockly.Msg.MENU_GALLERY">lessons</span>
+							lkey="Blockly.Msg.MENU_LESSON">lessons</span>
 					</a></li>
 					<!-- Menu Languages -->
 					<li class="dropdown" id="head-navigation-language"><a href="#"
 						data-toggle="dropdown" class="dropdown-toggle"
-						id="head-navi-tooltip-program"
+						id="head-navi-tooltip-language"
 						lkey="Blockly.Msg.MENU_LANGUAGE_TOOLTIP" rel="tooltip"
 						data-original-title="" title=""> <span
-							id="head-navi-icon-program"
+							id="head-navi-icon-language"
 							class="head-navi-icons typcn typcn-world"></span><span
 							class="head-navi-title hidden-sm hidden-md hidden-lg"
 							lkey="Blockly.Msg.MENU_LANGUAGE"></span>
@@ -283,6 +283,18 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 							<li><a role="menuitem" href="#" class="lang-lbl" lang="da"></a></li>
 							<li><a role="menuitem" href="#" class="lang-lbl" lang="zh-hans"></a></li>
 						</ul></li>
+
+					<!-- Menu Connect -->
+					<li id="head-navigation-connect"><a href="#"
+													   id="head-navi-tooltip-connect"
+													   lkey="Blockly.Msg.MENU_CONNECT_TOOLTIP" rel="tooltip"
+													   data-original-title="" title=""> <span
+							id="head-navi-icon-connect"
+							class="head-navi-icons typcn typcn-link-outline"></span><span
+							class="head-navi-title hidden-sm hidden-md hidden-lg"
+							lkey="Blockly.Msg.MENU_CONNECT">lessons</span>
+					</a></li>
+
 					<!-- Menu Navigation -->
 					<li class="divider visible-xs"></li>
 					<li><a href="#" class="visible-xs" id="menuTabProgram"
@@ -912,25 +924,6 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 		</div>
 	</div>
 
-	<!-- Popup show lesson info -->
-	<div id="show-lesson" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-							aria-hidden="true">&times;</button>
-					<h3 class="modal-title" lkey="Blockly.Msg.MENU_ABOUT">Lessons</h3>
-				</div>
-				<div class="modal-body">
-
-				</div>
-				<div class="modal-footer">
-
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<!-- Popup show state info -->
 	<div id="show-state-info" class="modal fade">
 		<div class="modal-dialog modal-sm">
@@ -1138,18 +1131,19 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 			</div>
 		</div>
 	</div>
-	<!--  Select Courses -->
-	<div id="select-course" class="modal fade">
+
+	<!--  Select Lessons -->
+	<div id="select-lesson" class="modal fade">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content" style="padding-top: 10px;">
 				<div class="modal-header"
 					 style="text-align: center; font-size: 18px;">
-					<h4>Select a course to start!</h4>
+					<h4>Select a lesson to start!</h4>
 				</div>
-				<div id="popup-course-container" class="modal-body" style="text-align: center;">
-					<div id="popup-course-example" class="popup-robot robot-container">
+				<div id="popup-lesson-container" class="modal-body" style="text-align: center;">
+					<div id="popup-lesson-example" class="popup-robot robot-container">
 						<span href="#" class='typcn typcn-open robot-icon'></span>
-						<span class="robot-label">Course Example</span>
+						<span class="robot-label">Lesson Example</span>
 						<a href="#" target="_blank" style="display: inline;">
 							<span class='robot-info typcn typcn-info-large'></span>
 						</a>
@@ -1158,6 +1152,7 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 			</div>
 		</div>
 	</div>
+
 	<!--  Popup to show relations / share programs -->
 	<div id="show-relations" class="modal fade">
 		<div class="modal-dialog modal-lg">
