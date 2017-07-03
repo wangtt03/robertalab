@@ -9,6 +9,7 @@
 			intask="true">
 			<mutation datatype="String"></mutation>
 			<field name="TYPE">String</field>
+			<field name="POWER">0</field>
 		</block>
 	</instance>
 </block_set>
