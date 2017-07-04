@@ -38,6 +38,35 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
     exports.login = login;
 
     /**
+     * Create and login user
+     *
+     * @param accountName
+     *            {String} - name of the account of the user
+     * @param userName
+     *            {String} - name of the user
+     * @param role
+     *            {String} - role of the user
+     * @param userEmail
+     *            {String} - email address of the user
+     * @param youngerThen14
+     *            {String} - if the user is younger than 14 or not, 'true' or 'false'
+     * @param successFn
+     *            {Function} - execute the function if success
+     */
+    function loginWithCreate(accountName, userName, role, userEmail, youngerThen14, successFn){
+        COMM.json("/user", {
+            "cmd": "loginWithCreate",
+            "accountName" : accountName,
+            "userName" : userName,
+            "role" : role,
+            "userEmail" : userEmail,
+            "youngerThen14" : youngerThen14
+        }, successFn, "login with create user '" + accountName + "'");
+    }
+
+    exports.loginWithCreate = loginWithCreate;
+
+    /**
      * Logout user
      *
      * @memberof USER

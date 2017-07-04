@@ -140,6 +140,7 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
 
     function loginWith(username, password) {
         USER.login(username, password, function(result) {
+            console.log(result);
             if (result.rc === "ok") {
                 GUISTATE_C.setLogin(result);
             }
@@ -148,6 +149,17 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
     }
 
     exports.loginWith = loginWith;
+
+    function loginWithCreate(accountName, userName, role, userEmail, youngerThen14){
+        USER.loginWithCreate(accountName, userName, role, userEmail, youngerThen14, function (result) {
+            console.log(result);
+            GUISTATE_C.setLogin(result);
+            MSG.displayInformation(result, "MESSAGE_USER_LOGIN", result.message, GUISTATE_C.getUserName());
+            return {"userAccountName": result.userAccountName, "userPassword": result.userPassword};
+        });
+    }
+
+    exports.loginWithCreate = loginWithCreate;
 
     /**
      * Logout user

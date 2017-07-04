@@ -1,6 +1,7 @@
 package de.fhg.iais.roberta.javaServer.restServices.all;
 
 import java.util.Date;
+import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.ws.rs.Consumes;
@@ -135,16 +136,16 @@ public class ClientUser {
                 }
                 Util.addResultInfo(response, up);
 
-            } else if ( cmd.equals("loginwithcreate")){
+            } else if ( cmd.equals("loginWithCreate") ) {
                 String account = request.getString("accountName");
                 String userName = request.getString("userName");
-                String token = request.getString("token");
+                // String token = request.getString("token");
                 String role = request.getString("role");
                 String email = request.getString("userEmail");
                 boolean youngerThen14 = Boolean.parseBoolean(request.getString("youngerThen14"));
                 User user = up.getUser(account);
                 if (user == null){
-                    up.createUser(account, "", userName, role, email, null, youngerThen14);
+                    up.createUser(account, "12345678", userName, role, email, null, youngerThen14);
                     Util.addResultInfo(response, up);
                     if ( !up.isOk() ) {
                         Util.addFrontendInfo(response, httpSessionState, this.brickCommunicator);
@@ -153,6 +154,14 @@ public class ClientUser {
                     }
                     user = up.getUser(account);
                 }
+                else{
+                    // Put response here.
+                }
+
+                // Generate random password
+                String password = this.GenerateRandomPassword(8);
+                // Set the password
+                user.setPassword(password);
 
                 int id = user.getId();
                 String name = user.getUserName();
@@ -163,8 +172,10 @@ public class ClientUser {
                 response.put("userAccountName", account);
                 response.put("userName", name);
                 response.put("isAccountActivated", user.isActivated());
+                response.put("userPassword", password);
                 ClientUser.LOG.info("login: user {} (id {}) logged in", account, id);
                 AliveData.rememberLogin();
+                Util.addResultInfo(response, up);
 
             } else if ( cmd.equals("updateUser") ) {
                 String account = request.getString("accountName");
@@ -301,5 +312,16 @@ public class ClientUser {
         } catch ( Exception e ) {
             up.setError(Key.USER_ACTIVATION_SENT_MAIL_FAIL);
         }
+    }
+
+    private static String GenerateRandomPassword(int length) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuffer buf = new StringBuffer();
+        for (int i = 0; i < length; i++) {
+            int num = random.nextInt(62);
+            buf.append(str.charAt(num));
+        }
+        return buf.toString();
     }
 }

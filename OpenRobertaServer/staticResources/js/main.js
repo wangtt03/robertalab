@@ -181,10 +181,19 @@ function init() {
                 });
 
                 bridge.registerHandlerForSwift('loginWith', function (receiveData, responseCallback) {
-                    //log('Swift called the login function with', JSON.stringify(receiveData));
-                    userController.loginWith(receiveData.username, receiveData.passkey);
+                    userController.loginWith(receiveData.accountName, receiveData.password);
                     var responseData = {
                         'response': 'success'
+                    };
+                    responseCallback(responseData);
+                });
+
+                bridge.registerHandlerForSwift('loginWithCreate', function (receiveData, responseCallback) {
+                    userController.loginWithCreate(receiveData['accountName'], receiveData['userName'],
+                        receiveData['role'], receiveData['userEmail'], receiveData['youngerThen14']);
+                    var responseData = {
+                        'accountName': res['userAccountName'], //accountName
+                        'password': res['userPassword']  //password
                     };
                     responseCallback(responseData);
                 });
