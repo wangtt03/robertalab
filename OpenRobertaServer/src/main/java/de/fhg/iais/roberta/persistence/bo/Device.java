@@ -13,14 +13,52 @@ enum DeviceType {
  */
 @Entity
 @Table(name = "DEVICE")
-public class Device {
+public class Device implements WithSurrogateId{
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TYPE")
+    private DeviceType type;
+
+    @Column(name = "NAME")
+    private String name;
+
     @Column(name = "CODE")
     private String code;
 
+    @Override
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public DeviceType getType() {
+        return type;
+    }
+
+    public void setType(DeviceType type) {
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 }
