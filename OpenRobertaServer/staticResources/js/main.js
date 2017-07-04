@@ -151,8 +151,6 @@ function connectToSwiftWebViewBridge(callback) {
     }
 }
 
-
-
 function requireLoginWithCallback() {
     SwiftWebViewBridge.callSwiftHandler("requireLogin", {}, function(responseData){
         log('JS got responds from Swift: ', responseData);
@@ -183,13 +181,31 @@ function init() {
                 });
 
                 bridge.registerHandlerForSwift('loginWith', function (receiveData, responseCallback) {
-                    //log('Swift called the login function with', JSON.stringify(receiveData));
-                    userController.loginWith(receiveData.username, receiveData.passkey);
+                    userController.loginWith(receiveData.accountName, receiveData.password);
                     var responseData = {
                         'response': 'success'
                     };
                     responseCallback(responseData);
                 });
+
+                bridge.registerHandlerForSwift('loginWithCreate', function (receiveData, responseCallback) {
+                    userController.loginWithCreate(receiveData['accountName'], receiveData['userName'],
+                        receiveData['role'], receiveData['userEmail'], receiveData['youngerThen14']);
+                    var responseData = {
+                        'accountName': res['userAccountName'], //accountName
+                        'password': res['userPassword']  //password
+                    };
+                    responseCallback(responseData);
+                });
+
+                bridge.registerHandlerForSwift('scanToConnect', function (receiveData, responseCallback){
+                    if('token' in receiveData) {
+                        robotController.setTokenWithoutModal(receiveData['token'].toUpperCase());
+                    }
+                    else{
+                        alert("连接代码错误，请联系主办方解决。");
+                    }
+                })
             });
         }).then(function() {
             galleryListController.init();
