@@ -16,6 +16,7 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
     function initView() {
         $('#helpContent').remove();
         var url = '../help/progHelp_' + GUISTATE_C.getRobotGroup() + '_' + GUISTATE_C.getLanguage().toLowerCase() + '.html';
+        url = '../help/HelloWorld.html';
         $('#helpDiv').load(url, function(response, status, xhr) {
             if (status == "error") {
                 url = '../help/progHelp_' + GUISTATE_C.getRobotGroup() + '_en.html';
