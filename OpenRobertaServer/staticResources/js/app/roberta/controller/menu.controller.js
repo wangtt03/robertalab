@@ -6,7 +6,6 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
 
         initMenu();
         initMenuEvents();
-        initCourseMenu();
         /**
          * Regularly ping the server to keep status information up-to-date
          */
@@ -241,7 +240,7 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
                 break;
             case 'menuListConfig':
                 $('#tabConfList').click();
-                break
+                break;
             case 'menuSaveConfig':
                 CONFIGURATION_C.saveToServer();
                 break;
@@ -340,9 +339,14 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
         }, 'gallery clicked');
 
         $('#head-navigation-lesson').onWrap('click', function(event) {
-            LESSON_C.loadLessonAll();
-
+            LESSON_C.displayLessonMenu();
+            return false;
         }, 'lesson clicked');
+
+        $('.lesson-close-button')[0].onclick = function() {
+            LESSON_C.hideLessonMenu();
+            return false;
+        };
 
         $('#head-navi-icon-connect').onWrap('click', function(event) {
             console.log(GUISTATE_C.getIsAgent());
@@ -589,9 +593,5 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             Blockly.svgResize(GUISTATE_C.getBlocklyWorkspace());
             Blockly.svgResize(GUISTATE_C.getBricklyWorkspace());
         });
-    }
-
-    function initCourseMenu() {
-
     }
 });

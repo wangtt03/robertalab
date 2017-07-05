@@ -33,6 +33,23 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
     exports.setToken = setToken;
 
     /**
+     * Set token for paring with the robot.
+     *
+     * @param deviceName
+     *            {String} - name of the device
+     * @param successFn
+     *            {Function} - function to deal with return value
+     */
+    function getToken(deviceName, successFn) {
+        COMM.json("/admin", {
+            "cmd": "getToken",
+            "deviceName": deviceName
+        }, successFn, "get token of device '" + deviceName + "'");
+    }
+
+    exports.getToken = getToken;
+
+    /**
      * Set robot type
      * 
      * @param robot

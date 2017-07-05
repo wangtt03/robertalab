@@ -1134,25 +1134,25 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 	</div>
 
 	<!--  Select Lessons -->
-	<div id="select-lesson" class="modal fade">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content" style="padding-top: 10px;">
-				<div class="modal-header"
-					 style="text-align: center; font-size: 18px;">
-					<h4>Select a lesson to start!</h4>
-				</div>
-				<div id="popup-lesson-container" class="modal-body" style="text-align: center;">
-					<div id="popup-lesson-example" class="popup-robot robot-container">
-						<span href="#" class='typcn typcn-open robot-icon'></span>
-						<span class="robot-label">Lesson Example</span>
-						<a href="#" target="_blank" style="display: inline;">
-							<span class='robot-info typcn typcn-info-large'></span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!--<div id="select-lesson" class="modal fade">-->
+		<!--<div class="modal-dialog modal-lg">-->
+			<!--<div class="modal-content" style="padding-top: 10px;">-->
+				<!--<div class="modal-header"-->
+					 <!--style="text-align: center; font-size: 18px;">-->
+					<!--<h4>Select a lesson to start!</h4>-->
+				<!--</div>-->
+				<!--<div id="popup-lesson-container" class="modal-body" style="text-align: center;">-->
+					<!--<div id="popup-lesson-example" class="popup-robot robot-container">-->
+						<!--<span href="#" class='typcn typcn-open robot-icon'></span>-->
+						<!--<span class="robot-label">Lesson Example</span>-->
+						<!--<a href="#" target="_blank" style="display: inline;">-->
+							<!--&lt;!&ndash;<span class='robot-info typcn typcn-info-large'></span>&ndash;&gt;-->
+						<!--</a>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
 
 	<!--  Popup to show relations / share programs -->
 	<div id="show-relations" class="modal fade">
@@ -1319,27 +1319,44 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 	<div id="device-size">
 		<div id="xs" class="visible-xs"></div>
 	</div>
-
+	<!-- Lesson Menu -->
+	<div class="lesson-menu" id="lesson-menu">
+		<div class="lesson-title-container">
+			<p class="lesson-title">
+				Lesson Select
+			</p>
+			<button type="button" id="lesson-close-" class="lesson-close-button">
+			x
+			</button>
+		</div>
+		<div class="lesson-select-container">
+				<div id="lesson-example" class="lesson-item-container">
+					<!--<span href="#" class='typcn typcn-mortar-board lesson-icon'></span>-->
+					<span href="#">
+						<img class="lesson-img" src="/css/svg/NEPO_Logo_RGB.svg"/>
+					</span>
+					<span class="lesson-label">Lesson Example</span>
+					<a href="#" target="_blank" style="display: inline;">
+						<!--<span class='robot-info typcn typcn-info-large'></span>-->
+					</a>
+				</div>
+		</div>
+	</div>
+	<!-- Bar Menu -->
 	<div class="bar-menu">
 		<ul class="nav navbar-nav">
-			<li id="head-navigation-lesson-2"><a href="#"
-											   id="head-navi-tooltip-lesson-2"
-											   lkey="Blockly.Msg.MENU_LESSON_TOOLTIP" rel="tooltip"
-											   data-original-title="" title=""> <span
-					id="head-navi-icon-lesson-2"
-					class="head-navi-icons typcn typcn-sort-numerically-outline"></span><span
-					class="head-navi-title hidden-sm hidden-md hidden-lg"
-					lkey="Blockly.Msg.MENU_LESSON">lessons</span>
-			</a></li>
-			<!-- Menu Connect -->
-			<li id="head-navigation-connect-2"><a href="#"
-												id="head-navi-tooltip-connect-2"
-												lkey="Blockly.Msg.MENU_CONNECT_TOOLTIP" rel="tooltip"
-												data-original-title="" title=""> <span
-					id="head-navi-icon-connect-2"
-					class="head-navi-icons typcn typcn-link-outline"></span><span
-					class="head-navi-title hidden-sm hidden-md hidden-lg"
-					lkey="Blockly.Msg.MENU_CONNECT">lessons</span>
+			<!-- Select Lesson -->
+			<li id="lesson-button">
+				<a href="#" id="lesson-button-tooltip" lkey="Blockly.Msg.MENU_LESSON_TOOLTIP" rel="tooltip" data-original-title="" title="">
+					<span id="lesson-button-icon" class="head-navi-icons typcn typcn-sort-numerically-outline"></span>
+					<span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_LESSON">Lessons</span>
+				</a>
+			</li>
+			<!-- Connect -->
+			<li id="connect-button">
+				<a href="#" id="connect-button-tooltip" lkey="Blockly.Msg.MENU_CONNECT_TOOLTIP" rel="tooltip" data-original-title="" title="">
+					<span id="connect-button-icon" class="head-navi-icons typcn typcn-link-outline"></span>
+					<span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_CONNECT">Connect</span>
 			</a></li>
 		</ul>
 	</div>

@@ -17,3 +17,76 @@
     background-color: #BACC1E;
     border-bottom: 4px solid #BACC1E;
 }
+
+.lesson-menu {
+    display: none;
+    position: fixed;
+    left: 0;
+    bottom: 25%;
+    top: 25%;
+    width: 100%;
+    box-shadow: 1px 1px 15px 1px #bbbbbb;
+    z-index: 512;
+    -webkit-overflow-scrolling: touch;
+    background: white;
+    padding: 6px;
+}
+
+.lesson-title-container{
+    height: 20%;
+}
+
+.lesson-title{
+    text-align: center;
+    font-size: 2em;
+}
+
+.lesson-close-button{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: white;
+    border: transparent;
+    font-size: 2rem;
+}
+
+.lesson-close-button:hover{
+    color: #2aabd2;
+}
+
+.lesson-select-container{
+    height: 80%;
+    width: auto;
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.lesson-item-container{
+    border: 1px solid;
+    border-radius: 4px;
+    border-color: #ddd;
+    width: auto;
+    min-width: 300px;
+    height: 80%;
+    display: inline-block;
+    margin: 20px;
+    padding: 13px 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.lesson-icon{
+    font-size: 40px;
+}
+
+.lesson-label{
+    display: block;
+    white-space: nowrap;
+    font-size: 1.5rem;
+}
+
+.lesson-img {
+    height: 80%;
+}

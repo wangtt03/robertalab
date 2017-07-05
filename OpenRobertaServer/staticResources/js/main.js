@@ -18,6 +18,7 @@ require.config({
         'bootstrap.wysiwyg' : 'bootstrap/bootstrap-3.3.1-dist/dist/js/bootstrap-wysiwyg.min',
         'socket.io' : 'socket.io/socket.io',
 
+        'barMenu.controller': '../app/roberta/controller/barMenu.controller',
         'confDelete.controller' : '../app/roberta/controller/confDelete.controller',
         'configuration.controller' : '../app/roberta/controller/configuration.controller',
         'configuration.model' : '../app/roberta/models/configuration.model',
@@ -27,6 +28,7 @@ require.config({
         'guiState.controller' : '../app/roberta/controller/guiState.controller',
         'guiState.model' : '../app/roberta/models/guiState.model',
         'language.controller' : '../app/roberta/controller/language.controller',
+        'lessonList.controller' : '../app/roberta/controller/lessonList.controller',
         'logList.controller' : '../app/roberta/controller/logList.controller',
         'logList.model' : '../app/roberta/models/logList.model',
         'menu.controller' : '../app/roberta/controller/menu.controller',
@@ -35,7 +37,6 @@ require.config({
         'progHelp.controller' : '../app/roberta/controller/progHelp.controller',
         'progInfo.controller' : '../app/roberta/controller/progInfo.controller',
         'progList.controller' : '../app/roberta/controller/progList.controller',
-        'lessonList.controller' : '../app/roberta/controller/lessonList.controller',
         'progList.model' : '../app/roberta/models/progList.model',
         'lessonList.model' : '../app/roberta/models/lessonList.model',
         'program.controller' : '../app/roberta/controller/program.controller',
@@ -114,18 +115,20 @@ require.config({
     }
 });
 
-require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', 'progList.controller', 'logList.controller', 'confList.controller',
+require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', 'progList.controller', 'logList.controller', 'confList.controller', 'lessonList.controller', 'barMenu.controller',
         'progDelete.controller', 'confDelete.controller', 'progShare.controller', 'menu.controller', 'user.controller', 'robot.controller',
         'program.controller', 'configuration.controller', 'language.controller', 'socket.controller', 'volume-meter' ], function(require) {
 
     $ = require('jquery', 'jquery-cookie');
     WRAP = require('wrap');
     COMM = require('comm');
+    barMenuController = require('barMenu.controller');
     confDeleteController = require('confDelete.controller');
     configurationController = require('configuration.controller');
     confListController = require('confList.controller');
     guiStateController = require('guiState.controller');
     languageController = require('language.controller');
+    lessonListController = require('lessonList.controller');
     logListController = require('logList.controller');
     menuController = require('menu.controller');
     progDeleteController = require('progDelete.controller');
@@ -199,8 +202,8 @@ function init() {
                 });
 
                 bridge.registerHandlerForSwift('scanToConnect', function (receiveData, responseCallback){
-                    if('token' in receiveData) {
-                        robotController.setTokenWithoutModal(receiveData['token'].toUpperCase());
+                    if('deviceName' in receiveData) {
+                        robotController.connectWithDeviceName(receiveData['deviceName']);
                     }
                     else{
                         alert("连接代码错误，请联系主办方解决。");
@@ -208,6 +211,7 @@ function init() {
                 })
             });
         }).then(function() {
+            barMenuController.init();
             galleryListController.init();
             progListController.init();
             progDeleteController.init();

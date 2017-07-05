@@ -25,6 +25,23 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.controller', 'guiState.m
     }
     exports.init = init;
 
+    function connectWithDeviceName(deviceName){
+        getToken(deviceName);
+    }
+
+    exports.connectWithDeviceName = connectWithDeviceName;
+
+    function getToken(deviceName){
+        ROBOT.getToken(deviceName, function (result) {
+            if('deviceInfo' in result && 'code' in result['deviceInfo']){
+                setTokenWithoutModal(result['deviceInfo']['code'].toUpperCase());
+            }
+            else{
+                alert("设备未注册，请联系主办方解决。");
+            }
+        });
+    }
+
     /**
      * Set token
      * 
