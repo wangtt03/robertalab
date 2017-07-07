@@ -302,6 +302,31 @@ class MicroBitPin : public MicroBitComponent
     int getAnalogValue();
 
     /**
+      * Configures microphone pin as an analogue input (if necessary), and samples the Pin for its analog value.
+      * Normalises the read value in 1-100 range
+      *
+      * @return the current analogue level on the pin, in the range 1-100, or
+      *         MICROBIT_NOT_SUPPORTED if the given pin does not have analog capability.
+      *
+      */
+    int getMicrophoneValue();
+
+    /**
+    * Reads pulse
+    */
+    int readPulse(int level);
+
+    /**
+    * Reads high pulse
+    */
+    int readPulseHigh();
+
+    /**
+    * Reads low pulse
+    */
+    int readPulseLow();
+
+    /**
       * Determines if this IO pin is currently configured as an input.
       *
       * @return 1 if pin is an analog or digital input, 0 otherwise.
