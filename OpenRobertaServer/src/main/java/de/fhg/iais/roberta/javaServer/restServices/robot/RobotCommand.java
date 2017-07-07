@@ -1,6 +1,15 @@
 package de.fhg.iais.roberta.javaServer.restServices.robot;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import com.google.inject.Inject;
+import de.fhg.iais.roberta.javaServer.provider.OraData;
+import de.fhg.iais.roberta.persistence.util.DbSession;
+import de.fhg.iais.roberta.robotCommunication.RobotCommunicationData;
+import de.fhg.iais.roberta.robotCommunication.RobotCommunicator;
+import de.fhg.iais.roberta.util.AliveData;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -8,23 +17,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import de.fhg.iais.roberta.javaServer.provider.OraData;
-import de.fhg.iais.roberta.persistence.DeviceProcessor;
-import de.fhg.iais.roberta.persistence.bo.Device;
-import de.fhg.iais.roberta.persistence.dao.DeviceDao;
-import de.fhg.iais.roberta.persistence.util.DbSession;
-import de.fhg.iais.roberta.persistence.util.SessionFactoryWrapper;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.inject.Inject;
-
-import de.fhg.iais.roberta.robotCommunication.RobotCommunicationData;
-import de.fhg.iais.roberta.robotCommunication.RobotCommunicator;
-import de.fhg.iais.roberta.util.AliveData;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Path("/pushcmd")
 public class RobotCommand {
@@ -54,18 +47,11 @@ public class RobotCommand {
         String cmd = requestEntity.getString(CMD);
         String token = null;
         String firmwarename = null;
-        String deviceName = null;
         try {
-            deviceName = requestEntity.getString("devicename");
             token = requestEntity.getString("token");
             firmwarename = requestEntity.getString("firmwarename");
         } catch ( Exception e ) {
             LOG.error("Robot request aborted. Robot uses a wrong JSON: " + requestEntity);
-            return Response.serverError().build();
-        }
-
-        if (deviceName == null || deviceName.trim().length() == 0) {
-            LOG.error("no device name specified.");
             return Response.serverError().build();
         }
 
@@ -82,11 +68,6 @@ public class RobotCommand {
         JSONObject response;
         switch ( cmd ) {
             case CMD_REGISTER:
-                DeviceDao deviceDao = new DeviceDao(dbSession);
-                Device device = deviceDao.loadByName(deviceName);
-                device.setCode(token);
-                deviceDao.persistDevice(device);
-
                 LOG.info("Robot [" + macaddr + "] token " + token + " received for registration");
                 // LOG.info("Robot [" + macaddr + "] token " + token + " received for registration, user-agent: " + this.servletRequest.getHeader("User-Agent"));
                 RobotCommunicationData state =
