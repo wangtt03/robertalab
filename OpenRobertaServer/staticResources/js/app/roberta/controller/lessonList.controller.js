@@ -10,28 +10,32 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonL
     }
     exports.init = init;
 
-    function loadLessonAll() {
-        LESSONLIST.loadLessonList(function(){
-            $("#select-lesson").modal("show");
-        });
+    function displayLessonMenu() {
+        $(".lesson-menu")[0].style.display = "block";
     }
-    exports.loadLessonAll = loadLessonAll;
+    exports.displayLessonMenu = displayLessonMenu;
+
+    function hideLessonMenu(){
+        $(".lesson-menu")[0].style.display = "none";
+    }
+    exports.hideLessonMenu = hideLessonMenu;
 
     function initProgList() {
-        var proto = $('#popup-lesson-example');
-        for (var i = 0; i < 5; i++) {
-            var clone = proto.clone().prop('id', 'menu-lesson-' + i.toString());
-            clone.attr('data-type', 'ev3');
-            clone.find('span:eq( 1 )').text('Lesson ' + i.toString());
-            $("#popup-lesson-container").append(clone);
+        LESSONLIST.loadLessonList(function (result) {
+            var lessonData = result.data;
+            var proto = $('#lesson-example');
+            console.log(lessonData.length);
+            for (var i = 0; i < lessonData.length; i++) {
+                var clone = proto.clone().prop('id', 'lesson-' + i.toString());
+                clone.find('span:eq( 1 )').text(lessonData[i].name);
+                clone.find('span:eq( 0 )').find('img').attr('src', lessonData[i].thumbnail);
+                $(".lesson-select-container").append(clone);
+            }
             proto.remove();
-        }
+        });
     }
 
     function initProgListEvents() {
-
-
-
         function update(result) {
 
         }

@@ -171,7 +171,7 @@ commit;
 INSERT INTO LESSON VALUES(3,'lesson3','http://www.baidu.com',NULL,'https://www.baidu.com/img/bd_logo1.png','http://www.baidu.com');
 commit;
 
-INSERT INTO DEVICE VALUES(1,'device1','ev3','abcd')
-COMMIT
-INSERT INTO DEVICE VALUES(2,'device2','ev3','1234')
-COMMIT
+INSERT INTO DEVICE VALUES(1,'device1','EV3','abcdefgh');
+commit;
+INSERT INTO DEVICE VALUES(2,'device2','EV3','12345678');
+commit;
