@@ -23,6 +23,10 @@ class RobertaFunctions
 		double clamp(double val, double min, double max);
 		bool isPrime(double number);
 		bool isWhole(double val);
+		void createArray(double *arr, int len, ...);
+	    void createArray(bool *arr, int len, ...);
+	    void createArray(char *arr, int len, ...);
+	    void createArray(int *arr, int len, ...);
 		int arrFindFirst(int len, double arr[], double item);
 		int arrFindFirst(int len, bool arr[], bool item);
 		int arrFindFirst(int len, String arr[], String item);

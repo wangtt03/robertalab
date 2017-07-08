@@ -40,6 +40,42 @@ bool RobertaFunctions::isWhole(double val){
   return ((val - intPart) == 0);
 }
 
+void RobertaFunctions::createArray(double *arr, int len, ...){
+   va_list arguments;
+   va_start ( arguments, len );
+   for(int i = 0; i < len; i++){
+     arr[i] = va_arg ( arguments, double );
+    }
+    va_end ( arguments );
+}
+
+void RobertaFunctions::createArray(bool *arr, int len, ...){
+   va_list arguments;
+   va_start ( arguments, len );
+   for(int i = 0; i < len; i++){
+     arr[i] = va_arg ( arguments, bool );
+    }
+    va_end ( arguments );
+}
+
+void RobertaFunctions::createArray(char *arr, int len, ...){
+   va_list arguments;
+   va_start ( arguments, len );
+   for(int i = 0; i < len; i++){
+     arr[i] = va_arg ( arguments, char );
+    }
+    va_end ( arguments );
+}
+
+void RobertaFunctions::createArray(int *arr, int len, ...){
+   va_list arguments;
+   va_start ( arguments, len );
+   for(int i = 0; i < len; i++){
+     arr[i] = va_arg ( arguments, int );
+    }
+    va_end ( arguments );
+}
+
 int RobertaFunctions::arrFindFirst(int len, double arr[], double item) {
   int i = 0;
   if (arr[0] == item){
