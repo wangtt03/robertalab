@@ -365,9 +365,10 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             } else {
                 $('#buttonCancelFirmwareUpdate').css('display', 'inline');
                 $('#buttonCancelFirmwareUpdateAndRun').css('display', 'none');
-                SwiftWebViewBridge.callSwiftHandler("requireScanToConnect", {}, function(responseData){
-                    log('JS got responds from Swift: ', responseData);
-                })
+                window.webkit.messageHandlers.requireScanToConnect.postMessage("Require to scan QR Code to connect devices.");
+                // SwiftWebViewBridge.callSwiftHandler("requireScanToConnect", {}, function(responseData){
+                //     log('JS got responds from Swift: ', responseData);
+                // })
             }
         }, 'connect clicked');
 

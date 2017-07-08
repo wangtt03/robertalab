@@ -144,22 +144,22 @@ require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', '
 });
 
 
-function connectToSwiftWebViewBridge(callback) {
-    if (window.SwiftWebViewBridge) {
-        callback(SwiftWebViewBridge);
-    } else {
-        document.addEventListener('SwiftWebViewBridgeReady', function() {
-            callback(SwiftWebViewBridge);
-        }, false);
-    }
-}
-
-function requireLoginWithCallback() {
-    SwiftWebViewBridge.callSwiftHandler("requireLogin", {}, function(responseData){
-        log('JS got responds from Swift: ', responseData);
-        userController.loginWith(data.username, data.password);
-    })
-}
+// function connectToSwiftWebViewBridge(callback) {
+//     if (window.SwiftWebViewBridge) {
+//         callback(SwiftWebViewBridge);
+//     } else {
+//         document.addEventListener('SwiftWebViewBridgeReady', function() {
+//             callback(SwiftWebViewBridge);
+//         }, false);
+//     }
+// }
+//
+// function requireLoginWithCallback() {
+//     SwiftWebViewBridge.callSwiftHandler("requireLogin", {}, function(responseData){
+//         log('JS got responds from Swift: ', responseData);
+//         userController.loginWith(data.username, data.password);
+//     })
+// }
 
 /**
  * Initializations
@@ -172,45 +172,47 @@ function init() {
         return robotController.init();
     }).then(function() {
         return userController.init();
-    }).then(
-        function() {
-            connectToSwiftWebViewBridge(function (bridge) {
-                bridge.init(function (message, responseCallback) {
-                    log('Got a message from swift', message);
-                    var responseData = {
-                        'response': 'received'
-                    };
-                    responseCallback(responseData);
-                });
-
-                bridge.registerHandlerForSwift('loginWith', function (receiveData, responseCallback) {
-                    userController.loginWith(receiveData.accountName, receiveData.password);
-                    var responseData = {
-                        'response': 'success'
-                    };
-                    responseCallback(responseData);
-                });
-
-                bridge.registerHandlerForSwift('loginWithCreate', function (receiveData, responseCallback) {
-                    userController.loginWithCreate(receiveData['accountName'], receiveData['userName'],
-                        receiveData['role'], receiveData['userEmail'], receiveData['youngerThen14']);
-                    var responseData = {
-                        'accountName': res['userAccountName'], //accountName
-                        'password': res['userPassword']  //password
-                    };
-                    responseCallback(responseData);
-                });
-
-                bridge.registerHandlerForSwift('scanToConnect', function (receiveData, responseCallback){
-                    if('deviceName' in receiveData) {
-                        robotController.connectWithDeviceName(receiveData['deviceName']);
-                    }
-                    else{
-                        alert("连接代码错误，请联系主办方解决。");
-                    }
-                })
-            });
-        }).then(function() {
+    }).then(function() {
+    //     connectToSwiftWebViewBridge(function (bridge) {
+    //         bridge.init(function (message, responseCallback) {
+    //             log('Got a message from swift', message);
+    //             var responseData = {
+    //                 'response': 'received'
+    //             };
+    //             responseCallback(responseData);
+    //         });
+    //
+    //         bridge.registerHandlerForSwift('loginWith', function (receiveData, responseCallback) {
+    //             userController.loginWith(receiveData.accountName, receiveData.password);
+    //             var responseData = {
+    //                 'response': 'success'
+    //             };
+    //             responseCallback(responseData);
+    //         });
+    //
+    //         bridge.registerHandlerForSwift('loginWithCreate', function (receiveData, responseCallback) {
+    //             userController.loginWithCreate(receiveData['accountName'], receiveData['userName'],
+    //                 receiveData['role'], receiveData['userEmail'], receiveData['youngerThen14']);
+    //             var responseData = {
+    //                 'accountName': res['userAccountName'], //accountName
+    //                 'password': res['userPassword']  //password
+    //             };
+    //             responseCallback(responseData);
+    //         });
+    //
+    //         bridge.registerHandlerForSwift('scanToConnect', function (receiveData, responseCallback){
+    //             if('deviceName' in receiveData) {
+    //                 robotController.connectWithDeviceName(receiveData['deviceName']);
+    //             }
+    //             else if('deviceCode' in receiveData){
+    //                 robotController.setTokenWithoutModal(receiveData['deviceCode']);
+    //             }
+    //             else{
+    //                 alert("连接代码错误，请联系主办方解决。");
+    //             }
+    //         })
+    //     });
+    // }).then(function() {
             barMenuController.init();
             galleryListController.init();
             progListController.init();
@@ -231,7 +233,12 @@ function init() {
                 }
             });
             $(".pace").fadeOut(500);
-        });
+        }
+    ).then(
+            function(){
+                window.webkit.messageHandlers.requireLogin.postMessage("Require to login.");
+            }
+    );
 }
 
 /**
