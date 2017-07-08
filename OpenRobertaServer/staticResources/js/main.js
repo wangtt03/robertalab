@@ -17,6 +17,7 @@ require.config({
         'volume-meter' : 'sound/volume-meter',
         'bootstrap.wysiwyg' : 'bootstrap/bootstrap-3.3.1-dist/dist/js/bootstrap-wysiwyg.min',
         'socket.io' : 'socket.io/socket.io',
+        'slick' : '../../vendor/slick/slick',
 
         'barMenu.controller': '../app/roberta/controller/barMenu.controller',
         'confDelete.controller' : '../app/roberta/controller/confDelete.controller',
@@ -112,12 +113,15 @@ require.config({
         'jquery-cookie' : {
             deps : [ 'jquery' ]
         },
+        'slick' : {
+            deps: [ 'jquery' ]
+        }
     }
 });
 
 require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', 'progList.controller', 'logList.controller', 'confList.controller', 'lessonList.controller', 'barMenu.controller',
         'progDelete.controller', 'confDelete.controller', 'progShare.controller', 'menu.controller', 'user.controller', 'robot.controller',
-        'program.controller', 'configuration.controller', 'language.controller', 'socket.controller', 'volume-meter' ], function(require) {
+        'program.controller', 'configuration.controller', 'language.controller', 'socket.controller', 'volume-meter' , 'slick'], function(require) {
 
     $ = require('jquery', 'jquery-cookie');
     WRAP = require('wrap');
@@ -228,9 +232,12 @@ function init() {
 
             //console.log(robotList);
             $(".cover").fadeOut(100, function() {
-                if (guiStateController.noCookie()) {
-                    $("#show-startup-message").modal("show");
-                }
+                //if (guiStateController.noCookie()) {
+                //    $("#show-startup-message").modal("show");
+                //}
+
+                // TEST!!!
+                robotController.switchRobot('ev3dev', true);
             });
             $(".pace").fadeOut(500);
         }

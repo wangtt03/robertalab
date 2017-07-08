@@ -164,11 +164,11 @@ now, now, now, now,
  );
 commit;
 
-INSERT INTO LESSON VALUES(1,'lesson1','http://www.baidu.com',NULL,'https://www.baidu.com/img/bd_logo1.png','http://www.baidu.com');
+INSERT INTO LESSON VALUES(1,'lesson1','../guide/lesson-1/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/lesson-1/index.html');
 commit;
-INSERT INTO LESSON VALUES(2,'lesson2','http://www.baidu.com',NULL,'https://www.baidu.com/img/bd_logo1.png','http://www.baidu.com');
+INSERT INTO LESSON VALUES(2,'lesson2','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html');
 commit;
-INSERT INTO LESSON VALUES(3,'lesson3','http://www.baidu.com',NULL,'https://www.baidu.com/img/bd_logo1.png','http://www.baidu.com');
+INSERT INTO LESSON VALUES(3,'lesson3','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html');
 commit;
 
 INSERT INTO DEVICE VALUES(1,'device1','EV3','abcdefgh');

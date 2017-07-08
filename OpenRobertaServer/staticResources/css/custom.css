@@ -90,3 +90,16 @@
 .lesson-img {
     height: 80%;
 }
+
+.doc-img{
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+}
+
+.doc-alert{
+    text-align: center;
+    top: 40%;
+    position: relative;
+}
