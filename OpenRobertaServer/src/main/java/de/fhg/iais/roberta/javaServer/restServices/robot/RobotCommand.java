@@ -2,6 +2,9 @@ package de.fhg.iais.roberta.javaServer.restServices.robot;
 
 import com.google.inject.Inject;
 import de.fhg.iais.roberta.javaServer.provider.OraData;
+import de.fhg.iais.roberta.persistence.DeviceProcessor;
+import de.fhg.iais.roberta.persistence.bo.Device;
+import de.fhg.iais.roberta.persistence.dao.DeviceDao;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.robotCommunication.RobotCommunicationData;
 import de.fhg.iais.roberta.robotCommunication.RobotCommunicator;
@@ -62,17 +65,26 @@ public class RobotCommand {
         String batteryvoltage = requestEntity.optString("battery", "");
         String menuversion = requestEntity.optString("menuversion", "");
         String firmwareversion = requestEntity.optString("firmwareversion");
+
+        String deviceName = requestEntity.optString("devicename", "");
+
         firmwareversion = firmwareversion == null ? requestEntity.optString("lejosversion", "") : firmwareversion;
         int nepoExitValue = requestEntity.optInt("nepoexitvalue", 0);
         // TODO: validate version here!
         JSONObject response;
         switch ( cmd ) {
             case CMD_REGISTER:
+
+                DeviceDao dao = new DeviceDao(dbSession);
+                Device device = new Device(brickname, deviceName, token);
+                dao.persistDevice(device);
+
                 LOG.info("Robot [" + macaddr + "] token " + token + " received for registration");
                 // LOG.info("Robot [" + macaddr + "] token " + token + " received for registration, user-agent: " + this.servletRequest.getHeader("User-Agent"));
                 RobotCommunicationData state =
                     new RobotCommunicationData(token, robot, macaddr, brickname, batteryvoltage, menuversion, firmwarename, firmwareversion);
                 boolean result = this.brickCommunicator.brickWantsTokenToBeApproved(state);
+
                 response = new JSONObject().put("response", result ? "ok" : "error").put("cmd", result ? CMD_REPEAT : CMD_ABORT);
                 return Response.ok(response).build();
             case CMD_PUSH:

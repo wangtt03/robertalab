@@ -42,6 +42,8 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.controller', 'guiState.m
         });
     }
 
+    exports.getToken = getToken;
+
     /**
      * Set token
      * 

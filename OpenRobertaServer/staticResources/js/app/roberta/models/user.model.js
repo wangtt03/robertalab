@@ -53,14 +53,15 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
      * @param successFn
      *            {Function} - execute the function if success
      */
-    function loginWithCreate(accountName, userName, role, userEmail, youngerThen14, successFn){
+    function loginWithCreate(accountName, userName, role, userEmail, youngerThen14, deviceName, successFn){
         COMM.json("/user", {
             "cmd": "loginWithCreate",
             "accountName" : accountName,
             "userName" : userName,
             "role" : role,
             "userEmail" : userEmail,
-            "youngerThen14" : youngerThen14
+            "youngerThen14" : youngerThen14,
+            "deviceName" : deviceName
         }, successFn, "login with create user '" + accountName + "'");
     }
 

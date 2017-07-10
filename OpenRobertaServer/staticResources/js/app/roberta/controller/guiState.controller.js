@@ -168,7 +168,7 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
                 $('#head-navi-icon-robot').removeClass('busy');
                 $('#head-navi-icon-robot').removeClass('wait');
                 $('#head-navi-icon-robot').addClass('error');
-                GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                // GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
                 $('#menuRunProg').parent().addClass('disabled');
             }
             break;

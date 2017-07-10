@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import de.fhg.iais.roberta.persistence.dao.UserDeviceRelationDao;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
@@ -137,25 +138,31 @@ public class ClientUser {
                 Util.addResultInfo(response, up);
 
             } else if ( cmd.equals("loginWithCreate") ) {
-                String account = request.getString("accountName");
+                String accountName = request.getString("accountName");
                 String userName = request.getString("userName");
                 // String token = request.getString("token");
                 String role = request.getString("role");
                 String email = request.getString("userEmail");
                 boolean youngerThen14 = Boolean.parseBoolean(request.getString("youngerThen14"));
-                User user = up.getUser(account);
+                String deviceName = request.optString("deviceName", "");
+                User user = up.getUser(accountName);
                 if (user == null){
-                    up.createUser(account, "12345678", userName, role, email, null, youngerThen14);
+                    up.createUser(accountName, "12345678", userName, role, email, null, youngerThen14);
                     Util.addResultInfo(response, up);
                     if ( !up.isOk() ) {
                         Util.addFrontendInfo(response, httpSessionState, this.brickCommunicator);
                         MDC.clear();
                         return Response.ok(response).build();
                     }
-                    user = up.getUser(account);
+                    user = up.getUser(accountName);
                 }
                 else{
                     // Put response here.
+                }
+
+                if (deviceName.length() > 0){
+                    UserDeviceRelationDao userDeviceRelationDao = new UserDeviceRelationDao(dbSession);
+                    userDeviceRelationDao.persistUserDeviceRelation(accountName, deviceName);
                 }
 
                 // Generate random password
@@ -169,11 +176,11 @@ public class ClientUser {
                 user.setLastLogin();
                 response.put("userId", id);
                 response.put("userRole", user.getRole());
-                response.put("userAccountName", account);
+                response.put("userAccountName", accountName);
                 response.put("userName", name);
                 response.put("isAccountActivated", user.isActivated());
                 response.put("userPassword", password);
-                ClientUser.LOG.info("login: user {} (id {}) logged in", account, id);
+                ClientUser.LOG.info("login: user {} (id {}) logged in", accountName, id);
                 AliveData.rememberLogin();
                 Util.addResultInfo(response, up);
 
