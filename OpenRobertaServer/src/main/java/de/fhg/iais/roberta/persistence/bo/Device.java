@@ -29,6 +29,21 @@ public class Device implements WithSurrogateId{
     @Column(name = "CODE")
     private String code;
 
+    protected Device(){
+
+    }
+
+    public Device(String type, String name, String code){
+        if(type.equals("ev3dev")) {
+            this.type = DeviceType.EV3;
+        }
+        else{
+            this.type = DeviceType.EV3;
+        }
+        this.name = name;
+        this.code = code;
+    }
+
     @Override
     public int getId() {
         return id;

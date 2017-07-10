@@ -73,7 +73,14 @@ public class DeviceDao extends AbstractDao<Device> {
     }
 
     public Device persistDevice(Device device) {
+        Query hql = this.session.createQuery("from Device where name=:name");
+        hql.setString("name", device.getName());
+        List<Device> il = hql.list();
+        for (int i = 0; i < il.size(); i++){
+            this.session.delete(il.get(i));
+        }
         this.session.save(device);
+        this.session.commit();
         return device;
     }
 

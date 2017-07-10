@@ -16,7 +16,7 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
     function initView() {
         $('#helpContent').remove();
         var url = '../help/progHelp_' + GUISTATE_C.getRobotGroup() + '_' + GUISTATE_C.getLanguage().toLowerCase() + '.html';
-        url = '../help/HelloWorld.html';
+        url = '../guide/index.html';
         $('#helpDiv').load(url, function(response, status, xhr) {
             if (status == "error") {
                 url = '../help/progHelp_' + GUISTATE_C.getRobotGroup() + '_en.html';
@@ -33,6 +33,25 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
         });
     }
     exports.initView = initView;
+
+    function initViewWithUrl(url) {
+        $('#helpContent').remove();
+        $('#helpDiv').load(url, function(response, status, xhr) {
+            if (status == "error") {
+                url = '../help/progHelp_' + GUISTATE_C.getRobotGroup() + '_en.html';
+                $('#helpDiv').load(url, function(response, status, xhr) {
+                    if (status == "error") {
+                        $('#progHelp').hide();
+                    } else {
+                        $('#progHelp').show();
+                    }
+                })
+            } else {
+                $('#progHelp').show();
+            }
+        });
+    }
+    exports.initViewWithUrl = initViewWithUrl;
 
     function initEvents() {
         $('#progHelp').off('click touchend');
@@ -84,7 +103,7 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
                 width = 52;
             } else {
                 smallScreen = false;
-                width = $('#blocklyDiv').width() * 0.7;
+                width = $('#blocklyDiv').width() * 0.1;
             }
             $('#progHelp').animate({
                 right : $('#blocklyDiv').width() - width + 4,

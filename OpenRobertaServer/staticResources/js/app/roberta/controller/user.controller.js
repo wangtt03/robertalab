@@ -1,5 +1,5 @@
-define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller', 'jquery', 'blocks', 'blocks-msg' ], function(exports, LOG, MSG, UTIL, USER,
-        GUISTATE_C, $, Blockly) {
+define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller', 'guiState.model', 'jquery', 'blocks', 'blocks-msg' ], function(exports, LOG, MSG, UTIL, USER,
+        GUISTATE_C, GUISTATE, $, Blockly) {
 
     var $divForms;
     var $formLogin;
@@ -150,10 +150,11 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
 
     exports.loginWith = loginWith;
 
-    function loginWithCreate(accountName, userName, role, userEmail, youngerThen14){
-        USER.loginWithCreate(accountName, userName, role, userEmail, youngerThen14, function (result) {
+    function loginWithCreate(accountName, userName, role, userEmail, youngerThen14, deviceName){
+        USER.loginWithCreate(accountName, userName, role, userEmail, youngerThen14, deviceName, function (result) {
             console.log(result);
             GUISTATE_C.setLogin(result);
+            GUISTATE.gui.blocklyWorkspace.robControls.enable('runOnBrick');
             MSG.displayInformation(result, "MESSAGE_USER_LOGIN", result.message, GUISTATE_C.getUserName());
             return {"userAccountName": result.userAccountName, "userPassword": result.userPassword};
         });

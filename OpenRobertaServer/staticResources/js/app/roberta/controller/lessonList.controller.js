@@ -1,11 +1,12 @@
-define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonList.model', 'program.model', 'program.controller', 'blocks-msg', 'jquery', 'bootstrap-table' ], function(require, exports, LOG, UTIL, COMM, PROGLIST, LESSONLIST, PROGRAM, PROGRAM_C, Blockly, $) {
+define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonList.model', 'program.model', 'program.controller',  'progHelp.controller', 'blocks-msg', 'jquery', 'bootstrap-table' ], function(require, exports, LOG, UTIL, COMM, PROGLIST, LESSONLIST, PROGRAM, PROGRAM_C, PROGHELP_C, Blockly, $) {
 
     /**
      * Initialize table of programs
      */
+    var lessonData;
+
     function init() {
         initProgList();
-        initProgListEvents();
         LOG.info('init lesson list view');
     }
     exports.init = init;
@@ -22,9 +23,8 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonL
 
     function initProgList() {
         LESSONLIST.loadLessonList(function (result) {
-            var lessonData = result.data;
+            lessonData = result.data;
             var proto = $('#lesson-example');
-            console.log(lessonData.length);
             for (var i = 0; i < lessonData.length; i++) {
                 var clone = proto.clone().prop('id', 'lesson-' + i.toString());
                 clone.find('span:eq( 1 )').text(lessonData[i].name);
@@ -32,13 +32,16 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonL
                 $(".lesson-select-container").append(clone);
             }
             proto.remove();
+            initProgListEvents();
         });
     }
 
     function initProgListEvents() {
-        function update(result) {
-
-        }
+        $('.lesson-item-container').onWrap('click', function(event){
+            var lessonId = parseInt(event.currentTarget.id.substring("lesson-".length));
+            PROGHELP_C.initViewWithUrl(lessonData[lessonId].docurl);
+            hideLessonMenu();
+        }, 'lesson selected');
     }
 
 });
