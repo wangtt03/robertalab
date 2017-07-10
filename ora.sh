@@ -172,9 +172,9 @@ serverVersion=$(java -cp OpenRobertaServer/target/resources/\* de.fhg.iais.rober
 case "$cmd" in
 --export)         _exportApplication $* ;;
 
---start-from-git) java -cp OpenRobertaServer/target/resources/\* de.fhg.iais.roberta.main.ServerStarter -d database.mode=embedded $* ;;
+--start-from-git) java -cp OpenRobertaServer/target/resources/\* de.fhg.iais.roberta.main.ServerStarter -d database.mode=mysql $* ;;
 
---debug) java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp OpenRobertaServer/target/resources/\* de.fhg.iais.roberta.main.ServerStarter -d database.mode=embedded $* ;;
+--debug) java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -cp OpenRobertaServer/target/resources/\* de.fhg.iais.roberta.main.ServerStarter -d database.mode=mysql $* ;;
 
 --sqlclient)      dir="OpenRobertaServer/target/resources"
                   databaseurl=$1
