@@ -23,25 +23,52 @@ public class Device implements WithSurrogateId{
     @Column(name = "TYPE")
     private DeviceType type;
 
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "DEVICE_NAME")
+    private String deviceName;
 
-    @Column(name = "CODE")
-    private String code;
+    @Column(name = "TOKEN")
+    private String token;
+
+    @Column(name = "FIRMWARE_NAME")
+    private String firmwareName;
+
+    @Column(name = "MENU_VERSION")
+    private String menuVersion;
+
+    @Column(name = "BATTERY")
+    private String battery;
+
+    @Column(name = "FIRMWARE_VERSION")
+    private String firmwareVersion;
+
+    @Column(name = "BRICK_NAME")
+    private String brickName;
+
+    @Column(name = "MACADDR")
+    private String macAddr;
+
 
     protected Device(){
 
     }
 
-    public Device(String type, String name, String code){
-        if(type.equals("ev3dev")) {
+    public Device(String deviceName, String token, String firmwareName, String menuVersion, String battery,
+                  String firmwareVersion, String brickName, String macAddr){
+        this.deviceName = deviceName;
+        this.token = token;
+        this.firmwareName = firmwareName;
+        this.menuVersion = menuVersion;
+        this.battery = battery;
+        this.firmwareVersion = firmwareVersion;
+        this.brickName = brickName;
+        this.macAddr = macAddr;
+
+        if(brickName.equals("ev3dev")) {
             this.type = DeviceType.EV3;
         }
         else{
             this.type = DeviceType.EV3;
         }
-        this.name = name;
-        this.code = code;
     }
 
     @Override
@@ -61,19 +88,67 @@ public class Device implements WithSurrogateId{
         this.type = type;
     }
 
-    public String getName() {
-        return name;
+    public String getDeviceName() {
+        return deviceName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
     }
 
-    public String getCode() {
-        return code;
+    public String getToken() {
+        return token;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getFirmwareName(){
+        return this.firmwareName;
+    }
+
+    public void setFirmwareName(String firmwareName){
+        this.firmwareName = firmwareName;
+    }
+
+    public String getMenuVersion(){
+        return this.menuVersion;
+    }
+
+    public void setMenuVersion(String menuVersion){
+        this.menuVersion = menuVersion;
+    }
+
+    public String getBattery(){
+        return this.battery;
+    }
+
+    public void setBattery(String battery){
+        this.battery = battery;
+    }
+
+    public String getFirmwareVersion(){
+        return this.firmwareVersion;
+    }
+
+    public void setFirmwareVersion(String firmwareVersion){
+        this.firmwareVersion = firmwareVersion;
+    }
+
+    public String getBrickName(){
+        return this.brickName;
+    }
+
+    public void setBrickName(String brickName){
+        this.brickName = brickName;
+    }
+
+    public String getMacAddr(){
+        return this.macAddr;
+    }
+
+    public void setMacAddr(String macAddr){
+        this.macAddr = macAddr;
     }
 }

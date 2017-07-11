@@ -1,6 +1,6 @@
-define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'program.model', 'prettify', 'robot.controller', 'socket.controller',
-        'progHelp.controller', 'progInfo.controller', 'progCode.controller', 'progSim.controller', 'lessonList.controller', 'blocks', 'jquery', 'jquery-validate', 'blocks-msg' ], function(
-        exports, COMM, MSG, LOG, UTIL, GUISTATE_C, PROGRAM, Prettify, ROBOT_C, SOCKET_C, HELP_C, INFO_C, CODE_C, SIM_C, LESSON_C, Blockly, $) {
+define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'guiState.model', 'program.model', 'prettify', 'robot.controller', 'socket.controller',
+        'progHelp.controller', 'progInfo.controller', 'progCode.controller', 'progSim.controller', 'user.controller', 'lessonList.controller', 'blocks', 'jquery', 'jquery-validate', 'blocks-msg' ], function(
+        exports, COMM, MSG, LOG, UTIL, GUISTATE_C, GUISTATE, PROGRAM, Prettify, ROBOT_C, SOCKET_C, HELP_C, INFO_C, CODE_C, SIM_C, USER_C, LESSON_C, Blockly, $) {
 
     var $formSingleModal;
 
@@ -449,6 +449,31 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
     exports.exportXml = exportXml;
 
     /**
+     * Make sure robot is connected before run programs.
+     *
+     * Return Value: "ready", "busy", "error"
+     */
+    function connectBeforeRunOnBrick(runOnBrickFn) {
+        var robotState = GUISTATE_C.getRobotState();
+        if (robotState === "wait"){
+            runOnBrickFn();
+        }
+        else if (robotState === "busy"){
+            MSG.displayMessage("POPUP_ROBOT_NOT_CONNECTED", "POPUP", "");
+        }
+        else{
+            // Indicates that the robot is disconnected, will attempt to connect.
+            USER_C.getDeviceNameByAccountName(GUISTATE_C.getUserAccountName(), function (deviceName) {
+                ROBOT_C.getDevice(deviceName, function(deviceInfo){
+                    ROBOT_C.switchRobot(deviceInfo['brickName'], true);
+                    ROBOT_C.setTokenWithoutModal(deviceInfo['token'], runOnBrickFn);
+                });
+            });
+        }
+    }
+    exports.connectBeforeRunOnBrick = connectBeforeRunOnBrick;
+
+    /**
      * Start the program on the brick
      */
     function runOnBrick() {
@@ -470,19 +495,26 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
 
         switch (GUISTATE_C.getConnection()) {
         case 'token':
-            PROGRAM.runOnBrick(GUISTATE_C.getProgramName(), GUISTATE_C.getConfigurationName(), xmlTextProgram, xmlTextConfiguration, function(result) {
-                GUISTATE_C.setState(result);
-                if (result.rc == "ok") {
-                    MSG.displayMessage("MESSAGE_EDIT_START", "TOAST", GUISTATE_C.getProgramName());
-                } else {
-                    MSG.displayInformation(result, "", result.message, "");
-                }
-                reloadProgram(result);
+            connectBeforeRunOnBrick( function(){
+                GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                setTimeout(function () {
+                    GUISTATE.gui.blocklyWorkspace.robControls.enable('runOnBrick');
+                    PROGRAM.runOnBrick(GUISTATE_C.getProgramName(), GUISTATE_C.getConfigurationName(), xmlTextProgram, xmlTextConfiguration, function (result) {
+                        GUISTATE_C.setState(result);
+                        if (result.rc == "ok") {
+                            MSG.displayMessage("MESSAGE_EDIT_START", "TOAST", GUISTATE_C.getProgramName());
+                        } else {
+                            MSG.displayInformation(result, "", result.message, "");
+                        }
+                        reloadProgram(result);
+                    });
+                }, 2000);
             });
             break;
         case 'autoConnection':
             GUISTATE_C.setAutoConnectedBusy(true);
             PROGRAM.runOnBrickBack(GUISTATE_C.getProgramName(), GUISTATE_C.getConfigurationName(), xmlTextProgram, xmlTextConfiguration, function(result) {
+                sleep(1000);
                 GUISTATE_C.setState(result);
                 if (result.rc == "ok") {
                     if (GUISTATE_C.isProgramToDownload()) {

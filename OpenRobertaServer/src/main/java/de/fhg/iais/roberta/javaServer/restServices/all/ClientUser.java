@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import de.fhg.iais.roberta.persistence.DeviceProcessor;
 import de.fhg.iais.roberta.persistence.dao.UserDeviceRelationDao;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
@@ -288,7 +289,15 @@ public class ClientUser {
                 up.deleteUser(account, password);
                 Util.addResultInfo(response, up);
 
-            } else {
+            } else if ( cmd.equals("getDeviceNameByAccountName") && httpSessionState.isUserLoggedIn()){
+                String account = request.getString("accountName");
+                UserDeviceRelationDao userDeviceRelationDao = new UserDeviceRelationDao(dbSession);
+                String deviceName = userDeviceRelationDao.getDeviceNameByAccountName(account);
+                if (deviceName != null && deviceName.trim().length() != 0){
+                    response.put("deviceName", deviceName);
+                }
+            }
+            else {
                 ClientUser.LOG.error("Invalid command: " + cmd);
                 Util.addErrorInfo(response, Key.COMMAND_INVALID);
             }

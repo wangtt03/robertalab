@@ -645,4 +645,17 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
         validateLostPassword();
     }
     exports.initValidationMessages = initValidationMessages;
+
+    /*
+     * Return value:
+     *
+     */
+    function getDeviceNameByAccountName(accountName, successFn){
+        USER.getDeviceNameByAccountName(accountName, function(result){
+            if("deviceName" in result){
+                successFn(result["deviceName"]);
+            }
+        });
+    }
+    exports.getDeviceNameByAccountName = getDeviceNameByAccountName;
 });

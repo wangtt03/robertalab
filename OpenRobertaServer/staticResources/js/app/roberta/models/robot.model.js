@@ -40,14 +40,14 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
      * @param successFn
      *            {Function} - function to deal with return value
      */
-    function getToken(deviceName, successFn) {
+    function getDevice(deviceName, successFn) {
         COMM.json("/admin", {
-            "cmd": "getToken",
+            "cmd": "getDevice",
             "deviceName": deviceName
-        }, successFn, "get token of device '" + deviceName + "'");
+        }, successFn, "get token of device name: '" + deviceName + "'");
     }
 
-    exports.getToken = getToken;
+    exports.getDevice = getDevice;
 
     /**
      * Set robot type

@@ -28,16 +28,7 @@ public class DeviceProcessor extends AbstractProcessor {
         if (device == null) {
             return null;
         }
-
-        JSONObject object = new JSONObject();
-        try {
-            object.put("id", device.getId());
-            object.put("name", device.getName());
-            object.put("code", device.getCode());
-        } catch (JSONException e) {
-            LOG.error("error when get device by id: " + e);
-        }
-        return object;
+        return putObjectIntoJSON(device);
     }
 
     public JSONObject getDeviceByName(String deviceName){
@@ -46,13 +37,23 @@ public class DeviceProcessor extends AbstractProcessor {
         if (device == null) {
             return null;
         }
+        return putObjectIntoJSON(device);
+    }
 
+    private JSONObject putObjectIntoJSON(Device device){
         JSONObject object = new JSONObject();
         try {
             object.put("id", device.getId());
-            object.put("name", device.getName());
-            object.put("code", device.getCode());
-        } catch (JSONException e) {
+            object.put("deviceName", device.getDeviceName());
+            object.put("token", device.getToken());
+            object.put("firmwareName", device.getFirmwareName());
+            object.put("menuVersion", device.getMenuVersion());
+            object.put("battery", device.getBattery());
+            object.put("firmwareVersion", device.getFirmwareVersion());
+            object.put("brickName", device.getBrickName());
+            object.put("macAddr", device.getMacAddr());
+        }
+        catch (JSONException e){
             LOG.error("error when get device by id: " + e);
         }
         return object;

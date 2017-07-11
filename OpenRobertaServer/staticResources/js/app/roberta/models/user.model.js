@@ -277,4 +277,22 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
     }
 
     exports.deleteUserOnServer = deleteUserOnServer;
+
+    /**
+     * Get Device Name by Account Name
+     *
+     * @param accountName
+     *              {String} - account name
+     * @param successFn
+     *              {Function} - function after execution
+     */
+    function getDeviceNameByAccountName(accountName, successFn) {
+        COMM.json("/user", {
+            "cmd" : "getDeviceNameByAccountName",
+            "accountName" : accountName
+        }, successFn, "get device name of account: " + accountName);
+    }
+
+    exports.getDeviceNameByAccountName = getDeviceNameByAccountName;
+
 });

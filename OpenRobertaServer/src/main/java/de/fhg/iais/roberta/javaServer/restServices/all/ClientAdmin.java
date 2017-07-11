@@ -115,7 +115,7 @@ public class ClientAdmin {
                 } else {
                     Util.addErrorInfo(response, Key.ROBOT_NOT_CONNECTED);
                 }
-            } else if ( cmd.equals("getToken") ){
+            } else if ( cmd.equals("getDevice") ){
                 LOG.info("try to get device code by id: " + fullRequest);
                 String deviceName = request.getString("deviceName");
                 if ( deviceName != null && deviceName.trim().length() != 0 ) {
@@ -129,7 +129,8 @@ public class ClientAdmin {
                     LOG.error("no device id specified.");
                     Util.addErrorInfo(response, Key.ROBOT_GET_TOKEN_ERROR);
                 }
-            }else if ( cmd.equals("setRobot") ) {
+            }
+            else if ( cmd.equals("setRobot") ) {
                 String robot = request.getString("robot");
                 if ( robot != null && RobertaProperties.getRobotWhitelist().contains(robot) ) {
                     Util.addSuccessInfo(response, Key.ROBOT_SET_SUCCESS);

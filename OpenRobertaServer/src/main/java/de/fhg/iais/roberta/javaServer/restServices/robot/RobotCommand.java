@@ -76,7 +76,8 @@ public class RobotCommand {
             case CMD_REGISTER:
 
                 DeviceDao dao = new DeviceDao(dbSession);
-                Device device = new Device(brickname, deviceName, token);
+                Device device = new Device(deviceName, token, firmwarename, menuversion, batteryvoltage,
+                        firmwareversion, brickname, macaddr);
                 dao.persistDevice(device);
 
                 LOG.info("Robot [" + macaddr + "] token " + token + " received for registration");

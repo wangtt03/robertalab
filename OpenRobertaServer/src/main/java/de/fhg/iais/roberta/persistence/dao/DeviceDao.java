@@ -54,7 +54,7 @@ public class DeviceDao extends AbstractDao<Device> {
 
     public Device loadByName(String name) {
         Assert.notNull(name);
-        Query hql = this.session.createQuery("from Device where name=:name");
+        Query hql = this.session.createQuery("from Device where deviceName=:name");
         hql.setString("name", name);
         @SuppressWarnings("unchecked")
         List<Device> il = hql.list();
@@ -73,8 +73,8 @@ public class DeviceDao extends AbstractDao<Device> {
     }
 
     public Device persistDevice(Device device) {
-        Query hql = this.session.createQuery("from Device where name=:name");
-        hql.setString("name", device.getName());
+        Query hql = this.session.createQuery("from Device where deviceName=:name");
+        hql.setString("name", device.getDeviceName());
         List<Device> il = hql.list();
         for (int i = 0; i < il.size(); i++){
             this.session.delete(il.get(i));
