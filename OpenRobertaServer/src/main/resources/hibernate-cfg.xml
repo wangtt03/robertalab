@@ -9,11 +9,18 @@
         <property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 -->
-        <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
-        <property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
-        <property name="connection.url">the connection.url is defined in the openRoberta-properties-file and retrieved from the parent pom</property>
-        <property name="connection.username">orA</property> <!-- openRoberta admin -->
-        <property name="connection.password">Pid</property>
+        <!--<property name="dialect">org.hibernate.dialect.HSQLDialect</property>-->
+        <!--<property name="connection.driver_class">org.hsqldb.jdbcDriver</property>-->
+        <!--<property name="connection.url">the connection.url is defined in the openRoberta-properties-file and retrieved from the parent pom</property>-->
+        <!--<property name="connection.username">orA</property> &lt;!&ndash; openRoberta admin &ndash;&gt;-->
+        <!--<property name="connection.password">Pid</property>-->
+        <!--<property name="connection.autocommit">false</property>-->
+
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/robertalab</property>
+        <property name="connection.username">root</property> <!-- openRoberta admin -->
+        <property name="connection.password">wangtian</property>
         <property name="connection.autocommit">false</property>
 
         <property name="c3p0.min_size">5</property>

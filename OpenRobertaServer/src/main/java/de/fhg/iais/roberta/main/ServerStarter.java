@@ -215,6 +215,8 @@ public class ServerStarter {
             dbUrl = "jdbc:hsqldb:file:" + databaseParentDir + "/db-" + serverVersion + "/openroberta-db";
         } else if ( "server".equals(databaseMode) ) {
             dbUrl = "jdbc:hsqldb:hsql://localhost/openroberta-db";
+        } else if ("mysql".equals(databaseMode)){
+            dbUrl = properties.getProperty("database.url");
         } else {
             throw new DbcException("invalid database mode (use either embedded or server): " + databaseMode);
         }
