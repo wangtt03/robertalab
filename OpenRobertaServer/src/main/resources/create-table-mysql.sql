@@ -79,14 +79,18 @@ create table LESSON (
   primary key (ID)
 );
 
-create table DEVICE (
-  ID INTEGER not null AUTO_INCREMENT,
-  NAME varchar(255) not null,
-  TYPE varchar(255),
-  CODE varchar(255),
-
-  primary key (ID)
-);
+CREATE TABLE DEVICE (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `DEVICE_NAME` VARCHAR(255) NOT NULL,
+  `TYPE` VARCHAR(255) NULL,
+  `TOKEN` VARCHAR(255) NULL,
+  `FIRMWARE_NAME` VARCHAR(255) NULL,
+  `MENU_VERSION` VARCHAR(255) NULL,
+  `BATTERY` VARCHAR(255) NULL,
+  `FIRMWARE_VERSION` VARCHAR(255) NULL,
+  `BRICK_NAME` VARCHAR(255) NULL,
+  `MACADDR` VARCHAR(255) NULL,
+  PRIMARY KEY (`ID`));
 
 create table USER_PROGRAM (
   ID INTEGER not null AUTO_INCREMENT,
@@ -137,6 +141,12 @@ create table CONFIGURATION (
   foreign key (ROBOT_ID) references ROBOT(ID)
 );
 
+CREATE TABLE USER_DEVICE_RELATION (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `ACCOUNT_NAME` VARCHAR(255) NOT NULL,
+  `DEVICE_NAME` VARCHAR(255) NULL,
+  PRIMARY KEY (`ID`));
+
 insert into ROBOT
 ( NAME, CREATED, TAGS, ICON_NUMBER )
 values('ev3',
@@ -157,14 +167,9 @@ values ('Gallery','f17a0084220e822e:313c4eda282166163f78cd0b13da3b66f5ed6a0e',''
 );
 commit;
 
-INSERT INTO LESSON VALUES(1,'lesson1','http://www.baidu.com',NULL,'https://www.baidu.com/img/bd_logo1.png','http://www.baidu.com');
+INSERT INTO LESSON VALUES(1,'lesson1','../guide/lesson-1/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/lesson-1/index.html');
 commit;
-INSERT INTO LESSON VALUES(2,'lesson2','http://www.baidu.com',NULL,'https://www.baidu.com/img/bd_logo1.png','http://www.baidu.com');
+INSERT INTO LESSON VALUES(2,'lesson2','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html');
 commit;
-INSERT INTO LESSON VALUES(3,'lesson3','http://www.baidu.com',NULL,'https://www.baidu.com/img/bd_logo1.png','http://www.baidu.com');
-commit;
-
-INSERT INTO DEVICE VALUES(1,'device1','EV3','abcdefgh');
-commit;
-INSERT INTO DEVICE VALUES(2,'device2','EV3','12345678');
+INSERT INTO LESSON VALUES(3,'lesson3','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html');
 commit;
