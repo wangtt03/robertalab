@@ -68,16 +68,17 @@ create table PROGRAM (
 
 create unique index progNameOwnerRobotIdx on PROGRAM(NAME, OWNER_ID, ROBOT_ID);
 
-create table LESSON (
-  ID INTEGER not null AUTO_INCREMENT,
-  NAME varchar(255) not null,
-  DOCURL varchar(255),
-  LEVEL varchar(255),
-  THUMBNAIL varchar(255),
-  PRGURL varchar(255),
-
-  primary key (ID)
+CREATE TABLE LESSON (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `NAME` VARCHAR(255) NOT NULL,
+  `DOCURL` VARCHAR(255) NULL,
+  `LEVEL` VARCHAR(255) NULL,
+  `THUMBNAIL` VARCHAR(255) NULL,
+  `PRGURL` VARCHAR(255) NULL,
+  `DEVICETYPE` VARCHAR(255) NULL,
+  PRIMARY KEY (`ID`)
 );
+
 
 CREATE TABLE DEVICE (
   `ID` INT NOT NULL AUTO_INCREMENT,
@@ -162,14 +163,14 @@ values ('Roberta','f17a0084220e822e:313c4eda282166163f78cd0b13da3b66f5ed6a0e',''
 commit;
 
 insert into USER
-(ACCOUNT, PASSWORD, EMAIL, ROLE, CREATED, LAST_LOGIN, TAGS, USER_NAME)
+(ACCOUNT, PASSWORD, EMAIL, ROLE, CREATED, LAST_LOGIN, `TAGS, USER_NAME)
 values ('Gallery','f17a0084220e822e:313c4eda282166163f78cd0b13da3b66f5ed6a0e','','TEACHER',now() ,now() ,'','The Gallery'
 );
 commit;
 
-INSERT INTO LESSON VALUES(1,'lesson1','../guide/lesson-1/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/lesson-1/index.html');
+INSERT INTO LESSON VALUES(1,'lesson1','../guide/lesson-1/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/lesson-1/index.html', 'ev3dev');
 commit;
-INSERT INTO LESSON VALUES(2,'lesson2','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html');
+INSERT INTO LESSON VALUES(2,'lesson2','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html', 'ev3dev');
 commit;
-INSERT INTO LESSON VALUES(3,'lesson3','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html');
+INSERT INTO LESSON VALUES(3,'lesson3','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html', 'ev3dev');
 commit;

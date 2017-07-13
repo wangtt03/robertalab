@@ -36,10 +36,10 @@ public class LessonProcessor extends AbstractProcessor {
                 lessonJson.put("docurl", lesson.getDocUrl());
                 lessonJson.put("thumbnail", lesson.getThumbnail());
                 lessonJson.put("prgurl", lesson.getProgramUrl());
+                lessonJson.put("deviceType", lesson.getDeviceType());
             } catch (JSONException e) {
 
             }
-
             programInfos.put(lessonJson);
         }
 

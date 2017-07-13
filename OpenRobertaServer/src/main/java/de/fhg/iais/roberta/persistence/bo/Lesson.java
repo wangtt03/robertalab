@@ -35,6 +35,9 @@ public class Lesson implements WithSurrogateId{
     @Column(name = "LEVEL")
     private LessonLevel level;
 
+    @Column(name = "DEVICETYPE")
+    private String deviceType;
+
     protected Lesson(){
 
     }
@@ -92,6 +95,14 @@ public class Lesson implements WithSurrogateId{
         this.level = level;
     }
 
+    public String getDeviceType(){
+        return deviceType;
+    }
+
+    public void setDeviceType(String deviceType){
+        this.deviceType = deviceType;
+    }
+
     @Override
     public String toString() {
         return "Lesson{" +
@@ -100,7 +111,8 @@ public class Lesson implements WithSurrogateId{
                 ", thumbnail='" + thumbnail + '\'' +
                 ", docUrl='" + docUrl + '\'' +
                 ", programUrl='" + programUrl + '\'' +
-                ", level=" + level +
+                ", level=" + level + '\'' +
+                ", deviceType=" + deviceType +
                 '}';
     }
 }

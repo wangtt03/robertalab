@@ -14,6 +14,7 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
     exports.init = init;
 
     function initView() {
+        $('#progInfo').hide();
         $('#infoContent').wysiwyg();
         if (GUISTATE_C.getLanguage() == 'de') {
             $('#infoContent').attr('data-placeholder', 'Beschreibe dein Programm hier ...');
@@ -43,6 +44,10 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
         if ($('#infoDiv').hasClass('rightActive')) {
             $('.blocklyToolboxDiv').css('display', 'inherit');
             Blockly.svgResize(blocklyWorkspace);
+            $('#progInfo').hide();
+            $('#code-button').removeClass('disabled');
+            $('#sim-button').removeClass('disabled');
+            $('#help-document-button').removeClass('disabled');
             $('#progInfo').animate({
                 right : '0px',
             }, {
@@ -81,6 +86,10 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
             } else {
                 width = $('#blocklyDiv').width() * 0.7;
             }
+            $('#progInfo').show();
+            $('#code-button').addClass('disabled');
+            $('#sim-button').addClass('disabled');
+            $('#help-document-button').addClass('disabled');
             $('#progInfo').animate({
                 right : $('#blocklyDiv').width() - width + 4,
             }, {
@@ -115,4 +124,5 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
             });
         }
     }
+    exports.toggleInfo = toggleInfo;
 });

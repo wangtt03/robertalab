@@ -155,6 +155,7 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
             console.log(result);
             GUISTATE_C.setLogin(result);
             GUISTATE.gui.blocklyWorkspace.robControls.enable('runOnBrick');
+            $('#run-on-brick-button').removeClass('disabled');
             MSG.displayInformation(result, "MESSAGE_USER_LOGIN", result.message, GUISTATE_C.getUserName());
             return {"userAccountName": result.userAccountName, "userPassword": result.userPassword};
         });

@@ -48,6 +48,7 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'gu
         blocklyWorkspace.setVersion('2.0');
         GUISTATE_C.setBlocklyWorkspace(blocklyWorkspace);
         blocklyWorkspace.robControls.disable('saveProgram');
+        $('#save-button').addClass('disabled');
         blocklyWorkspace.robControls.refreshTooltips(GUISTATE_C.getRobotRealName());
         GUISTATE_C.checkSim();
         var toolbox = $('#blocklyDiv .blocklyToolboxDiv');
@@ -465,7 +466,10 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'gu
             // Indicates that the robot is disconnected, will attempt to connect.
             USER_C.getDeviceNameByAccountName(GUISTATE_C.getUserAccountName(), function (deviceName) {
                 ROBOT_C.getDevice(deviceName, function(deviceInfo){
-                    ROBOT_C.switchRobot(deviceInfo['brickName'], true);
+                    if(deviceInfo['brickName'] !== GUISTATE_C.getGuiRobot()){
+                        alert("账户登记的设备类型与编辑器不同，请重新选择课程。");
+                        return;
+                    }
                     ROBOT_C.setTokenWithoutModal(deviceInfo['token'], runOnBrickFn);
                 });
             });
@@ -497,8 +501,10 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'gu
         case 'token':
             connectBeforeRunOnBrick( function(){
                 GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                $('#run-on-brick-button').addClass('disabled');
                 setTimeout(function () {
                     GUISTATE.gui.blocklyWorkspace.robControls.enable('runOnBrick');
+                    $('#run-on-brick-button').removeClass('disabled');
                     PROGRAM.runOnBrick(GUISTATE_C.getProgramName(), GUISTATE_C.getConfigurationName(), xmlTextProgram, xmlTextConfiguration, function (result) {
                         GUISTATE_C.setState(result);
                         if (result.rc == "ok") {
@@ -698,6 +704,7 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'gu
             return false;
         });
         blocklyWorkspace.robControls.disable('saveProgram');
+        $('#save-button').addClass('disabled');
         if (GUISTATE_C.getConnection() == 'token') {
             blocklyWorkspace.robControls.disable('runOnBrick');
         }
