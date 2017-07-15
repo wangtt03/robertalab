@@ -163,7 +163,7 @@ values ('Roberta','f17a0084220e822e:313c4eda282166163f78cd0b13da3b66f5ed6a0e',''
 commit;
 
 insert into USER
-(ACCOUNT, PASSWORD, EMAIL, ROLE, CREATED, LAST_LOGIN, `TAGS, USER_NAME)
+(ACCOUNT, PASSWORD, EMAIL, ROLE, CREATED, LAST_LOGIN, TAGS, USER_NAME)
 values ('Gallery','f17a0084220e822e:313c4eda282166163f78cd0b13da3b66f5ed6a0e','','TEACHER',now() ,now() ,'','The Gallery'
 );
 commit;
