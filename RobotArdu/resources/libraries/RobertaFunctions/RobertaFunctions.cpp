@@ -40,11 +40,22 @@ bool RobertaFunctions::isWhole(double val){
   return ((val - intPart) == 0);
 }
 
-void RobertaFunctions::createArray(double *arr, int len, ...){
+void RobertaFunctions::createArray(double *arr, int len, double firstItem, ...){
    va_list arguments;
-   va_start ( arguments, len );
-   for(int i = 0; i < len; i++){
-     arr[i] = va_arg ( arguments, double );
+	 arr[0] = firstItem;
+   va_start ( arguments, firstItem );
+   for(int i = 1; i < len; i++){
+    	arr[i] =  va_arg ( arguments, double );
+    }
+    va_end ( arguments );
+}
+
+void RobertaFunctions::createArray(double *arr, int len, int firstItem, ...){
+   va_list arguments;
+	 arr[0] = firstItem;
+   va_start ( arguments, firstItem );
+   for(int i = 1; i < len; i++){
+    	arr[i] =  va_arg ( arguments, int );
     }
     va_end ( arguments );
 }
@@ -58,11 +69,11 @@ void RobertaFunctions::createArray(bool *arr, int len, ...){
     va_end ( arguments );
 }
 
-void RobertaFunctions::createArray(char *arr, int len, ...){
+void RobertaFunctions::createArray(char **arr, int len, ...){
    va_list arguments;
    va_start ( arguments, len );
    for(int i = 0; i < len; i++){
-     arr[i] = va_arg ( arguments, char );
+     arr[i] = va_arg ( arguments, char* );
     }
     va_end ( arguments );
 }
@@ -100,14 +111,14 @@ int RobertaFunctions::arrFindFirst(int len, bool arr[], bool item) {
   }
 }
 
-int RobertaFunctions::arrFindFirst(int len, String arr[], String item) {
+int RobertaFunctions::arrFindFirst(int len, char **arr, String item) {
   int i = 0;
-  if (arr[0] == item){
+  if (strcmp(arr[0], item.c_str()) == 0){
     return i;
   } else {
     do {
       i++;
-    } while((arr[i] != item) && (i != len));
+    } while((strcmp(arr[i], item.c_str()) != 0) && (i != len));
     return i;
   }
 }
@@ -136,14 +147,14 @@ int RobertaFunctions::arrFindLast(int len, bool arr[], bool item) {
       return len - 1 - i;
   }
 }
-int RobertaFunctions::arrFindLast(int len, String arr[], String item) {
+int RobertaFunctions::arrFindLast(int len, char ** arr, String item) {
   int i = 0;
-  if (arr[len - 1] == item){
+  if (strcmp(arr[len - 1], item.c_str()) == 0){
     return len - 1 - i;
   } else {
     do {
       i++;
-    } while((arr[len - 1 - i] != item)&&(i != 0));
+		} while( (strcmp( arr[len - 1 - i], item.c_str() ) != 0) && (i != 0) );
       return len - 1 - i;
   }
 }
