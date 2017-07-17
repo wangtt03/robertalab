@@ -24,11 +24,11 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
                     if (status == "error") {
                         $('#progHelp').hide();
                     } else {
-                        $('#progHelp').show();
+                        $('#progHelp').hide();
                     }
                 })
             } else {
-                $('#progHelp').show();
+                $('#progHelp').hide();
             }
         });
     }
@@ -43,11 +43,11 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
                     if (status == "error") {
                         $('#progHelp').hide();
                     } else {
-                        $('#progHelp').show();
+                        $('#progHelp').hide();
                     }
                 })
             } else {
-                $('#progHelp').show();
+                $('#progHelp').hide();
             }
         });
     }
@@ -66,6 +66,10 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
         if ($('#blocklyDiv').hasClass('rightActive')) {
             $('.blocklyToolboxDiv').css('display', 'inherit');
             Blockly.svgResize(blocklyWorkspace);
+            $('#progHelp').hide();
+            $('#code-button').removeClass('disabled');
+            $('#sim-button').removeClass('disabled');
+            $('#info-button').removeClass('disabled');
             $('#progHelp').animate({
                 right : '0px',
             }, {
@@ -105,6 +109,10 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
                 smallScreen = false;
                 width = $('#blocklyDiv').width() * 0.1;
             }
+            $('#progHelp').show();
+            $('#code-button').addClass('disabled');
+            $('#sim-button').addClass('disabled');
+            $('#info-button').addClass('disabled');
             $('#progHelp').animate({
                 right : $('#blocklyDiv').width() - width + 4,
             }, {
@@ -140,4 +148,5 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
             });
         }
     }
+    exports.toggleHelp = toggleHelp;
 });

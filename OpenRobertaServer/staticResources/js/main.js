@@ -121,7 +121,7 @@ require.config({
 
 require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', 'progList.controller', 'logList.controller', 'confList.controller', 'lessonList.controller', 'barMenu.controller',
         'progDelete.controller', 'confDelete.controller', 'progShare.controller', 'menu.controller', 'user.controller', 'robot.controller',
-        'program.controller', 'configuration.controller', 'language.controller', 'socket.controller', 'volume-meter' , 'slick'], function(require) {
+        'program.controller', 'configuration.controller', 'progHelp.controller', 'language.controller', 'socket.controller', 'volume-meter' , 'slick'], function(require) {
 
     $ = require('jquery', 'jquery-cookie');
     WRAP = require('wrap');
@@ -143,6 +143,7 @@ require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', '
     robotController = require('robot.controller');
     userController = require('user.controller');
     socketController = require('socket.controller');
+    progHelpController = require('progHelp.controller');
 
     $(document).ready(WRAP.fn3(init, 'page init'));
 });
@@ -235,9 +236,8 @@ function init() {
                 //if (guiStateController.noCookie()) {
                 //    $("#show-startup-message").modal("show");
                 //}
-
-                // TEST!!!
-                robotController.switchRobot('ev3dev', true);
+                $("#lesson-close")[0].style.display = "none";
+                lessonListController.displayLessonMenu();
             });
             $(".pace").fadeOut(500);
         }

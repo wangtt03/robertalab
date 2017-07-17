@@ -1,4 +1,4 @@
-define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonList.model', 'program.model', 'program.controller',  'progHelp.controller', 'blocks-msg', 'jquery', 'bootstrap-table' ], function(require, exports, LOG, UTIL, COMM, PROGLIST, LESSONLIST, PROGRAM, PROGRAM_C, PROGHELP_C, Blockly, $) {
+define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonList.model', 'program.model', 'program.controller',  'progHelp.controller', 'robot.controller', 'blocks-msg', 'jquery', 'bootstrap-table' ], function(require, exports, LOG, UTIL, COMM, PROGLIST, LESSONLIST, PROGRAM, PROGRAM_C, PROGHELP_C, ROBOT_C, Blockly, $) {
 
     /**
      * Initialize table of programs
@@ -6,22 +6,25 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonL
     var lessonData;
 
     function init() {
-        initProgList();
+        initLessonList();
         LOG.info('init lesson list view');
     }
     exports.init = init;
 
     function displayLessonMenu() {
         $(".lesson-menu")[0].style.display = "block";
+        $("#lesson-menu-background")[0].style.display = "block";
     }
     exports.displayLessonMenu = displayLessonMenu;
 
     function hideLessonMenu(){
         $(".lesson-menu")[0].style.display = "none";
+        $("#lesson-menu-background")[0].style.display = "none";
+        $("#lesson-close")[0].style.display = "block";
     }
     exports.hideLessonMenu = hideLessonMenu;
 
-    function initProgList() {
+    function initLessonList() {
         LESSONLIST.loadLessonList(function (result) {
             lessonData = result.data;
             var proto = $('#lesson-example');
@@ -32,14 +35,16 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonL
                 $(".lesson-select-container").append(clone);
             }
             proto.remove();
-            initProgListEvents();
+            initLessonListEvents();
         });
     }
 
-    function initProgListEvents() {
+    function initLessonListEvents() {
         $('.lesson-item-container').onWrap('click', function(event){
             var lessonId = parseInt(event.currentTarget.id.substring("lesson-".length));
             PROGHELP_C.initViewWithUrl(lessonData[lessonId].docurl);
+            console.log(lessonData[lessonId].deviceType);
+            ROBOT_C.switchRobot(lessonData[lessonId].deviceType, true);
             hideLessonMenu();
         }, 'lesson selected');
     }

@@ -96,7 +96,7 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 									...</a></li>
 							<li class="login"><a href="#" id="menuListProg"
 								class="typcn typcn-th-list" lkey="Blockly.Msg.MENU_LIST_PROG">Liste
-									...</a></li>
+                            ...</a></li>
 							<li><a href="#" id="menuListExamples"
 								class="typcn typcn-th-list"
 								lkey="Blockly.Msg.MENU_LIST_PROG_EXAMPLES">Beispielprogramme
@@ -1319,13 +1319,14 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 	<div id="device-size">
 		<div id="xs" class="visible-xs"></div>
 	</div>
+	<div id="lesson-menu-background"></div>
 	<!-- Lesson Menu -->
 	<div class="lesson-menu" id="lesson-menu">
 		<div class="lesson-title-container">
 			<p class="lesson-title">
 				Lesson Select
 			</p>
-			<button type="button" id="lesson-close-" class="lesson-close-button">
+			<button type="button" id="lesson-close" class="lesson-close-button">
 			x
 			</button>
 		</div>
@@ -1345,19 +1346,96 @@ li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
 	<!-- Bar Menu -->
 	<div class="bar-menu">
 		<ul class="nav navbar-nav">
-			<!-- Select Lesson -->
-			<li id="lesson-button">
-				<a href="#" id="lesson-button-tooltip" lkey="Blockly.Msg.MENU_LESSON_TOOLTIP" rel="tooltip" data-original-title="" title="">
-					<span id="lesson-button-icon" class="head-navi-icons typcn typcn-sort-numerically-outline"></span>
-					<span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_LESSON">Lessons</span>
-				</a>
-			</li>
+            <!-- User Button -->
+            <li id="user-button">
+                <a href="#" id="user-button-tooltip" lkey="Blockly.Msg.MENU_USER_TOOLTIP" rel="tooltip" data-original-title="" title="">
+                    <span id="user-button-icon" class="bar-icons typcn typcn-business-card"></span>
+                    <span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_USER">User</span>
+                </a>
+            </li>
 			<!-- Connect -->
 			<li id="connect-button">
 				<a href="#" id="connect-button-tooltip" lkey="Blockly.Msg.MENU_CONNECT_TOOLTIP" rel="tooltip" data-original-title="" title="">
-					<span id="connect-button-icon" class="head-navi-icons typcn typcn-link-outline"></span>
+					<span id="connect-button-icon" class="bar-icons typcn typcn-link-outline"></span>
 					<span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_CONNECT">Connect</span>
-			</a></li>
+			    </a>
+            </li>
+            <!-- Select Lesson -->
+            <li id="lesson-button">
+                <a href="#" id="lesson-button-tooltip" lkey="Blockly.Msg.MENU_LESSON_TOOLTIP" rel="tooltip" data-original-title="" title="">
+                    <span id="lesson-button-icon" class="bar-icons typcn typcn-mortar-board"></span>
+                    <span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_LESSON">Lessons</span>
+                </a>
+            </li>
+            <li class="horizontal-divider"></li>
+
+            <!-- New File -->
+            <li id="new-file-button">
+                <a href="#" id="new-file-button-tooltip" lkey="Blockly.Msg.MENU_NEW_FILE_TOOLTIP" rel="tooltip" data-original-title="" title="">
+                    <span id="new-file-button-icon" class="bar-icons typcn typcn-document-add"></span>
+                    <span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_NEW">New File</span>
+                </a>
+            </li>
+            <!-- Run program -->
+            <li id="run-on-brick-button" class="disabled">
+                <a href="#" id="run-on-brick-button-tooltip" lkey="Blockly.Msg.MENU_RUN_ON_BRICK_TOOLTIP" rel="tooltip" data-original-title="" title="">
+                    <span id="run-on-brick-button-icon" class="bar-icons typcn typcn-media-play-outline"></span>
+                    <span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_START_BRICK">Run Program</span>
+                </a>
+            </li>
+            <!-- Save Program -->
+            <li id="save-button">
+                <a href="#" id="save-button-tooltip" lkey="Blockly.Msg.MENU_SAVE_TOOLTIP" rel="tooltip" data-original-title="" title="">
+                    <span id="save-button-icon" class="bar-icons typcn typcn-cloud-storage-outline"></span>
+                    <span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_SAVE">Save Program</span>
+                </a>
+            </li>
+            <li class="horizontal-divider"></li>
+
+            <!-- Program List -->
+            <li id="prog-list-button" class="disabled">
+                <a href="#" id="prog-list-button-tooltip" lkey="Blockly.Msg.MENU_PROG_LIST_TOOLTIP" rel="tooltip" data-original-title="" title="">
+                    <span id="prog-list-button-icon" class="bar-icons typcn typcn-th-list-outline"></span>
+                    <span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_LIST_PROG">Run Program</span>
+                </a>
+            </li>
+            <!-- Gallery Button -->
+            <li id="gallery-button">
+                <a href="#" id="gallery-button-tooltip" lkey="Blockly.Msg.MENU_GALLERY_TOOLTIP" rel="tooltip" data-original-title="" title="">
+                    <span id="gallery-button-icon" class="bar-icons typcn typcn-image-outline"></span>
+                    <span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_GALLERY">Gallary</span>
+                </a>
+            </li>
+            <li class="horizontal-divider"></li>
+
+            <!-- Help Document Button -->
+            <li id="help-document-button">
+                <a href="#" id="help-document-button-tooltip" lkey="Blockly.Msg.MENU_RIGHT_HELP_TOOLTIP" rel="tooltip" data-original-title="" title="">
+                    <span id="help-document-button-icon" class="bar-icons typcn typcn-news"></span>
+                    <span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_GALLERY">Document</span>
+                </a>
+            </li>
+            <!-- Info Button -->
+            <li id="info-button">
+                <a href="#" id="info-button-tooltip" lkey="Blockly.Msg.MENU_RIGHT_INFO_TOOLTIP" rel="tooltip" data-original-title="" title="">
+                    <span id="document-button-icon" class="bar-icons typcn typcn-puzzle-outline"></span>
+                    <span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_GALLERY">Info</span>
+                </a>
+            </li>
+            <!-- Code Button -->
+            <li id="code-button">
+                <a href="#" id="code-button-tooltip" lkey="Blockly.Msg.MENU_SHOW_CODE" rel="tooltip" data-original-title="" title="">
+                    <span id="code-button-icon" class="bar-icons typcn typcn-code-outline"></span>
+                    <span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_GALLERY">Code</span>
+                </a>
+            </li>
+            <!-- Simulation Button -->
+            <li id="sim-button">
+                <a href="#" id="sim-button-tooltip" lkey="Blockly.Msg.MENU_START_SIM" rel="tooltip" data-original-title="" title="">
+                    <span id="sim-button-icon" class="bar-icons typcn typcn-simulation"></span>
+                    <span class="head-navi-title hidden-sm hidden-md hidden-lg" lkey="Blockly.Msg.MENU_GALLERY">Simulation</span>
+                </a>
+            </li>
 		</ul>
 	</div>
 </body>
