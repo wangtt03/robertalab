@@ -163,14 +163,14 @@ values ('Roberta','f17a0084220e822e:313c4eda282166163f78cd0b13da3b66f5ed6a0e',''
 commit;
 
 insert into USER
-(ACCOUNT, PASSWORD, EMAIL, ROLE, CREATED, LAST_LOGIN, `TAGS, USER_NAME)
+(ACCOUNT, PASSWORD, EMAIL, ROLE, CREATED, LAST_LOGIN, TAGS, USER_NAME)
 values ('Gallery','f17a0084220e822e:313c4eda282166163f78cd0b13da3b66f5ed6a0e','','TEACHER',now() ,now() ,'','The Gallery'
 );
 commit;
 
 INSERT INTO LESSON VALUES(1,'lesson1','../guide/lesson-1/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/lesson-1/index.html', 'ev3dev');
 commit;
-INSERT INTO LESSON VALUES(2,'lesson2','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html', 'ev3dev');
+INSERT INTO LESSON VALUES(2,'lesson2','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html', 'nao');
 commit;
-INSERT INTO LESSON VALUES(3,'lesson3','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html', 'ev3dev');
+INSERT INTO LESSON VALUES(3,'lesson3','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html', 'calliope2017');
 commit;
