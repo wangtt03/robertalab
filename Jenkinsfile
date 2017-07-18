@@ -1,8 +1,8 @@
 podTemplate(label: 'mypod', containers: [
-    containerTemplate(name: 'maven', image: 'csdiregistry.azurecr.io/maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
+    containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
     containerTemplate(name: 'docker', image: 'docker:17.06.0-dind', privileged: true, ttyEnabled: true),
     containerTemplate(name: 'ubuntu', image: 'ubuntu:16.04', ttyEnabled: true),
-  ], imagePullSecrets: ['csdiregsecret']) {
+  ]) {
 
     node('mypod') {
         stage('Build Stage: ') {
