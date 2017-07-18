@@ -5,8 +5,8 @@
 
 Master:
   Name: jenkins-master
-  Image: "jenkinsci/jenkins"
-  ImageTag: "2.67"
+  Image: "jenkins"
+  ImageTag: "latest"
   ImagePullPolicy: "Always"
   Component: "jenkins-master"
   UseSecurity: true
@@ -72,7 +72,7 @@ Master:
 Agent:
   Enabled: true
   Image: jenkinsci/jnlp-slave
-  ImageTag: 2.62
+  ImageTag: latest
   Component: "jenkins-slave"
   Privileged: false
   Cpu: "200m"

@@ -24,7 +24,6 @@ podTemplate(label: 'mypod', containers: [
                     // sh 'docker build -t csdiregistry.azurecr.io/demo/javademo .'
                     docker.withRegistry('https://csdiregistry.azurecr.io/', 'csdiregistryuser') {
                         def imageName = 'stem/robertalab'
-                        sh 'docker login '
                         sh "docker build -t ${imageName} ."
                         robertalab = docker.image(imageName)
                     }
