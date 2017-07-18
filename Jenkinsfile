@@ -2,7 +2,10 @@ podTemplate(label: 'mypod', containers: [
     containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
     containerTemplate(name: 'docker', image: 'docker:17.06.0-dind', privileged: true, ttyEnabled: true),
     containerTemplate(name: 'ubuntu', image: 'ubuntu:16.04', ttyEnabled: true),
-  ]) {
+  ],
+  volumes: [
+    nfsVolume(mountPath: '/data/config', serverAddress: '10.240.255.5', serverPath: '/var/nfs/jenkinsslave', readOnly: true)
+]) {
 
     node('mypod') {
         stage('Build Stage: ') {
@@ -41,15 +44,13 @@ podTemplate(label: 'mypod', containers: [
         }
 
         stage('Deploy TestEnv Stage: ') {
-            container('ubuntu'){
-                stage('Deploy') {
-                    /*ssh to master node and run docker stack deploy*/
-                    sh("chmod a+x ./deploy/k8s/deploy.sh")
-                    sh("ssh stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn 'rm -fr /home/stemuser/deploy/robertalab/k8s'")
-                    sh("ssh stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn 'mkdir -p /home/stemuser/deploy/robertalab/k8s'")
-                    sh("scp -r ./deploy/k8s/* stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn:/home/stemuser/deploy/robertalab/k8s/")
-                    sh("ssh stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn '/home/stemuser/deploy/robertalab/k8s/deploy.sh ${env.BUILD_NUMBER}'")
-                }
+            stage('Deploy') {
+                /*ssh to master node and run docker stack deploy*/
+                sh("chmod a+x ./deploy/k8s/deploy.sh")
+                sh("ssh -i /data/config/id_rsa -oStrictHostKeyChecking=no stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn 'rm -fr /home/stemuser/deploy/robertalab/k8s'")
+                sh("ssh -i /data/config/id_rsa stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn 'mkdir -p /home/stemuser/deploy/robertalab/k8s'")
+                sh("scp -i /data/config/id_rsa -r ./deploy/k8s/* stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn:/home/stemuser/deploy/robertalab/k8s/")
+                sh("ssh -i /data/config/id_rsa stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn '/home/stemuser/deploy/robertalab/k8s/deploy.sh ${env.BUILD_NUMBER}'")
             }
         }
 
