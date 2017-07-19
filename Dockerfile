@@ -1,16 +1,9 @@
-FROM ubuntu:16.04
-
-RUN apt-get update \
-    && apt-get install -y openjdk-8-jdk \
-    && apt-get install libusb-0.1-4 \
-    && apt-get install -y gcc-avr binutils-avr gdb-avr avr-libc avrdude \
-    && apt-get install -y nbc \
-    && apt-get install -y gcc-arm-none-eabi srecord libssl-dev
+FROM csdiregistry.azurecr.io/robertalab-base:16.04
 
 RUN mkdir -p /data/project/robertalab
 COPY . /data/project/robertalab/
 WORKDIR /data/project/robertalab
-RUN cp -rf OpenRobertaServer/dbBase OpenRobertaServer/db-2.2.0
+RUN ./ora.sh --createemptydb OpenRobertaServer/db-2.2.0/openroberta-db
 
 EXPOSE 1999
 ENTRYPOINT ["./ora.sh", "--start-from-git"]

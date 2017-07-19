@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv
+  labels:
+    pvtype: nfspv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: slow
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /var/nfs/general/
+    server: 10.240.255.5
+    readOnly: false
+    

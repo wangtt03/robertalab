@@ -1,8 +1,11 @@
 podTemplate(label: 'mypod', containers: [
     containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
     containerTemplate(name: 'docker', image: 'docker:17.06.0-dind', privileged: true, ttyEnabled: true),
-    containerTemplate(name: 'ubuntu', image: 'dock0/ssh', ttyEnabled: true),
-  ]) {
+    containerTemplate(name: 'ubuntu', image: 'ubuntu:16.04', ttyEnabled: true),
+  ],
+  volumes: [
+    nfsVolume(mountPath: '/data/config', serverAddress: '10.240.255.5', serverPath: '/var/nfs/jenkinsslave', readOnly: true)
+]) {
 
     node('mypod') {
         stage('Build Stage: ') {
@@ -10,14 +13,6 @@ podTemplate(label: 'mypod', containers: [
                 stage('Clone repository') {
                     checkout scm
                 }
-
-                stage('Compile') {
-                    sh 'cd OpenRobertaParent && mvn compile'
-                }
-
-                // stage('Test') {
-                //     sh 'cd OpenRobertaParent && mvn test'
-                // }
                 
                 stage('Clean & Install') {
                     sh 'cd OpenRobertaParent && mvn install -DskipTests'
@@ -30,9 +25,11 @@ podTemplate(label: 'mypod', containers: [
             container('docker') {
                 stage('Build Docker Image') {
                     // sh 'docker build -t csdiregistry.azurecr.io/demo/javademo .'
-                    def imageName = 'stem/robertalab'
-                    sh "docker build -t ${imageName} ."
-                    robertalab = docker.image(imageName)
+                    docker.withRegistry('https://csdiregistry.azurecr.io/', 'csdiregistryuser') {
+                        def imageName = 'stem/robertalab'
+                        sh "docker build -t ${imageName} ."
+                        robertalab = docker.image(imageName)
+                    }
                 }
                 
                 stage('Publish Docker Image') {
@@ -47,15 +44,13 @@ podTemplate(label: 'mypod', containers: [
         }
 
         stage('Deploy TestEnv Stage: ') {
-            container('ubuntu'){
-                stage('Deploy') {
-                    /*ssh to master node and run docker stack deploy*/
-                    sh("chmod a+x ./deploy/k8s/deploy.sh")
-                    sh("ssh stemuser@test-m01.westus2.cloudapp.azure.com 'rm -fr /home/stemuser/deploy/robertalab/k8s'")
-                    sh("ssh stemuser@test-m01.westus2.cloudapp.azure.com 'mkdir -p /home/stemuser/deploy/robertalab/k8s'")
-                    sh("scp -r ./deploy/k8s/* stemuser@test-m01.westus2.cloudapp.azure.com:/home/stemuser/deploy/robertalab/k8s/")
-                    sh("ssh stemuser@test-m01.westus2.cloudapp.azure.com '/home/stemuser/deploy/robertalab/k8s/deploy.sh ${env.BUILD_NUMBER}'")
-                }
+            stage('Deploy') {
+                /*ssh to master node and run docker stack deploy*/
+                sh("chmod a+x ./deploy/k8s/deploy.sh")
+                sh("ssh -i /data/config/id_rsa -oStrictHostKeyChecking=no stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn 'rm -fr /home/stemuser/deploy/robertalab/k8s'")
+                sh("ssh -i /data/config/id_rsa stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn 'mkdir -p /home/stemuser/deploy/robertalab/k8s'")
+                sh("scp -i /data/config/id_rsa -r ./deploy/k8s/* stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn:/home/stemuser/deploy/robertalab/k8s/")
+                sh("ssh -i /data/config/id_rsa stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn '/home/stemuser/deploy/robertalab/k8s/deploy.sh ${env.BUILD_NUMBER}'")
             }
         }
 
