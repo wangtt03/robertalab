@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2017-06-28 16:31:41.474450",
+		"lastupdated": "2017-07-19 16:04:40.128422",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -569,6 +569,7 @@
 	"CONNECTION_CHECK_TOOLTIP": "Check if the connection to the robot is active.",
 	"CONNECTION_PROTOCOL_BLUETOOTH": "Bluetooth",
 	"TOOLBOX_ACTION": "Action",
+	"TOOLBOX_COGNITIVE": "Cognitive",
 	"TOOLBOX_COMMUNICATION": "Messages",
 	"TOOLBOX_PIN": "Pin",
 	"TOOLBOX_SENSOR": "Sensors",

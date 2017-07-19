@@ -1,5 +1,5 @@
-define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'blocks', 'jquery', 'jquery-validate', 'blocks-msg' ], function(exports, COMM,
-        MSG, LOG, UTIL, GUISTATE_C, Blockly, $) {
+define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'config', 'blocks', 'jquery', 'jquery-validate', 'blocks-msg' ], function(exports, COMM,
+        MSG, LOG, UTIL, GUISTATE_C, CONFIG, Blockly, $) {
 
     var blocklyWorkspace;
     /**
@@ -16,7 +16,9 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
     function initView() {
         $('#helpContent').remove();
         var url = '../help/progHelp_' + GUISTATE_C.getRobotGroup() + '_' + GUISTATE_C.getLanguage().toLowerCase() + '.html';
-        url = '../guide/index.html';
+        if (CONFIG.getIsiPad()) {
+            url = '../guide/index.html';
+        }
         $('#helpDiv').load(url, function(response, status, xhr) {
             if (status == "error") {
                 url = '../help/progHelp_' + GUISTATE_C.getRobotGroup() + '_en.html';
@@ -24,11 +26,21 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
                     if (status == "error") {
                         $('#progHelp').hide();
                     } else {
-                        $('#progHelp').hide();
+                        if (CONFIG.getIsiPad()) {
+                            $('#progHelp').hide();
+                        }
+                        else{
+                            $('#progHelp').show();
+                        }
                     }
                 })
             } else {
-                $('#progHelp').hide();
+                if (CONFIG.getIsiPad()) {
+                    $('#progHelp').hide();
+                }
+                else{
+                    $('#progHelp').show();
+                }
             }
         });
     }
@@ -43,11 +55,21 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
                     if (status == "error") {
                         $('#progHelp').hide();
                     } else {
-                        $('#progHelp').hide();
+                        if (CONFIG.getIsiPad()) {
+                            $('#progHelp').hide();
+                        }
+                        else{
+                            $('#progHelp').show();
+                        }
                     }
                 })
             } else {
-                $('#progHelp').hide();
+                if (CONFIG.getIsiPad()) {
+                    $('#progHelp').hide();
+                }
+                else{
+                    $('#progHelp').show();
+                }
             }
         });
     }
@@ -66,10 +88,12 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
         if ($('#blocklyDiv').hasClass('rightActive')) {
             $('.blocklyToolboxDiv').css('display', 'inherit');
             Blockly.svgResize(blocklyWorkspace);
-            $('#progHelp').hide();
-            $('#code-button').removeClass('disabled');
-            $('#sim-button').removeClass('disabled');
-            $('#info-button').removeClass('disabled');
+            if (CONFIG.getIsiPad()) {
+                $('#progHelp').hide();
+                $('#code-button').removeClass('disabled');
+                $('#sim-button').removeClass('disabled');
+                $('#info-button').removeClass('disabled');
+            }
             $('#progHelp').animate({
                 right : '0px',
             }, {
@@ -109,10 +133,12 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
                 smallScreen = false;
                 width = $('#blocklyDiv').width() * 0.1;
             }
-            $('#progHelp').show();
-            $('#code-button').addClass('disabled');
-            $('#sim-button').addClass('disabled');
-            $('#info-button').addClass('disabled');
+            if (CONFIG.getIsiPad()) {
+                $('#progHelp').show();
+                $('#code-button').addClass('disabled');
+                $('#sim-button').addClass('disabled');
+                $('#info-button').addClass('disabled');
+            }
             $('#progHelp').animate({
                 right : $('#blocklyDiv').width() - width + 4,
             }, {

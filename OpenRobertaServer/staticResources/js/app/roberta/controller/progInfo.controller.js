@@ -1,5 +1,5 @@
-define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'blocks', 'jquery', 'jquery-validate', 'jquery-hotkeys', 'bootstrap.wysiwyg',
-        'blocks-msg' ], function(exports, COMM, MSG, LOG, UTIL, GUISTATE_C, Blockly, $) {
+define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'config', 'blocks', 'jquery', 'jquery-validate', 'jquery-hotkeys', 'bootstrap.wysiwyg',
+        'blocks-msg' ], function(exports, COMM, MSG, LOG, UTIL, GUISTATE_C, CONFIG, Blockly, $) {
 
     var blocklyWorkspace;
     /**
@@ -14,7 +14,9 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
     exports.init = init;
 
     function initView() {
-        $('#progInfo').hide();
+        if (CONFIG.getIsiPad()) {
+            $('#progInfo').hide();
+        }
         $('#infoContent').wysiwyg();
         if (GUISTATE_C.getLanguage() == 'de') {
             $('#infoContent').attr('data-placeholder', 'Beschreibe dein Programm hier ...');
@@ -44,10 +46,12 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
         if ($('#infoDiv').hasClass('rightActive')) {
             $('.blocklyToolboxDiv').css('display', 'inherit');
             Blockly.svgResize(blocklyWorkspace);
-            $('#progInfo').hide();
-            $('#code-button').removeClass('disabled');
-            $('#sim-button').removeClass('disabled');
-            $('#help-document-button').removeClass('disabled');
+            if (CONFIG.getIsiPad()) {
+                $('#progInfo').hide();
+                $('#code-button').removeClass('disabled');
+                $('#sim-button').removeClass('disabled');
+                $('#help-document-button').removeClass('disabled');
+            }
             $('#progInfo').animate({
                 right : '0px',
             }, {
@@ -86,10 +90,12 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
             } else {
                 width = $('#blocklyDiv').width() * 0.7;
             }
-            $('#progInfo').show();
-            $('#code-button').addClass('disabled');
-            $('#sim-button').addClass('disabled');
-            $('#help-document-button').addClass('disabled');
+            if (CONFIG.getIsiPad()) {
+                $('#progInfo').show();
+                $('#code-button').addClass('disabled');
+                $('#sim-button').addClass('disabled');
+                $('#help-document-button').addClass('disabled');
+            }
             $('#progInfo').animate({
                 right : $('#blocklyDiv').width() - width + 4,
             }, {
