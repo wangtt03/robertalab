@@ -12,6 +12,7 @@ spec:
     app: robertalabapp
     component: robertalab
   type: LoadBalancer
+  loadBalancerIP: 40.125.207.157
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
