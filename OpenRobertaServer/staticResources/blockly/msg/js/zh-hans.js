@@ -1083,6 +1083,7 @@ Blockly.Msg.TIMER_RESET_TOOLTIP = "重置计时器。";
 Blockly.Msg.TODAY = "今天";
 Blockly.Msg.TOOLBOX_ACTION = "动作";
 Blockly.Msg.TOOLBOX_ANIMATION = "动画过渡";
+Blockly.Msg.TOOLBOX_COGNITIVE = "Cognitive";  // untranslated
 Blockly.Msg.TOOLBOX_COLOUR = "颜色";
 Blockly.Msg.TOOLBOX_COMMUNICATION = "消息通信";
 Blockly.Msg.TOOLBOX_CONTROL = "控制逻辑";
