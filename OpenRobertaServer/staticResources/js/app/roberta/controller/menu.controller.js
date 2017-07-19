@@ -345,10 +345,13 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             return false;
         }, 'lesson clicked');
 
-        $('.lesson-close-button')[0].onclick = function() {
-            LESSON_C.hideLessonMenu();
-            return false;
-        };
+        var lesson_close_button = $('.lesson-close-button')[0];
+        if(!(typeof(lesson_close_button) === 'undefined')){
+            lesson_close_button.onclick = function() {
+                LESSON_C.hideLessonMenu();
+                return false;
+            }
+        }
 
         $('#head-navi-icon-connect').onWrap('click', function(event) {
             console.log(GUISTATE_C.getIsAgent());

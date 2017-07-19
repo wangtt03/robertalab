@@ -25,6 +25,7 @@
     position: fixed;
     z-index: 520;
     background: rgba(0, 0, 0, 0.5);
+    display: none;
 }
 
 .lesson-menu {

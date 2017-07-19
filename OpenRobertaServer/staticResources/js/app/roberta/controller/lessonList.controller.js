@@ -1,4 +1,7 @@
-define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonList.model', 'program.model', 'program.controller',  'progHelp.controller', 'robot.controller', 'blocks-msg', 'jquery', 'bootstrap-table' ], function(require, exports, LOG, UTIL, COMM, PROGLIST, LESSONLIST, PROGRAM, PROGRAM_C, PROGHELP_C, ROBOT_C, Blockly, $) {
+define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonList.model', 'program.model',
+    'program.controller',  'progHelp.controller', 'robot.controller', 'config', 'blocks-msg', 'jquery',
+    'bootstrap-table' ], function(require, exports, LOG, UTIL, COMM, PROGLIST, LESSONLIST, PROGRAM,
+                                  PROGRAM_C, PROGHELP_C, ROBOT_C, CONFIG, Blockly, $) {
 
     /**
      * Initialize table of programs
@@ -12,8 +15,10 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'progList.model', 'lessonL
     exports.init = init;
 
     function displayLessonMenu() {
-        $(".lesson-menu")[0].style.display = "block";
-        $("#lesson-menu-background")[0].style.display = "block";
+        if(CONFIG.getIsiPad()) {
+            $(".lesson-menu")[0].style.display = "block";
+            $("#lesson-menu-background")[0].style.display = "block";
+        }
     }
     exports.displayLessonMenu = displayLessonMenu;
 

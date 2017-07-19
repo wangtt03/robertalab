@@ -86,6 +86,8 @@ require.config({
         'robertaLogic.timer' : '../app/simulation/robertaLogic/timer',
         'robertaLogic.gyro' : '../app/simulation/robertaLogic/gyro',
 
+        'config' : '../app/roberta/config'
+
     },
     shim : {
         'bootstrap' : {
@@ -121,7 +123,7 @@ require.config({
 
 require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', 'progList.controller', 'logList.controller', 'confList.controller', 'lessonList.controller', 'barMenu.controller',
         'progDelete.controller', 'confDelete.controller', 'progShare.controller', 'menu.controller', 'user.controller', 'robot.controller',
-        'program.controller', 'configuration.controller', 'progHelp.controller', 'language.controller', 'socket.controller', 'volume-meter' , 'slick'], function(require) {
+        'program.controller', 'configuration.controller', 'progHelp.controller', 'language.controller', 'socket.controller', 'volume-meter' , 'slick', 'config'], function(require) {
 
     $ = require('jquery', 'jquery-cookie');
     WRAP = require('wrap');
@@ -144,6 +146,7 @@ require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', '
     userController = require('user.controller');
     socketController = require('socket.controller');
     progHelpController = require('progHelp.controller');
+    config = require('config');
 
     $(document).ready(WRAP.fn3(init, 'page init'));
 });
@@ -171,6 +174,7 @@ require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', '
  */
 function init() {
     COMM.setErrorFn(handleServerErrors);
+    config.init();
     $.when(languageController.init()).then(function(language) {
         return guiStateController.init(language);
     }).then(function() {
@@ -178,47 +182,10 @@ function init() {
     }).then(function() {
         return userController.init();
     }).then(function() {
-    //     connectToSwiftWebViewBridge(function (bridge) {
-    //         bridge.init(function (message, responseCallback) {
-    //             log('Got a message from swift', message);
-    //             var responseData = {
-    //                 'response': 'received'
-    //             };
-    //             responseCallback(responseData);
-    //         });
-    //
-    //         bridge.registerHandlerForSwift('loginWith', function (receiveData, responseCallback) {
-    //             userController.loginWith(receiveData.accountName, receiveData.password);
-    //             var responseData = {
-    //                 'response': 'success'
-    //             };
-    //             responseCallback(responseData);
-    //         });
-    //
-    //         bridge.registerHandlerForSwift('loginWithCreate', function (receiveData, responseCallback) {
-    //             userController.loginWithCreate(receiveData['accountName'], receiveData['userName'],
-    //                 receiveData['role'], receiveData['userEmail'], receiveData['youngerThen14']);
-    //             var responseData = {
-    //                 'accountName': res['userAccountName'], //accountName
-    //                 'password': res['userPassword']  //password
-    //             };
-    //             responseCallback(responseData);
-    //         });
-    //
-    //         bridge.registerHandlerForSwift('scanToConnect', function (receiveData, responseCallback){
-    //             if('deviceName' in receiveData) {
-    //                 robotController.connectWithDeviceName(receiveData['deviceName']);
-    //             }
-    //             else if('deviceCode' in receiveData){
-    //                 robotController.setTokenWithoutModal(receiveData['deviceCode']);
-    //             }
-    //             else{
-    //                 alert("连接代码错误，请联系主办方解决。");
-    //             }
-    //         })
-    //     });
-    // }).then(function() {
+        if (config.getIsiPad()) {
             barMenuController.init();
+            lessonListController.init();
+        }
             galleryListController.init();
             progListController.init();
             progDeleteController.init();
@@ -231,20 +198,25 @@ function init() {
             menuController.init();
             //socketController.init();
 
-            //console.log(robotList);
             $(".cover").fadeOut(100, function() {
-                //if (guiStateController.noCookie()) {
-                //    $("#show-startup-message").modal("show");
-                //}
-                $("#lesson-close")[0].style.display = "none";
-                lessonListController.displayLessonMenu();
+                if(config.getIsiPad()) {
+                    $("#lesson-close")[0].style.display = "none";
+                    lessonListController.displayLessonMenu();
+                }
+                else{
+                    if (guiStateController.noCookie()) {
+                       $("#show-startup-message").modal("show");
+                    }
+                }
             });
             $(".pace").fadeOut(500);
         }
     ).then(
-            function(){
+        function(){
+            if(config.getIsiPad()) {
                 window.webkit.messageHandlers.requireLogin.postMessage("Require to login.");
             }
+        }
     );
 }
 
