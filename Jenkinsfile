@@ -1,4 +1,4 @@
-podTemplate(label: 'mypod', containers: [
+podTemplate(label: 'robertalab-pod', containers: [
     containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
     containerTemplate(name: 'docker', image: 'docker:17.06.0-dind', privileged: true, ttyEnabled: true),
     containerTemplate(name: 'ubuntu', image: 'ubuntu:16.04', ttyEnabled: true),
@@ -7,7 +7,7 @@ podTemplate(label: 'mypod', containers: [
     nfsVolume(mountPath: '/data/config', serverAddress: '10.240.255.5', serverPath: '/var/nfs/jenkinsslave', readOnly: true)
 ]) {
 
-    node('mypod') {
+    node('robertalab-pod') {
         stage('Build Stage: ') {
             container('maven') {
                 stage('Clone repository') {
