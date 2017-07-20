@@ -59,6 +59,7 @@ podTemplate(label: 'robertalab-pod', containers: [
         } catch (error) {
             succ = false
             err = "error: ${error}"
+            throw error
         } finally {
             notifyStatus(succ, err)
         }
