@@ -69,5 +69,5 @@ def notifyStatus(success, error){
     def label = success? "SUCCESS":"FAILED"
     mail (to: 'tiantiaw@microsoft.com',
         subject: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) is ${label}",
-        body: "${error}");
+        body: "msg: ${error}");
 }
