@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2017-07-19 18:00:22.834449",
+		"lastupdated": "2017-07-21 13:46:58.687349",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -568,6 +568,9 @@
 	"CONNECTION_CHECK": "connection to robot %1 active?",
 	"CONNECTION_CHECK_TOOLTIP": "Check if the connection to the robot is active.",
 	"CONNECTION_PROTOCOL_BLUETOOTH": "Bluetooth",
+	"COGNITIVE_FACE_DETECT": "face detect?",
+	"COGNITIVE_SPEECH_RECOGNITION": "Speech Recognition",
+	"COGNITIVE_SPEEK": "Speak",
 	"TOOLBOX_ACTION": "Action",
 	"TOOLBOX_COGNITIVE": "Cognitive",
 	"TOOLBOX_COMMUNICATION": "Messages",
