@@ -6,6 +6,8 @@ import de.fhg.iais.roberta.components.Configuration;
 import de.fhg.iais.roberta.syntax.Phrase;
 import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.SpeechRecognition;
+import de.fhg.iais.roberta.syntax.action.brickpi.SayText;
 
 import de.fhg.iais.roberta.visitor.BrickpiAstVisitor;
 
@@ -28,6 +30,18 @@ public class Ev3CodePreprocessVisitor extends PreprocessProgramVisitor implement
 
     @Override
     public Void visitDetectFace(DetectFace<Void> detectFace) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitSpeechRecognition(SpeechRecognition<Void> speechRecognition) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitSayText(SayText<Void> sayText) {
         // TODO Auto-generated method stub
         return null;
     }

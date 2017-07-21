@@ -75,6 +75,8 @@ import de.fhg.iais.roberta.syntax.sensor.generic.TimerSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.SpeechRecognition;
+import de.fhg.iais.roberta.syntax.action.brickpi.SayText;
 import de.fhg.iais.roberta.util.dbc.Assert;
 import de.fhg.iais.roberta.util.dbc.DbcException;
 import de.fhg.iais.roberta.visitor.AstVisitor;
@@ -805,6 +807,7 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
         //this.sb.append("from roberta.BlocklyMethods import BlocklyMethods\n");
         this.sb.append("from brickpi import pi as brickpi\n");
         this.sb.append("from brickpi.cognitive import cognitive\n");
+        this.sb.append("from Jasper import jasper\n");
         this.sb.append("import math\n\n");
 
         this.sb.append("class BreakOutOfALoop(Exception): pass\n");
@@ -955,6 +958,20 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
     @Override
     public Void visitDetectFace(DetectFace<Void> detectFace) {
         this.sb.append("cognitive.faceDetect()");
+        return null;
+    }
+
+    @Override
+    public Void visitSpeechRecognition(SpeechRecognition<Void> speechRecognition) {
+        this.sb.append("jasper.listen()");
+        return null;
+    }
+
+@Override
+    public Void visitSayText(SayText<Void> sayText) {
+        this.sb.append("jasper.speak([");
+        sayText.getMsg().visit(this);
+        this.sb.append("])");
         return null;
     }
 

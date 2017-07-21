@@ -314,4 +314,8 @@ public final class BlocklyConstants {
     public static final String ACCELERATION = "ACCELERATION";
     public static final String ORIENTATION = "ORIENTATION";
     public static final String NAO_RECOGNIZEDWORD = "RECOGNIZEDWORD";
+
+    public static final String COGNITIVE_SAY_TEXT = "brickpiSpeak";
+    public static final String COGNITIVE_SPEECH_RECOGNITION = "brickpiSpeechRecognition";
+    public static final String COGNITIVE_DETECT_FACE = "face_detect";
 }

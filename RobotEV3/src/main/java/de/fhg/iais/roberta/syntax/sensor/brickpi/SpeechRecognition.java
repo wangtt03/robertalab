@@ -15,10 +15,10 @@ import de.fhg.iais.roberta.visitor.BrickpiAstVisitor;
  * Object from this class will generate code for detecting a face previously saved in BrickPis database.<br/>
  * <br/>
  */
-public final class DetectFace<V> extends de.fhg.iais.roberta.syntax.sensor.Sensor<V> {
+public final class SpeechRecognition<V> extends de.fhg.iais.roberta.syntax.sensor.Sensor<V> {
 
-    private DetectFace(BlocklyBlockProperties properties, BlocklyComment comment) {
-        super(BlockTypeContainer.getByName("COGNITIVE_DETECT_FACE"), properties, comment);
+    private SpeechRecognition(BlocklyBlockProperties properties, BlocklyComment comment) {
+        super(BlockTypeContainer.getByName("COGNITIVE_SPEECH_RECOGNITION"), properties, comment);
         setReadOnly();
     }
 
@@ -28,18 +28,18 @@ public final class DetectFace<V> extends de.fhg.iais.roberta.syntax.sensor.Senso
      * @param properties of the block (see {@link BlocklyBlockProperties}),
      * @param comment added from the user,
      */
-    static <V> DetectFace<V> make(BlocklyBlockProperties properties, BlocklyComment comment) {
-        return new DetectFace<V>(properties, comment);
+    static <V> SpeechRecognition<V> make(BlocklyBlockProperties properties, BlocklyComment comment) {
+        return new SpeechRecognition<V>(properties, comment);
     }
 
     @Override
     public String toString() {
-        return "DetectFace []";
+        return "SpeechRecognition []";
     }
 
     @Override
     protected V accept(AstVisitor<V> visitor) {
-        return ((BrickpiAstVisitor<V>) visitor).visitDetectFace(this);
+        return ((BrickpiAstVisitor<V>) visitor).visitSpeechRecognition(this);
     }
 
     /**
@@ -51,7 +51,7 @@ public final class DetectFace<V> extends de.fhg.iais.roberta.syntax.sensor.Senso
      */
     public static <V> Phrase<V> jaxbToAst(Block block, Jaxb2AstTransformer<V> helper) {
 
-        return DetectFace.make(helper.extractBlockProperties(block), helper.extractComment(block));
+        return SpeechRecognition.make(helper.extractBlockProperties(block), helper.extractComment(block));
     }
 
     @Override
