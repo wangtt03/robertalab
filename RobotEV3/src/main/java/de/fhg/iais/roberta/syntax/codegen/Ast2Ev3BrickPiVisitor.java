@@ -18,6 +18,7 @@ import de.fhg.iais.roberta.mode.sensor.ev3.GyroSensorMode;
 import de.fhg.iais.roberta.mode.sensor.ev3.InfraredSensorMode;
 import de.fhg.iais.roberta.mode.sensor.ev3.MotorTachoMode;
 import de.fhg.iais.roberta.mode.sensor.ev3.UltrasonicSensorMode;
+import de.fhg.iais.roberta.mode.action.brickpi.Camera;
 import de.fhg.iais.roberta.syntax.MotorDuration;
 import de.fhg.iais.roberta.syntax.Phrase;
 import de.fhg.iais.roberta.syntax.action.communication.BluetoothCheckConnectAction;
@@ -73,6 +74,7 @@ import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TimerSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
 import de.fhg.iais.roberta.util.dbc.Assert;
 import de.fhg.iais.roberta.util.dbc.DbcException;
 import de.fhg.iais.roberta.visitor.AstVisitor;
@@ -82,13 +84,14 @@ import de.fhg.iais.roberta.visitor.actor.AstActorLightVisitor;
 import de.fhg.iais.roberta.visitor.actor.AstActorMotorVisitor;
 import de.fhg.iais.roberta.visitor.actor.AstActorSoundVisitor;
 import de.fhg.iais.roberta.visitor.sensor.AstSensorsVisitor;
+import de.fhg.iais.roberta.visitor.BrickpiAstVisitor;
 
 /**
  * This class is implementing {@link AstVisitor}. All methods are implemented and they append a human-readable Python code representation of a phrase to a
  * StringBuilder. <b>This representation is correct Python code.</b> <br>
  */
 public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSensorsVisitor<Void>, AstActorCommunicationVisitor<Void>,
-    AstActorDisplayVisitor<Void>, AstActorMotorVisitor<Void>, AstActorLightVisitor<Void>, AstActorSoundVisitor<Void> {
+    AstActorDisplayVisitor<Void>, AstActorMotorVisitor<Void>, AstActorLightVisitor<Void>, AstActorSoundVisitor<Void>, BrickpiAstVisitor<Void> {
     protected final EV3Configuration brickConfiguration;
 
     protected final Set<UsedSensor> usedSensors;
@@ -801,6 +804,7 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
         this.sb.append("from roberta.pi import Hal\n");
         //this.sb.append("from roberta.BlocklyMethods import BlocklyMethods\n");
         this.sb.append("from brickpi import pi as brickpi\n");
+        this.sb.append("from brickpi.cognitive import cognitive\n");
         this.sb.append("import math\n\n");
 
         this.sb.append("class BreakOutOfALoop(Exception): pass\n");
@@ -945,6 +949,12 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
     @Override
     public Void visitTemperatureSensor(TemperatureSensor<Void> temperatureSensor) {
         // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitDetectFace(DetectFace<Void> detectFace) {
+        this.sb.append("cognitive.faceDetect()");
         return null;
     }
 

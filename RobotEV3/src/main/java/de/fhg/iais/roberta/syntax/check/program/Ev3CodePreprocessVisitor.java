@@ -5,13 +5,16 @@ import java.util.ArrayList;
 import de.fhg.iais.roberta.components.Configuration;
 import de.fhg.iais.roberta.syntax.Phrase;
 import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
+
+import de.fhg.iais.roberta.visitor.BrickpiAstVisitor;
 
 /**
  * This visitor collects information for used actors and sensors in blockly program.
  *
  * @author kcvejoski
  */
-public class Ev3CodePreprocessVisitor extends PreprocessProgramVisitor {
+public class Ev3CodePreprocessVisitor extends PreprocessProgramVisitor implements BrickpiAstVisitor<Void> {
     public Ev3CodePreprocessVisitor(ArrayList<ArrayList<Phrase<Void>>> phrasesSet, Configuration brickConfiguration) {
         super(brickConfiguration);
         check(phrasesSet);
@@ -19,6 +22,12 @@ public class Ev3CodePreprocessVisitor extends PreprocessProgramVisitor {
 
     @Override
     public Void visitTemperatureSensor(TemperatureSensor<Void> temperatureSensor) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitDetectFace(DetectFace<Void> detectFace) {
         // TODO Auto-generated method stub
         return null;
     }

@@ -8,9 +8,13 @@ import de.fhg.iais.roberta.syntax.action.communication.BluetoothSendAction;
 import de.fhg.iais.roberta.syntax.action.communication.BluetoothWaitForConnectionAction;
 import de.fhg.iais.roberta.syntax.check.hardware.RobotProgramCheckVisitor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
 import de.fhg.iais.roberta.visitor.actor.AstActorCommunicationVisitor;
 
-public class Ev3RobProgramCheckVisitor extends RobotProgramCheckVisitor implements AstActorCommunicationVisitor<Void> {
+import de.fhg.iais.roberta.visitor.BrickpiAstVisitor;
+
+
+public class Ev3RobProgramCheckVisitor extends RobotProgramCheckVisitor implements AstActorCommunicationVisitor<Void>, BrickpiAstVisitor<Void> {
 
     public Ev3RobProgramCheckVisitor(Configuration brickConfiguration) {
         super(brickConfiguration);
@@ -18,6 +22,11 @@ public class Ev3RobProgramCheckVisitor extends RobotProgramCheckVisitor implemen
 
     @Override
     public Void visitTemperatureSensor(TemperatureSensor<Void> temperatureSensor) {
+        return null;
+    }
+
+    @Override
+    public Void visitDetectFace(DetectFace<Void> detectFace) {
         return null;
     }
 
