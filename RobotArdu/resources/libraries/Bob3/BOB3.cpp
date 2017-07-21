@@ -118,44 +118,44 @@ uint8_t Bob3::getArm(uint8_t id) {
   return 0;
 }
 
-bool getArmPair(uint8_t side, uint8_t section) {
+bool Bob3::getArmPair(uint8_t side, uint8_t section) {
     uint8_t sensorState = 0;
     switch (side)
     {
-    case 1:
+    case 2:
         switch (section)
         {
         case 1:
-            sensorState = analog_getValueExt(ANALOG_L0, 0);
+            sensorState = analog_getValueExt(ANALOG_L3, 0);
             break;
         case 2:
-            sensorState = analog_getValueExt(ANALOG_L1, 0);
-            break;
-        case 3:
             sensorState = analog_getValueExt(ANALOG_L2, 0);
             break;
+        case 3:
+            sensorState = analog_getValueExt(ANALOG_L1, 0);
+            break;
         case 4:
-            sensorState = analog_getValueExt(ANALOG_L3, 0);
+            sensorState = analog_getValueExt(ANALOG_L0, 0);
             break;
         default:
             return false;
             break;
         }
         break;
-    case 2:
+    case 1:
         switch (section)
         {
         case 1:
-            sensorState = analog_getValueExt(ANALOG_R0, 0);
+            sensorState = analog_getValueExt(ANALOG_R3, 0);
             break;
         case 2:
-            sensorState = analog_getValueExt(ANALOG_R1, 0);
-            break;
-        case 3:
             sensorState = analog_getValueExt(ANALOG_R2, 0);
             break;
+        case 3:
+            sensorState = analog_getValueExt(ANALOG_R1, 0);
+            break;
         case 4:
-            sensorState = analog_getValueExt(ANALOG_R3, 0);
+            sensorState = analog_getValueExt(ANALOG_R0, 0);
             break;
         default:
             return false;
