@@ -828,13 +828,14 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
         this.sb.append(INDENT).append("try:\n");
         this.sb.append(INDENT).append(INDENT).append("run()\n");
         this.sb.append(INDENT).append("except Exception as e:\n");
-        this.sb.append(INDENT).append(INDENT).append("hal.drawText('Fehler im EV3', 0, 0)\n");
-        this.sb.append(INDENT).append(INDENT).append("hal.drawText(e.__class__.__name__, 0, 1)\n");
+        //this.sb.append(INDENT).append(INDENT).append("hal.drawText('Fehler im EV3', 0, 0)\n");
+        //this.sb.append(INDENT).append(INDENT).append("hal.drawText(e.__class__.__name__, 0, 1)\n");
         // FIXME: we can only print about 30 chars
-        this.sb.append(INDENT).append(INDENT).append("hal.drawText(str(e), 0, 2)\n");
-        this.sb.append(INDENT).append(INDENT).append("hal.drawText('Press any key', 0, 4)\n");
-        this.sb.append(INDENT).append(INDENT).append("while not hal.isKeyPressed('any'): hal.waitFor(500)\n");
+        //this.sb.append(INDENT).append(INDENT).append("hal.drawText(str(e), 0, 2)\n");
+        //this.sb.append(INDENT).append(INDENT).append("hal.drawText('Press any key', 0, 4)\n");
+        //this.sb.append(INDENT).append(INDENT).append("while not hal.isKeyPressed('any'): hal.waitFor(500)\n");
         this.sb.append(INDENT).append(INDENT).append("raise\n");
+        this.sb.append(INDENT).append(INDENT).append("exit(1)\n");
 
         this.sb.append("\n");
         this.sb.append("if __name__ == \"__main__\":\n");
