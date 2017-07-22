@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "Cambiar el valor:";
 Blockly.Msg.CHAT = "¡Chatea con tu colaborador escribiendo en este cuadro!";
 Blockly.Msg.CLEAN_UP = "Limpiar los bloques";
 Blockly.Msg.COGNITIVE_FACE_DETECT = "face detect?";  // untranslated
+Blockly.Msg.COGNITIVE_OCR = "OCR";  // untranslated
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "Speech Recognition";  // untranslated
 Blockly.Msg.COGNITIVE_SPEEK = "Speak";  // untranslated
 Blockly.Msg.COLLAPSE_ALL = "Contraer bloques";

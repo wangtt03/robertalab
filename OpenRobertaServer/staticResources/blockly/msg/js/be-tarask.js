@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "Зьмяніць значэньне:";
 Blockly.Msg.CHAT = "Стасуйцеся са сваім калегам, набіраючы тэкст у гэтым полі!";
 Blockly.Msg.CLEAN_UP = "Ачысьціць блёкі";
 Blockly.Msg.COGNITIVE_FACE_DETECT = "face detect?";  // untranslated
+Blockly.Msg.COGNITIVE_OCR = "OCR";  // untranslated
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "Speech Recognition";  // untranslated
 Blockly.Msg.COGNITIVE_SPEEK = "Speak";  // untranslated
 Blockly.Msg.COLLAPSE_ALL = "Згарнуць блёкі";

@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "Wäert änneren:";
 Blockly.Msg.CHAT = "Mat ärem Mataarbechter chatten an deem Dir an dës Këscht tippt!";
 Blockly.Msg.CLEAN_UP = "Bléck opraumen";
 Blockly.Msg.COGNITIVE_FACE_DETECT = "face detect?";  // untranslated
+Blockly.Msg.COGNITIVE_OCR = "OCR";  // untranslated
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "Speech Recognition";  // untranslated
 Blockly.Msg.COGNITIVE_SPEEK = "Speak";  // untranslated
 Blockly.Msg.COLLAPSE_ALL = "Bléck zesummeklappen";

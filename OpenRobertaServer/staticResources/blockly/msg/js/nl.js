@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "Waarde wijzigen:";
 Blockly.Msg.CHAT = "Chat met iemand die ook aan het werk is via dit venster!";
 Blockly.Msg.CLEAN_UP = "Blokken opschonen";
 Blockly.Msg.COGNITIVE_FACE_DETECT = "face detect?";  // untranslated
+Blockly.Msg.COGNITIVE_OCR = "OCR";  // untranslated
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "Speech Recognition";  // untranslated
 Blockly.Msg.COGNITIVE_SPEEK = "Speak";  // untranslated
 Blockly.Msg.COLLAPSE_ALL = "Blokken samenvouwen";

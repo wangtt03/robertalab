@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "更改值：";
 Blockly.Msg.CHAT = "通过在此框输入与您的合作者沟通！";
 Blockly.Msg.CLEAN_UP = "清理块";
 Blockly.Msg.COGNITIVE_FACE_DETECT = "是否检测到人脸？";
+Blockly.Msg.COGNITIVE_OCR = "文字识别";  // untranslated
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "语音识别";
 Blockly.Msg.COGNITIVE_SPEEK = "说话：";
 Blockly.Msg.COLLAPSE_ALL = "折叠块";

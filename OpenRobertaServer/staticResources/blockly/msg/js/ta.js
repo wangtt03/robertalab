@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "மதிப்பை மாற்றவும
 Blockly.Msg.CHAT = "இந்தப் பெட்டியில் தட்டச்சு செய்வதன் மூலம் கூட்டுப்பணியாளருடன் உரையாடலாம்!";
 Blockly.Msg.CLEAN_UP = "Clean up Blocks";  // untranslated
 Blockly.Msg.COGNITIVE_FACE_DETECT = "face detect?";  // untranslated
+Blockly.Msg.COGNITIVE_OCR = "OCR";  // untranslated
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "Speech Recognition";  // untranslated
 Blockly.Msg.COGNITIVE_SPEEK = "Speak";  // untranslated
 Blockly.Msg.COLLAPSE_ALL = "உறுப்புகளை மரை";
