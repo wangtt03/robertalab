@@ -11,8 +11,8 @@ podTemplate(label: 'robertalab-pod', containers: [
         def succ = true
         def err = ''
         try {
-            slackSend channel: "#build_status", message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
             stage('Build Stage: ') {
+                slackSend channel: "#build_status", message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
                 container('maven') {
                     stage('Clone repository') {
                         checkout scm
