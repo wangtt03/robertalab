@@ -4,8 +4,8 @@ create table USER (
   PASSWORD  varchar(255) not null,
   EMAIL varchar(255),
   ROLE varchar(32) not null,
-  CREATED timestamp not null,
-  LAST_LOGIN timestamp not null,
+  CREATED timestamp not null DEFAULT CURRENT_TIMESTAMP,
+  LAST_LOGIN timestamp not null DEFAULT CURRENT_TIMESTAMP,
   TAGS text, -- e.g. HERDER-GYMNASIUM KÖLN Q1 ED_SHEERAN
   USER_NAME varchar(255),
   YOUNGER_THAN_14 bool default false not null,
@@ -19,7 +19,7 @@ create table LOST_PASSWORD (
     ID INTEGER not null AUTO_INCREMENT,
     USER_ID INTEGER not null,
     URL_POSTFIX varchar(255),
-    CREATED timestamp not null,
+    CREATED timestamp not null DEFAULT CURRENT_TIMESTAMP,
 
     primary key (ID),
     foreign key (USER_ID) references USER(ID) ON DELETE CASCADE
@@ -29,7 +29,7 @@ create table PENDING_EMAIL_CONFIRMATIONS (
     ID INTEGER not null AUTO_INCREMENT,
     USER_ID INTEGER not null,
     URL_POSTFIX varchar(255),
-    CREATED timestamp not null,
+    CREATED timestamp not null DEFAULT CURRENT_TIMESTAMP,
 
     primary key (ID),
     foreign key (USER_ID) references USER(ID) ON DELETE CASCADE
@@ -38,7 +38,7 @@ create table PENDING_EMAIL_CONFIRMATIONS (
 create table ROBOT (
   ID INTEGER not null AUTO_INCREMENT,
   NAME varchar(255) not null,
-  CREATED timestamp not null,
+  CREATED timestamp not null DEFAULT CURRENT_TIMESTAMP,
   TAGS text,
   ICON_NUMBER integer not null,
 
@@ -53,10 +53,10 @@ create table PROGRAM (
   OWNER_ID INTEGER not null,
   ROBOT_ID INTEGER not null,
   PROGRAM_TEXT text,
-  CREATED timestamp not null,
-  LAST_CHANGED timestamp not null,
-  LAST_CHECKED timestamp,
-  LAST_ERRORFREE timestamp,
+  CREATED timestamp not null DEFAULT CURRENT_TIMESTAMP,
+  LAST_CHANGED timestamp not null DEFAULT CURRENT_TIMESTAMP,
+  LAST_CHECKED timestamp DEFAULT CURRENT_TIMESTAMP,
+  LAST_ERRORFREE timestamp DEFAULT CURRENT_TIMESTAMP,
   NUMBER_OF_BLOCKS INTEGER,
   TAGS text, -- e.g. CAR AUTONOMOUS COOL 3WHEELS
   ICON_NUMBER integer not null,
@@ -110,10 +110,10 @@ create table TOOLBOX (
   OWNER_ID INTEGER,
   ROBOT_ID INTEGER not null,
   TOOLBOX_TEXT text,
-  CREATED timestamp not null,
-  LAST_CHANGED timestamp not null,
-  LAST_CHECKED timestamp,
-  LAST_ERRORFREE timestamp,
+  CREATED timestamp not null DEFAULT CURRENT_TIMESTAMP,
+  LAST_CHANGED timestamp not null DEFAULT CURRENT_TIMESTAMP,
+  LAST_CHECKED timestamp DEFAULT CURRENT_TIMESTAMP,
+  LAST_ERRORFREE timestamp DEFAULT CURRENT_TIMESTAMP,
   TAGS text, -- e.g. CAR AUTONOMOUS COOL 3WHEELS
   ICON_NUMBER integer not null,
 
@@ -130,10 +130,10 @@ create table CONFIGURATION (
   OWNER_ID INTEGER,
   ROBOT_ID INTEGER not null,
   CONFIGURATION_TEXT text,
-  CREATED timestamp not null,
-  LAST_CHANGED timestamp not null,
-  LAST_CHECKED timestamp,
-  LAST_ERRORFREE timestamp,
+  CREATED timestamp not null DEFAULT CURRENT_TIMESTAMP,
+  LAST_CHANGED timestamp not null DEFAULT CURRENT_TIMESTAMP,
+  LAST_CHECKED timestamp DEFAULT CURRENT_TIMESTAMP,
+  LAST_ERRORFREE timestamp DEFAULT CURRENT_TIMESTAMP,
   TAGS text, -- e.g. CAR AUTONOMOUS COOL 3WHEELS
   ICON_NUMBER integer not null,
 

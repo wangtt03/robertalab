@@ -8,11 +8,12 @@ metadata:
 spec:
   ports:
   - port: 80
+    targetPort: 1999
   selector:
     app: robertalabapp
     component: robertalab
   type: LoadBalancer
-  loadBalancerIP: 40.125.207.157
+  loadBalancerIP: 40.125.205.217
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
