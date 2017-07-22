@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "Breyta gildi:";
 Blockly.Msg.CHAT = "Spjallaðu við félaga með því að skrifa í þennan reit!";
 Blockly.Msg.CLEAN_UP = "Hreinsa kubba";
 Blockly.Msg.COGNITIVE_FACE_DETECT = "face detect?";  // untranslated
+Blockly.Msg.COGNITIVE_OCR = "OCR";  // untranslated
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "Speech Recognition";  // untranslated
 Blockly.Msg.COGNITIVE_SPEEK = "Speak";  // untranslated
 Blockly.Msg.COLLAPSE_ALL = "Loka kubbum";

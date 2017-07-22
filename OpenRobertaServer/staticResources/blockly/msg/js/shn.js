@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "လႅၵ်ႈလၢႆႈၼမ်ႉၵတ�
 Blockly.Msg.CHAT = "​ပေႃႉလိၵ်ႈ ၼႂ်းလွၵ်းၼႆႉသေ ၶျၢတ်ႉၸူး ၵေႃႉႁူမ်ႈႁဵတ်းႁူမ်ႈသၢင်ႈ ၸဝ်ႈၵဝ်ႇ";
 Blockly.Msg.CLEAN_UP = "Clean up Blocks";  // untranslated
 Blockly.Msg.COGNITIVE_FACE_DETECT = "face detect?";  // untranslated
+Blockly.Msg.COGNITIVE_OCR = "OCR";  // untranslated
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "Speech Recognition";  // untranslated
 Blockly.Msg.COGNITIVE_SPEEK = "Speak";  // untranslated
 Blockly.Msg.COLLAPSE_ALL = "ပလွၵ်ႉတင်းၼမ် လႅဝ်";

@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "Мәғәнәне үҙгәртегеҙ:";
 Blockly.Msg.CHAT = "Был яланды тултырғанда, хеҙмәттәшегеҙ менән аралашығыҙ";
 Blockly.Msg.CLEAN_UP = "Блоктарҙы таҙартырға";
 Blockly.Msg.COGNITIVE_FACE_DETECT = "face detect?";  // untranslated
+Blockly.Msg.COGNITIVE_OCR = "OCR";  // untranslated
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "Speech Recognition";  // untranslated
 Blockly.Msg.COGNITIVE_SPEEK = "Speak";  // untranslated
 Blockly.Msg.COLLAPSE_ALL = "Блоктарҙы төрөргә";

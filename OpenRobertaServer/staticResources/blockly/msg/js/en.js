@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "Change value:";
 Blockly.Msg.CHAT = "Chat with your collaborator by typing in this box!";
 Blockly.Msg.CLEAN_UP = "Clean up Blocks";
 Blockly.Msg.COGNITIVE_FACE_DETECT = "face detect?";
+Blockly.Msg.COGNITIVE_OCR = "OCR";
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "Speech Recognition";
 Blockly.Msg.COGNITIVE_SPEEK = "Speak";
 Blockly.Msg.COLLAPSE_ALL = "Collapse Blocks";

@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "Bytt verdi:";
 Blockly.Msg.CHAT = "Chat med din medarbeider ved å skrive i dette feltet!";
 Blockly.Msg.CLEAN_UP = "Rydd opp Blocks";
 Blockly.Msg.COGNITIVE_FACE_DETECT = "face detect?";  // untranslated
+Blockly.Msg.COGNITIVE_OCR = "OCR";  // untranslated
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "Speech Recognition";  // untranslated
 Blockly.Msg.COGNITIVE_SPEEK = "Speak";  // untranslated
 Blockly.Msg.COLLAPSE_ALL = "Skjul blokker";

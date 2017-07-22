@@ -42,6 +42,7 @@ Blockly.Msg.CHANGE_VALUE_TITLE = "ಮೌಲ್ಯೊದ ಬದಲಾವಣೆ";
 Blockly.Msg.CHAT = "ನಿಕ್ಲೆನ ಸಹಬೋಗಿನೊಟ್ಟುಗೆ ಈ ಪೆಟ್ಟಿಗೆಡ್ ಚಾಟಿಂಗ್‍ ನಮೂದು ಮಲ್ಪುಲೆ";
 Blockly.Msg.CLEAN_UP = "ನಿರ್ಬಂದೊಲೆನ್ ಸ್ವೊಚ್ಚೊ ಮಲ್ಪುಲೆ";
 Blockly.Msg.COGNITIVE_FACE_DETECT = "face detect?";  // untranslated
+Blockly.Msg.COGNITIVE_OCR = "OCR";  // untranslated
 Blockly.Msg.COGNITIVE_SPEECH_RECOGNITION = "Speech Recognition";  // untranslated
 Blockly.Msg.COGNITIVE_SPEEK = "Speak";  // untranslated
 Blockly.Msg.COLLAPSE_ALL = "ಕುಗ್ಗಿಸಾದ್ ನಿರ್ಬಂಧಿಸಾಪುನೆ";
