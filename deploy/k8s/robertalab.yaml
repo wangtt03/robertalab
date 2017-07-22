@@ -8,6 +8,7 @@ metadata:
 spec:
   ports:
   - port: 80
+    targetPort: 1999
   selector:
     app: robertalabapp
     component: robertalab
