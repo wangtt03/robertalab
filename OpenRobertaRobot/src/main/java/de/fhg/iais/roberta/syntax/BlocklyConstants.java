@@ -317,5 +317,6 @@ public final class BlocklyConstants {
 
     public static final String COGNITIVE_SAY_TEXT = "brickpiSpeak";
     public static final String COGNITIVE_SPEECH_RECOGNITION = "brickpiSpeechRecognition";
+    public static final String COGNITIVE_OCR = "brickpiOCR";
     public static final String COGNITIVE_DETECT_FACE = "face_detect";
 }

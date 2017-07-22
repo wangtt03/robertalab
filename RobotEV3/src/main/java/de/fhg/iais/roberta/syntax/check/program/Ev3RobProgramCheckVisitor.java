@@ -10,6 +10,7 @@ import de.fhg.iais.roberta.syntax.check.hardware.RobotProgramCheckVisitor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.SpeechRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.OCR;
 import de.fhg.iais.roberta.syntax.action.brickpi.SayText;
 import de.fhg.iais.roberta.visitor.actor.AstActorCommunicationVisitor;
 
@@ -34,6 +35,11 @@ public class Ev3RobProgramCheckVisitor extends RobotProgramCheckVisitor implemen
 
     @Override
     public Void visitSpeechRecognition(SpeechRecognition<Void> speechRecognition) {
+        return null;
+    }
+
+    @Override
+    public Void visitOCR(OCR<Void> ocr) {
         return null;
     }
 
