@@ -2,6 +2,8 @@ package de.fhg.iais.roberta.visitor;
 
 import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.SpeechRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.EmotionRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.DescribeImage;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.OCR;
 import de.fhg.iais.roberta.syntax.action.brickpi.SayText;
 
@@ -37,4 +39,18 @@ public interface BrickpiAstVisitor<V> extends AstVisitor<V> {
      * @param OCR on phrase to be visited
      */
     V visitOCR(OCR<V> ocr);
+
+    /**
+     * visit a {@link EmotionRecognition}.
+     *
+     * @param EmotionRecognition on phrase to be visited
+     */
+    V visitEmotionRecognition(EmotionRecognition<V> emotionRecognition);
+
+    /**
+     * visit a {@link DescribeImage}.
+     *
+     * @param DescribeImage on phrase to be visited
+     */
+    V visitDescribeImage(DescribeImage<V> describeImage);
 }

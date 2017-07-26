@@ -5,6 +5,9 @@ import de.fhg.iais.roberta.javaServer.provider.OraData;
 import de.fhg.iais.roberta.persistence.DeviceProcessor;
 import de.fhg.iais.roberta.persistence.bo.Device;
 import de.fhg.iais.roberta.persistence.dao.DeviceDao;
+import de.fhg.iais.roberta.persistence.util.CognitiveTokensProcessor;
+import de.fhg.iais.roberta.persistence.bo.CognitiveTokens;
+import de.fhg.iais.roberta.persistence.dao.CognitiveTokensDao;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.robotCommunication.RobotCommunicationData;
 import de.fhg.iais.roberta.robotCommunication.RobotCommunicator;
@@ -22,6 +25,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import java.util.List;
+
 @Path("/pushcmd")
 public class RobotCommand {
     private static final Logger LOG = LoggerFactory.getLogger(RobotCommand.class);
@@ -34,6 +39,8 @@ public class RobotCommand {
     private static final String CMD_PUSH = "push";
     private static final String CMD_REPEAT = "repeat";
     private static final String CMD_ABORT = "abort";
+    private static final String CMD_GETTOKEN = "gettoken";
+    private static final String CMD_PING = "ping";
 
     private final RobotCommunicator brickCommunicator;
 
@@ -107,6 +114,18 @@ public class RobotCommand {
                     response = new JSONObject().put(CMD, command);
                     return Response.ok(response).build();
                 }
+            case CMD_GETTOKEN:
+                CognitiveTokensDao cognitiveTokensDao = new CognitiveTokensDao(dbSession);
+                List<CognitiveTokens> il = cognitiveTokensDao.getAllTokens();
+                JSONObject tokens = new JSONObject();
+                for (int i = 0; i < il.size(); i++){
+                    tokens.put(il.get(i).getDomain(), il.get(i).getToken());
+                }
+                response = new JSONObject().put(CMD, "setcogtoken").put("tokens", tokens);
+                return Response.ok(response).build();
+            case CMD_PING:
+                response = new JSONObject().put("connection", "ok");
+                return Response.ok(response).build();
             default:
                 LOG.error("Robot request aborted. Robot uses a wrong JSON: " + requestEntity);
                 return Response.serverError().build();

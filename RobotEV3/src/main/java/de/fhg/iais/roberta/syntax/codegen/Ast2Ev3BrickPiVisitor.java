@@ -76,6 +76,8 @@ import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.SpeechRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.EmotionRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.DescribeImage;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.OCR;
 import de.fhg.iais.roberta.syntax.action.brickpi.SayText;
 import de.fhg.iais.roberta.util.dbc.Assert;
@@ -966,6 +968,18 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
     @Override
     public Void visitSpeechRecognition(SpeechRecognition<Void> speechRecognition) {
         this.sb.append("jasper.listen()");
+        return null;
+    }
+
+    @Override
+    public Void visitEmotionRecognition(EmotionRecognition<Void> emotionRecognition) {
+        this.sb.append("cognitive.emotionRecognition()");
+        return null;
+    }
+
+    @Override
+    public Void visitDescribeImage(DescribeImage<Void> describeImage) {
+        this.sb.append("cognitive.describeImage()");
         return null;
     }
 

@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2017-07-22 10:11:44.963275",
+		"lastupdated": "2017-07-26 14:54:17.649185",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -572,6 +572,8 @@
 	"COGNITIVE_SPEECH_RECOGNITION": "Speech Recognition",
 	"COGNITIVE_SPEEK": "Speak",
 	"COGNITIVE_OCR": "OCR",
+	"COGNITIVE_EMOTION_RECOGNITION": "Emotion Recognition",
+	"COGNITIVE_DESCRIBE_IMAGE": "Describe image",
 	"TOOLBOX_ACTION": "Action",
 	"TOOLBOX_COGNITIVE": "Cognitive",
 	"TOOLBOX_COMMUNICATION": "Messages",
