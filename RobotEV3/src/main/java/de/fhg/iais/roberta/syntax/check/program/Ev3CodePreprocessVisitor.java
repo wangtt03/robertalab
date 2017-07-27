@@ -11,6 +11,7 @@ import de.fhg.iais.roberta.syntax.sensor.brickpi.EmotionRecognition;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.DescribeImage;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.OCR;
 import de.fhg.iais.roberta.syntax.action.brickpi.SayText;
+import de.fhg.iais.roberta.syntax.action.brickpi.SetWakeupWord;
 
 import de.fhg.iais.roberta.visitor.BrickpiAstVisitor;
 
@@ -63,6 +64,12 @@ public class Ev3CodePreprocessVisitor extends PreprocessProgramVisitor implement
 
     @Override
     public Void visitSayText(SayText<Void> sayText) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitSetWakeupWord(SetWakeupWord<Void> setWakeupWord) {
         // TODO Auto-generated method stub
         return null;
     }

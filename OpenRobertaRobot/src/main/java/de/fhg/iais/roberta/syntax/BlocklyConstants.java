@@ -286,6 +286,7 @@ public final class BlocklyConstants {
     public static final String Theta = "Theta";
     public static final String INTENSITY = "INTENSITY";
     public static final String LANGUAGE = "LANGUAGE";
+    public static final String WAKEUPWORD = "WAKEUPWORD";
     public static final String POSITION = "POSITION";
     public static final String PART = "PART";
     public static final String SIDE = "SIDE";
@@ -318,5 +319,8 @@ public final class BlocklyConstants {
     public static final String COGNITIVE_SAY_TEXT = "brickpiSpeak";
     public static final String COGNITIVE_SPEECH_RECOGNITION = "brickpiSpeechRecognition";
     public static final String COGNITIVE_OCR = "brickpiOCR";
-    public static final String COGNITIVE_DETECT_FACE = "face_detect";
+    public static final String COGNITIVE_DETECT_FACE = "brickpiFace_Detect";
+    public static final String COGNITIVE_EMOTION_RECOGNITION = "brickpiEmotionRecognition";
+    public static final String COGNITIVE_DESCRIBE_IMAGE = "brickpiDescribeImage";
+    public static final String COGNITIVE_SET_WAKEUP_WORD = "brickpiSetWakeupWord";
 }

@@ -80,6 +80,7 @@ import de.fhg.iais.roberta.syntax.sensor.brickpi.EmotionRecognition;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.DescribeImage;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.OCR;
 import de.fhg.iais.roberta.syntax.action.brickpi.SayText;
+import de.fhg.iais.roberta.syntax.action.brickpi.SetWakeupWord;
 import de.fhg.iais.roberta.util.dbc.Assert;
 import de.fhg.iais.roberta.util.dbc.DbcException;
 import de.fhg.iais.roberta.visitor.AstVisitor;
@@ -804,7 +805,8 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
         if ( !withWrapping ) {
             return;
         }
-        this.sb.append("#!/usr/bin/python\n\n");
+        this.sb.append("#!/usr/bin/python\n");
+        this.sb.append("# -*- coding: utf-8-*-\n\n");
         this.sb.append("from __future__ import absolute_import\n");
         this.sb.append("from roberta.pi import Hal\n");
         //this.sb.append("from roberta.BlocklyMethods import BlocklyMethods\n");
@@ -997,4 +999,20 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
         return null;
     }
 
+    @Override
+    public Void visitSetWakeupWord(SetWakeupWord<Void> setWakeupWord) {
+        this.sb.append("jasper.setWakeupWord(");
+        switch ( setWakeupWord.getWakeupWord() ) {
+            case HELLO:
+                this.sb.append("\"你好\")");
+                break;
+            case START:
+                this.sb.append("\"开始\")");
+                break;
+            case LAOJIA:
+                this.sb.append("\"老贾\")");
+                break;
+        }
+        return null;
+    }
 }
