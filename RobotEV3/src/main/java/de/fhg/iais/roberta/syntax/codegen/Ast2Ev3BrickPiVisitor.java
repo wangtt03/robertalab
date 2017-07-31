@@ -993,9 +993,9 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
 
     @Override
     public Void visitSayText(SayText<Void> sayText) {
-        this.sb.append("jasper.speak([");
+        this.sb.append("jasper.speak(");
         sayText.getMsg().visit(this);
-        this.sb.append("])");
+        this.sb.append(")");
         return null;
     }
 

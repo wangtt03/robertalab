@@ -42,6 +42,7 @@ public final class BlocklyConstants {
     public static final String NOT = "NOT";
     public static final String BOOL = "BOOL";
     public static final String OP_ = "OP";
+    public static final String IN = "in";
     public static final String B = "B";
     public static final String A = "A";
     public static final String SENSORTYPE = "SENSORTYPE";
@@ -165,6 +166,7 @@ public final class BlocklyConstants {
     public static final String MATH_NUMBER_PROPERTY = "math_number_property";
 
     public static final String TEXT_APPEND = "robText_append";
+    public static final String TEXT_CONTAIN = "brickpiText_Contain";
     public static final String ROB_TEXT_JOIN = "robText_join";
     public static final String TEXT_JOIN = "text_join";
     public static final String TEXT_PRINT = "text_print";
@@ -231,6 +233,7 @@ public final class BlocklyConstants {
     public static final String COM_WAIT_CONNECTION = "robCommunication_waitForConnection";
     public static final String COM_RECEIVE_BLOCK = "robCommunication_receiveBlock";
     public static final String STRING = "STRING";
+    public static final String SUBSTRING = "SUBSTRING";
     public static final String TOUCH = "TOUCH";
     public static final String ULTRASONIC = "ULTRASONIC";
     public static final String INFRARED = "INFRARED";
