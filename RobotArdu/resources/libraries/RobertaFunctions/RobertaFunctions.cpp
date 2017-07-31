@@ -40,51 +40,28 @@ bool RobertaFunctions::isWhole(double val){
   return ((val - intPart) == 0);
 }
 
-void RobertaFunctions::createArray(double *arr, int len, double firstItem, ...){
-   va_list arguments;
-	 arr[0] = firstItem;
-   va_start ( arguments, firstItem );
-   for(int i = 1; i < len; i++){
-    	arr[i] =  va_arg ( arguments, double );
-    }
-    va_end ( arguments );
-}
-
-void RobertaFunctions::createArray(double *arr, int len, int firstItem, ...){
-   va_list arguments;
-	 arr[0] = firstItem;
-   va_start ( arguments, firstItem );
-   for(int i = 1; i < len; i++){
-    	arr[i] =  va_arg ( arguments, int );
-    }
-    va_end ( arguments );
-}
-
-void RobertaFunctions::createArray(bool *arr, int len, ...){
-   va_list arguments;
-   va_start ( arguments, len );
+void RobertaFunctions::createArray(double *arr, int len, double arrAssign[]){
    for(int i = 0; i < len; i++){
-     arr[i] = va_arg ( arguments, bool );
+    	arr[i] =  arrAssign[i];
     }
-    va_end ( arguments );
 }
 
-void RobertaFunctions::createArray(char **arr, int len, ...){
-   va_list arguments;
-   va_start ( arguments, len );
-   for(int i = 0; i < len; i++){
-     arr[i] = va_arg ( arguments, char* );
-    }
-    va_end ( arguments );
+void RobertaFunctions::createArray(bool *arr, int len, bool arrAssign[]){
+	for(int i = 0; i < len; i++){
+		 arr[i] =  arrAssign[i];
+	 }
 }
 
-void RobertaFunctions::createArray(int *arr, int len, ...){
-   va_list arguments;
-   va_start ( arguments, len );
-   for(int i = 0; i < len; i++){
-     arr[i] = va_arg ( arguments, int );
-    }
-    va_end ( arguments );
+void RobertaFunctions::createArray(String *arr, int len, String arrAssign[]){
+	for(int i = 0; i < len; i++){
+		 arr[i] =  arrAssign[i];
+	 }
+}
+
+void RobertaFunctions::createArray(int *arr, int len, int arrAssign[]){
+	for(int i = 0; i < len; i++){
+		 arr[i] =  arrAssign[i];
+	 }
 }
 
 int RobertaFunctions::arrFindFirst(int len, double arr[], double item) {

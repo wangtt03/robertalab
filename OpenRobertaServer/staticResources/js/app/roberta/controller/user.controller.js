@@ -89,7 +89,7 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
                 $("#registerAccountName").val(result.userAccountName);
                 $("#registerUserEmail").val(result.userEmail);
                 $("#registerUserName").val(result.userName);
-                $("#registerUserAge").val(result.isYoungerThen14);
+                $("#registerUserAge").val(result.isYoungerThen14 ? 1 : 2);
             }
         });
     }
@@ -268,6 +268,9 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
                     required : false,
                     email : true
                 },
+                registerUserAge : {
+                    required : true
+                },
             },
             errorClass : "form-invalid",
             errorPlacement : function(label, element) {
@@ -295,6 +298,9 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
                 registerUserEmail : {
                     required : Blockly.Msg["VALIDATION_FIELD_REQUIRED"],
                     email : Blockly.Msg["VALIDATION_VALID_EMAIL_ADDRESS"]
+                },
+                registerUserAge : {
+                    required : Blockly.Msg["VALIDATION_FIELD_REQUIRED"],
                 }
             }
         });
@@ -400,30 +406,23 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
         $("#registerUserAge").val('none');
     }
 
-    function initRegisterForm() {
-        $formRegister.unbind('submit');
-        $formRegister.onWrap('submit', function(e) {
-            e.preventDefault();
-            createUserToServer();
-        });
+    function showRegisterForm() {
         $("#registerUser").text(Blockly.Msg["POPUP_REGISTER_USER"]);
         $("#registerAccountName").prop("disabled", false);
         $("#userInfoLabel").addClass('hidden');
-        $("#loginLabel").removeClass('hidden');
+        if (!GUISTATE_C.isPublicServerVersion()) {
+            $("#fgUserAge").addClass('hidden');
+        }
         $("#fgRegisterPass").show()
         $("#fgRegisterPassConfirm").show()
         $("#showChangeUserPassword").addClass('hidden');
         $("#resendActivation").addClass('hidden');
         $("#register_login_btn").show()
         $("#register_lost_btn").show()
-        $formLogin.hide()
-        $formRegister.show();
-        $('#div-login-forms').css('height', 'auto');
     }
 
     function initLoginModal() {
         $('#login-user').onWrap('hidden.bs.modal', function() {
-            initRegisterForm();
             resetForm();
             clearInputs();
         });
@@ -443,17 +442,19 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
 
         // Login form change between sub-form
         $('#login_register_btn').onWrap('click', function() {
-            hederChange($h3Login, $h3Register)
-            modalAnimate($formLogin, $formRegister)
+            showRegisterForm();
+            hederChange($h3Login, $h3Register);
+            modalAnimate($formLogin, $formRegister);
             UTIL.setFocusOnElement($('#registerAccountName'));
+
         });
         $('#register_login_btn').onWrap('click', function() {
-            hederChange($h3Register, $h3Login)
+            hederChange($h3Register, $h3Login);
             modalAnimate($formRegister, $formLogin);
             UTIL.setFocusOnElement($('#loginAccountName'));
         });
         $('#login_lost_btn').onWrap('click', function() {
-            hederChange($h3Login, $h3Lost)
+            hederChange($h3Login, $h3Lost);
             modalAnimate($formLogin, $formLost);
             UTIL.setFocusOnElement($('#lost_email'));
         });
@@ -463,12 +464,12 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
             UTIL.setFocusOnElement($('#loginAccountName'));
         });
         $('#lost_register_btn').onWrap('click', function() {
-            hederChange($h3Lost, $h3Register)
+            hederChange($h3Lost, $h3Register);
             modalAnimate($formLost, $formRegister);
             UTIL.setFocusOnElement($('#registerAccountName'));
         });
         $('#register_lost_btn').onWrap('click', function() {
-            hederChange($h3Register, $h3Lost)
+            hederChange($h3Register, $h3Lost);
             modalAnimate($formRegister, $formLost);
             UTIL.setFocusOnElement($('#lost_email'));
         });
@@ -552,7 +553,9 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
         $("#fgRegisterPassConfirm").hide()
         $("#register_login_btn").hide()
         $("#showChangeUserPassword").removeClass('hidden');
-        $("#resendActivation").removeClass('hidden');
+        if (GUISTATE_C.isPublicServerVersion()) {
+            $("#resendActivation").removeClass('hidden');
+        }
         $("#register_lost_btn").hide()
         $formLogin.hide()
         $formRegister.show();
@@ -568,6 +571,7 @@ define([ 'exports', 'log', 'message', 'util', 'user.model', 'guiState.controller
         $formLogin.show()
         $formLost.hide();
         $formRegister.hide();
+        $('#div-login-forms').css('height', 'auto');
         $("#login-user").modal('show');
     }
     exports.showLoginForm = showLoginForm;

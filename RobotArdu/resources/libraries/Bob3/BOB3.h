@@ -12,7 +12,7 @@
 void setup();
 void loop();
 
-enum {
+typedef enum Bob3Arm {
   ARM_NONE,
   ARM_TOP,
   ARM_MID_TOP,
@@ -21,7 +21,7 @@ enum {
 };
 
 
-enum {
+typedef enum Bob3Color {
   OFF            = 0x000,
   WHITE          = 0xfff,
   ON             = 0xfff,

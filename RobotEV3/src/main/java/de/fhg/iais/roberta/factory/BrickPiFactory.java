@@ -495,11 +495,6 @@ public class BrickPiFactory extends AbstractRobotFactory {
     }
 
     @Override
-    public SimulationProgramCheckVisitor getProgramCheckVisitor(Configuration brickConfiguration) {
-        return new Ev3SimProgramCheckVisitor(brickConfiguration);
-    }
-
-    @Override
     public RobotProgramCheckVisitor getRobotProgramCheckVisitor(Configuration brickConfiguration) {
         return new Ev3RobProgramCheckVisitor(brickConfiguration);
     }
@@ -507,6 +502,11 @@ public class BrickPiFactory extends AbstractRobotFactory {
     @Override
     public Boolean hasConfiguration() {
         return this.ev3Properties.getProperty("robot.configuration") != null ? false : true;
+    }
+
+    @Override
+    public SimulationProgramCheckVisitor getSimProgramCheckVisitor(Configuration brickConfiguration) {
+        return new Ev3SimProgramCheckVisitor(brickConfiguration);
     }
 
     @Override

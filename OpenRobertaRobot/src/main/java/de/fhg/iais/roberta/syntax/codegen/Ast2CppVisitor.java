@@ -2,6 +2,7 @@ package de.fhg.iais.roberta.syntax.codegen;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
@@ -19,6 +20,7 @@ import de.fhg.iais.roberta.syntax.lang.expr.Unary;
 import de.fhg.iais.roberta.syntax.lang.functions.ListRepeat;
 import de.fhg.iais.roberta.syntax.lang.functions.MathSingleFunct;
 import de.fhg.iais.roberta.syntax.lang.functions.TextPrintFunct;
+import de.fhg.iais.roberta.syntax.lang.methods.Method;
 import de.fhg.iais.roberta.syntax.lang.methods.MethodCall;
 import de.fhg.iais.roberta.syntax.lang.methods.MethodIfReturn;
 import de.fhg.iais.roberta.syntax.lang.methods.MethodReturn;
@@ -37,6 +39,7 @@ import de.fhg.iais.roberta.visitor.AstVisitor;
  * StringBuilder. <b>This representation is correct C++ code.</b> <br>
  */
 public abstract class Ast2CppVisitor extends CommonLanguageVisitor {
+    protected List<Method<Void>> userDefinedMethods = new ArrayList<Method<Void>>();
 
     /**
      * initialize the cpp code generator visitor.
@@ -353,6 +356,16 @@ public abstract class Ast2CppVisitor extends CommonLanguageVisitor {
         }
         nlIndent();
         this.sb.append("}");
+    }
+
+    protected void generateSignaturesOfUserDefinedMethods() {
+        for ( Method<Void> phrase : this.userDefinedMethods ) {
+            this.sb.append(getLanguageVarTypeFromBlocklyType(phrase.getReturnType()) + " ");
+            this.sb.append(phrase.getMethodName() + "(");
+            phrase.getParameters().visit(this);
+            this.sb.append(");");
+            nlIndent();
+        }
     }
 
     protected void generateCodeFromStmtCondition(String stmtType, Expr<Void> expr) {

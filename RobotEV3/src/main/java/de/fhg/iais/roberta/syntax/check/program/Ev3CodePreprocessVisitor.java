@@ -3,7 +3,9 @@ package de.fhg.iais.roberta.syntax.check.program;
 import java.util.ArrayList;
 
 import de.fhg.iais.roberta.components.Configuration;
+import de.fhg.iais.roberta.mode.sensor.ev3.GyroSensorMode;
 import de.fhg.iais.roberta.syntax.Phrase;
+import de.fhg.iais.roberta.syntax.sensor.generic.GyroSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.SpeechRecognition;
@@ -18,9 +20,18 @@ import de.fhg.iais.roberta.visitor.BrickpiAstVisitor;
  * @author kcvejoski
  */
 public class Ev3CodePreprocessVisitor extends PreprocessProgramVisitor implements BrickpiAstVisitor<Void> {
+
     public Ev3CodePreprocessVisitor(ArrayList<ArrayList<Phrase<Void>>> phrasesSet, Configuration brickConfiguration) {
         super(brickConfiguration);
         check(phrasesSet);
+    }
+
+    @Override
+    public Void visitGyroSensor(GyroSensor<Void> gyroSensor) {
+        if ( gyroSensor.getMode() != GyroSensorMode.RESET ) {
+            super.visitGyroSensor(gyroSensor);
+        }
+        return null;
     }
 
     @Override
@@ -49,7 +60,6 @@ public class Ev3CodePreprocessVisitor extends PreprocessProgramVisitor implement
 
     @Override
     public Void visitSayText(SayText<Void> sayText) {
-        // TODO Auto-generated method stub
         return null;
     }
 

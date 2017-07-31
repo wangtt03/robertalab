@@ -2,10 +2,10 @@
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
 <<<<<<< HEAD
-		"lastupdated": "2017-06-28 16:31:41.474450",
+		"lastupdated": "2017-07-22 10:11:44.963275",
 =======
-		"lastupdated": "2017-07-11 10:09:45.393969",
->>>>>>> fork/master
+		"lastupdated": "2017-07-28 12:33:09.019348",
+>>>>>>> fork/develop
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -572,7 +572,12 @@
 	"CONNECTION_CHECK": "connection to robot %1 active?",
 	"CONNECTION_CHECK_TOOLTIP": "Check if the connection to the robot is active.",
 	"CONNECTION_PROTOCOL_BLUETOOTH": "Bluetooth",
+	"COGNITIVE_FACE_DETECT": "face detect?",
+	"COGNITIVE_SPEECH_RECOGNITION": "Speech Recognition",
+	"COGNITIVE_SPEEK": "Speak",
+	"COGNITIVE_OCR": "OCR",
 	"TOOLBOX_ACTION": "Action",
+	"TOOLBOX_COGNITIVE": "Cognitive",
 	"TOOLBOX_COMMUNICATION": "Messages",
 	"TOOLBOX_PIN": "Pin",
 	"TOOLBOX_SENSOR": "Sensors",
@@ -1161,6 +1166,8 @@
 	"ORA_ACCOUNT_NOT_ACTIVATED_TO_SHARE": "Your are not allowed to share. Please activate your account!",
 	"SENSOR_JOYSTICK": "joystick",
 	"JOYSTICK_GETSAMPLE_TOOLTIP": "Gets the current reading of one of the axises of the joystick",
+	"MESSAGE_ROBOT_DISCONNECTED": "An active robot was disconnected",
+	"INTERNAL_PORT": "internal",
 	"PULSE_LOW": "pulse time LOW",
 	"PULSE_HIGH": "pulse time HIGH",
 	"PIN_GETSAMPLE_ANALOG_TOOLTIP": "Returns the value from the specified analog pin. The value is between 0 and 1023.",
@@ -1169,9 +1176,18 @@
 	"PIN_GETSAMPLE_PULSELOW_TOOLTIP": "Returns the pulse LOW on a pin in microseconds or -1 if no complete pulse was received within the timeout.",
 	"CONNECTION_POWER": "with strength",
 	"BOB3_ARM": "arm",
-	"BOB3_ARM_PAIR": "sensor pair",
+	"BOB3_ARM_PAIR": "pad pair",
 	"CONNECTION_MBED_RECEIVE_TOOLTIP": "Reads a message over one of the channels (0 - 255). The default channel is 0.",
 	"CONNECTION_MBED_SEND_TOOLTIP": "Sends a message to another microBoard. You can specify a signal strength from 0 - 7, where 0 is very low and 7 is the strongests. The message is send over channel 0 unless you specify another one.",
 	"CONNECTION_SET_CHANNEL": "set channel to %1",
-	"CONNECTION_SET_CHANNEL_TOOLTIP": "Sets the channel for sending and receiving messages. Can be set from 0 to 255."
+	"CONNECTION_SET_CHANNEL_TOOLTIP": "Sets the channel for sending and receiving messages. Can be set from 0 to 255.",
+	"MOTOR_SPEED_0": "Motor Speed is 0!",
+	"VARIABLE_USED_BEFORE_DECLARATION": "The variable is used before declaration."
+	"NAO_WALK_ASYNC_TOOLTIP": "Makes the robot walk infinitely",
+	"SENSOR_CODE": "code pad",
+	"GET_CODE_TOOLTIP": "Returns the value of the solderable code pad in the head piece. Values are in range 0-31.",
+	"MOTOR_SPEED_0": "Motor Speed is 0!",
+	"VARIABLE_USED_BEFORE_DECLARATION": "The variable is used before declaration.",
+	"ORA_PROGRAM_INVALID_STATEMETNS": "There are errors in your program. Please check the messages",
+	"TIMEOUT": "timeout"
 }

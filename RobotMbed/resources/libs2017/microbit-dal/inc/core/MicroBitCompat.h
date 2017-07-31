@@ -176,4 +176,119 @@ int findLastOccurrenceOfElementInArray(T e, std::array<T, SIZE>& a) {
   return ix;
 }
 
+/**
+  * Sum all the elements in array.
+  *
+  * @param a The array which elements we sum.
+  *
+  * @return sum of the elements.
+  */
+template<class T, std::size_t SIZE>
+float sum(std::array<T, SIZE>& a) {
+  float sum = 0.0;
+  for(auto& num : a)
+      sum += num;
+  return sum;
+}
+
+/**
+  * Average of all the elements in array.
+  *
+  * @param a The array which elements we average.
+  *
+  * @return average of the elements.
+  */
+template<class T, std::size_t SIZE>
+float average(std::array<T, SIZE>& a) {
+  return sum(a) / a.size();
+}
+
+
+/**
+  * Median of all the elements in array.
+  *
+  * @param a The array which elements we look for median.
+  *
+  * @return median of the elements.
+  */
+template<class T, std::size_t SIZE>
+float median(std::array<T, SIZE>& a) {
+  int middle;
+  int size = a.size();
+  float average, median;
+  middle = size / 2.0;
+  if (size % 2) {
+    median = (a[middle] + a[middle + 1]) / 2.0;
+  } else {
+    median = a[middle + 0] / 1.0;
+  }
+  return median;
+}
+
+/**
+  * Standard deviation of all the elements in array.
+  *
+  * @param a array of elements for which we calculate STD.
+  *
+  * @return STD of the elements.
+  */
+template<class T, std::size_t SIZE>
+float standardDeviation(std::array<T, SIZE>& a) {
+  float mean, std = 0.0;
+
+  mean = average(a);
+  for(auto& num : a)
+      std += pow(num - mean, 2);
+  return sqrt(std / a.size());
+}
+
+/**
+  * Find the min element in array.
+  *
+  *
+  * @param a The array in which we look for the element.
+  *
+  * @return min element of an array
+  */
+template<class T, std::size_t SIZE>
+float min(std::array<T, SIZE>& a) {
+  T min_item = a[0];
+
+  for(auto& num : a)
+      min_item = min(min_item, num);
+  return min_item;
+}
+
+/**
+  * Find the max element in array.
+  *
+  *
+  * @param a The array in which we look for the element.
+  *
+  * @return max element of an array
+  */
+template<class T, std::size_t SIZE>
+float max(std::array<T, SIZE>& a) {
+  T max_item = a[0];
+
+  for(auto& num : a)
+      max_item = max(max_item, num);
+  return max_item;
+}
+
+/**
+  * Get random element from array.
+  *
+  *
+  * @param a The array in which we look for the element.
+  *
+  * @return element from array
+  */
+template<class T, std::size_t SIZE>
+float randomElement(std::array<T, SIZE>& a) {
+  int ix = rand() % a.size();
+  return a[ix];
+}
+
+
 #endif

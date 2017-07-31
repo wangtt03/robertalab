@@ -112,7 +112,9 @@ public abstract class PreprocessProgramVisitor extends CheckVisitor implements A
     public Void visitEncoderSensor(EncoderSensor<Void> encoderSensor) {
         if ( this.brickConfiguration != null ) {
             Actor actor = this.brickConfiguration.getActors().get(encoderSensor.getMotorPort());
-            this.usedActors.add(new UsedActor(encoderSensor.getMotorPort(), actor.getName()));
+            if ( actor != null ) {
+                this.usedActors.add(new UsedActor(encoderSensor.getMotorPort(), actor.getName()));
+            }
         }
         return null;
     }
