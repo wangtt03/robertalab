@@ -148,6 +148,12 @@ CREATE TABLE USER_DEVICE_RELATION (
   `DEVICE_NAME` VARCHAR(255) NULL,
   PRIMARY KEY (`ID`));
 
+CREATE TABLE COGNITIVE_TOKENS (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `DOMAIN` VARCHAR(255) NOT NULL,
+  `TOKEN` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`ID`));
+
 insert into ROBOT
 ( NAME, CREATED, TAGS, ICON_NUMBER )
 values('ev3',
@@ -173,4 +179,13 @@ commit;
 INSERT INTO LESSON VALUES(2,'lesson2','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html', 'nao');
 commit;
 INSERT INTO LESSON VALUES(3,'lesson3','../guide/index.html',NULL,'https://www.baidu.com/img/bd_logo1.png','../guide/index.html', 'calliope2017');
+commit;
+
+INSERT INTO COGNITIVE_TOKENS VALUES(1,'vision','757f92a5f6514cd8a642a7fd6cab9c46');
+commit;
+INSERT INTO COGNITIVE_TOKENS VALUES(2,'emotion','eb2ffafff53043f49aa2613688fd9f9c');
+commit;
+INSERT INTO COGNITIVE_TOKENS VALUES(3,'translator','c2569d72fc554cb591a401443d704754');
+commit;
+INSERT INTO COGNITIVE_TOKENS VALUES(4,'speech','e60ce5cbc21247ebace5c384fcc5ded1');
 commit;

@@ -15,6 +15,7 @@ import de.fhg.iais.roberta.syntax.Phrase;
 import de.fhg.iais.roberta.syntax.lang.functions.FunctionNames;
 import de.fhg.iais.roberta.syntax.lang.functions.MathPowerFunct;
 import de.fhg.iais.roberta.syntax.lang.stmt.ExprStmt;
+import de.fhg.iais.roberta.syntax.lang.expr.Expr;
 import de.fhg.iais.roberta.transformer.ExprParam;
 import de.fhg.iais.roberta.transformer.Jaxb2AstTransformer;
 import de.fhg.iais.roberta.transformer.JaxbTransformerHelper;
@@ -228,6 +229,12 @@ public final class Binary<V> extends Expr<V> {
                         "",
                         helper.extractBlockProperties(block),
                         helper.extractComment(block)));
+            case BlocklyConstants.TEXT_CONTAIN:
+                return helper.blockToBinaryExpr(
+                    block,
+                    new ExprParam(BlocklyConstants.STRING, BlocklyType.STRING),
+                    new ExprParam(BlocklyConstants.SUBSTRING, BlocklyType.STRING),
+                    BlocklyConstants.IN);
             case BlocklyConstants.ROB_MATH_CHANGE:
             case BlocklyConstants.MATH_CHANGE:
                 values = helper.extractValues(block, (short) 2);

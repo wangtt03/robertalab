@@ -1,7 +1,7 @@
 {
 	"@metadata": {
 		"author": "Ellen Spertus <ellen.spertus@gmail.com>",
-		"lastupdated": "2017-07-22 10:11:44.963275",
+		"lastupdated": "2017-07-28 15:46:55.237246",
 		"locale": "en",
 		"messagedocumentation" : "qqq"
 	},
@@ -572,6 +572,15 @@
 	"COGNITIVE_SPEECH_RECOGNITION": "Speech Recognition",
 	"COGNITIVE_SPEEK": "Speak",
 	"COGNITIVE_OCR": "OCR",
+	"COGNITIVE_EMOTION_RECOGNITION": "Emotion Recognition",
+	"COGNITIVE_DESCRIBE_IMAGE": "Describe image",
+	"COGNITIVE_CHOOSE_WAKE_WORD_FOR_JASPER": "Choose the word to wake up Jasper",
+	"COGNITIVE_WAKEWORD_HELLO": "Hello",
+	"COGNITIVE_WAKEWORD_START": "Start",
+	"COGNITIVE_WAKEWORD_LAOJIA": "LaoJia",
+	"COGNITIVE_JASPER_LISTEN_FOR": "Jasper listen for",
+	"COGNITIVE_SECONDS": "seconds",
+	"COGNITIVE_CONTAINS": "contains",
 	"TOOLBOX_ACTION": "Action",
 	"TOOLBOX_COGNITIVE": "Cognitive",
 	"TOOLBOX_COMMUNICATION": "Messages",

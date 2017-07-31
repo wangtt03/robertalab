@@ -10,8 +10,11 @@ import de.fhg.iais.roberta.syntax.check.hardware.RobotProgramCheckVisitor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.SpeechRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.EmotionRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.DescribeImage;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.OCR;
 import de.fhg.iais.roberta.syntax.action.brickpi.SayText;
+import de.fhg.iais.roberta.syntax.action.brickpi.SetWakeupWord;
 import de.fhg.iais.roberta.visitor.actor.AstActorCommunicationVisitor;
 
 import de.fhg.iais.roberta.visitor.BrickpiAstVisitor;
@@ -39,12 +42,27 @@ public class Ev3RobProgramCheckVisitor extends RobotProgramCheckVisitor implemen
     }
 
     @Override
+    public Void visitEmotionRecognition(EmotionRecognition<Void> emotionRecognition) {
+        return null;
+    }
+
+    @Override
+    public Void visitDescribeImage(DescribeImage<Void> describeImage) {
+        return null;
+    }
+
+    @Override
     public Void visitOCR(OCR<Void> ocr) {
         return null;
     }
 
     @Override
     public Void visitSayText(SayText<Void> sayText) {
+        return null;
+    }
+
+    @Override
+    public Void visitSetWakeupWord(SetWakeupWord<Void> setWakeupWord) {
         return null;
     }
 

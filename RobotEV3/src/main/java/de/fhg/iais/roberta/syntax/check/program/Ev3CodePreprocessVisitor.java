@@ -9,8 +9,11 @@ import de.fhg.iais.roberta.syntax.sensor.generic.GyroSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.SpeechRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.EmotionRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.DescribeImage;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.OCR;
 import de.fhg.iais.roberta.syntax.action.brickpi.SayText;
+import de.fhg.iais.roberta.syntax.action.brickpi.SetWakeupWord;
 
 import de.fhg.iais.roberta.visitor.BrickpiAstVisitor;
 
@@ -53,6 +56,18 @@ public class Ev3CodePreprocessVisitor extends PreprocessProgramVisitor implement
     }
 
     @Override
+    public Void visitEmotionRecognition(EmotionRecognition<Void> emotionRecognition) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitDescribeImage(DescribeImage<Void> describeImage) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
     public Void visitOCR(OCR<Void> ocr) {
         // TODO Auto-generated method stub
         return null;
@@ -60,6 +75,12 @@ public class Ev3CodePreprocessVisitor extends PreprocessProgramVisitor implement
 
     @Override
     public Void visitSayText(SayText<Void> sayText) {
+        return null;
+    }
+
+    @Override
+    public Void visitSetWakeupWord(SetWakeupWord<Void> setWakeupWord) {
+        // TODO Auto-generated method stub
         return null;
     }
 

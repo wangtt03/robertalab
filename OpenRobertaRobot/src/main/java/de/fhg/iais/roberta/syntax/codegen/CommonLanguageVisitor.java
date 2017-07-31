@@ -127,7 +127,7 @@ public abstract class CommonLanguageVisitor implements AstLanguageVisitor<Void> 
 
     @Override
     public Void visitStringConst(StringConst<Void> stringConst) {
-        this.sb.append("\"").append(StringEscapeUtils.escapeEcmaScript(stringConst.getValue().replaceAll("[<>\\$]", ""))).append("\"");
+        this.sb.append("u\"").append(StringEscapeUtils.escapeEcmaScript(stringConst.getValue().replaceAll("[<>\\$]", ""))).append("\"");
         return null;
     }
 

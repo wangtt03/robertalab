@@ -76,8 +76,11 @@ import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.SpeechRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.EmotionRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.DescribeImage;
 import de.fhg.iais.roberta.syntax.sensor.brickpi.OCR;
 import de.fhg.iais.roberta.syntax.action.brickpi.SayText;
+import de.fhg.iais.roberta.syntax.action.brickpi.SetWakeupWord;
 import de.fhg.iais.roberta.util.dbc.Assert;
 import de.fhg.iais.roberta.util.dbc.DbcException;
 import de.fhg.iais.roberta.visitor.AstVisitor;
@@ -802,7 +805,8 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
         if ( !withWrapping ) {
             return;
         }
-        this.sb.append("#!/usr/bin/python\n\n");
+        this.sb.append("#!/usr/bin/python\n");
+        this.sb.append("# -*- coding: utf-8-*-\n\n");
         this.sb.append("from __future__ import absolute_import\n");
         this.sb.append("from roberta.pi import Hal\n");
         //this.sb.append("from roberta.BlocklyMethods import BlocklyMethods\n");
@@ -828,13 +832,14 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
         this.sb.append(INDENT).append("try:\n");
         this.sb.append(INDENT).append(INDENT).append("run()\n");
         this.sb.append(INDENT).append("except Exception as e:\n");
-        this.sb.append(INDENT).append(INDENT).append("hal.drawText('Fehler im EV3', 0, 0)\n");
-        this.sb.append(INDENT).append(INDENT).append("hal.drawText(e.__class__.__name__, 0, 1)\n");
+        //this.sb.append(INDENT).append(INDENT).append("hal.drawText('Fehler im EV3', 0, 0)\n");
+        //this.sb.append(INDENT).append(INDENT).append("hal.drawText(e.__class__.__name__, 0, 1)\n");
         // FIXME: we can only print about 30 chars
-        this.sb.append(INDENT).append(INDENT).append("hal.drawText(str(e), 0, 2)\n");
-        this.sb.append(INDENT).append(INDENT).append("hal.drawText('Press any key', 0, 4)\n");
-        this.sb.append(INDENT).append(INDENT).append("while not hal.isKeyPressed('any'): hal.waitFor(500)\n");
+        //this.sb.append(INDENT).append(INDENT).append("hal.drawText(str(e), 0, 2)\n");
+        //this.sb.append(INDENT).append(INDENT).append("hal.drawText('Press any key', 0, 4)\n");
+        //this.sb.append(INDENT).append(INDENT).append("while not hal.isKeyPressed('any'): hal.waitFor(500)\n");
         this.sb.append(INDENT).append(INDENT).append("raise\n");
+        this.sb.append(INDENT).append(INDENT).append("exit(1)\n");
 
         this.sb.append("\n");
         this.sb.append("if __name__ == \"__main__\":\n");
@@ -969,6 +974,18 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
     }
 
     @Override
+    public Void visitEmotionRecognition(EmotionRecognition<Void> emotionRecognition) {
+        this.sb.append("cognitive.emotionRecognition()");
+        return null;
+    }
+
+    @Override
+    public Void visitDescribeImage(DescribeImage<Void> describeImage) {
+        this.sb.append("cognitive.describeImage()");
+        return null;
+    }
+
+    @Override
     public Void visitOCR(OCR<Void> ocr) {
         this.sb.append("cognitive.OCR()");
         return null;
@@ -976,10 +993,26 @@ public class Ast2Ev3BrickPiVisitor extends Ast2PythonVisitor implements AstSenso
 
     @Override
     public Void visitSayText(SayText<Void> sayText) {
-        this.sb.append("jasper.speak([");
+        this.sb.append("jasper.speak(");
         sayText.getMsg().visit(this);
-        this.sb.append("])");
+        this.sb.append(")");
         return null;
     }
 
+    @Override
+    public Void visitSetWakeupWord(SetWakeupWord<Void> setWakeupWord) {
+        this.sb.append("jasper.setWakeupWord(");
+        switch ( setWakeupWord.getWakeupWord() ) {
+            case HELLO:
+                this.sb.append("\"你好\")");
+                break;
+            case START:
+                this.sb.append("\"开始\")");
+                break;
+            case LAOJIA:
+                this.sb.append("\"老贾\")");
+                break;
+        }
+        return null;
+    }
 }
