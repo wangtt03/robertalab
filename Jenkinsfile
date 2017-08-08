@@ -51,10 +51,10 @@ podTemplate(label: 'robertalab-pod', containers: [
                 stage('Deploy') {
                     /*ssh to master node and run docker stack deploy*/
                     sh("chmod a+x ./deploy/k8s/deploy.sh")
-                    sh("ssh -i /data/config/id_rsa -oStrictHostKeyChecking=no stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn 'rm -fr /home/stemuser/deploy/robertalab/k8s'")
-                    sh("ssh -i /data/config/id_rsa stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn 'mkdir -p /home/stemuser/deploy/robertalab/k8s'")
-                    sh("scp -i /data/config/id_rsa -r ./deploy/k8s/* stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn:/home/stemuser/deploy/robertalab/k8s/")
-                    sh("ssh -i /data/config/id_rsa stemuser@tiantiaw-poctest.chinanorth.cloudapp.chinacloudapi.cn '/home/stemuser/deploy/robertalab/k8s/deploy.sh ${env.BUILD_NUMBER}'")
+                    sh("ssh -i /data/config/id_rsa -oStrictHostKeyChecking=no stemuser@stemgarden.chinanorth.cloudapp.chinacloudapi.cn 'rm -fr /home/stemuser/deploy/robertalab/k8s'")
+                    sh("ssh -i /data/config/id_rsa stemuser@stemgarden.chinanorth.cloudapp.chinacloudapi.cn 'mkdir -p /home/stemuser/deploy/robertalab/k8s'")
+                    sh("scp -i /data/config/id_rsa -r ./deploy/k8s/* stemuser@stemgarden.chinanorth.cloudapp.chinacloudapi.cn:/home/stemuser/deploy/robertalab/k8s/")
+                    sh("ssh -i /data/config/id_rsa stemuser@stemgarden.chinanorth.cloudapp.chinacloudapi.cn '/home/stemuser/deploy/robertalab/k8s/deploy.sh ${env.BUILD_NUMBER}'")
                 }
             }
         } catch (error) {
