@@ -15,8 +15,8 @@
 </style>
 <body>
 <div class="single-item">
-    <div id="doc-img-example">
-        <img class="doc-img" src="guide/lesson-1/img/0001.jpg"/>
+    <div id="doc-images-example">
+        <img class="doc-images" src="guide/lesson-1/images/0001.jpg"/>
     </div>
 </div>
 
@@ -30,10 +30,10 @@
         return number + ""; // always return a string
     }
 
-    var proto = $('#doc-img-example');
+    var proto = $('#doc-images-example');
     for (var i = 1; i <= 116; i++) {
-        var clone = proto.clone().prop('id', 'doc-img-' + i.toString());
-        clone.find('img').attr('src', "guide/lesson-1/img/" + zeroFill(i, 4) + ".jpg");
+        var clone = proto.clone().prop('id', 'doc-images-' + i.toString());
+        clone.find('images').attr('src', "guide/lesson-1/images/" + zeroFill(i, 4) + ".jpg");
         $(".single-item").append(clone);
     }
     proto.remove();

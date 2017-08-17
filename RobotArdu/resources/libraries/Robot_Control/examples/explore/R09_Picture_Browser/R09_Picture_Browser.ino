@@ -73,7 +73,7 @@ void setup() {
 }
 
 void loop() {
-  buffer[3] = '0' + i; // change filename of the img to be displayed
+  buffer[3] = '0' + i; // change filename of the images to be displayed
   Robot.drawBMP(buffer, 0, 0); // draw the file on the screen
   // change control modes
   switch (mode) {

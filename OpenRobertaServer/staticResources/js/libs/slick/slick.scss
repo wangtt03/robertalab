@@ -66,16 +66,16 @@
     [dir="rtl"] & {
         float: right;
     }
-    img {
+    images {
         display: block;
     }
-    &.slick-loading img {
+    &.slick-loading images {
         display: none;
     }
 
     display: none;
 
-    &.dragging img {
+    &.dragging images {
         pointer-events: none;
     }
 
