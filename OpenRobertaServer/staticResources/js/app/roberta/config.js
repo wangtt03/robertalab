@@ -17,7 +17,7 @@ define([ 'require', 'exports', 'log', 'util', 'comm', 'blocks-msg', 'jquery', 'b
 
     function getIsiPad(){
         //return isiPad;
-        return true;
+        return false;
     }
     exports.getIsiPad = getIsiPad;
 

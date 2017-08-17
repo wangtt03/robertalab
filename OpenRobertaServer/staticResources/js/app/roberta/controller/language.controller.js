@@ -1,6 +1,7 @@
 define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller', 'configuration.controller', 'user.controller', 'progHelp.controller' ], function(
         exports, LOG, $, GUISTATE_C, PROGRAM_C, CONFIGURATION_C, USER_C, HELP_C) {
 
+    var msgBaseUrl = 'js/libs/blockly/msg/js/';
     /**
      * Initialize language switching
      */
@@ -48,7 +49,7 @@ define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller'
             $('.EN').css('display', 'inline');
         }
         $('#language li a[lang=' + language + ']').parent().addClass('disabled');
-        var url = 'blockly/msg/js/' + language + '.js';
+        var url = msgBaseUrl + language + '.js';
         getCachedScript(url).done(function(data) {
             translate();
             ready.resolve(language);
@@ -76,7 +77,7 @@ define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller'
         }
         GUISTATE_C.setLanguage(language);
 
-        var url = 'blockly/msg/js/' + language.toLowerCase() + '.js';
+        var url = msgBaseUrl + language.toLowerCase() + '.js';
         getCachedScript(url).done(function(data) {
             translate();
             PROGRAM_C.reloadView();

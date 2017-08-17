@@ -1,9 +1,9 @@
 require.config({
     baseUrl : 'js/libs',
     paths : {
-        'blockly' : '../../blockly/blockly_compressed',
-        'blocks' : '../../blockly/blocks_compressed',
-        'blocks-msg' : '../../blockly/msg/js/en',
+        'blockly' : 'blockly/blockly_compressed',
+        'blocks' : 'blockly/blocks_compressed',
+        'blocks-msg' : 'blockly/msg/js/en',
         'bootstrap' : 'bootstrap/bootstrap-3.3.1-dist/dist/js/bootstrap.min',
         'bootstrap-table' : 'bootstrap/bootstrap-3.3.1-dist/dist/js/bootstrap-table.min',
         'datatables' : 'jquery/jquery.dataTables.min',
@@ -17,7 +17,7 @@ require.config({
         'volume-meter' : 'sound/volume-meter',
         'bootstrap.wysiwyg' : 'bootstrap/bootstrap-3.3.1-dist/dist/js/bootstrap-wysiwyg.min',
         'socket.io' : 'socket.io/socket.io',
-        'slick' : '../../vendor/slick/slick',
+        'slick' : 'slick/slick',
 
         'barMenu.controller': '../app/roberta/controller/barMenu.controller',
         'confDelete.controller' : '../app/roberta/controller/confDelete.controller',
