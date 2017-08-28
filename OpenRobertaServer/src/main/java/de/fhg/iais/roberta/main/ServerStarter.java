@@ -93,7 +93,7 @@ public class ServerStarter {
         } else {
             System.out.println(options.hasOptions());
             ServerStarter serverStarter = new ServerStarter(propertyPath, defines);
-            checkForUpgrade();
+//            checkForUpgrade();
             Server server = serverStarter.start();
             serverStarter.checkRobotPluginsDB();
             serverStarter.logTheNumberOfStoredPrograms();
