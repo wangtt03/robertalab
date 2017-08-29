@@ -20,11 +20,4 @@
       <field name="SENSORPORT">2</field>
     </block>
   </instance>
-  <instance x="-11" y="224">
-    <block type="robSensors_colour_getSample" id="75" >
-      <mutation mode="AMBIENTLIGHT"></mutation>
-      <field name="MODE">AMBIENTLIGHT</field>
-      <field name="SENSORPORT">4</field>
-    </block>
-  </instance>
 </block_set>

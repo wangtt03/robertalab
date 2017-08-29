@@ -8,6 +8,7 @@
 			intask="true">
 			<mutation datatype="String"></mutation>
 			<field name="TYPE">String</field>
+			<field name="POWER">0</field>
 			<value name="sendData">
 				<block type="text" id="HjOK.MI~|)H}k`e|`[0P" intask="true">
 					<field name="TEXT">Hallo</field>
