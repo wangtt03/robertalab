@@ -1,6 +1,7 @@
 package de.fhg.iais.roberta.util;
 
 import java.util.Date;
+import java.util.UUID;
 
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;

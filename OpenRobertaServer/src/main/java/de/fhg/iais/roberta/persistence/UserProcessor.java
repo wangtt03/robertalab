@@ -88,7 +88,7 @@ public class UserProcessor extends AbstractProcessor {
             setError(Key.USER_CREATE_ERROR_MISSING_REQ_FIELDS, account);
         } else if ( account_check || userName_check ) {
             setError(Key.USER_CREATE_ERROR_CONTAINS_SPECIAL_CHARACTERS, account, userName);
-        } else if ( account.length() > 25 || userName.length() > 25 ) {
+        } else if ( account.length() > 125 || userName.length() > 125 ) {
             setError(Key.USER_CREATE_ERROR_ACCOUNT_LENGTH, account, userName);
         } else {
             if ( !isMailUsed(account, email) ) {
