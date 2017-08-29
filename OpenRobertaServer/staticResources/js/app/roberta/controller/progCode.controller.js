@@ -1,5 +1,5 @@
-define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'program.model', 'blocks', 'jquery', 'jquery-validate', 'jquery-hotkeys',
-        'bootstrap.wysiwyg', 'blocks-msg' ], function(exports, COMM, MSG, LOG, UTIL, GUISTATE_C, PROGRAM, Blockly, $) {
+define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'program.model', 'config', 'blocks', 'jquery', 'jquery-validate', 'jquery-hotkeys',
+        'bootstrap.wysiwyg', 'blocks-msg'], function(exports, COMM, MSG, LOG, UTIL, GUISTATE_C, PROGRAM, CONFIG, Blockly, $) {
 
     var blocklyWorkspace;
     /**
@@ -7,6 +7,9 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
      */
     function init(workspace) {
         blocklyWorkspace = workspace;
+        if (CONFIG.getIsiPad()) {
+            $('#progCode').hide();
+        }
         initEvents();
     }
     exports.init = init;
@@ -42,6 +45,12 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
         if ($('#codeDiv').hasClass('rightActive')) {
             $('.blocklyToolboxDiv').css('display', 'inherit');
             Blockly.svgResize(blocklyWorkspace);
+            if (CONFIG.getIsiPad()) {
+                $('#progCode').hide();
+                $('#info-button').removeClass('disabled');
+                $('#sim-button').removeClass('disabled');
+                $('#help-document-button').removeClass('disabled');
+            }
             $('#progCode').animate({
                 right : '0px',
             }, {
@@ -84,6 +93,12 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
                 } else {
                     width = $('#blocklyDiv').width() * 0.3;
                 }
+                if (CONFIG.getIsiPad()) {
+                    $('#progCode').show();
+                    $('#info-button').addClass('disabled');
+                    $('#sim-button').addClass('disabled');
+                    $('#help-document-button').addClass('disabled');
+                }
                 $('#progCode').animate({
                     right : $('#blocklyDiv').width() - width + 4,
                 }, {
@@ -119,4 +134,5 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
             });
         }
     }
+    exports.toggleCode = toggleCode;
 });

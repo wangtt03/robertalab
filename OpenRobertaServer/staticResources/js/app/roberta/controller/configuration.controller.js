@@ -46,10 +46,11 @@ define([ 'exports', 'log', 'util', 'comm', 'message', 'guiState.controller', 'bl
         bricklyWorkspace.setDevice(guiStateController.getRobotGroup());
         bricklyWorkspace.setVersion('2.0');
         // Configurations can't be executed
-        bricklyWorkspace.robControls.runOnBrick.setAttribute("style", "display : none");
+        //bricklyWorkspace.robControls.runOnBrick.setAttribute("style", "display : none");
         $('#progSim').hide();
         guiStateController.setBricklyWorkspace(bricklyWorkspace);
         bricklyWorkspace.robControls.disable('saveProgram');
+        $('#save-button').addClass('disabled');
     }
 
     function initEvents() {

@@ -10,7 +10,6 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.controller', 'guiState.m
      * Initialize robot
      */
     function init() {
-
         var ready = $.Deferred();
         $.when(ROBOT.setRobot(GUISTATE_C.getRobot(), function(result) {
             if (result.rc == 'ok') {
@@ -24,6 +23,36 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.controller', 'guiState.m
         return ready.promise();
     }
     exports.init = init;
+
+    function connectWithDeviceName(deviceName){
+        getToken(deviceName, function (token) {
+            setTokenWithoutModal(token);
+        }, function(){
+            alert("设备未注册，请联系主办方解决。");
+        });
+    }
+    exports.connectWithDeviceName = connectWithDeviceName;
+
+    function getToken(deviceName, successFn, failureFn){
+        ROBOT.getDevice(deviceName, function (result) {
+            if('deviceInfo' in result && 'token' in result['deviceInfo']){
+                successFn(result['deviceInfo']['token']);
+            }
+            else{
+                failureFn();
+            }
+        });
+    }
+    exports.getToken = getToken;
+
+    function getDevice(deviceName, successFn) {
+        ROBOT.getDevice(deviceName, function (result) {
+           if('deviceInfo' in result){
+               successFn(result['deviceInfo']);
+           }
+        });
+    }
+    exports.getDevice = getDevice;
 
     /**
      * Set token
@@ -49,6 +78,25 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.controller', 'guiState.m
             });
         }
     }
+
+    function setTokenWithoutModal(token, successFn){
+        ROBOT.setToken(token, function(result) {
+            if (result.rc === "ok") {
+                GUISTATE_C.setRobotToken(token);
+                GUISTATE_C.setState(result);
+                MSG.displayInformation(result, "MESSAGE_ROBOT_CONNECTED", result.message, GUISTATE_C.getRobotName());
+                handleFirmwareConflict();
+                successFn();
+            } else {
+                if (result.message === 'ORA_TOKEN_SET_ERROR_WRONG_ROBOTTYPE') {
+                    $('.modal').modal('hide');
+                }
+            }
+            UTIL.response(result);
+        });
+    }
+
+    exports.setTokenWithoutModal = setTokenWithoutModal;
 
     function setPort(port) {
         robotPort = port;

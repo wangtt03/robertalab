@@ -1,6 +1,7 @@
 package de.fhg.iais.roberta.javaServer.restServices.all;
 
 import java.util.Date;
+import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.ws.rs.Consumes;
@@ -10,6 +11,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import de.fhg.iais.roberta.persistence.DeviceProcessor;
+import de.fhg.iais.roberta.persistence.dao.UserDeviceRelationDao;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
@@ -111,7 +114,7 @@ public class ClientUser {
                     response.put("userAccountName", account);
                     response.put("userName", userName);
                     response.put("userEmail", email);
-                    response.put("youngerThen14", age);
+                    response.put("isYoungerThen14", age);
                 }
 
             } else if ( cmd.equals("logout") && httpSessionState.isUserLoggedIn() ) {
@@ -126,13 +129,60 @@ public class ClientUser {
                 String userName = request.getString("userName");
                 String role = request.getString("role");
                 //String tag = request.getString("tag");
-                boolean youngerThen14 = Boolean.parseBoolean(request.getString("youngerThen14"));
-                up.createUser(account, password, userName, role, email, null, youngerThen14);
+                boolean isYoungerThen14 = request.getString("isYoungerThen14").equals("1");
+                up.createUser(account, password, userName, role, email, null, isYoungerThen14);
                 if ( this.isPublicServer && !email.equals("") && up.isOk() ) {
                     String lang = request.getString("language");
                     PendingEmailConfirmations confirmation = pendingConfirmationProcessor.createEmailConfirmation(account);
                     sendActivationMail(up, confirmation.getUrlPostfix(), account, email, lang);
                 }
+                Util.addResultInfo(response, up);
+
+            } else if ( cmd.equals("loginWithCreate") ) {
+                String accountName = request.getString("accountName");
+                String userName = request.getString("userName");
+                // String token = request.getString("token");
+                String role = request.getString("role");
+                String email = request.getString("userEmail");
+                boolean youngerThen14 = Boolean.parseBoolean(request.getString("youngerThen14"));
+                String deviceName = request.optString("deviceName", "");
+                User user = up.getUser(accountName);
+                if (user == null){
+                    up.createUser(accountName, "12345678", userName, role, email, null, youngerThen14);
+                    Util.addResultInfo(response, up);
+                    if ( !up.isOk() ) {
+                        Util.addFrontendInfo(response, httpSessionState, this.brickCommunicator);
+                        MDC.clear();
+                        return Response.ok(response).build();
+                    }
+                    user = up.getUser(accountName);
+                }
+                else{
+                    // Put response here.
+                }
+
+                if (deviceName.length() > 0){
+                    UserDeviceRelationDao userDeviceRelationDao = new UserDeviceRelationDao(dbSession);
+                    userDeviceRelationDao.persistUserDeviceRelation(accountName, deviceName);
+                }
+
+                // Generate random password
+                String password = this.GenerateRandomPassword(8);
+                // Set the password
+                user.setPassword(password);
+
+                int id = user.getId();
+                String name = user.getUserName();
+                httpSessionState.setUserClearDataKeepTokenAndRobotId(id);
+                user.setLastLogin();
+                response.put("userId", id);
+                response.put("userRole", user.getRole());
+                response.put("userAccountName", accountName);
+                response.put("userName", name);
+                response.put("isAccountActivated", user.isActivated());
+                response.put("userPassword", password);
+                ClientUser.LOG.info("login: user {} (id {}) logged in", accountName, id);
+                AliveData.rememberLogin();
                 Util.addResultInfo(response, up);
 
             } else if ( cmd.equals("updateUser") ) {
@@ -141,10 +191,10 @@ public class ClientUser {
                 String email = request.getString("userEmail");
                 String role = request.getString("role");
                 //String tag = request.getString("tag");
-                boolean youngerThen14 = Boolean.parseBoolean(request.getString("youngerThen14"));
+                boolean isYoungerThen14 = request.getString("isYoungerThen14").equals("1");
                 User user = up.getUser(account);
                 String oldEmail = user.getEmail();
-                up.updateUser(account, userName, role, email, null, youngerThen14);
+                up.updateUser(account, userName, role, email, null, isYoungerThen14);
                 if ( this.isPublicServer && !oldEmail.equals(email) && up.isOk() ) {
                     String lang = request.getString("language");
                     PendingEmailConfirmations confirmation = pendingConfirmationProcessor.createEmailConfirmation(account);
@@ -191,10 +241,11 @@ public class ClientUser {
                 if ( user != null ) {
                     LostPassword lostPassword = lostPasswordProcessor.createLostPassword(user.getId());
                     ClientUser.LOG.info("url postfix generated: " + lostPassword.getUrlPostfix());
-                    String[] body = {
-                        user.getAccount(),
-                        lostPassword.getUrlPostfix()
-                    };
+                    String[] body =
+                        {
+                            user.getAccount(),
+                            lostPassword.getUrlPostfix()
+                        };
                     try {
                         this.mailManagement.send(user.getEmail(), "reset", body, lang);
                         up.setSuccess(Key.USER_PASSWORD_RECOVERY_SENT_MAIL_SUCCESS);
@@ -239,7 +290,15 @@ public class ClientUser {
                 up.deleteUser(account, password);
                 Util.addResultInfo(response, up);
 
-            } else {
+            } else if ( cmd.equals("getDeviceNameByAccountName") && httpSessionState.isUserLoggedIn()){
+                String account = request.getString("accountName");
+                UserDeviceRelationDao userDeviceRelationDao = new UserDeviceRelationDao(dbSession);
+                String deviceName = userDeviceRelationDao.getDeviceNameByAccountName(account);
+                if (deviceName != null && deviceName.trim().length() != 0){
+                    response.put("deviceName", deviceName);
+                }
+            }
+            else {
                 ClientUser.LOG.error("Invalid command: " + cmd);
                 Util.addErrorInfo(response, Key.COMMAND_INVALID);
             }
@@ -260,15 +319,27 @@ public class ClientUser {
     }
 
     private void sendActivationMail(UserProcessor up, String urlPostfix, String account, String email, String lang) throws Exception {
-        String[] body = {
-            account,
-            urlPostfix
-        };
+        String[] body =
+            {
+                account,
+                urlPostfix
+            };
         try {
             this.mailManagement.send(email, "activate", body, lang);
             up.setSuccess(Key.USER_ACTIVATION_SENT_MAIL_SUCCESS);
         } catch ( Exception e ) {
             up.setError(Key.USER_ACTIVATION_SENT_MAIL_FAIL);
         }
+    }
+
+    private static String GenerateRandomPassword(int length) {
+        String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        Random random = new Random();
+        StringBuffer buf = new StringBuffer();
+        for (int i = 0; i < length; i++) {
+            int num = random.nextInt(62);
+            buf.append(str.charAt(num));
+        }
+        return buf.toString();
     }
 }

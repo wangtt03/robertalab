@@ -1,6 +1,7 @@
 define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller', 'configuration.controller', 'user.controller', 'progHelp.controller' ], function(
         exports, LOG, $, GUISTATE_C, PROGRAM_C, CONFIGURATION_C, USER_C, HELP_C) {
 
+    var msgBaseUrl = 'js/libs/blockly/msg/js/';
     /**
      * Initialize language switching
      */
@@ -33,6 +34,10 @@ define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller'
 //            language = 'eu';
 //        } else if (navigator.language.indexOf("gl") > -1) {
 //            language = 'gl';
+        } else if (navigator.language.indexOf("zh-CN") > -1) {
+            language = 'zh-hans';
+        } else if (navigator.language.indexOf("zh-TW") > -1) {
+            language = 'zh-hant';
         } else {
             language = 'en';
         }
@@ -44,7 +49,7 @@ define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller'
             $('.EN').css('display', 'inline');
         }
         $('#language li a[lang=' + language + ']').parent().addClass('disabled');
-        var url = 'blockly/msg/js/' + language + '.js';
+        var url = msgBaseUrl + language + '.js';
         getCachedScript(url).done(function(data) {
             translate();
             ready.resolve(language);
@@ -72,7 +77,7 @@ define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller'
         }
         GUISTATE_C.setLanguage(language);
 
-        var url = 'blockly/msg/js/' + language.toLowerCase() + '.js';
+        var url = msgBaseUrl + language.toLowerCase() + '.js';
         getCachedScript(url).done(function(data) {
             translate();
             PROGRAM_C.reloadView();
@@ -84,8 +89,9 @@ define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller'
                 value = value.replace("$", GUISTATE_C.getRobotRealName());
             }
             $('#menuRunProg').text(value);
-            if (GUISTATE_C.getBlocklyWorkspace())
+            if (GUISTATE_C.getBlocklyWorkspace()) {
                 GUISTATE_C.getBlocklyWorkspace().robControls.refreshTooltips(GUISTATE_C.getRobotRealName());
+            }
         });
         LOG.info('language switched to ' + language);
     }
@@ -160,6 +166,8 @@ define([ 'exports', 'log', 'jquery', 'guiState.controller', 'program.controller'
                 $('#confNameTable').find('.delete').attr('data-original-title', value);
             } else if (lkey == 'Blockly.Msg.CONFLIST_LOAD_TOOLTIP') {
                 $('#confNameTable').find('.load').attr('data-original-title', value);
+            } else if (lkey == 'Blockly.Msg.OLDER_THEN_14' || lkey == 'Blockly.Msg.YOUNGER_THEN_14') {
+                $(this).html(value);
             } else {
                 $(this).html(value);
                 $(this).attr('value', value);

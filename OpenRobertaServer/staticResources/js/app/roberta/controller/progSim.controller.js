@@ -1,6 +1,6 @@
-define(['exports', 'comm', 'message', 'log', 'util', 'simulation.simulation', 'guiState.controller', 'program.model', 'tour.controller', 'blocks', 'jquery',
+define(['exports', 'comm', 'message', 'log', 'util', 'simulation.simulation', 'guiState.controller', 'program.model', 'tour.controller', 'config', 'blocks', 'jquery',
     'jquery-validate', 'blocks-msg'
-], function(exports, COMM, MSG, LOG, UTIL, SIM, GUISTATE_C, PROGRAM, TOUR_C, Blockly, $) {
+], function(exports, COMM, MSG, LOG, UTIL, SIM, GUISTATE_C, PROGRAM, TOUR_C, CONFIG, Blockly, $) {
 
     var blocklyWorkspace;
     /**
@@ -10,6 +10,9 @@ define(['exports', 'comm', 'message', 'log', 'util', 'simulation.simulation', 'g
         blocklyWorkspace = workspace;
         //initView();
         initEvents();
+        if (CONFIG.getIsiPad()) {
+            $('#progSim').hide();
+        }
         // LOG.sim('init sim view');
     }
     exports.init = init;
@@ -134,6 +137,12 @@ define(['exports', 'comm', 'message', 'log', 'util', 'simulation.simulation', 'g
             $('.blocklyToolboxDiv').css('display', 'inherit');
             $('#simControl').addClass('typcn-media-play-outline').removeClass('typcn-media-stop');
             Blockly.svgResize(blocklyWorkspace);
+            if (CONFIG.getIsiPad()) {
+                $('#progSim').hide();
+                $('#code-button').removeClass('disabled');
+                $('#info-button').removeClass('disabled');
+                $('#help-document-button').removeClass('disabled');
+            }
             $('#progSim').animate({
                 right: '0px',
             }, {
@@ -185,6 +194,12 @@ define(['exports', 'comm', 'message', 'log', 'util', 'simulation.simulation', 'g
                     } else {
                         width = $('#blocklyDiv').width() * 0.3;
                     }
+                    if (CONFIG.getIsiPad()) {
+                        $('#progSim').show();
+                        $('#code-button').addClass('disabled');
+                        $('#info-button').addClass('disabled');
+                        $('#help-document-button').addClass('disabled');
+                    }
                     $('#progSim').animate({
                         right: $('#blocklyDiv').width() - width + 4,
                     }, {
@@ -224,4 +239,5 @@ define(['exports', 'comm', 'message', 'log', 'util', 'simulation.simulation', 'g
             });
         }
     }
+    exports.toggleSim = toggleSim;
 });

@@ -93,7 +93,7 @@ public class ServerStarter {
         } else {
             System.out.println(options.hasOptions());
             ServerStarter serverStarter = new ServerStarter(propertyPath, defines);
-            checkForUpgrade();
+//            checkForUpgrade();
             Server server = serverStarter.start();
             serverStarter.checkRobotPluginsDB();
             serverStarter.logTheNumberOfStoredPrograms();
@@ -109,11 +109,7 @@ public class ServerStarter {
      * @param defines is a list of properties (from the command line ...) which overwrite the properties from the propertyPath. May be null.
      */
     public ServerStarter(String propertyPath, List<String> defines) {
-        Properties mailProperties = Util1.loadProperties("classpath:openRobertaMailServer.properties");
         Properties robertaProperties = Util1.loadAndMergeProperties(propertyPath, defines);
-        if ( mailProperties != null ) {
-            robertaProperties.putAll(mailProperties);
-        }
         setupPropertyForDatabaseConnection(robertaProperties);
         RobertaProperties.setRobertaProperties(robertaProperties);
     }
@@ -172,7 +168,8 @@ public class ServerStarter {
         ServletHolder staticResourceServlet = rootHandler.addServlet(DefaultServlet.class, "/*");
 
         staticResourceServlet.setInitParameter("gzip", "true");
-        staticResourceServlet.setInitParameter("resourceBase", ServerStarter.class.getResource("/staticResources").toExternalForm());
+//        staticResourceServlet.setInitParameter("resourceBase", ServerStarter.class.getResource("/staticResources").toExternalForm());
+        staticResourceServlet.setInitParameter("resourceBase", "./OpenRobertaServer/staticResources/");
 
         // websockets with /ws/<version>/ prefix
         ServletContextHandler wsHandler = new ServletContextHandler();
@@ -214,6 +211,8 @@ public class ServerStarter {
             dbUrl = "jdbc:hsqldb:file:" + databaseParentDir + "/db-" + serverVersion + "/openroberta-db";
         } else if ( "server".equals(databaseMode) ) {
             dbUrl = "jdbc:hsqldb:hsql://localhost/openroberta-db";
+        } else if ("mysql".equals(databaseMode)){
+            dbUrl = properties.getProperty("database.url");
         } else {
             throw new DbcException("invalid database mode (use either embedded or server): " + databaseMode);
         }

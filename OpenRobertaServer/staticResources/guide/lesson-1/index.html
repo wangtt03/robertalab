@@ -1,0 +1,49 @@
+<link rel="stylesheet" type="text/css" href="../../vendor/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="../../vendor/slick/slick-theme.css"/>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="../../vendor/slick/slick.min.js"></script>
+<style>
+    body{
+        background: dodgerblue;
+    }
+    .single-item{
+        height: 100%;
+        width: 90%;
+        left: 5%;
+    }
+</style>
+<body>
+<div class="single-item">
+    <div id="doc-images-example">
+        <img class="doc-images" src="guide/lesson-1/images/0001.jpg"/>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function zeroFill( number, width ) {
+        width -= number.toString().length;
+        if ( width > 0 )
+        {
+            return new Array( width + (/\./.test( number ) ? 2 : 1) ).join( '0' ) + number;
+        }
+        return number + ""; // always return a string
+    }
+
+    var proto = $('#doc-images-example');
+    for (var i = 1; i <= 116; i++) {
+        var clone = proto.clone().prop('id', 'doc-images-' + i.toString());
+        clone.find('images').attr('src', "guide/lesson-1/images/" + zeroFill(i, 4) + ".jpg");
+        $(".single-item").append(clone);
+    }
+    proto.remove();
+
+    $(document).ready(function(){
+        $('.single-item').slick({
+            "prevArrow": "<button type='button' class='slick-prev'>←</button>",
+            "nextArrow": "<button type='button' class='slick-next'>→</button>",
+            "lazyLoad": "ondemand"
+        });
+    });
+</script>
+</body>

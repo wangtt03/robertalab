@@ -168,7 +168,7 @@ public class JSONUtilForServer {
         ThreadedFunction theBrick = new ThreadedFunction() {
             @Override
             public boolean apply() throws Exception {
-                Response response = brickCommand.handle(JSONUtilForServer.mkRegisterToken(token));
+                Response response = brickCommand.handle(null, JSONUtilForServer.mkRegisterToken(token));
                 return ((JSONObject) response.getEntity()).getString("response").equals("ok");
             }
         };

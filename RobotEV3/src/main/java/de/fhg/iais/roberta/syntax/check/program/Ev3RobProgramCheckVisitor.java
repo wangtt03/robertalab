@@ -8,9 +8,19 @@ import de.fhg.iais.roberta.syntax.action.communication.BluetoothSendAction;
 import de.fhg.iais.roberta.syntax.action.communication.BluetoothWaitForConnectionAction;
 import de.fhg.iais.roberta.syntax.check.hardware.RobotProgramCheckVisitor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.DetectFace;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.SpeechRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.EmotionRecognition;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.DescribeImage;
+import de.fhg.iais.roberta.syntax.sensor.brickpi.OCR;
+import de.fhg.iais.roberta.syntax.action.brickpi.SayText;
+import de.fhg.iais.roberta.syntax.action.brickpi.SetWakeupWord;
 import de.fhg.iais.roberta.visitor.actor.AstActorCommunicationVisitor;
 
-public class Ev3RobProgramCheckVisitor extends RobotProgramCheckVisitor implements AstActorCommunicationVisitor<Void> {
+import de.fhg.iais.roberta.visitor.BrickpiAstVisitor;
+
+
+public class Ev3RobProgramCheckVisitor extends RobotProgramCheckVisitor implements AstActorCommunicationVisitor<Void>, BrickpiAstVisitor<Void> {
 
     public Ev3RobProgramCheckVisitor(Configuration brickConfiguration) {
         super(brickConfiguration);
@@ -18,6 +28,41 @@ public class Ev3RobProgramCheckVisitor extends RobotProgramCheckVisitor implemen
 
     @Override
     public Void visitTemperatureSensor(TemperatureSensor<Void> temperatureSensor) {
+        return null;
+    }
+
+    @Override
+    public Void visitDetectFace(DetectFace<Void> detectFace) {
+        return null;
+    }
+
+    @Override
+    public Void visitSpeechRecognition(SpeechRecognition<Void> speechRecognition) {
+        return null;
+    }
+
+    @Override
+    public Void visitEmotionRecognition(EmotionRecognition<Void> emotionRecognition) {
+        return null;
+    }
+
+    @Override
+    public Void visitDescribeImage(DescribeImage<Void> describeImage) {
+        return null;
+    }
+
+    @Override
+    public Void visitOCR(OCR<Void> ocr) {
+        return null;
+    }
+
+    @Override
+    public Void visitSayText(SayText<Void> sayText) {
+        return null;
+    }
+
+    @Override
+    public Void visitSetWakeupWord(SetWakeupWord<Void> setWakeupWord) {
         return null;
     }
 

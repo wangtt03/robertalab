@@ -1,6 +1,6 @@
 define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socket.controller', 'user.controller', 'guiState.controller', 'program.controller',
-        'configuration.controller', 'enjoyHint', 'tour.controller', 'simulation.simulation', 'jquery', 'blocks' ], function(exports, LOG, UTIL, MSG, COMM,
-        ROBOT_C, SOCKET_C, USER_C, GUISTATE_C, PROGRAM_C, CONFIGURATION_C, EnjoyHint, TOUR_C, SIM, $, Blockly) {
+        'lessonList.controller', 'configuration.controller', 'enjoyHint', 'tour.controller', 'simulation.simulation', 'jquery', 'blocks' ], function(exports, LOG, UTIL, MSG, COMM,
+        ROBOT_C, SOCKET_C, USER_C, GUISTATE_C, PROGRAM_C, LESSON_C, CONFIGURATION_C, EnjoyHint, TOUR_C, SIM, $, Blockly) {
 
     function init() {
 
@@ -242,7 +242,7 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
                 break;
             case 'menuListConfig':
                 $('#tabConfList').click();
-                break
+                break;
             case 'menuSaveConfig':
                 CONFIGURATION_C.saveToServer();
                 break;
@@ -339,6 +339,43 @@ define([ 'exports', 'log', 'util', 'message', 'comm', 'robot.controller', 'socke
             $('#tabGalleryList').click();
             return false;
         }, 'gallery clicked');
+
+        $('#head-navigation-lesson').onWrap('click', function(event) {
+            LESSON_C.displayLessonMenu();
+            return false;
+        }, 'lesson clicked');
+
+        var lesson_close_button = $('.lesson-close-button')[0];
+        if(!(typeof(lesson_close_button) === 'undefined')){
+            lesson_close_button.onclick = function() {
+                LESSON_C.hideLessonMenu();
+                return false;
+            }
+        }
+
+        $('#head-navi-icon-connect').onWrap('click', function(event) {
+            console.log(GUISTATE_C.getIsAgent());
+            console.log(GUISTATE_C.getConnection());
+            if (GUISTATE_C.getConnection() == 'arduinoAgent'
+                || (GUISTATE_C.getConnection() == 'arduinoAgentOrToken' && GUISTATE_C.getIsAgent() == true)) {
+                var ports = SOCKET_C.getPortList();
+                var robots = SOCKET_C.getRobotList();
+                $('#singleModalListInput').empty();
+                i = 0;
+                ports.forEach(function(port) {
+                    $('#singleModalListInput').append("<option value=\"" + port + "\" selected>" + robots[i] + " " + port + "</option>");
+                    i++;
+                });
+                ROBOT_C.showListModal();
+            } else {
+                $('#buttonCancelFirmwareUpdate').css('display', 'inline');
+                $('#buttonCancelFirmwareUpdateAndRun').css('display', 'none');
+                window.webkit.messageHandlers.requireScanToConnect.postMessage("Require to scan QR Code to connect devices.");
+                // SwiftWebViewBridge.callSwiftHandler("requireScanToConnect", {}, function(responseData){
+                //     log('JS got responds from Swift: ', responseData);
+                // })
+            }
+        }, 'connect clicked');
 
         $('.sim-nav').onWrap('click', 'li:not(.disabled) a', function(event) {
             $('.modal').modal('hide'); // head-navigation-sim-control

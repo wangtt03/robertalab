@@ -50,8 +50,8 @@ import de.fhg.iais.roberta.visitor.actor.AstActorMotorVisitor;
 import de.fhg.iais.roberta.visitor.actor.AstActorSoundVisitor;
 import de.fhg.iais.roberta.visitor.sensor.AstSensorsVisitor;
 
-public abstract class PreprocessProgramVisitor extends CheckVisitor implements AstSensorsVisitor<Void>, AstActorMotorVisitor<Void>, AstActorDisplayVisitor<Void>,
-    AstActorLightVisitor<Void>, AstActorSoundVisitor<Void>, AstActorCommunicationVisitor<Void> {
+public abstract class PreprocessProgramVisitor extends CheckVisitor implements AstSensorsVisitor<Void>, AstActorMotorVisitor<Void>,
+    AstActorDisplayVisitor<Void>, AstActorLightVisitor<Void>, AstActorSoundVisitor<Void>, AstActorCommunicationVisitor<Void> {
     protected final Set<UsedSensor> usedSensors = new LinkedHashSet<UsedSensor>();
     protected final Set<UsedActor> usedActors = new LinkedHashSet<UsedActor>();
 
@@ -112,7 +112,9 @@ public abstract class PreprocessProgramVisitor extends CheckVisitor implements A
     public Void visitEncoderSensor(EncoderSensor<Void> encoderSensor) {
         if ( this.brickConfiguration != null ) {
             Actor actor = this.brickConfiguration.getActors().get(encoderSensor.getMotorPort());
-            this.usedActors.add(new UsedActor(encoderSensor.getMotorPort(), actor.getName()));
+            if ( actor != null ) {
+                this.usedActors.add(new UsedActor(encoderSensor.getMotorPort(), actor.getName()));
+            }
         }
         return null;
     }

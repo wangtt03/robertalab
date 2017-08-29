@@ -1,6 +1,9 @@
-define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'program.model', 'prettify', 'robot.controller', 'socket.controller',
-        'progHelp.controller', 'progInfo.controller', 'progCode.controller', 'progSim.controller', 'blocks', 'jquery', 'jquery-validate', 'blocks-msg' ], function(
-        exports, COMM, MSG, LOG, UTIL, GUISTATE_C, PROGRAM, Prettify, ROBOT_C, SOCKET_C, HELP_C, INFO_C, CODE_C, SIM_C, Blockly, $) {
+define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'guiState.model', 'program.model',
+    'prettify', 'robot.controller', 'socket.controller', 'progHelp.controller', 'progInfo.controller',
+    'progCode.controller', 'progSim.controller', 'user.controller', 'lessonList.controller',
+    'config', 'blocks', 'jquery', 'jquery-validate', 'blocks-msg' ], function(
+        exports, COMM, MSG, LOG, UTIL, GUISTATE_C, GUISTATE, PROGRAM, Prettify,
+        ROBOT_C, SOCKET_C, HELP_C, INFO_C, CODE_C, SIM_C, USER_C, LESSON_C, CONFIG, Blockly, $) {
 
     var $formSingleModal;
 
@@ -18,6 +21,7 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
         INFO_C.init(blocklyWorkspace);
         CODE_C.init(blocklyWorkspace);
         SIM_C.init(blocklyWorkspace);
+        LESSON_C.init();
         LOG.info('init program view');
     }
     exports.init = init;
@@ -47,6 +51,9 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
         blocklyWorkspace.setVersion('2.0');
         GUISTATE_C.setBlocklyWorkspace(blocklyWorkspace);
         blocklyWorkspace.robControls.disable('saveProgram');
+        if (CONFIG.getIsiPad()) {
+            $('#save-button').addClass('disabled');
+        }
         blocklyWorkspace.robControls.refreshTooltips(GUISTATE_C.getRobotRealName());
         GUISTATE_C.checkSim();
         var toolbox = $('#blocklyDiv .blocklyToolboxDiv');
@@ -448,6 +455,34 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
     exports.exportXml = exportXml;
 
     /**
+     * Make sure robot is connected before run programs.
+     *
+     * Return Value: "ready", "busy", "error"
+     */
+    function connectBeforeRunOnBrick(runOnBrickFn) {
+        var robotState = GUISTATE_C.getRobotState();
+        if (robotState === "wait"){
+            runOnBrickFn();
+        }
+        else if (robotState === "busy"){
+            MSG.displayMessage("POPUP_ROBOT_NOT_CONNECTED", "POPUP", "");
+        }
+        else{
+            // Indicates that the robot is disconnected, will attempt to connect.
+            USER_C.getDeviceNameByAccountName(GUISTATE_C.getUserAccountName(), function (deviceName) {
+                ROBOT_C.getDevice(deviceName, function(deviceInfo){
+                    if(deviceInfo['brickName'] !== GUISTATE_C.getGuiRobot()){
+                        alert("账户登记的设备类型与编辑器不同，请重新选择课程。");
+                        return;
+                    }
+                    ROBOT_C.setTokenWithoutModal(deviceInfo['token'], runOnBrickFn);
+                });
+            });
+        }
+    }
+    exports.connectBeforeRunOnBrick = connectBeforeRunOnBrick;
+
+    /**
      * Start the program on the brick
      */
     function runOnBrick() {
@@ -469,15 +504,36 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
 
         switch (GUISTATE_C.getConnection()) {
         case 'token':
-            PROGRAM.runOnBrick(GUISTATE_C.getProgramName(), GUISTATE_C.getConfigurationName(), xmlTextProgram, xmlTextConfiguration, function(result) {
-                GUISTATE_C.setState(result);
-                if (result.rc == "ok") {
-                    MSG.displayMessage("MESSAGE_EDIT_START", "TOAST", GUISTATE_C.getProgramName());
-                } else {
-                    MSG.displayInformation(result, "", result.message, "");
-                }
-                reloadProgram(result);
-            });
+            if (CONFIG.getIsiPad()) {
+                connectBeforeRunOnBrick(function () {
+                    GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                    $('#run-on-brick-button').addClass('disabled');
+                    setTimeout(function () {
+                        GUISTATE.gui.blocklyWorkspace.robControls.enable('runOnBrick');
+                        $('#run-on-brick-button').removeClass('disabled');
+                        PROGRAM.runOnBrick(GUISTATE_C.getProgramName(), GUISTATE_C.getConfigurationName(), xmlTextProgram, xmlTextConfiguration, function (result) {
+                            GUISTATE_C.setState(result);
+                            if (result.rc == "ok") {
+                                MSG.displayMessage("MESSAGE_EDIT_START", "TOAST", GUISTATE_C.getProgramName());
+                            } else {
+                                MSG.displayInformation(result, "", result.message, "");
+                            }
+                            reloadProgram(result);
+                        });
+                    }, 2000);
+                });
+            }
+            else{
+                PROGRAM.runOnBrick(GUISTATE_C.getProgramName(), GUISTATE_C.getConfigurationName(), xmlTextProgram, xmlTextConfiguration, function(result) {
+                    GUISTATE_C.setState(result);
+                    if (result.rc == "ok") {
+                        MSG.displayMessage("MESSAGE_EDIT_START", "TOAST", GUISTATE_C.getProgramName());
+                    } else {
+                        MSG.displayInformation(result, "", result.message, "");
+                    }
+                    reloadProgram(result);
+                });
+            }
             break;
         case 'autoConnection':
             GUISTATE_C.setAutoConnectedBusy(true);
@@ -665,6 +721,9 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'pr
             return false;
         });
         blocklyWorkspace.robControls.disable('saveProgram');
+        if (CONFIG.getIsiPad()) {
+            $('#save-button').addClass('disabled');
+        }
         if (GUISTATE_C.getConnection() == 'token') {
             blocklyWorkspace.robControls.disable('runOnBrick');
         }

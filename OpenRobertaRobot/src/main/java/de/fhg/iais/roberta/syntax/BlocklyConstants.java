@@ -42,6 +42,7 @@ public final class BlocklyConstants {
     public static final String NOT = "NOT";
     public static final String BOOL = "BOOL";
     public static final String OP_ = "OP";
+    public static final String IN = "in";
     public static final String B = "B";
     public static final String A = "A";
     public static final String SENSORTYPE = "SENSORTYPE";
@@ -90,6 +91,7 @@ public final class BlocklyConstants {
     public static final String ADDRESS = "ADDRESS";
     public static final String BRIGHTNESS = "BRIGHTNESS";
     public static final String JOYSTICKAXIS = "JOYSTICKAXIS";
+    public static final String STATE = "STATE";
 
     public static final String STRING_CONST_TEXT = "text";
 
@@ -165,6 +167,7 @@ public final class BlocklyConstants {
     public static final String MATH_NUMBER_PROPERTY = "math_number_property";
 
     public static final String TEXT_APPEND = "robText_append";
+    public static final String TEXT_CONTAIN = "brickpiText_Contain";
     public static final String ROB_TEXT_JOIN = "robText_join";
     public static final String TEXT_JOIN = "text_join";
     public static final String TEXT_PRINT = "text_print";
@@ -231,6 +234,7 @@ public final class BlocklyConstants {
     public static final String COM_WAIT_CONNECTION = "robCommunication_waitForConnection";
     public static final String COM_RECEIVE_BLOCK = "robCommunication_receiveBlock";
     public static final String STRING = "STRING";
+    public static final String SUBSTRING = "SUBSTRING";
     public static final String TOUCH = "TOUCH";
     public static final String ULTRASONIC = "ULTRASONIC";
     public static final String INFRARED = "INFRARED";
@@ -286,6 +290,7 @@ public final class BlocklyConstants {
     public static final String Theta = "Theta";
     public static final String INTENSITY = "INTENSITY";
     public static final String LANGUAGE = "LANGUAGE";
+    public static final String WAKEUPWORD = "WAKEUPWORD";
     public static final String POSITION = "POSITION";
     public static final String PART = "PART";
     public static final String SIDE = "SIDE";
@@ -314,4 +319,12 @@ public final class BlocklyConstants {
     public static final String ACCELERATION = "ACCELERATION";
     public static final String ORIENTATION = "ORIENTATION";
     public static final String NAO_RECOGNIZEDWORD = "RECOGNIZEDWORD";
+
+    public static final String COGNITIVE_SAY_TEXT = "brickpiSpeak";
+    public static final String COGNITIVE_SPEECH_RECOGNITION = "brickpiSpeechRecognition";
+    public static final String COGNITIVE_OCR = "brickpiOCR";
+    public static final String COGNITIVE_DETECT_FACE = "brickpiFace_Detect";
+    public static final String COGNITIVE_EMOTION_RECOGNITION = "brickpiEmotionRecognition";
+    public static final String COGNITIVE_DESCRIBE_IMAGE = "brickpiDescribeImage";
+    public static final String COGNITIVE_SET_WAKEUP_WORD = "brickpiSetWakeupWord";
 }

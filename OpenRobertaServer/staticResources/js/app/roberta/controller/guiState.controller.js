@@ -1,4 +1,4 @@
-define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controller', 'jquery' ], function(exports, UTIL, LOG, MSG, GUISTATE, SOCKET_C, $) {
+define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controller', 'config', 'jquery' ], function(exports, UTIL, LOG, MSG, GUISTATE, SOCKET_C, CONFIG, $) {
 
     /**
      * Init robot
@@ -66,7 +66,7 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
 
     /**
      * Set gui state
-     *
+     * 
      * @param {result}
      *            result of server call
      */
@@ -156,19 +156,41 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
                 $('#head-navi-icon-robot').removeClass('error');
                 $('#head-navi-icon-robot').removeClass('busy');
                 $('#head-navi-icon-robot').addClass('wait');
-                GUISTATE.gui.blocklyWorkspace.robControls.enable('runOnBrick');
+                if(config.getIsiPad()) {
+                    $('#connect-button').removeClass('error');
+                    $('#connect-button').removeClass('busy');
+                    $('#connect-button').addClass('wait');
+                    $('#run-on-brick-button').removeClass('disabled');
+                }
+                else {
+                    GUISTATE.gui.blocklyWorkspace.robControls.enable('runOnBrick');
+                }
                 $('#menuRunProg').parent().removeClass('disabled');
             } else if (GUISTATE.robot.state === 'busy') {
                 $('#head-navi-icon-robot').removeClass('wait');
                 $('#head-navi-icon-robot').removeClass('error');
                 $('#head-navi-icon-robot').addClass('busy');
-                GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                if(config.getIsiPad()) {
+                    $('#connect-button').removeClass('error');
+                    $('#connect-button').removeClass('wait');
+                    $('#connect-button').addClass('busy');
+                }
+                else {
+                    GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                }
                 $('#menuRunProg').parent().addClass('disabled');
             } else {
                 $('#head-navi-icon-robot').removeClass('busy');
                 $('#head-navi-icon-robot').removeClass('wait');
                 $('#head-navi-icon-robot').addClass('error');
-                GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                if(config.getIsiPad()) {
+                    $('#connect-button').removeClass('busy');
+                    $('#connect-button').removeClass('wait');
+                    $('#connect-button').addClass('error');
+                }
+                else {
+                    GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                }
                 $('#menuRunProg').parent().addClass('disabled');
             }
             break;
@@ -238,6 +260,12 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
         $('#head-navi-icon-robot').removeClass('typcn-open');
         $('#head-navi-icon-robot').removeClass('typcn-' + GUISTATE.gui.robotGroup);
         $('#head-navi-icon-robot').addClass('typcn-' + robotGroup);
+        if(config.getIsiPad()) {
+            var connect_button_icon = $('#connect-button').find('a span');
+            connect_button_icon.removeClass('typcn-open');
+            connect_button_icon.removeClass('typcn-' + GUISTATE.gui.robotGroup);
+            connect_button_icon.addClass('typcn-' + robotGroup);
+        }
 
         if (!opt_init) {
             setProgramSaved(true);
@@ -262,8 +290,15 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
             $('#head-navi-icon-robot').removeClass('error');
             $('#head-navi-icon-robot').removeClass('busy');
             $('#head-navi-icon-robot').removeClass('wait');
+            if(config.getIsiPad()) {
+                $('#connect-button').removeClass('error');
+                $('#connect-button').removeClass('busy');
+                $('#connect-button').removeClass('wait');
+            }
             if (GUISTATE.gui.blocklyWorkspace) {
-                GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                if (!config.getIsiPad()) {
+                    GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                }
             }
             $('#menuRunProg').parent().addClass('disabled');
             $('#menuConnect').parent().removeClass('disabled');
@@ -274,8 +309,14 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
             $('#head-navi-icon-robot').removeClass('error');
             $('#head-navi-icon-robot').removeClass('busy');
             $('#head-navi-icon-robot').addClass('wait');
+            if(config.getIsiPad()) {
+                $('#connect-button').removeClass('error');
+                $('#connect-button').removeClass('busy');
+                $('#connect-button').addClass('wait');
+            }
             if (GUISTATE.gui.blocklyWorkspace) {
                 GUISTATE.gui.blocklyWorkspace.robControls.enable('runOnBrick');
+                $('#run-on-brick-button').removeClass('disabled');
             }
             $('#menuRunProg').parent().removeClass('disabled');
             $('#menuConnect').parent().addClass('disabled');
@@ -332,10 +373,13 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
 
     function setAutoConnectedBusy(busy) {
         if (busy) {
-            GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+            if(!config.getIsiPad()) {
+                GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+            }
             $('#menuRunProg').parent().addClass('disabled');
         } else {
             GUISTATE.gui.blocklyWorkspace.robControls.enable('runOnBrick');
+            $('#run-on-brick-button').removeClass('disabled');
             $('#menuRunProg').parent().removeClass('disabled');
         }
     }
@@ -473,7 +517,9 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
         }
         if (!isRobotConnected()) {
             $('#menuRunProg').parent().addClass('disabled');
-            getBlocklyWorkspace().robControls.disable('runOnBrick');
+            if (!config.getIsiPad()) {
+                getBlocklyWorkspace().robControls.disable('runOnBrick');
+            }
         }
         if (view === 'tabConfiguration') {
             $('#head-navigation-program-edit').css('display', 'none');
@@ -534,13 +580,22 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
             $('#menuSaveProg').parent().removeClass('disabled');
             $('#menuSaveProg').parent().addClass('disabled');
             getBlocklyWorkspace().robControls.disable('saveProgram');
+            if (config.getIsiPad()) {
+                $('#save-button').addClass('disabled');
+            }
         } else {
             if (isUserLoggedIn() && !isProgramStandard() && isProgramWritable()) {
                 $('#menuSaveProg').parent().removeClass('disabled');
                 getBlocklyWorkspace().robControls.enable('saveProgram');
+                if (config.getIsiPad()) {
+                    $('#save-button').removeClass('disabled');
+                }
             } else {
                 $('#menuSaveProg').parent().addClass('disabled');
                 getBlocklyWorkspace().robControls.disable('saveProgram');
+                if (config.getIsiPad()) {
+                    $('#save-button').addClass('disabled');
+                }
             }
         }
         GUISTATE.program.saved = save;
@@ -557,11 +612,17 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
             $('#menuSaveConfig').parent().removeClass('disabled');
             $('#menuSaveConfig').parent().addClass('disabled');
             getBricklyWorkspace().robControls.disable('saveProgram');
+            if (config.getIsiPad()) {
+                $('#save-button').addClass('disabled');
+            }
 
         } else {
             if (isUserLoggedIn() && !isConfigurationStandard()) {
                 $('#menuSaveConfig').parent().removeClass('disabled');
                 getBricklyWorkspace().robControls.enable('saveProgram');
+                if (config.getIsiPad()) {
+                    $('#save-button').removeClass('disabled');
+                }
             } else {
                 $('#menuSaveConfig').parent().addClass('disabled');
             }
@@ -743,6 +804,11 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
     }
     exports.getServerVersion = getServerVersion;
 
+    function isPublicServerVersion() {
+        return GUISTATE.server.isPublic;
+    }
+    exports.isPublicServerVersion = isPublicServerVersion;
+
     function getUserName() {
         return GUISTATE.user.name;
     }
@@ -770,6 +836,13 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
         GUISTATE.user.isAccountActivated = result.isAccountActivated;
 
         $('.nav > li > ul > .login, .logout').removeClass('disabled');
+        if (config.getIsiPad()) {
+            $('#prog-list-button').removeClass('disabled');
+            $('#run-on-brick-button').removeClass('disabled');
+            $('#save-button').removeClass('disabled');
+            $('#user-button').addClass('ok');
+        }
+
         $('.nav > li > ul > .logout').addClass('disabled');
         $('#head-navi-icon-user').removeClass('error');
         $('#head-navi-icon-user').addClass('ok');
@@ -788,6 +861,14 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
         setProgramName('NEPOprog');
         GUISTATE.program.shared = false;
         $('.nav > li > ul > .logout, .login').removeClass('disabled');
+
+        if (config.getIsiPad()) {
+            $('#prog-list-button').addClass('disabled');
+            $('#run-on-brick-button').addClass('disabled');
+            $('#save-button').addClass('disabled');
+            $('#user-button').removeClass('ok');
+        }
+
         $('.nav > li > ul > .login').addClass('disabled');
         $('#head-navi-icon-user').removeClass('ok');
         $('#head-navi-icon-user').addClass('error');
@@ -831,7 +912,7 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
 
     /**
      * Set program name
-     *
+     * 
      * @param {name}
      *            Name to be set
      */
@@ -848,9 +929,17 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
     function checkSim() {
         if (GUISTATE.gui.sim == true) {
             $('#menuRunSim').parent().removeClass('disabled');
-            $('#progSim').show();
+            if (config.getIsiPad()) {
+                $('#sim-button').prop('disabled', false);
+            }
+            else{
+                $('#progSim').show();
+            }
         } else {
             $('#menuRunSim').parent().addClass('disabled');
+            if (config.getIsiPad()) {
+                $('#sim-button').prop('disabled', true);
+            }
             $('#progSim').hide();
         }
     }
@@ -912,8 +1001,15 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
             $('#head-navi-icon-robot').removeClass('error');
             $('#head-navi-icon-robot').removeClass('busy');
             $('#head-navi-icon-robot').removeClass('wait');
+            if (config.getIsiPad()) {
+                $('#connect-button').removeClass('error');
+                $('#connect-button').removeClass('busy');
+                $('#connect-button').removeClass('wait');
+            }
             if (GUISTATE.gui.blocklyWorkspace) {
-                GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                if (!config.getIsiPad()) {
+                    GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                }
             }
             $('#menuRunProg').parent().addClass('disabled');
             $('#menuConnect').parent().addClass('disabled');
@@ -922,8 +1018,16 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
             $('#head-navi-icon-robot').removeClass('error');
             $('#head-navi-icon-robot').removeClass('busy');
             $('#head-navi-icon-robot').addClass('wait');
+            if (config.getIsiPad()) {
+                $('#connect-button').removeClass('error');
+                $('#connect-button').removeClass('busy');
+                $('#connect-button').addClass('wait');
+            }
             if (GUISTATE.gui.blocklyWorkspace) {
                 GUISTATE.gui.blocklyWorkspace.robControls.enable('runOnBrick');
+                if (config.getIsiPad()) {
+                    $('#run-on-brick-button').removeClass('disabled');
+                }
             }
             $('#menuRunProg').parent().removeClass('disabled');
             $('#menuConnect').parent().addClass('disabled');
@@ -936,8 +1040,15 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
                 $('#head-navi-icon-robot').removeClass('error');
                 $('#head-navi-icon-robot').removeClass('busy');
                 $('#head-navi-icon-robot').removeClass('wait');
+                if (config.getIsiPad()) {
+                    $('#connect-button').removeClass('error');
+                    $('#connect-button').removeClass('busy');
+                    $('#connect-button').removeClass('wait');
+                }
                 if (GUISTATE.gui.blocklyWorkspace) {
-                    GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                    if (!config.getIsiPad()) {
+                        GUISTATE.gui.blocklyWorkspace.robControls.disable('runOnBrick');
+                    }
                 }
                 $('#menuRunProg').parent().addClass('disabled');
                 //$('#menuConnect').parent().addClass('disabled');
@@ -945,8 +1056,16 @@ define([ 'exports', 'util', 'log', 'message', 'guiState.model', 'socket.controll
                 $('#head-navi-icon-robot').removeClass('error');
                 $('#head-navi-icon-robot').removeClass('busy');
                 $('#head-navi-icon-robot').addClass('wait');
+                if (config.getIsiPad()) {
+                    $('#connect-button').removeClass('error');
+                    $('#connect-button').removeClass('busy');
+                    $('#connect-button').addClass('wait');
+                }
                 if (GUISTATE.gui.blocklyWorkspace) {
                     GUISTATE.gui.blocklyWorkspace.robControls.enable('runOnBrick');
+                    if (config.getIsiPad()) {
+                        $('#run-on-brick-button').removeClass('disabled');
+                    }
                 }
                 $('#menuRunProg').parent().removeClass('disabled')
             }

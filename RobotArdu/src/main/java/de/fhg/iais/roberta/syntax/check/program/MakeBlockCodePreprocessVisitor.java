@@ -6,9 +6,12 @@ import de.fhg.iais.roberta.components.MakeBlockConfiguration;
 import de.fhg.iais.roberta.components.SensorType;
 import de.fhg.iais.roberta.components.UsedSensor;
 import de.fhg.iais.roberta.syntax.Phrase;
+import de.fhg.iais.roberta.syntax.action.makeblock.LedOffAction;
+import de.fhg.iais.roberta.syntax.action.makeblock.LedOnAction;
 import de.fhg.iais.roberta.syntax.action.sound.ToneAction;
-import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
+import de.fhg.iais.roberta.syntax.sensor.botnroll.VoltageSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.GyroSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
 import de.fhg.iais.roberta.syntax.sensor.makeblock.Accelerometer;
 import de.fhg.iais.roberta.syntax.sensor.makeblock.FlameSensor;
 import de.fhg.iais.roberta.syntax.sensor.makeblock.Joystick;
@@ -53,16 +56,16 @@ public class MakeBlockCodePreprocessVisitor extends PreprocessProgramVisitor imp
         this.usedSensors.add(new UsedSensor(accelerometer.getPort(), SensorType.ACCELEROMETER, accelerometer.getCoordinate()));
         return null;
     }
-    
+
     @Override
     public Void visitGyroSensor(GyroSensor<Void> gyroSensor) {
-        this.usedSensors.add(new UsedSensor(gyroSensor.getPort(), SensorType.GYROSCOPE, gyroSensor.getMode()));
+        this.usedSensors.add(new UsedSensor(gyroSensor.getPort(), SensorType.GYRO, gyroSensor.getMode()));
         return null;
     }
-    
+
     @Override
     public Void visitFlameSensor(FlameSensor<Void> flameSensor) {
-    	 this.usedSensors.add(new UsedSensor(flameSensor.getPort(), SensorType.FLAMESENSOR, null));
+        this.usedSensors.add(new UsedSensor(flameSensor.getPort(), SensorType.FLAMESENSOR, null));
         return null;
     }
 
@@ -70,6 +73,24 @@ public class MakeBlockCodePreprocessVisitor extends PreprocessProgramVisitor imp
     public Void visitToneAction(ToneAction<Void> toneAction) {
         super.visitToneAction(toneAction);
         this.isToneActionUsed = true;
+        return null;
+    }
+
+    @Override
+    public Void visitLedOnAction(LedOnAction<Void> ledOnAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitLedOffAction(LedOffAction<Void> ledOffAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitVoltageSensor(VoltageSensor<Void> voltageSensor) {
+        // TODO Auto-generated method stub
         return null;
     }
 

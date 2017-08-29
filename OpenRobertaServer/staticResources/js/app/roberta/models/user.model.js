@@ -1,13 +1,13 @@
 /**
  * Rest calls to the server related to user operations (create user, login ...)
- *
+ * 
  * @module rest/program
  */
 define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * Clear user
-     *
+     * 
      */
     function clear(successFn) {
         COMM.json("/user", {
@@ -19,13 +19,13 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * Login user
-     *
+     * 
      * @param accountName
      *            {String} - name of the account of the user
      * @param passwd
      *            {String} - password for the account
-     *
-     *
+     * 
+     * 
      */
     function login(accountName, passwd, successFn) {
         COMM.json("/user", {
@@ -38,8 +38,38 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
     exports.login = login;
 
     /**
-     * Logout user
+     * Create and login user
      *
+     * @param accountName
+     *            {String} - name of the account of the user
+     * @param userName
+     *            {String} - name of the user
+     * @param role
+     *            {String} - role of the user
+     * @param userEmail
+     *            {String} - email address of the user
+     * @param youngerThen14
+     *            {String} - if the user is younger than 14 or not, 'true' or 'false'
+     * @param successFn
+     *            {Function} - execute the function if success
+     */
+    function loginWithCreate(accountName, userName, role, userEmail, youngerThen14, deviceName, successFn){
+        COMM.json("/user", {
+            "cmd": "loginWithCreate",
+            "accountName" : accountName,
+            "userName" : userName,
+            "role" : role,
+            "userEmail" : userEmail,
+            "youngerThen14" : youngerThen14,
+            "deviceName" : deviceName
+        }, successFn, "login with create user '" + accountName + "'");
+    }
+
+    exports.loginWithCreate = loginWithCreate;
+
+    /**
+     * Logout user
+     * 
      * @memberof USER
      */
     function logout(successFn) {
@@ -52,11 +82,11 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * Retrive user from server.
-     *
+     * 
      * @param accountName
      *            {String} - name of the account of the user
-     *
-     *
+     * 
+     * 
      */
     function getUserFromServer(accountName, successFn) {
         COMM.json("/user", {
@@ -70,7 +100,7 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * Create user to server.
-     *
+     * 
      * @param accountName
      *            {String} - name of the account
      * @param userName
@@ -79,9 +109,9 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
      *            {String} - user email address
      * @param passwd
      *            {String} - user password
-     *
+     * 
      */
-    function createUserToServer(accountName, userName, userEmail, passwd, youngerThen14, language, successFn) {
+    function createUserToServer(accountName, userName, userEmail, passwd, isYoungerThen14, language, successFn) {
         COMM.json("/user", {
             "cmd" : "createUser",
             "accountName" : accountName,
@@ -89,8 +119,8 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
             "userEmail" : userEmail,
             "password" : passwd,
             "role" : 'TEACHER',
-            "youngerThen14": youngerThen14,
-            "language": language
+            "isYoungerThen14" : isYoungerThen14,
+            "language" : language
         }, successFn, "save user '" + accountName + "' to server");
     }
 
@@ -98,23 +128,23 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * Update user to server
-     *
+     * 
      * @param accountName
      *            {String} - name of the account
      * @param userName
      *            {String} - name of the user
      * @param userEmail
      *            {String} - user email address
-     *
+     * 
      */
-    function updateUserToServer(accountName, userName, userEmail, youngerThen14, language, successFn) {
+    function updateUserToServer(accountName, userName, userEmail, isYoungerThen14, language, successFn) {
         COMM.json("/user", {
             "cmd" : "updateUser",
             "accountName" : accountName,
             "userName" : userName,
             "userEmail" : userEmail,
-            "youngerThen14" : youngerThen14,
-            "language": language,
+            "isYoungerThen14" : isYoungerThen14,
+            "language" : language,
             "role" : 'TEACHER'
         }, successFn, "update user '" + accountName + "' to server");
     }
@@ -123,13 +153,13 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * Update user password to server.
-     *
+     * 
      * @param oldPassword
      *            {String} - old password of the user account
-     *
+     * 
      * @param newPassword -
      *            new password of the user account
-     *
+     * 
      */
     function updateUserPasswordToServer(accountName, oldPassword, newPassword, successFn) {
         COMM.json("/user", {
@@ -144,13 +174,13 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * Reset password for lost password.
-     *
+     * 
      * @param resetPasswordLink
      *            {String} - link sent to the user email for reseting the
      *            password
      * @param newPassword
      *            {String} - new password for the user account
-     *
+     * 
      */
     function resetPasswordToServer(resetPasswordLink, newPassword, successFn) {
         COMM.json("/user", {
@@ -164,10 +194,10 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * Check if the generated target for password reset is valid.
-     *
+     * 
      * @param target
      *            {String} - target from link
-     *
+     * 
      */
     function checkTargetRecovery(target, successFn) {
         COMM.json("/user", {
@@ -180,10 +210,10 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * User password recovery for lost password.
-     *
+     * 
      * @param lostEmail
      *            {String} - email of the user
-     *
+     * 
      */
     function userPasswordRecovery(lostEmail, lang, successFn) {
         COMM.json("/user", {
@@ -197,18 +227,18 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * Resend Account Activation Mail.
-     *
+     * 
      * @param accountName
      *            {String} - name of the account
      * @param language
      *            {String} - language of the current client
-     *
+     * 
      */
     function userSendAccountActivation(accountName, language, successFn) {
         COMM.json("/user", {
             "cmd" : "resendActivation",
             "accountName" : accountName,
-            "language": language
+            "language" : language
         }, successFn, "send account activation mail for '" + accountName + "'");
     }
 
@@ -216,7 +246,7 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * Activate account given URL.
-     *
+     * 
      * @param url
      *            {String} - url for the account
      */
@@ -231,12 +261,12 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
 
     /**
      * Delete user from the server.
-     *
+     * 
      * @param accountName
      *            {String} - account name
      * @param passwd
      *            {String} - user account password
-     *
+     * 
      */
     function deleteUserOnServer(accountName, passwd, successFn) {
         COMM.json("/user", {
@@ -247,4 +277,22 @@ define([ 'exports', 'comm' ], function(exports, COMM) {
     }
 
     exports.deleteUserOnServer = deleteUserOnServer;
+
+    /**
+     * Get Device Name by Account Name
+     *
+     * @param accountName
+     *              {String} - account name
+     * @param successFn
+     *              {Function} - function after execution
+     */
+    function getDeviceNameByAccountName(accountName, successFn) {
+        COMM.json("/user", {
+            "cmd" : "getDeviceNameByAccountName",
+            "accountName" : accountName
+        }, successFn, "get device name of account: " + accountName);
+    }
+
+    exports.getDeviceNameByAccountName = getDeviceNameByAccountName;
+
 });

@@ -4,30 +4,51 @@ import java.util.ArrayList;
 
 import de.fhg.iais.roberta.components.Bob3Configuration;
 import de.fhg.iais.roberta.inter.mode.sensor.ITouchSensorMode;
-import de.fhg.iais.roberta.mode.general.IndexLocation;
 import de.fhg.iais.roberta.mode.sensor.TimerSensorMode;
 import de.fhg.iais.roberta.syntax.Phrase;
+import de.fhg.iais.roberta.syntax.action.bob3.Bob3BodyLEDAction;
+import de.fhg.iais.roberta.syntax.action.bob3.Bob3ReceiveIRAction;
+import de.fhg.iais.roberta.syntax.action.bob3.Bob3SendIRAction;
+import de.fhg.iais.roberta.syntax.action.display.ClearDisplayAction;
+import de.fhg.iais.roberta.syntax.action.display.ShowPictureAction;
+import de.fhg.iais.roberta.syntax.action.display.ShowTextAction;
 import de.fhg.iais.roberta.syntax.action.light.LightAction;
 import de.fhg.iais.roberta.syntax.action.light.LightStatusAction;
+import de.fhg.iais.roberta.syntax.action.makeblock.LedOffAction;
+import de.fhg.iais.roberta.syntax.action.makeblock.LedOnAction;
+import de.fhg.iais.roberta.syntax.action.motor.CurveAction;
+import de.fhg.iais.roberta.syntax.action.motor.DriveAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorDriveStopAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorGetPowerAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorOnAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorSetPowerAction;
+import de.fhg.iais.roberta.syntax.action.motor.MotorStopAction;
+import de.fhg.iais.roberta.syntax.action.motor.TurnAction;
+import de.fhg.iais.roberta.syntax.action.sound.PlayFileAction;
+import de.fhg.iais.roberta.syntax.action.sound.ToneAction;
+import de.fhg.iais.roberta.syntax.action.sound.VolumeAction;
 import de.fhg.iais.roberta.syntax.check.program.Bob3CodePreprocessVisitor;
-import de.fhg.iais.roberta.syntax.expr.RgbColor;
+import de.fhg.iais.roberta.syntax.expr.ardu.RgbColor;
 import de.fhg.iais.roberta.syntax.lang.blocksequence.MainTask;
-import de.fhg.iais.roberta.syntax.lang.expr.Var;
-import de.fhg.iais.roberta.syntax.lang.functions.FunctionNames;
-import de.fhg.iais.roberta.syntax.lang.functions.IndexOfFunct;
-import de.fhg.iais.roberta.syntax.lang.functions.LengthOfIsEmptyFunct;
-import de.fhg.iais.roberta.syntax.lang.functions.ListGetIndex;
-import de.fhg.iais.roberta.syntax.lang.functions.ListSetIndex;
-import de.fhg.iais.roberta.syntax.lang.functions.MathConstrainFunct;
-import de.fhg.iais.roberta.syntax.lang.functions.MathNumPropFunct;
-import de.fhg.iais.roberta.syntax.lang.functions.MathOnListFunct;
-import de.fhg.iais.roberta.syntax.lang.functions.MathRandomFloatFunct;
-import de.fhg.iais.roberta.syntax.lang.functions.MathRandomIntFunct;
-import de.fhg.iais.roberta.syntax.sensor.bob3.LightSensor;
-import de.fhg.iais.roberta.syntax.sensor.bob3.TouchSensor;
+import de.fhg.iais.roberta.syntax.lang.expr.ColorConst;
+import de.fhg.iais.roberta.syntax.sensor.bob3.Bob3AmbientLightSensor;
+import de.fhg.iais.roberta.syntax.sensor.bob3.Bob3CodePadSensor;
+import de.fhg.iais.roberta.syntax.sensor.bob3.Bob3TemperatureSensor;
+import de.fhg.iais.roberta.syntax.sensor.bob3.Bob3TouchSensor;
+import de.fhg.iais.roberta.syntax.sensor.botnroll.VoltageSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.BrickSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.ColorSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.CompassSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.EncoderSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.GyroSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.InfraredSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.LightSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.SoundSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TemperatureSensor;
 import de.fhg.iais.roberta.syntax.sensor.generic.TimerSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.TouchSensor;
+import de.fhg.iais.roberta.syntax.sensor.generic.UltrasonicSensor;
+import de.fhg.iais.roberta.typecheck.BlocklyType;
 import de.fhg.iais.roberta.util.dbc.Assert;
 import de.fhg.iais.roberta.util.dbc.DbcException;
 import de.fhg.iais.roberta.visitor.AstVisitor;
@@ -39,9 +60,7 @@ import de.fhg.iais.roberta.visitor.actor.AstActorLightVisitor;
  * StringBuilder. <b>This representation is correct C code for Arduino.</b> <br>
  */
 public class Ast2Bob3Visitor extends Ast2ArduVisitor implements Bob3AstVisitor<Void>, AstActorLightVisitor<Void> {
-    private boolean isTimerSensorUsed;
-
-    //private Bob3Configuration boardConfiguration;
+    private final boolean isTimerSensorUsed;
 
     /**
      * Initialize the C++ code generator visitor.
@@ -52,8 +71,8 @@ public class Ast2Bob3Visitor extends Ast2ArduVisitor implements Bob3AstVisitor<V
      */
     private Ast2Bob3Visitor(Bob3Configuration brickConfiguration, ArrayList<ArrayList<Phrase<Void>>> phrases, int indentation) {
         super(phrases, indentation);
-        //this.boardConfiguration = brickConfiguration;
         Bob3CodePreprocessVisitor codePreprocessVisitor = new Bob3CodePreprocessVisitor(phrases, brickConfiguration);
+        this.usedVars = codePreprocessVisitor.getVisitedVars();
         this.usedSensors = codePreprocessVisitor.getUsedSensors();
         this.usedActors = codePreprocessVisitor.getUsedActors();
         this.isTimerSensorUsed = codePreprocessVisitor.isTimerSensorUsed();
@@ -75,21 +94,71 @@ public class Ast2Bob3Visitor extends Ast2ArduVisitor implements Bob3AstVisitor<V
         return astVisitor.sb.toString();
     }
 
+    @Override
+    public Void visitColorConst(ColorConst<Void> colorConst) {
+        this.sb.append(colorConst.getValue());
+        return null;
+    }
+
+    @Override
+    protected String getLanguageVarTypeFromBlocklyType(BlocklyType type) {
+        switch ( type ) {
+            case ANY:
+            case COMPARABLE:
+            case ADDABLE:
+            case NULL:
+            case REF:
+            case PRIM:
+            case NOTHING:
+            case CAPTURED_TYPE:
+            case R:
+            case S:
+            case T:
+                return "";
+            case ARRAY:
+                return "double";
+            case ARRAY_NUMBER:
+                return "double";
+            case ARRAY_STRING:
+                return "String";
+            case ARRAY_BOOLEAN:
+                return "bool";
+            case BOOLEAN:
+                return "bool";
+            case NUMBER:
+                return "double";
+            case NUMBER_INT:
+                return "int";
+            case STRING:
+                return "String";
+            case VOID:
+                return "void";
+            case COLOR:
+                return "Bob3Color";
+            case CONNECTION:
+                return "int";
+            default:
+                throw new IllegalArgumentException("unhandled type");
+        }
+    }
+
+    @Override
     public Void visitInfraredSensor(InfraredSensor<Void> infraredSensor) {
-        this.sb.append("bob3.getIRLight()");
+        this.sb.append("myBob.getIRLight()");
         return null;
     }
 
     @Override
     public Void visitTemperatureSensor(TemperatureSensor<Void> temperatureSensor) {
-        this.sb.append("bob3.getTemperature()");
+        this.sb.append("myBob.getTemperature()");
         return null;
     }
 
+    @Override
     public Void visitTimerSensor(TimerSensor<Void> timerSensor) {
         switch ( (TimerSensorMode) timerSensor.getMode() ) {
             case GET_SAMPLE:
-                this.sb.append("T.ShowSeconds()");
+                this.sb.append("T.ShowSeconds();");
                 break;
             case RESET:
                 this.sb.append("T.ResetTimer();");
@@ -101,10 +170,10 @@ public class Ast2Bob3Visitor extends Ast2ArduVisitor implements Bob3AstVisitor<V
     }
 
     @Override
-    public Void visitTouchSensor(TouchSensor<Void> touchSensor) {
+    public Void visitTouchSensor(Bob3TouchSensor<Void> touchSensor) {
         ITouchSensorMode arm = touchSensor.getMode();
         System.out.println(arm.toString());
-        this.sb.append("bob3.getArmPair(" + touchSensor.getArmSide() + ", " + touchSensor.getArmPart() + ")");
+        this.sb.append("myBob.getArmPair(" + touchSensor.getArmSide() + ", " + touchSensor.getArmPart() + ")");
         return null;
     }
 
@@ -114,6 +183,17 @@ public class Ast2Bob3Visitor extends Ast2ArduVisitor implements Bob3AstVisitor<V
         mainTask.getVariables().visit(this);
         incrIndentation();
         generateUserDefinedMethods();
+        this.sb.append("\nvoid setup() \n");
+        this.sb.append("{");
+        nlIndent();
+        this.sb.append("Serial.begin(9600); ");
+        if ( this.isTimerSensorUsed ) {
+            nlIndent();
+            this.sb.append("T.StartTimer();");
+        }
+        nlIndent();
+        generateUsedVars();
+        this.sb.append("\n}");
         this.sb.append("\n").append("void loop() \n");
         this.sb.append("{");
 
@@ -121,222 +201,6 @@ public class Ast2Bob3Visitor extends Ast2ArduVisitor implements Bob3AstVisitor<V
             nlIndent();
             this.sb.append("T.Timer();");
         }
-        return null;
-    }
-
-    @Override
-    public Void visitIndexOfFunct(IndexOfFunct<Void> indexOfFunct) {
-        if ( indexOfFunct.getParam().get(0).toString().contains("ListCreate ") ) {
-            this.sb.append("null");
-            return null;
-        }
-        String methodName = indexOfFunct.getLocation() == IndexLocation.LAST ? "rob.arrFindLast(" : "rob.arrFindFirst(";
-        this.sb.append(methodName);
-        arrayLen((Var<Void>) indexOfFunct.getParam().get(0));
-        this.sb.append(", ");
-        indexOfFunct.getParam().get(0).visit(this);
-        this.sb.append(", ");
-        indexOfFunct.getParam().get(1).visit(this);
-        this.sb.append(")");
-        return null;
-    }
-
-    @Override
-    public Void visitLengthOfIsEmptyFunct(LengthOfIsEmptyFunct<Void> lengthOfIsEmptyFunct) {
-        if ( lengthOfIsEmptyFunct.getParam().get(0).toString().contains("ListCreate ") ) {
-            this.sb.append("NULL");
-            return null;
-        }
-        if ( lengthOfIsEmptyFunct.getFunctName() == FunctionNames.LIST_IS_EMPTY ) {
-            this.sb.append("(");
-            arrayLen((Var<Void>) lengthOfIsEmptyFunct.getParam().get(0));
-            this.sb.append(" == 0)");
-        } else {
-            arrayLen((Var<Void>) lengthOfIsEmptyFunct.getParam().get(0));
-        }
-        return null;
-    }
-
-    @Override
-    public Void visitListGetIndex(ListGetIndex<Void> listGetIndex) {
-        if ( listGetIndex.getParam().get(0).toString().contains("ListCreate ") ) {
-            this.sb.append("null");
-            return null;
-        }
-        listGetIndex.getParam().get(0).visit(this);
-        this.sb.append("[");
-        switch ( (IndexLocation) listGetIndex.getLocation() ) {
-            case FROM_START:
-                listGetIndex.getParam().get(1).visit(this);
-                break;
-            case FROM_END:
-                arrayLen((Var<Void>) listGetIndex.getParam().get(0));
-                this.sb.append(" - 1 - ");
-                listGetIndex.getParam().get(1).visit(this);
-                break;
-            case FIRST:
-                this.sb.append("0");
-                break;
-            case LAST:
-                arrayLen((Var<Void>) listGetIndex.getParam().get(0));
-                this.sb.append(" - 1");
-                break;
-            case RANDOM:
-                this.sb.append("rob.randomIntegerInRange(0, ");
-                arrayLen((Var<Void>) listGetIndex.getParam().get(0));
-                this.sb.append(")");
-                break;
-        }
-        this.sb.append("]");
-        return null;
-    }
-
-    @Override
-    public Void visitListSetIndex(ListSetIndex<Void> listSetIndex) {
-        if ( listSetIndex.getParam().get(0).toString().contains("ListCreate ") ) {
-            return null;
-        }
-        listSetIndex.getParam().get(0).visit(this);
-        this.sb.append("[");
-        switch ( (IndexLocation) listSetIndex.getLocation() ) {
-            case FROM_START:
-                listSetIndex.getParam().get(2).visit(this);
-                break;
-            case FROM_END:
-                arrayLen((Var<Void>) listSetIndex.getParam().get(0));
-                this.sb.append(" - 1 - ");
-                listSetIndex.getParam().get(2).visit(this);
-                break;
-            case FIRST:
-                this.sb.append("0");
-                break;
-            case LAST:
-                arrayLen((Var<Void>) listSetIndex.getParam().get(0));
-                this.sb.append(" - 1");
-                break;
-            case RANDOM:
-                this.sb.append("rob.randomIntegerInRange(0, ");
-                arrayLen((Var<Void>) listSetIndex.getParam().get(0));
-                this.sb.append(")");
-                break;
-        }
-        this.sb.append("]");
-        this.sb.append(" = ");
-        listSetIndex.getParam().get(1).visit(this);
-        return null;
-    }
-
-    @Override
-    public Void visitMathConstrainFunct(MathConstrainFunct<Void> mathConstrainFunct) {
-        this.sb.append("rob.clamp(");
-        mathConstrainFunct.getParam().get(0).visit(this);
-        this.sb.append(", ");
-        mathConstrainFunct.getParam().get(1).visit(this);
-        this.sb.append(", ");
-        mathConstrainFunct.getParam().get(2).visit(this);
-        this.sb.append(")");
-        return null;
-    }
-
-    @Override
-    public Void visitMathNumPropFunct(MathNumPropFunct<Void> mathNumPropFunct) {
-        switch ( mathNumPropFunct.getFunctName() ) {
-            case EVEN:
-                this.sb.append("(fmod(");
-                mathNumPropFunct.getParam().get(0).visit(this);
-                this.sb.append(", 2) == 0");
-                break;
-            case ODD:
-                this.sb.append("(fmod(");
-                mathNumPropFunct.getParam().get(0).visit(this);
-                this.sb.append(", 2) != 0");
-                break;
-            case PRIME:
-                this.sb.append("rob.isPrime(");
-                mathNumPropFunct.getParam().get(0).visit(this);
-                break;
-            case WHOLE:
-                this.sb.append("rob.isWhole(");
-                mathNumPropFunct.getParam().get(0).visit(this);
-                break;
-            case POSITIVE:
-                this.sb.append("(");
-                mathNumPropFunct.getParam().get(0).visit(this);
-                this.sb.append(" > 0");
-                break;
-            case NEGATIVE:
-                this.sb.append("(");
-                mathNumPropFunct.getParam().get(0).visit(this);
-                this.sb.append(" < 0");
-                break;
-            case DIVISIBLE_BY:
-                this.sb.append("(fmod(");
-                mathNumPropFunct.getParam().get(0).visit(this);
-                this.sb.append(",");
-                mathNumPropFunct.getParam().get(1).visit(this);
-                this.sb.append(") == 0");
-                break;
-            default:
-                break;
-        }
-        this.sb.append(")");
-        return null;
-    }
-
-    @Override
-    public Void visitMathOnListFunct(MathOnListFunct<Void> mathOnListFunct) {
-        if ( mathOnListFunct.getParam().get(0).toString().contains("ListCreate ") ) {
-            this.sb.append("null");
-            return null;
-        }
-        switch ( mathOnListFunct.getFunctName() ) {
-            case SUM:
-                this.sb.append("rob.arrSum(");
-                break;
-            case MIN:
-                this.sb.append("rob.arrMin(");
-                break;
-            case MAX:
-                this.sb.append("rob.arrMax(");
-                break;
-            case AVERAGE:
-                this.sb.append("rob.arrMean(");
-                break;
-            case MEDIAN:
-                this.sb.append("rob.arrMedian(");
-                break;
-            case STD_DEV:
-                this.sb.append("rob.arrStandardDeviatioin(");
-                break;
-            case RANDOM:
-                this.sb.append("rob.arrRand(");
-                break;
-            case MODE:
-                this.sb.append("rob.arrMode(");
-                break;
-            default:
-                break;
-        }
-        arrayLen((Var<Void>) mathOnListFunct.getParam().get(0));
-        this.sb.append(", ");
-        mathOnListFunct.getParam().get(0).visit(this);
-        this.sb.append(")");
-        return null;
-    }
-
-    @Override
-    public Void visitMathRandomFloatFunct(MathRandomFloatFunct<Void> mathRandomFloatFunct) {
-        this.sb.append("rob.randomFloat()");
-        return null;
-    }
-
-    @Override
-    public Void visitMathRandomIntFunct(MathRandomIntFunct<Void> mathRandomIntFunct) {
-        this.sb.append("rob.randomIntegerInRange(");
-        mathRandomIntFunct.getParam().get(0).visit(this);
-        this.sb.append(", ");
-        mathRandomIntFunct.getParam().get(1).visit(this);
-        this.sb.append(")");
         return null;
     }
 
@@ -359,16 +223,8 @@ public class Ast2Bob3Visitor extends Ast2ArduVisitor implements Bob3AstVisitor<V
         }
 
         this.sb.append("RobertaFunctions rob;\n");
-        this.sb.append("Bob3 bob3;\n");
-        this.sb.append("\nvoid setup() \n");
-        this.sb.append("{");
-        nlIndent();
-        this.sb.append("Serial.begin(9600);");
-        if ( this.isTimerSensorUsed ) {
-            nlIndent();
-            this.sb.append("T.StartTimer();");
-        }
-        this.sb.append("\n}");
+        this.sb.append("Bob3 myBob;\n");
+
     }
 
     @Override
@@ -379,27 +235,241 @@ public class Ast2Bob3Visitor extends Ast2ArduVisitor implements Bob3AstVisitor<V
     }
 
     @Override
-    public Void visitLightSensor(LightSensor<Void> lightSensor) {
-        this.sb.append("bob3.getIRLight()");
+    public Void visitLightSensor(Bob3AmbientLightSensor<Void> lightSensor) {
+        this.sb.append("myBob.getIRSensor()");
         return null;
     }
 
     @Override
     public Void visitLightAction(LightAction<Void> lightAction) {
-        this.sb.append("bob3.setWhiteLeds(WHITE, WHITE)");
+        this.sb.append("myBob.setWhiteLeds(WHITE, WHITE);");
         return null;
     }
 
     @Override
     public Void visitLightStatusAction(LightStatusAction<Void> lightStatusAction) {
-        this.sb.append("bob3.setLed(2, OFF)");
-        this.sb.append("bob3.setLed(1, OFF)");
+        this.sb.append("myBob.setLed(2, OFF);");
+        this.sb.append("myBob.setLed(1, OFF);");
         return null;
     }
 
     @Override
     public Void visitRgbColor(RgbColor<Void> rgbColor) {
-        this.sb.append("bob3.setEyes(WHITE, WHITE)");
+        this.sb.append("(");
+        rgbColor.getR().visit(this);
+        this.sb.append(")");
+        this.sb.append("*256*256 + ");
+        this.sb.append("(");
+        rgbColor.getG().visit(this);
+        this.sb.append(")");
+        this.sb.append("*256 + ");
+        this.sb.append("(");
+        rgbColor.getB().visit(this);
+        this.sb.append(")");
+        return null;
+    }
+
+    @Override
+    public Void visitBrickSensor(BrickSensor<Void> brickSensor) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitColorSensor(ColorSensor<Void> colorSensor) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitSoundSensor(SoundSensor<Void> soundSensor) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitEncoderSensor(EncoderSensor<Void> encoderSensor) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitGyroSensor(GyroSensor<Void> gyroSensor) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitUltrasonicSensor(UltrasonicSensor<Void> ultrasonicSensor) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitCompassSensor(CompassSensor<Void> compassSensor) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitLightSensor(LightSensor<Void> lightSensor) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitTouchSensor(TouchSensor<Void> touchSensor) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitLedOnAction(LedOnAction<Void> ledOnAction) {
+        this.sb.append("myBob.setLed(");
+        if ( ledOnAction.getSide().equals("Left") ) {
+            this.sb.append("EYE_2, ");
+        } else {
+            this.sb.append("EYE_1, ");
+        }
+        ledOnAction.getLedColor().visit(this);
+        this.sb.append(");");
+        return null;
+    }
+
+    @Override
+    public Void visitClearDisplayAction(ClearDisplayAction<Void> clearDisplayAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitShowPictureAction(ShowPictureAction<Void> showPictureAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitShowTextAction(ShowTextAction<Void> showTextAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitDriveAction(DriveAction<Void> driveAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitCurveAction(CurveAction<Void> curveAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitTurnAction(TurnAction<Void> turnAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitMotorGetPowerAction(MotorGetPowerAction<Void> motorGetPowerAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitMotorOnAction(MotorOnAction<Void> motorOnAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitMotorSetPowerAction(MotorSetPowerAction<Void> motorSetPowerAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitMotorStopAction(MotorStopAction<Void> motorStopAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitMotorDriveStopAction(MotorDriveStopAction<Void> stopAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitToneAction(ToneAction<Void> toneAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitVolumeAction(VolumeAction<Void> volumeAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitPlayFileAction(PlayFileAction<Void> playFileAction) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Void visitLedOffAction(LedOffAction<Void> ledOffAction) {
+        this.sb.append("myBob.setLed(");
+        if ( ledOffAction.getSide().equals("Left") ) {
+            this.sb.append("EYE_2, OFF);");
+        } else {
+            this.sb.append("EYE_1, OFF);");
+        }
+        return null;
+    }
+
+    @Override
+    public Void visitBodyLEDAction(Bob3BodyLEDAction<Void> bodyLEDAction) {
+        this.sb.append("myBob.setLed(");
+        this.sb.append(bodyLEDAction.getSide() + ", ");
+        this.sb.append(bodyLEDAction.getledState() + ");");
+        return null;
+    }
+
+    @Override
+    public Void visitBob3TemperatureSensor(Bob3TemperatureSensor<Void> temperatureSensor) {
+        this.sb.append("myBob.getTemperature()");
+        return null;
+    }
+
+    @Override
+    public Void visitBob3CodePadSensor(Bob3CodePadSensor<Void> codePadSensor) {
+        this.sb.append("myBob.getID()");
+        return null;
+    }
+
+    @Override
+    public Void visitVoltageSensor(VoltageSensor<Void> voltageSensor) {
+        this.sb.append("myBob.getMillivolt()"); // ADC_BANDGAP_CHANNEL_VOLTAGE must be below 1.28 V!!!
+        return null;
+    }
+
+    @Override
+    public Void visitSendIRAction(Bob3SendIRAction<Void> sendIRAction) {
+        this.sb.append("myBob.transmitIRCode(");
+        sendIRAction.getCode().visit(this);
+        this.sb.append(");");
+        return null;
+    }
+
+    @Override
+    public Void visitReceiveIRAction(Bob3ReceiveIRAction<Void> receiveIRAction) {
+        this.sb.append("myBob.receiveIRCode(");
+        receiveIRAction.getCode().visit(this);
+        this.sb.append(");");
         return null;
     }
 }

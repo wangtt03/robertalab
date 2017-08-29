@@ -1,5 +1,5 @@
-define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'blocks', 'jquery', 'jquery-validate', 'blocks-msg' ], function(exports, COMM,
-        MSG, LOG, UTIL, GUISTATE_C, Blockly, $) {
+define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'config', 'blocks', 'jquery', 'jquery-validate', 'blocks-msg' ], function(exports, COMM,
+        MSG, LOG, UTIL, GUISTATE_C, CONFIG, Blockly, $) {
 
     var blocklyWorkspace;
     /**
@@ -16,6 +16,9 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
     function initView() {
         $('#helpContent').remove();
         var url = '../help/progHelp_' + GUISTATE_C.getRobotGroup() + '_' + GUISTATE_C.getLanguage().toLowerCase() + '.html';
+        if (CONFIG.getIsiPad()) {
+            url = '../guide/index.html';
+        }
         $('#helpDiv').load(url, function(response, status, xhr) {
             if (status == "error") {
                 url = '../help/progHelp_' + GUISTATE_C.getRobotGroup() + '_en.html';
@@ -23,15 +26,54 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
                     if (status == "error") {
                         $('#progHelp').hide();
                     } else {
-                        $('#progHelp').show();
+                        if (CONFIG.getIsiPad()) {
+                            $('#progHelp').hide();
+                        }
+                        else{
+                            $('#progHelp').show();
+                        }
                     }
                 })
             } else {
-                $('#progHelp').show();
+                if (CONFIG.getIsiPad()) {
+                    $('#progHelp').hide();
+                }
+                else{
+                    $('#progHelp').show();
+                }
             }
         });
     }
     exports.initView = initView;
+
+    function initViewWithUrl(url) {
+        $('#helpContent').remove();
+        $('#helpDiv').load(url, function(response, status, xhr) {
+            if (status == "error") {
+                url = '../help/progHelp_' + GUISTATE_C.getRobotGroup() + '_en.html';
+                $('#helpDiv').load(url, function(response, status, xhr) {
+                    if (status == "error") {
+                        $('#progHelp').hide();
+                    } else {
+                        if (CONFIG.getIsiPad()) {
+                            $('#progHelp').hide();
+                        }
+                        else{
+                            $('#progHelp').show();
+                        }
+                    }
+                })
+            } else {
+                if (CONFIG.getIsiPad()) {
+                    $('#progHelp').hide();
+                }
+                else{
+                    $('#progHelp').show();
+                }
+            }
+        });
+    }
+    exports.initViewWithUrl = initViewWithUrl;
 
     function initEvents() {
         $('#progHelp').off('click touchend');
@@ -46,6 +88,12 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
         if ($('#blocklyDiv').hasClass('rightActive')) {
             $('.blocklyToolboxDiv').css('display', 'inherit');
             Blockly.svgResize(blocklyWorkspace);
+            if (CONFIG.getIsiPad()) {
+                $('#progHelp').hide();
+                $('#code-button').removeClass('disabled');
+                $('#sim-button').removeClass('disabled');
+                $('#info-button').removeClass('disabled');
+            }
             $('#progHelp').animate({
                 right : '0px',
             }, {
@@ -83,7 +131,13 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
                 width = 52;
             } else {
                 smallScreen = false;
-                width = $('#blocklyDiv').width() * 0.7;
+                width = $('#blocklyDiv').width() * 0.1;
+            }
+            if (CONFIG.getIsiPad()) {
+                $('#progHelp').show();
+                $('#code-button').addClass('disabled');
+                $('#sim-button').addClass('disabled');
+                $('#info-button').addClass('disabled');
             }
             $('#progHelp').animate({
                 right : $('#blocklyDiv').width() - width + 4,
@@ -120,4 +174,5 @@ define([ 'exports', 'comm', 'message', 'log', 'util', 'guiState.controller', 'bl
             });
         }
     }
+    exports.toggleHelp = toggleHelp;
 });

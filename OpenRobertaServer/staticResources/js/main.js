@@ -1,9 +1,9 @@
 require.config({
     baseUrl : 'js/libs',
     paths : {
-        'blockly' : '../../blockly/blockly_compressed',
-        'blocks' : '../../blockly/blocks_compressed',
-        'blocks-msg' : '../../blockly/msg/js/en',
+        'blockly' : 'blockly/blockly_compressed',
+        'blocks' : 'blockly/blocks_compressed',
+        'blocks-msg' : 'blockly/msg/js/en',
         'bootstrap' : 'bootstrap/bootstrap-3.3.1-dist/dist/js/bootstrap.min',
         'bootstrap-table' : 'bootstrap/bootstrap-3.3.1-dist/dist/js/bootstrap-table.min',
         'datatables' : 'jquery/jquery.dataTables.min',
@@ -17,7 +17,9 @@ require.config({
         'volume-meter' : 'sound/volume-meter',
         'bootstrap.wysiwyg' : 'bootstrap/bootstrap-3.3.1-dist/dist/js/bootstrap-wysiwyg.min',
         'socket.io' : 'socket.io/socket.io',
+        'slick' : 'slick/slick',
 
+        'barMenu.controller': '../app/roberta/controller/barMenu.controller',
         'confDelete.controller' : '../app/roberta/controller/confDelete.controller',
         'configuration.controller' : '../app/roberta/controller/configuration.controller',
         'configuration.model' : '../app/roberta/models/configuration.model',
@@ -27,6 +29,7 @@ require.config({
         'guiState.controller' : '../app/roberta/controller/guiState.controller',
         'guiState.model' : '../app/roberta/models/guiState.model',
         'language.controller' : '../app/roberta/controller/language.controller',
+        'lessonList.controller' : '../app/roberta/controller/lessonList.controller',
         'logList.controller' : '../app/roberta/controller/logList.controller',
         'logList.model' : '../app/roberta/models/logList.model',
         'menu.controller' : '../app/roberta/controller/menu.controller',
@@ -36,6 +39,7 @@ require.config({
         'progInfo.controller' : '../app/roberta/controller/progInfo.controller',
         'progList.controller' : '../app/roberta/controller/progList.controller',
         'progList.model' : '../app/roberta/models/progList.model',
+        'lessonList.model' : '../app/roberta/models/lessonList.model',
         'program.controller' : '../app/roberta/controller/program.controller',
         'program.model' : '../app/roberta/models/program.model',
         'progShare.controller' : '../app/roberta/controller/progShare.controller',
@@ -82,6 +86,8 @@ require.config({
         'robertaLogic.timer' : '../app/simulation/robertaLogic/timer',
         'robertaLogic.gyro' : '../app/simulation/robertaLogic/gyro',
 
+        'config' : '../app/roberta/config'
+
     },
     shim : {
         'bootstrap' : {
@@ -109,21 +115,26 @@ require.config({
         'jquery-cookie' : {
             deps : [ 'jquery' ]
         },
+        'slick' : {
+            deps: [ 'jquery' ]
+        }
     }
 });
 
-require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', 'progList.controller', 'logList.controller', 'confList.controller',
+require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', 'progList.controller', 'logList.controller', 'confList.controller', 'lessonList.controller', 'barMenu.controller',
         'progDelete.controller', 'confDelete.controller', 'progShare.controller', 'menu.controller', 'user.controller', 'robot.controller',
-        'program.controller', 'configuration.controller', 'language.controller', 'socket.controller', 'volume-meter' ], function(require) {
+        'program.controller', 'configuration.controller', 'progHelp.controller', 'language.controller', 'socket.controller', 'volume-meter' , 'slick', 'config'], function(require) {
 
     $ = require('jquery', 'jquery-cookie');
     WRAP = require('wrap');
     COMM = require('comm');
+    barMenuController = require('barMenu.controller');
     confDeleteController = require('confDelete.controller');
     configurationController = require('configuration.controller');
     confListController = require('confList.controller');
     guiStateController = require('guiState.controller');
     languageController = require('language.controller');
+    lessonListController = require('lessonList.controller');
     logListController = require('logList.controller');
     menuController = require('menu.controller');
     progDeleteController = require('progDelete.controller');
@@ -134,15 +145,36 @@ require([ 'require', 'wrap', 'jquery', 'jquery-cookie', 'guiState.controller', '
     robotController = require('robot.controller');
     userController = require('user.controller');
     socketController = require('socket.controller');
+    progHelpController = require('progHelp.controller');
+    config = require('config');
 
     $(document).ready(WRAP.fn3(init, 'page init'));
 });
+
+
+// function connectToSwiftWebViewBridge(callback) {
+//     if (window.SwiftWebViewBridge) {
+//         callback(SwiftWebViewBridge);
+//     } else {
+//         document.addEventListener('SwiftWebViewBridgeReady', function() {
+//             callback(SwiftWebViewBridge);
+//         }, false);
+//     }
+// }
+//
+// function requireLoginWithCallback() {
+//     SwiftWebViewBridge.callSwiftHandler("requireLogin", {}, function(responseData){
+//         log('JS got responds from Swift: ', responseData);
+//         userController.loginWith(data.username, data.password);
+//     })
+// }
 
 /**
  * Initializations
  */
 function init() {
     COMM.setErrorFn(handleServerErrors);
+    config.init();
     $.when(languageController.init()).then(function(language) {
         return guiStateController.init(language);
     }).then(function() {
@@ -150,26 +182,42 @@ function init() {
     }).then(function() {
         return userController.init();
     }).then(function() {
-        galleryListController.init();
-        progListController.init();
-        progDeleteController.init();
-        confListController.init();
-        confDeleteController.init();
-        progShareController.init();
-        logListController.init();
-        configurationController.init();
-        programController.init();
-        menuController.init();
-        //socketController.init();
+        if (config.getIsiPad()) {
+            barMenuController.init();
+            lessonListController.init();
+        }
+            galleryListController.init();
+            progListController.init();
+            progDeleteController.init();
+            confListController.init();
+            confDeleteController.init();
+            progShareController.init();
+            logListController.init();
+            configurationController.init();
+            programController.init();
+            menuController.init();
+            //socketController.init();
 
-        //console.log(robotList);
-        $(".cover").fadeOut(100, function() {
-            if (guiStateController.noCookie()) {
-                $("#show-startup-message").modal("show");
+            $(".cover").fadeOut(100, function() {
+                if(config.getIsiPad()) {
+                    $("#lesson-close")[0].style.display = "none";
+                    lessonListController.displayLessonMenu();
+                }
+                else{
+                    if (guiStateController.noCookie()) {
+                       $("#show-startup-message").modal("show");
+                    }
+                }
+            });
+            $(".pace").fadeOut(500);
+        }
+    ).then(
+        function(){
+            if(config.getIsiPad()) {
+                window.webkit.messageHandlers.requireLogin.postMessage("Require to login.");
             }
-        });
-        $(".pace").fadeOut(500);
-    });
+        }
+    );
 }
 
 /**

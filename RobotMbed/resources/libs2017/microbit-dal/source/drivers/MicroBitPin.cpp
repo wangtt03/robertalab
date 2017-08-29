@@ -343,8 +343,8 @@ int MicroBitPin::readPulse(int level)
             return -1;
         }
     }
-    runtime.reset();
-    runtime.start();
+    pulsetime.reset();
+    pulsetime.start();
     while (getDigitalValue() == level) {
         if (runtime.read_us() > timeout) {
             return -1;

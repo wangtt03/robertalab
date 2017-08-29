@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import de.fhg.iais.roberta.persistence.DeviceProcessor;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,6 +75,7 @@ public class ClientAdmin {
                     robots.put("" + i, robotDescription);
                     i++;
                 }
+                server.put("isPublic", RobertaProperties.getBooleanProperty("server.public"));
                 server.put("robots", robots);
                 response.put("server", server);
                 LOG.info("success: create init object");
@@ -114,7 +116,22 @@ public class ClientAdmin {
                 } else {
                     Util.addErrorInfo(response, Key.ROBOT_NOT_CONNECTED);
                 }
-            } else if ( cmd.equals("setRobot") ) {
+            } else if ( cmd.equals("getDevice") ){
+                LOG.info("try to get device code by id: " + fullRequest);
+                String deviceName = request.getString("deviceName");
+                if ( deviceName != null && deviceName.trim().length() != 0 ) {
+                    DeviceProcessor dp = new DeviceProcessor(dbSession, httpSessionState);
+                    JSONObject deviceObj = dp.getDeviceByName(deviceName);
+                    if (deviceObj != null){
+                        response.put("deviceInfo", deviceObj);
+                        Util.addSuccessInfo(response, Key.ROBOT_GET_TOKEN_SUCCESS);
+                    }
+                } else {
+                    LOG.error("no device id specified.");
+                    Util.addErrorInfo(response, Key.ROBOT_GET_TOKEN_ERROR);
+                }
+            }
+            else if ( cmd.equals("setRobot") ) {
                 String robot = request.getString("robot");
                 if ( robot != null && RobertaProperties.getRobotWhitelist().contains(robot) ) {
                     Util.addSuccessInfo(response, Key.ROBOT_SET_SUCCESS);

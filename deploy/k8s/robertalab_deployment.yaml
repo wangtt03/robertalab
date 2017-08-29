@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: robertalab
+spec:
+  template:
+    metadata:
+      labels:
+        app: robertalabapp
+        component: robertalab
+    spec:
+      containers:
+      - name: robertalab
+        image: csdiregistry.azurecr.io/stem/robertalab:<robertalab_version>
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 1999
+      imagePullSecrets:
+      - name: csdiregsecret
