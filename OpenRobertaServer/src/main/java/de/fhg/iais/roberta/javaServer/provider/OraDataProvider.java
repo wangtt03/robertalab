@@ -14,6 +14,7 @@ import com.sun.jersey.core.spi.component.ComponentScope;
 import com.sun.jersey.spi.inject.Injectable;
 import com.sun.jersey.spi.inject.InjectableProvider;
 import de.fhg.iais.roberta.factory.IRobotFactory;
+import de.fhg.iais.roberta.javaServer.restServices.all.ApiFactory;
 import de.fhg.iais.roberta.persistence.UserProcessor;
 import de.fhg.iais.roberta.persistence.bo.User;
 import de.fhg.iais.roberta.persistence.dao.UserDao;
@@ -22,6 +23,11 @@ import de.fhg.iais.roberta.persistence.util.HttpSessionState;
 import de.fhg.iais.roberta.persistence.util.SessionFactoryWrapper;
 import de.fhg.iais.roberta.robotCommunication.RobotCommunicator;
 import de.fhg.iais.roberta.util.RobertaProperties;
+import io.swagger.client.stemweb.ApiCallback;
+import io.swagger.client.stemweb.ApiClient;
+import io.swagger.client.stemweb.ApiException;
+import io.swagger.client.stemweb.api.UserApi;
+import io.swagger.client.stemweb.model.UserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,6 +37,7 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.ext.Provider;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
@@ -97,52 +104,28 @@ public class OraDataProvider implements InjectableProvider<OraData, Parameter> {
                     httpSession.setAttribute(OPEN_ROBERTA_STATE, httpSessionState);
                 }
 
-                User user = getAuthenticatedUser(OraDataProvider.this .sessionFactoryWrapper.getSession(), httpSessionState);
-                if (user != null) {
-                    httpSessionState.setUserClearDataKeepTokenAndRobotId(user.getId());
-                }
+                getAuthenticatedClaims(httpSessionState);
                 return httpSessionState;
             }
         };
     }
 
-    private User getAuthenticatedUser(DbSession dbSession, HttpSessionState httpSessionState){
+    private void getAuthenticatedClaims(HttpSessionState httpSessionState){
         LOG.debug("in getAuthenticatedUser");
         Cookie[] cookies = OraDataProvider.this.servletRequest.getCookies();
-        boolean authenticated = false;
         for (Cookie c: cookies) {
             if (c.getName().equals("Auth")) {
                 LOG.debug("auth cookie found.");
                 String token = c.getValue();
-                String userId = verifyJWTToken(token);
-                if (userId != null && !userId.equals("")){
-                    LOG.debug("userId: " + userId);
-                    //get user from stemweb service.
-                    UserProcessor up = new UserProcessor(dbSession, httpSessionState);
-                    User user = up.getUser(userId);
-                    if (user == null) {
-                        try {
-                            up.createUser(userId, UUID.randomUUID().toString(), "name", "STUDENT", "email", "tag", true);
-                            dbSession.commit();
-                            OraDataProvider.this.sessionFactoryWrapper.getSession().commit();
-                            user = up.getUser(userId);
-                            return user;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        return user;
-                    }
-                }
+                Map<String, Claim> claims = verifyJWTToken(token);
+                httpSessionState.setJwtClaims(claims);
+                httpSessionState.setJwtToken(token);
                 break;
             }
         }
-
-        return null;
     }
 
-    private static String verifyJWTToken(String token) {
-        String userId = "";
+    private static Map<String, Claim> verifyJWTToken(String token) {
         try {
             String key = RobertaProperties.getStringProperty("jwt.key");
             String secret = RobertaProperties.getStringProperty("jwt.secret");
@@ -151,13 +134,14 @@ public class OraDataProvider implements InjectableProvider<OraData, Parameter> {
             JWTVerifier verifier = JWT.require(algorithm)
                     .build(); //Reusable verifier instance
             DecodedJWT jwt = verifier.verify(token);
-            userId = jwt.getClaim("userId").asString();
+            return jwt.getClaims();
         } catch (UnsupportedEncodingException exception){
-            //UTF-8 encoding not supported
+            LOG.error(exception.toString());
         } catch (JWTVerificationException exception){
             //Invalid signature/claims
+            LOG.error(exception.toString());
         }
 
-        return userId;
+        return null;
     }
 }

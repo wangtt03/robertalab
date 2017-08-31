@@ -1,26 +1,7 @@
 package de.fhg.iais.roberta.javaServer.restServices.all;
 
-import java.util.Date;
-import java.util.Random;
-
-import javax.mail.MessagingException;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-import de.fhg.iais.roberta.persistence.DeviceProcessor;
-import de.fhg.iais.roberta.persistence.dao.UserDeviceRelationDao;
-import org.codehaus.jettison.json.JSONArray;
-import org.codehaus.jettison.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.slf4j.MDC;
-
+import com.auth0.jwt.interfaces.Claim;
 import com.google.inject.Inject;
-
 import de.fhg.iais.roberta.javaServer.provider.OraData;
 import de.fhg.iais.roberta.main.MailManagement;
 import de.fhg.iais.roberta.persistence.LostPasswordProcessor;
@@ -29,15 +10,30 @@ import de.fhg.iais.roberta.persistence.UserProcessor;
 import de.fhg.iais.roberta.persistence.bo.LostPassword;
 import de.fhg.iais.roberta.persistence.bo.PendingEmailConfirmations;
 import de.fhg.iais.roberta.persistence.bo.User;
+import de.fhg.iais.roberta.persistence.dao.UserDeviceRelationDao;
 import de.fhg.iais.roberta.persistence.util.DbSession;
 import de.fhg.iais.roberta.persistence.util.HttpSessionState;
 import de.fhg.iais.roberta.robotCommunication.RobotCommunicator;
-import de.fhg.iais.roberta.util.AliveData;
-import de.fhg.iais.roberta.util.ClientLogger;
-import de.fhg.iais.roberta.util.Key;
-import de.fhg.iais.roberta.util.RobertaProperties;
-import de.fhg.iais.roberta.util.Util;
-import de.fhg.iais.roberta.util.Util1;
+import de.fhg.iais.roberta.util.*;
+import io.swagger.client.stemweb.api.UserApi;
+import io.swagger.client.stemweb.model.UserType;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+
+import javax.mail.MessagingException;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.Date;
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 
 @Path("/user")
 public class ClientUser {
@@ -81,23 +77,44 @@ public class ClientUser {
                     ClientUser.LOG.info("clear for (logged in) user " + userId + ". Has the user reloaded the page?");
                 }
             } else if ( cmd.equals("login") && !httpSessionState.isUserLoggedIn() ) {
-                String userAccountName = request.getString("accountName");
-                String password = request.getString("password");
-                User user = up.getUser(userAccountName, password);
-                Util.addResultInfo(response, up);
-                if ( user != null ) {
-                    int id = user.getId();
-                    String account = user.getAccount();
-                    String name = user.getUserName();
-                    httpSessionState.setUserClearDataKeepTokenAndRobotId(id);
-                    user.setLastLogin();
-                    response.put("userId", id);
-                    response.put("userRole", user.getRole());
-                    response.put("userAccountName", account);
-                    response.put("userName", name);
-                    response.put("isAccountActivated", user.isActivated());
-                    ClientUser.LOG.info("login: user {} (id {}) logged in", account, id);
-                    AliveData.rememberLogin();
+                if (httpSessionState.getJwtClaims() != null) {
+                    Map<String, Claim> claims = httpSessionState.getJwtClaims();
+                    String userUUID = claims.get("userId").asString();
+                    if (userUUID != null && !userUUID.equals("")) {
+                        LOG.debug("userId: " + userUUID);
+                        //get user from stemweb service.
+                        User user = up.getUser(userUUID);
+                        if (user == null) {
+                            try {
+                                UserApi uapi = ApiFactory.getInstance().getUserApi(httpSessionState.getJwtToken());
+                                io.swagger.client.stemweb.model.User uu = uapi.getUserById(UUID.fromString(userUUID));
+                                if (uu != null) {
+                                    up.createUser(userUUID, UUID.randomUUID().toString(), uu.getNick(),
+                                            uu.getUserType() == UserType.STUDENT ? "STUDENT" : "TEACHER",
+                                            uu.getEmail() == null ? "" : uu.getEmail(), "", uu.getAge() == null ? false : (uu.getAge() >= 14));
+                                    user = up.getUser(userUUID);
+                                }
+                            } catch (Exception e) {
+                               LOG.error(e.toString());
+                            }
+                        }
+
+                        Util.addResultInfo(response, up);
+                        if ( user != null ) {
+                            int id = user.getId();
+                            String account = user.getAccount();
+                            String name = user.getUserName();
+                            httpSessionState.setUserClearDataKeepTokenAndRobotId(id);
+                            user.setLastLogin();
+                            response.put("userId", id);
+                            response.put("userRole", user.getRole());
+                            response.put("userAccountName", account);
+                            response.put("userName", name);
+                            response.put("isAccountActivated", user.isActivated());
+                            ClientUser.LOG.info("login: user {} (id {}) logged in", account, id);
+                            AliveData.rememberLogin();
+                        }
+                    }
                 }
 
             } else if ( cmd.equals("getUser") && httpSessionState.isUserLoggedIn() ) {

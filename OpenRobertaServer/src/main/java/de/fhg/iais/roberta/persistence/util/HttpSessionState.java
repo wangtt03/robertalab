@@ -2,6 +2,7 @@ package de.fhg.iais.roberta.persistence.util;
 
 import java.util.Map;
 
+import com.auth0.jwt.interfaces.Claim;
 import de.fhg.iais.roberta.factory.IRobotFactory;
 import de.fhg.iais.roberta.robotCommunication.RobotCommunicator;
 import de.fhg.iais.roberta.util.RobertaProperties;
@@ -21,6 +22,24 @@ public class HttpSessionState {
     private String toolbox;
     private long sessionNumber;
     private Map<String, IRobotFactory> robotPluginMap;
+    private Map<String, Claim> jwtClaims;
+    private String jwtToken;
+
+    public String getJwtToken() {
+        return jwtToken;
+    }
+
+    public void setJwtToken(String jwtToken) {
+        this.jwtToken = jwtToken;
+    }
+
+    public Map<String, Claim> getJwtClaims() {
+        return jwtClaims;
+    }
+
+    public void setJwtClaims(Map<String, Claim> jwtClaims) {
+        this.jwtClaims = jwtClaims;
+    }
 
     public HttpSessionState(RobotCommunicator robotCommunicator, Map<String, IRobotFactory> robotPluginMap, long sessionNumber) {
         this.robotPluginMap = robotPluginMap;
