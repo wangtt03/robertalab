@@ -20,20 +20,18 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets UserType
+ * Gets or Sets LevelRobertaType
  */
-@JsonAdapter(UserType.Adapter.class)
-public enum UserType {
+@JsonAdapter(LevelRobertaType.Adapter.class)
+public enum LevelRobertaType {
   
-  INVALID("invalid"),
+  INSTRUCTION("instruction"),
   
-  STUDENT("student"),
-  
-  TEACHER("teacher");
+  PROGRAM("program");
 
   private String value;
 
-  UserType(String value) {
+  LevelRobertaType(String value) {
     this.value = value;
   }
 
@@ -46,8 +44,8 @@ public enum UserType {
     return String.valueOf(value);
   }
 
-  public static UserType fromValue(String text) {
-    for (UserType b : UserType.values()) {
+  public static LevelRobertaType fromValue(String text) {
+    for (LevelRobertaType b : LevelRobertaType.values()) {
       if (String.valueOf(b.value).equals(text)) {
         return b;
       }
@@ -55,16 +53,16 @@ public enum UserType {
     return null;
   }
 
-  public static class Adapter extends TypeAdapter<UserType> {
+  public static class Adapter extends TypeAdapter<LevelRobertaType> {
     @Override
-    public void write(final JsonWriter jsonWriter, final UserType enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final LevelRobertaType enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public UserType read(final JsonReader jsonReader) throws IOException {
+    public LevelRobertaType read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return UserType.fromValue(String.valueOf(value));
+      return LevelRobertaType.fromValue(String.valueOf(value));
     }
   }
 }

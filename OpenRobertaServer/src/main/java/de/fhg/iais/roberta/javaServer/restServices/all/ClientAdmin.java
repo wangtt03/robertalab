@@ -1,6 +1,7 @@
 package de.fhg.iais.roberta.javaServer.restServices.all;
 
 import java.util.Collection;
+import java.util.UUID;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -10,6 +11,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import de.fhg.iais.roberta.persistence.DeviceProcessor;
+import io.swagger.client.stemweb.api.LevelApi;
+import io.swagger.client.stemweb.model.LevelRobertalab;
 import org.codehaus.jettison.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -133,6 +136,7 @@ public class ClientAdmin {
             }
             else if ( cmd.equals("setRobot") ) {
                 String robot = request.getString("robot");
+                String levelId = request.getString("lesson");
                 if ( robot != null && RobertaProperties.getRobotWhitelist().contains(robot) ) {
                     Util.addSuccessInfo(response, Key.ROBOT_SET_SUCCESS);
                     if ( httpSessionState.getRobotName() != robot ) {
@@ -155,20 +159,26 @@ public class ClientAdmin {
                         program = new JSONObject();
                         configuration = new JSONObject();
                         toolbox = new JSONObject();
-                        toolbox.put("beginner", robotFactory.getProgramToolboxBeginner());
-                        toolbox.put("expert", robotFactory.getProgramToolboxExpert());
-                        program.put("toolbox", toolbox);
-                        program.put("prog", robotFactory.getProgramDefault());
-                        response.put("program", program);
-                        configuration.put("toolbox", robotFactory.getConfigurationToolbox());
-                        configuration.put("conf", robotFactory.getConfigurationDefault());
-                        response.put("configuration", configuration);
-                        response.put("sim", robotFactory.hasSim());
-                        response.put("connection", robotFactory.getConnectionType());
-                        response.put("vendor", robotFactory.getVendorId());
-                        response.put("configurationUsed", robotFactory.hasConfiguration());
-                        response.put("commandLine", robotFactory.getCommandline());
-                        response.put("signature", robotFactory.getSignature());
+
+                        LevelApi levelApi = ApiFactory.getInstance().getLevelApi();
+                        LevelRobertalab levelRoberta = levelApi.getLevelRobertaById(UUID.fromString(levelId));
+                        if (levelRoberta != null) {
+                            toolbox.put("beginner", levelRoberta.getLevelProp().getLevelToolbox());
+                            toolbox.put("expert", levelRoberta.getLevelProp().getLevelToolbox());
+                            program.put("toolbox", toolbox);
+                            program.put("prog", robotFactory.getProgramDefault());
+                            response.put("program", program);
+                            configuration.put("toolbox", robotFactory.getConfigurationToolbox());
+                            configuration.put("conf", robotFactory.getConfigurationDefault());
+                            response.put("configuration", configuration);
+                            response.put("sim", robotFactory.hasSim());
+                            response.put("connection", robotFactory.getConnectionType());
+                            response.put("vendor", robotFactory.getVendorId());
+                            response.put("configurationUsed", robotFactory.hasConfiguration());
+                            response.put("commandLine", robotFactory.getCommandline());
+                            response.put("signature", robotFactory.getSignature());
+                        }
+
 
                         LOG.info("set robot to {}", robot);
                     } else {

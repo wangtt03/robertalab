@@ -18,7 +18,7 @@ import io.swagger.client.stemweb.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-30T00:47:33.626+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-09-05T15:21:51.713+08:00")
 public class ApiKeyAuth implements Authentication {
   private final String location;
   private final String paramName;

@@ -14,12 +14,8 @@
 package io.swagger.client.stemweb.model;
 
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.UUID;
@@ -27,7 +23,7 @@ import java.util.UUID;
 /**
  * User
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-30T00:47:33.626+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-09-05T15:21:51.713+08:00")
 public class User {
   @SerializedName("id")
   private UUID id = null;
@@ -61,6 +57,9 @@ public class User {
 
   @SerializedName("uid")
   private String uid = null;
+
+  @SerializedName("accountType")
+  private Integer accountType = null;
 
   @SerializedName("token_type")
   private Long tokenType = null;
@@ -266,6 +265,24 @@ public class User {
     this.uid = uid;
   }
 
+  public User accountType(Integer accountType) {
+    this.accountType = accountType;
+    return this;
+  }
+
+   /**
+   * Get accountType
+   * @return accountType
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getAccountType() {
+    return accountType;
+  }
+
+  public void setAccountType(Integer accountType) {
+    this.accountType = accountType;
+  }
+
   public User tokenType(Long tokenType) {
     this.tokenType = tokenType;
     return this;
@@ -323,13 +340,14 @@ public class User {
         Objects.equals(this.accessToken, user.accessToken) &&
         Objects.equals(this.authToken, user.authToken) &&
         Objects.equals(this.uid, user.uid) &&
+        Objects.equals(this.accountType, user.accountType) &&
         Objects.equals(this.tokenType, user.tokenType) &&
         Objects.equals(this.userType, user.userType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, account, password, nick, email, age, gender, phone, accessToken, authToken, uid, tokenType, userType);
+    return Objects.hash(id, account, password, nick, email, age, gender, phone, accessToken, authToken, uid, accountType, tokenType, userType);
   }
 
 
@@ -349,6 +367,7 @@ public class User {
     sb.append("    accessToken: ").append(toIndentedString(accessToken)).append("\n");
     sb.append("    authToken: ").append(toIndentedString(authToken)).append("\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    accountType: ").append(toIndentedString(accountType)).append("\n");
     sb.append("    tokenType: ").append(toIndentedString(tokenType)).append("\n");
     sb.append("    userType: ").append(toIndentedString(userType)).append("\n");
     sb.append("}");

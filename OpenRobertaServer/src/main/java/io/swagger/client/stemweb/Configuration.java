@@ -13,7 +13,7 @@
 
 package io.swagger.client.stemweb;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-30T00:47:33.626+08:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-09-05T15:21:51.713+08:00")
 public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
 

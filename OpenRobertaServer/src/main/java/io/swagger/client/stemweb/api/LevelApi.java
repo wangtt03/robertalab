@@ -31,6 +31,7 @@ import io.swagger.client.stemweb.model.LevelCodeCamp;
 import io.swagger.client.stemweb.model.LevelCodeOrg;
 import io.swagger.client.stemweb.model.LevelItem;
 import io.swagger.client.stemweb.model.LevelQuiz;
+import io.swagger.client.stemweb.model.LevelRobertalab;
 import io.swagger.client.stemweb.model.LevelVideo;
 import java.util.UUID;
 
@@ -597,6 +598,133 @@ public class LevelApi {
 
         com.squareup.okhttp.Call call = getLevelQuizByIdValidateBeforeCall(levelId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<LevelQuiz>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for getLevelRobertaById
+     * @param levelId id of level (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getLevelRobertaByIdCall(UUID levelId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/level/levelRoberta/findById";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        if (levelId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "level_id", levelId));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getLevelRobertaByIdValidateBeforeCall(UUID levelId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'levelId' is set
+        if (levelId == null) {
+            throw new ApiException("Missing the required parameter 'levelId' when calling getLevelRobertaById(Async)");
+        }
+        
+        
+        com.squareup.okhttp.Call call = getLevelRobertaByIdCall(levelId, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * get level_roberta by level_id
+     * Get level_roberta by level_id. 
+     * @param levelId id of level (required)
+     * @return LevelRobertalab
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public LevelRobertalab getLevelRobertaById(UUID levelId) throws ApiException {
+        ApiResponse<LevelRobertalab> resp = getLevelRobertaByIdWithHttpInfo(levelId);
+        return resp.getData();
+    }
+
+    /**
+     * get level_roberta by level_id
+     * Get level_roberta by level_id. 
+     * @param levelId id of level (required)
+     * @return ApiResponse&lt;LevelRobertalab&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<LevelRobertalab> getLevelRobertaByIdWithHttpInfo(UUID levelId) throws ApiException {
+        com.squareup.okhttp.Call call = getLevelRobertaByIdValidateBeforeCall(levelId, null, null);
+        Type localVarReturnType = new TypeToken<LevelRobertalab>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * get level_roberta by level_id (asynchronously)
+     * Get level_roberta by level_id. 
+     * @param levelId id of level (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getLevelRobertaByIdAsync(UUID levelId, final ApiCallback<LevelRobertalab> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getLevelRobertaByIdValidateBeforeCall(levelId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<LevelRobertalab>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

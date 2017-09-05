@@ -21,17 +21,20 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.UUID;
 
 /**
- * LessonCategory
+ * LevelRobertalab
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-09-05T15:21:51.713+08:00")
-public class LessonCategory {
+public class LevelRobertalab {
   @SerializedName("id")
   private UUID id = null;
 
-  @SerializedName("name")
-  private String name = null;
+  @SerializedName("level_name")
+  private String levelName = null;
 
-  public LessonCategory id(UUID id) {
+  @SerializedName("level_prop")
+  private LevelRobertaProperty levelProp = null;
+
+  public LevelRobertalab id(UUID id) {
     this.id = id;
     return this;
   }
@@ -40,7 +43,7 @@ public class LessonCategory {
    * Get id
    * @return id
   **/
-  @ApiModelProperty(example = "d290f1ee-6c54-4b01-90e6-d701748f0851", value = "")
+  @ApiModelProperty(value = "")
   public UUID getId() {
     return id;
   }
@@ -49,22 +52,40 @@ public class LessonCategory {
     this.id = id;
   }
 
-  public LessonCategory name(String name) {
-    this.name = name;
+  public LevelRobertalab levelName(String levelName) {
+    this.levelName = levelName;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get levelName
+   * @return levelName
   **/
-  @ApiModelProperty(example = "Arts", value = "")
-  public String getName() {
-    return name;
+  @ApiModelProperty(value = "")
+  public String getLevelName() {
+    return levelName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setLevelName(String levelName) {
+    this.levelName = levelName;
+  }
+
+  public LevelRobertalab levelProp(LevelRobertaProperty levelProp) {
+    this.levelProp = levelProp;
+    return this;
+  }
+
+   /**
+   * Get levelProp
+   * @return levelProp
+  **/
+  @ApiModelProperty(value = "")
+  public LevelRobertaProperty getLevelProp() {
+    return levelProp;
+  }
+
+  public void setLevelProp(LevelRobertaProperty levelProp) {
+    this.levelProp = levelProp;
   }
 
 
@@ -76,24 +97,26 @@ public class LessonCategory {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LessonCategory lessonCategory = (LessonCategory) o;
-    return Objects.equals(this.id, lessonCategory.id) &&
-        Objects.equals(this.name, lessonCategory.name);
+    LevelRobertalab levelRobertalab = (LevelRobertalab) o;
+    return Objects.equals(this.id, levelRobertalab.id) &&
+        Objects.equals(this.levelName, levelRobertalab.levelName) &&
+        Objects.equals(this.levelProp, levelRobertalab.levelProp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(id, levelName, levelProp);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LessonCategory {\n");
+    sb.append("class LevelRobertalab {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    levelName: ").append(toIndentedString(levelName)).append("\n");
+    sb.append("    levelProp: ").append(toIndentedString(levelProp)).append("\n");
     sb.append("}");
     return sb.toString();
   }

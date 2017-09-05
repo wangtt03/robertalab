@@ -18,53 +18,51 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.UUID;
-
 /**
- * LessonCategory
+ * SpeechData
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-09-05T15:21:51.713+08:00")
-public class LessonCategory {
-  @SerializedName("id")
-  private UUID id = null;
+public class SpeechData {
+  @SerializedName("text")
+  private String text = null;
 
-  @SerializedName("name")
-  private String name = null;
+  @SerializedName("audioUrl")
+  private String audioUrl = null;
 
-  public LessonCategory id(UUID id) {
-    this.id = id;
+  public SpeechData text(String text) {
+    this.text = text;
     return this;
   }
 
    /**
-   * Get id
-   * @return id
+   * Get text
+   * @return text
   **/
-  @ApiModelProperty(example = "d290f1ee-6c54-4b01-90e6-d701748f0851", value = "")
-  public UUID getId() {
-    return id;
+  @ApiModelProperty(value = "")
+  public String getText() {
+    return text;
   }
 
-  public void setId(UUID id) {
-    this.id = id;
+  public void setText(String text) {
+    this.text = text;
   }
 
-  public LessonCategory name(String name) {
-    this.name = name;
+  public SpeechData audioUrl(String audioUrl) {
+    this.audioUrl = audioUrl;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get audioUrl
+   * @return audioUrl
   **/
-  @ApiModelProperty(example = "Arts", value = "")
-  public String getName() {
-    return name;
+  @ApiModelProperty(value = "")
+  public String getAudioUrl() {
+    return audioUrl;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setAudioUrl(String audioUrl) {
+    this.audioUrl = audioUrl;
   }
 
 
@@ -76,24 +74,24 @@ public class LessonCategory {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    LessonCategory lessonCategory = (LessonCategory) o;
-    return Objects.equals(this.id, lessonCategory.id) &&
-        Objects.equals(this.name, lessonCategory.name);
+    SpeechData speechData = (SpeechData) o;
+    return Objects.equals(this.text, speechData.text) &&
+        Objects.equals(this.audioUrl, speechData.audioUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(text, audioUrl);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class LessonCategory {\n");
+    sb.append("class SpeechData {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
+    sb.append("    audioUrl: ").append(toIndentedString(audioUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
