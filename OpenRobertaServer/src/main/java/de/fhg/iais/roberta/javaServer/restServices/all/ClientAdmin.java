@@ -139,16 +139,18 @@ public class ClientAdmin {
                 String levelId = request.getString("lesson");
                 if ( robot != null && RobertaProperties.getRobotWhitelist().contains(robot) ) {
                     Util.addSuccessInfo(response, Key.ROBOT_SET_SUCCESS);
-                    if ( httpSessionState.getRobotName() != robot ) {
-                        // disconnect previous robot
-                        // TODO consider keeping it so that we can switch between robot and simulation
-                        //      see: https://github.com/OpenRoberta/robertalab/issues/43
-                        this.brickCommunicator.disconnect(httpSessionState.getToken());
-                        // TODO remove this and use a communicator
-                        if ( robot.equals("oraSim") ) {
-                            httpSessionState.setToken("00000000");
-                        } else {
-                            httpSessionState.setToken(RandomUrlPostfix.generate(12, 12, 3, 3, 3));
+                    if (httpSessionState.getRobotName() != robot) {
+                        if (httpSessionState.getRobotName() == null || !httpSessionState.getRobotName().equals(robot) ) {
+                            // disconnect previous robot
+                            // TODO consider keeping it so that we can switch between robot and simulation
+                            //      see: https://github.com/OpenRoberta/robertalab/issues/43
+                            this.brickCommunicator.disconnect(httpSessionState.getToken());
+                            // TODO remove this and use a communicator
+                            if ( robot.equals("oraSim") ) {
+                                httpSessionState.setToken("00000000");
+                            } else {
+                                httpSessionState.setToken(RandomUrlPostfix.generate(12, 12, 3, 3, 3));
+                            }
                         }
                         httpSessionState.setRobotName(robot);
                         IRobotFactory robotFactory = httpSessionState.getRobotFactory();

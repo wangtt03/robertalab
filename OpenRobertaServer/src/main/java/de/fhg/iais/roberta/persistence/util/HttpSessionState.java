@@ -43,7 +43,7 @@ public class HttpSessionState {
 
     public HttpSessionState(RobotCommunicator robotCommunicator, Map<String, IRobotFactory> robotPluginMap, long sessionNumber) {
         this.robotPluginMap = robotPluginMap;
-        this.robotName = RobertaProperties.getDefaultRobot();
+        this.robotName = "";//RobertaProperties.getDefaultRobot();
         this.sessionNumber = sessionNumber;
     }
 
